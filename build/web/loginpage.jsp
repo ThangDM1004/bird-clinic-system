@@ -36,7 +36,7 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-md-7">
                             <div class="mb-4">
-                                <h3>Sign In</h3>
+                                <h3>Dang Nhap</h3>
 
                             </div>
                             <form action="#" method="post">
