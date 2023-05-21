@@ -1,3 +1,10 @@
+<%-- 
+    Document   : loginpage
+    Created on : May 21, 2023, 7:39:34 PM
+    Author     : Minh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
     <head>

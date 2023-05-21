@@ -1,3 +1,10 @@
+<%-- 
+    Document   : HomePage
+    Created on : May 21, 2023, 7:33:33 PM
+    Author     : Minh
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -56,23 +63,22 @@
                                 <div style="margin-bottom: 20px;" class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="blog.html">Blog</a>
+                                            <li><a href="homepage.jsp">Home</a></li>
+                                            <li><a href="aboutpage.jsp">About</a></li>
+                                            <li><a href="servicepage.jsp">Services</a></li>
+                                            <li><a href="blogpage.jsp">Blog</a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog_details.html">Blog Details</a></li>
-                                                    <li><a href="elements.html">Element</a></li>
+                                                    <li><a href="blogpage.jsp">Blog</a></li>
+                                                    <li><a href="blogdetailspage.jsp">Blog Details</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="contactpage.jsp">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                                 <div style="margin-bottom: 20px;"
                                     class="header-right-btn f-right d-none d-lg-block ml-30">
-                                    <a href="login.html" class="header-btn">Log In</a>
+                                    <a href="loginpage.jsp" class="header-btn">Log In</a>
                                 </div>
                             </div>
                         </div>
