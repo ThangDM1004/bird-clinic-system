@@ -53,7 +53,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div style="opacity: 100%;" class="logo">
-                                    <a href="index.html"><img style=" max-width: 180px;"
+                                    <a href="homepage.jsp"><img style=" max-width: 180px;"
                                                               src="assets/img/logo/final_logo.png" alt=""></a>
                                 </div>
                             </div>
