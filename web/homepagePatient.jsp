@@ -84,10 +84,11 @@
                                                 <img src="assets/img/hero/vet-1.jpg" onclick="menuToggle();">
                                             </div>
                                             <div class="menu">
-                                                <h3>Trần Quang Minh<br><span>Website Admin</span></h3>
+                                                <h3>Trần Quang Minh<br><span></span></h3>
                                                 <ul>
                                                     <li><img style="width: 50px;" src="assets/img/icon_profile/user.png"><a href="#">My Profile</a></li>                                         
                                                     <li><img style="width: 50px;" src="assets/img/icon_profile/booking.png"><a href="#">My Appoinment</a></li>
+                                                    <li><img style="width: 50px;" src="assets/img/icon_profile/management.png"><a href="#">Manager</a></li>
                                                     <li><img style="width: 50px;" src="assets/img/icon_profile/logout.png"><a href="#">Log Out</a></li>
 
                                                 </ul>
