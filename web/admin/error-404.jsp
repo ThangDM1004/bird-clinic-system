@@ -1,6 +1,6 @@
 <%-- 
     Document   : error-404
-    Created on : May 29, 2023, 12:28:43 PM
+    Created on : May 29, 2023, 4:30:06 PM
     Author     : MSI AD
 --%>
 
@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/error-404.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/error-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -43,7 +43,7 @@
 				<h1>404</h1>
 				<h3 class="h2 mb-3"><i class="fa fa-warning"></i> Oops! Page not found!</h3>
 				<p class="h4 font-weight-normal">The page you requested was not found.</p>
-				<a href="index.jsp" class="btn btn-primary">Back to Home</a>
+				<a href="index.html" class="btn btn-primary">Back to Home</a>
 			</div>
 		
         </div>
@@ -61,5 +61,5 @@
 		
     </body>
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/error-404.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/error-404.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 </html>

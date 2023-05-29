@@ -1,6 +1,6 @@
 <%-- 
     Document   : invoice-report
-    Created on : May 29, 2023, 12:31:55 PM
+    Created on : May 29, 2023, 4:31:13 PM
     Author     : MSI AD
 --%>
 
@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/invoice-report.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/invoice-report.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -47,10 +47,10 @@
 			
 				<!-- Logo -->
                 <div class="header-left">
-                    <a href="index.jsp" class="logo">
+                    <a href="index.html" class="logo">
 						<img src="assets/img/logo.png" alt="Logo">
 					</a>
-					<a href="index.jsp" class="logo logo-small">
+					<a href="index.html" class="logo logo-small">
 						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
 					</a>
                 </div>
@@ -164,9 +164,9 @@
 									<p class="text-muted mb-0">Administrator</p>
 								</div>
 							</div>
-							<a class="dropdown-item" href="profile.jsp">My Profile</a>
-							<a class="dropdown-item" href="settings.jsp">Settings</a>
-							<a class="dropdown-item" href="login.jsp">Logout</a>
+							<a class="dropdown-item" href="profile.html">My Profile</a>
+							<a class="dropdown-item" href="settings.html">Settings</a>
+							<a class="dropdown-item" href="login.html">Logout</a>
 						</div>
 					</li>
 					<!-- /User Menu -->
@@ -186,82 +186,82 @@
 								<span>Main</span>
 							</li>
 							<li> 
-								<a href="index.jsp"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+								<a href="index.html"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
 							<li> 
-								<a href="appointment-list.jsp"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+								<a href="appointment-list.html"><i class="fe fe-layout"></i> <span>Appointments</span></a>
 							</li>
 							<li> 
-								<a href="specialities.jsp"><i class="fe fe-users"></i> <span>Specialities</span></a>
+								<a href="specialities.html"><i class="fe fe-users"></i> <span>Specialities</span></a>
 							</li>
 							<li> 
-								<a href="doctor-list.jsp"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+								<a href="doctor-list.html"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
 							</li>
 							<li> 
-								<a href="patient-list.jsp"><i class="fe fe-user"></i> <span>Patients</span></a>
+								<a href="patient-list.html"><i class="fe fe-user"></i> <span>Patients</span></a>
 							</li>
 							<li> 
-								<a href="reviews.jsp"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+								<a href="reviews.html"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
 							</li>
 							<li> 
-								<a href="transactions-list.jsp"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+								<a href="transactions-list.html"><i class="fe fe-activity"></i> <span>Transactions</span></a>
 							</li>
 							<li> 
-								<a href="settings.jsp"><i class="fe fe-vector"></i> <span>Settings</span></a>
+								<a href="settings.html"><i class="fe fe-vector"></i> <span>Settings</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a class="active" href="invoice-report.jsp">Invoice Reports</a></li>
+									<li><a class="active" href="invoice-report.html">Invoice Reports</a></li>
 								</ul>
 							</li>
 							<li class="menu-title"> 
 								<span>Pages</span>
 							</li>
 							<li> 
-								<a href="profile.jsp"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+								<a href="profile.html"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="login.jsp"> Login </a></li>
-									<li><a href="register.jsp"> Register </a></li>
-									<li><a href="forgot-password.jsp"> Forgot Password </a></li>
-									<li><a href="lock-screen.jsp"> Lock Screen </a></li>
+									<li><a href="login.html"> Login </a></li>
+									<li><a href="register.html"> Register </a></li>
+									<li><a href="forgot-password.html"> Forgot Password </a></li>
+									<li><a href="lock-screen.html"> Lock Screen </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="error-404.jsp">404 Error </a></li>
-									<li><a href="error-500.jsp">500 Error </a></li>
+									<li><a href="error-404.html">404 Error </a></li>
+									<li><a href="error-500.html">500 Error </a></li>
 								</ul>
 							</li>
 							<li> 
-								<a href="blank-page.jsp"><i class="fe fe-file"></i> <span>Blank Page</span></a>
+								<a href="blank-page.html"><i class="fe fe-file"></i> <span>Blank Page</span></a>
 							</li>
 							<li class="menu-title"> 
 								<span>UI Interface</span>
 							</li>
 							<li> 
-								<a href="components.jsp"><i class="fe fe-vector"></i> <span>Components</span></a>
+								<a href="components.html"><i class="fe fe-vector"></i> <span>Components</span></a>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="form-basic-inputs.jsp">Basic Inputs </a></li>
-									<li><a href="form-input-groups.jsp">Input Groups </a></li>
-									<li><a href="form-horizontal.jsp">Horizontal Form </a></li>
-									<li><a href="form-vertical.jsp"> Vertical Form </a></li>
-									<li><a href="form-mask.jsp"> Form Mask </a></li>
-									<li><a href="form-validation.jsp"> Form Validation </a></li>
+									<li><a href="form-basic-inputs.html">Basic Inputs </a></li>
+									<li><a href="form-input-groups.html">Input Groups </a></li>
+									<li><a href="form-horizontal.html">Horizontal Form </a></li>
+									<li><a href="form-vertical.html"> Vertical Form </a></li>
+									<li><a href="form-mask.html"> Form Mask </a></li>
+									<li><a href="form-validation.html"> Form Validation </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
-									<li><a href="tables-basic.jsp">Basic Tables </a></li>
-									<li><a href="data-tables.jsp">Data Table </a></li>
+									<li><a href="tables-basic.html">Basic Tables </a></li>
+									<li><a href="data-tables.html">Data Table </a></li>
 								</ul>
 							</li>
 							<li class="submenu">
@@ -302,7 +302,7 @@
 							<div class="col-sm-12">
 								<h3 class="page-title">Invoice Report</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 									<li class="breadcrumb-item active">Invoice Report</li>
 								</ul>
 							</div>
@@ -329,12 +329,12 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td><a href="invoice.jsp">#IN0001</td>
+													<td><a href="invoice.html">#IN0001</td>
 													<td>#PT001</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Charlene Reed </a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
+															<a href="profile.html">Charlene Reed </a>
 														</h2>
 													</td>
 													<td>$100.00</td>
@@ -355,12 +355,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0002</td>
+													<td><a href="invoice.html">#IN0002</td>
 													<td>#PT002</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Travis Trimble </a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
+															<a href="profile.html">Travis Trimble </a>
 														</h2>
 													</td>
 													<td>$200.00</td>
@@ -381,12 +381,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0003</td>
+													<td><a href="invoice.html">#IN0003</td>
 													<td>#PT003</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Carl Kelly</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
+															<a href="profile.html">Carl Kelly</a>
 														</h2>
 													</td>
 													<td>$250.00</td>
@@ -407,12 +407,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0004</td>
+													<td><a href="invoice.html">#IN0004</td>
 													<td>#PT004</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient4.jpg" alt="User Image"></a>
-															<a href="profile.jsp"> Michelle Fairfax</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient4.jpg" alt="User Image"></a>
+															<a href="profile.html"> Michelle Fairfax</a>
 														</h2>
 													</td>
 													<td>$150.00</td>
@@ -433,12 +433,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0005</td>
+													<td><a href="invoice.html">#IN0005</td>
 													<td>#PT005</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient5.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Gina Moore</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient5.jpg" alt="User Image"></a>
+															<a href="profile.html">Gina Moore</a>
 														</h2>
 													</td>
 													<td>$350.00</td>
@@ -459,12 +459,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0006</td>
+													<td><a href="invoice.html">#IN0006</td>
 													<td>#PT006</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient6.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Elsie Gilley</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient6.jpg" alt="User Image"></a>
+															<a href="profile.html">Elsie Gilley</a>
 														</h2>
 													</td>
 													<td>$300.00</td>
@@ -485,12 +485,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0007</td>
+													<td><a href="invoice.html">#IN0007</td>
 													<td>#PT007</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient7.jpg" alt="User Image"></a>
-															<a href="profile.jsp"> Joan Gardner</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient7.jpg" alt="User Image"></a>
+															<a href="profile.html"> Joan Gardner</a>
 														</h2>
 													</td>
 													<td>$250.00</td>
@@ -511,12 +511,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0008</td>
+													<td><a href="invoice.html">#IN0008</td>
 													<td>#PT008</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient8.jpg" alt="User Image"></a>
-															<a href="profile.jsp"> Daniel Griffing</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient8.jpg" alt="User Image"></a>
+															<a href="profile.html"> Daniel Griffing</a>
 														</h2>
 													</td>
 													<td>$150.00</td>
@@ -537,12 +537,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0009</td>
+													<td><a href="invoice.html">#IN0009</td>
 													<td>#PT009</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient9.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Walter Roberson</a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient9.jpg" alt="User Image"></a>
+															<a href="profile.html">Walter Roberson</a>
 														</h2>
 													</td>
 													<td>$100.00</td>
@@ -563,12 +563,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td><a href="invoice.jsp">#IN0010</td>
+													<td><a href="invoice.html">#IN0010</td>
 													<td>#PT010</td>
 													<td>
 														<h2 class="table-avatar">
-															<a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient10.jpg" alt="User Image"></a>
-															<a href="profile.jsp">Robert Rhodes </a>
+															<a href="profile.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient10.jpg" alt="User Image"></a>
+															<a href="profile.html">Robert Rhodes </a>
 														</h2>
 													</td>
 													<td>$120.00</td>
@@ -703,5 +703,5 @@
 		
     </body>
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/invoice-report.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/invoice-report.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 </html>

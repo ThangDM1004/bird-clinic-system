@@ -1,6 +1,6 @@
 <%-- 
     Document   : forgot-password
-    Created on : May 29, 2023, 12:15:33 PM
+    Created on : May 29, 2023, 4:21:37 PM
     Author     : MSI AD
 --%>
 
@@ -8,7 +8,7 @@
 <!DOCTYPE html> 
 <html lang="en">
 	
-<!-- doccure/forgot-password.jsp  30 Nov 2019 04:12:20 GMT -->
+<!-- doccure/forgot-password.html  30 Nov 2019 04:12:20 GMT -->
 <head>
 		<meta charset="utf-8">
 		<title>Doccure</title>
@@ -50,13 +50,13 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index-2.jsp" class="navbar-brand logo">
+						<a href="index-2.html" class="navbar-brand logo">
 							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="index-2.jsp" class="menu-logo">
+							<a href="index-2.html" class="menu-logo">
 								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -65,64 +65,64 @@
 						</div>
 						<ul class="main-nav">
 							<li>
-								<a href="index-2.jsp">Home</a>
+								<a href="index-2.html">Home</a>
 							</li>
 							<li class="has-submenu">
 								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
-									<li><a href="appointments.jsp">Appointments</a></li>
-									<li><a href="schedule-timings.jsp">Schedule Timing</a></li>
-									<li><a href="my-patients.jsp">Patients List</a></li>
-									<li><a href="patient-profile.jsp">Patients Profile</a></li>
-									<li><a href="chat-doctor.jsp">Chat</a></li>
-									<li><a href="invoices.jsp">Invoices</a></li>
-									<li><a href="doctor-profile-settings.jsp">Profile Settings</a></li>
-									<li><a href="reviews.jsp">Reviews</a></li>
-									<li><a href="doctor-register.jsp">Doctor Register</a></li>
+									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+									<li><a href="appointments.html">Appointments</a></li>
+									<li><a href="schedule-timings.html">Schedule Timing</a></li>
+									<li><a href="my-patients.html">Patients List</a></li>
+									<li><a href="patient-profile.html">Patients Profile</a></li>
+									<li><a href="chat-doctor.html">Chat</a></li>
+									<li><a href="invoices.html">Invoices</a></li>
+									<li><a href="doctor-profile-settings.html">Profile Settings</a></li>
+									<li><a href="reviews.html">Reviews</a></li>
+									<li><a href="doctor-register.html">Doctor Register</a></li>
 								</ul>
 							</li>	
 							<li class="has-submenu">
 								<a href="#">Patients <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="search.jsp">Search Doctor</a></li>
-									<li><a href="doctor-profile.jsp">Doctor Profile</a></li>
-									<li><a href="booking.jsp">Booking</a></li>
-									<li><a href="checkout.jsp">Checkout</a></li>
-									<li><a href="booking-success.jsp">Booking Success</a></li>
-									<li><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
-									<li><a href="favourites.jsp">Favourites</a></li>
-									<li><a href="chat.jsp">Chat</a></li>
-									<li><a href="profile-settings.jsp">Profile Settings</a></li>
-									<li><a href="change-password.jsp">Change Password</a></li>
+									<li><a href="search.html">Search Doctor</a></li>
+									<li><a href="doctor-profile.html">Doctor Profile</a></li>
+									<li><a href="booking.html">Booking</a></li>
+									<li><a href="checkout.html">Checkout</a></li>
+									<li><a href="booking-success.html">Booking Success</a></li>
+									<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+									<li><a href="favourites.html">Favourites</a></li>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="profile-settings.html">Profile Settings</a></li>
+									<li><a href="change-password.html">Change Password</a></li>
 								</ul>
 							</li>	
 							<li class="has-submenu active">
 								<a href="#">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="voice-call.jsp">Voice Call</a></li>
-									<li><a href="video-call.jsp">Video Call</a></li>
-									<li><a href="search.jsp">Search Doctors</a></li>
-									<li><a href="calendar.jsp">Calendar</a></li>
-									<li><a href="components.jsp">Components</a></li>
+									<li><a href="voice-call.html">Voice Call</a></li>
+									<li><a href="video-call.html">Video Call</a></li>
+									<li><a href="search.html">Search Doctors</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="components.html">Components</a></li>
 									<li class="has-submenu">
-										<a href="invoices.jsp">Invoices</a>
+										<a href="invoices.html">Invoices</a>
 										<ul class="submenu">
-											<li><a href="invoices.jsp">Invoices</a></li>
-											<li><a href="invoice-view.jsp">Invoice View</a></li>
+											<li><a href="invoices.html">Invoices</a></li>
+											<li><a href="invoice-view.html">Invoice View</a></li>
 										</ul>
 									</li>
-									<li><a href="blank-page.jsp">Starter Page</a></li>
-									<li><a href="login.jsp">Login</a></li>
-									<li><a href="register.jsp">Register</a></li>
-									<li class="active"><a href="forgot-password.jsp">Forgot Password</a></li>
+									<li><a href="blank-page.html">Starter Page</a></li>
+									<li><a href="login.html">Login</a></li>
+									<li><a href="register.html">Register</a></li>
+									<li class="active"><a href="forgot-password.html">Forgot Password</a></li>
 								</ul>
 							</li>
 							<li>
-								<a href="admin/index.jsp" target="_blank">Admin</a>
+								<a href="admin/index.html" target="_blank">Admin</a>
 							</li>
 							<li class="login-link">
-								<a href="login.jsp">Login / Signup</a>
+								<a href="login.html">Login / Signup</a>
 							</li>
 						</ul>	 
 					</div>		 
@@ -137,7 +137,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link header-login" href="login.jsp">login / Signup </a>
+							<a class="nav-link header-login" href="login.html">login / Signup </a>
 						</li>
 					</ul>
 				</nav>
@@ -164,13 +164,13 @@
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="https://dreamguys.co.in/demo/doccure/login.jsp">
+										<form action="https://dreamguys.co.in/demo/doccure/login.html">
 											<div class="form-group form-focus">
 												<input type="email" class="form-control floating">
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="text-right">
-												<a class="forgot-link" href="login.jsp">Remember your password?</a>
+												<a class="forgot-link" href="login.html">Remember your password?</a>
 											</div>
 											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Reset Password</button>
 										</form>
@@ -236,11 +236,11 @@
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Patients</h2>
 									<ul>
-										<li><a href="search.jsp"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
-										<li><a href="login.jsp"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="register.jsp"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="booking.jsp"><i class="fas fa-angle-double-right"></i> Booking</a></li>
-										<li><a href="patient-dashboard.jsp"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
+										<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for Doctors</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
+										<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a></li>
+										<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i> Patient Dashboard</a></li>
 									</ul>
 								</div>
 								<!-- /Footer Widget -->
@@ -253,11 +253,11 @@
 								<div class="footer-widget footer-menu">
 									<h2 class="footer-title">For Doctors</h2>
 									<ul>
-										<li><a href="appointments.jsp"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
-										<li><a href="chat.jsp"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-										<li><a href="login.jsp"><i class="fas fa-angle-double-right"></i> Login</a></li>
-										<li><a href="doctor-register.jsp"><i class="fas fa-angle-double-right"></i> Register</a></li>
-										<li><a href="doctor-dashboard.jsp"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
+										<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i> Appointments</a></li>
+										<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+										<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
+										<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i> Register</a></li>
+										<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor Dashboard</a></li>
 									</ul>
 								</div>
 								<!-- /Footer Widget -->
@@ -310,8 +310,8 @@
 									<!-- Copyright Menu -->
 									<div class="copyright-menu">
 										<ul class="policy-menu">
-											<li><a href="term-condition.jsp">Terms and Conditions</a></li>
-											<li><a href="privacy-policy.jsp">Policy</a></li>
+											<li><a href="term-condition.html">Terms and Conditions</a></li>
+											<li><a href="privacy-policy.html">Policy</a></li>
 										</ul>
 									</div>
 									<!-- /Copyright Menu -->
@@ -343,5 +343,5 @@
 		
 	</body>
 
-<!-- doccure/forgot-password.jsp  30 Nov 2019 04:12:20 GMT -->
+<!-- doccure/forgot-password.html  30 Nov 2019 04:12:20 GMT -->
 </html>

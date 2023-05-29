@@ -3,46 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/doctor-change-password.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/add-prescription.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/invoice-view.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/change-password.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/favourites.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/doctor-profile-settings.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/booking-success.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/chat.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/register.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/edit-prescription.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/video-call.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/invoices.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/calendar.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/doctor-profile.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/my-patients.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/term-condition.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/patient-profile.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/voice-call.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/doctor-register.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/social-media.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/add-billing.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/schedule-timings.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/checkout.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/edit-billing.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/blank-page.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/login.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/search.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/patient-dashboard.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/booking.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/profile-settings.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/index-2.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/index_logged.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/index.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/components.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/appointments.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/doctor-dashboard.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/forgot-password.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/privacy-policy.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/reviews.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/chat-doctor.jsp</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/admin/appointment-list.jsp</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/admin/specialities.jsp</file>
         </group>
     </open-files>
 </project-private>
