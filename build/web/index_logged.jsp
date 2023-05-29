@@ -158,7 +158,7 @@
 									<p class="text-muted mb-0">Patient</p>
 								</div>
 							</div>
-							<a class="dropdown-item" href="patient-dashboard.jsp">Dashboard</a>
+							<a class="dropdown-item" href="patient-dashboard.jsp">My Appoinment</a>
 							<a class="dropdown-item" href="profile-settings.jsp">Profile Settings</a>
 							<a class="dropdown-item" href="login.jsp">Logout</a>
 						</div>

@@ -154,7 +154,7 @@
 										<p class="text-muted mb-0">Patient</p>
 									</div>
 								</div>
-								<a class="dropdown-item" href="patient-dashboard.jsp">Dashboard</a>
+								<a class="dropdown-item" href="patient-dashboard.jsp">My Appointment</a>
 								<a class="dropdown-item" href="profile-settings.jsp">Profile Settings</a>
 								<a class="dropdown-item" href="login.jsp">Logout</a>
 							</div>
@@ -174,10 +174,10 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index-2.jsp">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+									<li class="breadcrumb-item active" aria-current="page">My Appoinment</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Dashboard</h2>
+							<h2 class="breadcrumb-title">My Appoinment</h2>
 						</div>
 					</div>
 				</div>
@@ -213,7 +213,7 @@
 											<li class="active">
 												<a href="patient-dashboard.jsp">
 													<i class="fas fa-columns"></i>
-													<span>Dashboard</span>
+													<span>My Appoinment</span>
 												</a>
 											</li>
 											<!-- <li>
