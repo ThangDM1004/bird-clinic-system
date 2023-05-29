@@ -54,13 +54,13 @@
 							<span></span>
 						</span>
 					</a>
-					<a href="index-2.html" class="navbar-brand logo">
+					<a href="index-2.jsp" class="navbar-brand logo">
 						<img src="assets/img/final_logo.png" class="img-fluid" alt="Logo">
 					</a>
 				</div>
 				<div class="main-menu-wrapper">
 					<div class="menu-header">
-						<a href="index-2.html" class="menu-logo">
+						<a href="index-2.jsp" class="menu-logo">
 							<img src="assets/img/final_logo.png" class="img-fluid" alt="Logo">
 						</a>
 						<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -69,65 +69,65 @@
 					</div>
 					<ul class="main-nav">
 						<li class="active">
-							<a href="index-2.html">Home</a>
+							<a href="index-2.jsp">Home</a>
 						</li>
 						<li class="has-submenu">
 							<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
 							<ul class="submenu">
-								<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
-								<li><a href="appointments.html">Appointments</a></li>
-								<li><a href="schedule-timings.html">Schedule Timing</a></li>
-								<li><a href="my-patients.html">Patients List</a></li>
-								<li><a href="patient-profile.html">Patients Profile</a></li>
-								<li><a href="chat-doctor.html">Chat</a></li>
-								<li><a href="invoices.html">Invoices</a></li>
-								<li><a href="doctor-profile-settings.html">Profile Settings</a></li>
-								<li><a href="reviews.html">Reviews</a></li>
-								<li><a href="doctor-register.html">Doctor Register</a></li>
+								<li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
+								<li><a href="appointments.jsp">Appointments</a></li>
+								<li><a href="schedule-timings.jsp">Schedule Timing</a></li>
+								<li><a href="my-patients.jsp">Patients List</a></li>
+								<li><a href="patient-profile.jsp">Patients Profile</a></li>
+								<li><a href="chat-doctor.jsp">Chat</a></li>
+								<li><a href="invoices.jsp">Invoices</a></li>
+								<li><a href="doctor-profile-settings.jsp">Profile Settings</a></li>
+								<li><a href="reviews.jsp">Reviews</a></li>
+								<li><a href="doctor-register.jsp">Doctor Register</a></li>
 							</ul>
 						</li>
 						<li class="has-submenu">
 							<a href="#">Patients <i class="fas fa-chevron-down"></i></a>
 							<ul class="submenu">
-								<li><a href="search.html">Search Doctor</a></li>
-								<li><a href="doctor-profile.html">Doctor Profile</a></li>
-								<li><a href="booking.html">Booking</a></li>
-								<li><a href="checkout.html">Checkout</a></li>
-								<li><a href="booking-success.html">Booking Success</a></li>
-								<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
-								<li><a href="favourites.html">Favourites</a></li>
-								<li><a href="chat.html">Chat</a></li>
-								<li><a href="profile-settings.html">Profile Settings</a></li>
-								<li><a href="change-password.html">Change Password</a></li>
+								<li><a href="search.jsp">Search Doctor</a></li>
+								<li><a href="doctor-profile.jsp">Doctor Profile</a></li>
+								<li><a href="booking.jsp">Booking</a></li>
+								<li><a href="checkout.jsp">Checkout</a></li>
+								<li><a href="booking-success.jsp">Booking Success</a></li>
+								<li><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
+								<li><a href="favourites.jsp">Favourites</a></li>
+								<li><a href="chat.jsp">Chat</a></li>
+								<li><a href="profile-settings.jsp">Profile Settings</a></li>
+								<li><a href="change-password.jsp">Change Password</a></li>
 							</ul>
 						</li>
 
 						<li class="has-submenu">
 							<a href="#">Pages <i class="fas fa-chevron-down"></i></a>
 							<ul class="submenu">
-								<li><a href="voice-call.html">Voice Call</a></li>
-								<li><a href="video-call.html">Video Call</a></li>
-								<li><a href="search.html">Search Doctors</a></li>
-								<li><a href="calendar.html">Calendar</a></li>
-								<li><a href="components.html">Components</a></li>
+								<li><a href="voice-call.jsp">Voice Call</a></li>
+								<li><a href="video-call.jsp">Video Call</a></li>
+								<li><a href="search.jsp">Search Doctors</a></li>
+								<li><a href="calendar.jsp">Calendar</a></li>
+								<li><a href="components.jsp">Components</a></li>
 								<li class="has-submenu">
-									<a href="invoices.html">Invoices</a>
+									<a href="invoices.jsp">Invoices</a>
 									<ul class="submenu">
-										<li><a href="invoices.html">Invoices</a></li>
-										<li><a href="invoice-view.html">Invoice View</a></li>
+										<li><a href="invoices.jsp">Invoices</a></li>
+										<li><a href="invoice-view.jsp">Invoice View</a></li>
 									</ul>
 								</li>
-								<li><a href="blank-page.html">Starter Page</a></li>
-								<li><a href="login.html">Login</a></li>
-								<li><a href="register.html">Register</a></li>
-								<li><a href="forgot-password.html">Forgot Password</a></li>
+								<li><a href="blank-page.jsp">Starter Page</a></li>
+								<li><a href="login.jsp">Login</a></li>
+								<li><a href="register.jsp">Register</a></li>
+								<li><a href="forgot-password.jsp">Forgot Password</a></li>
 							</ul>
 						</li>
 						<li>
-							<a href="blank-page.html" >Blog</a>
+							<a href="blank-page.jsp" >Blog</a>
 						</li>
 						<li class="login-link">
-							<a href="login.html">Login / Signup</a>
+							<a href="login.jsp">Login / Signup</a>
 						</li>
 					</ul>
 				</div>
@@ -142,7 +142,7 @@
 						</div>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link header-login" href="login.html">login / Signup </a>
+						<a class="nav-link header-login" href="login.jsp">login / Signup </a>
 					</li>
 				</ul>
 			</nav>
@@ -282,7 +282,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -291,7 +291,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Ruby Perrin</a>
+										<a href="doctor-profile.jsp">Ruby Perrin</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
@@ -317,10 +317,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -330,7 +330,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -339,7 +339,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Darren Elder</a>
+										<a href="doctor-profile.jsp">Darren Elder</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
@@ -365,10 +365,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -378,7 +378,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -387,7 +387,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Deborah Angel</a>
+										<a href="doctor-profile.jsp">Deborah Angel</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
@@ -413,10 +413,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -426,7 +426,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -435,7 +435,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Sofia Brient</a>
+										<a href="doctor-profile.jsp">Sofia Brient</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
@@ -461,10 +461,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -474,7 +474,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -483,7 +483,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Marvin Campbell</a>
+										<a href="doctor-profile.jsp">Marvin Campbell</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
@@ -509,10 +509,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -522,7 +522,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -531,7 +531,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Katharine Berthold</a>
+										<a href="doctor-profile.jsp">Katharine Berthold</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
@@ -557,10 +557,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -570,7 +570,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -579,7 +579,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Linda Tobin</a>
+										<a href="doctor-profile.jsp">Linda Tobin</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
@@ -605,10 +605,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -618,7 +618,7 @@
 							<!-- Doctor Widget -->
 							<div class="profile-widget">
 								<div class="doc-img">
-									<a href="doctor-profile.html">
+									<a href="doctor-profile.jsp">
 										<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
 									</a>
 									<a href="javascript:void(0)" class="fav-btn">
@@ -627,7 +627,7 @@
 								</div>
 								<div class="pro-content">
 									<h3 class="title">
-										<a href="doctor-profile.html">Paul Richard</a>
+										<a href="doctor-profile.jsp">Paul Richard</a>
 										<i class="fas fa-check-circle verified"></i>
 									</h3>
 									<p class="speciality">MBBS, MD - Dermatology , Venereology & Lepros</p>
@@ -653,10 +653,10 @@
 									</ul>
 									<div class="row row-sm">
 										<div class="col-6">
-											<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											<a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
 										</div>
 										<div class="col-6">
-											<a href="booking.html" class="btn book-btn">Book Now</a>
+											<a href="booking.jsp" class="btn book-btn">Book Now</a>
 										</div>
 									</div>
 								</div>
@@ -781,14 +781,14 @@
 							<div class="footer-widget footer-menu">
 								<h2 class="footer-title">For Patients</h2>
 								<ul>
-									<li><a href="search.html"><i class="fas fa-angle-double-right"></i> Search for
+									<li><a href="search.jsp"><i class="fas fa-angle-double-right"></i> Search for
 											Doctors</a></li>
-									<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-									<li><a href="register.html"><i class="fas fa-angle-double-right"></i> Register</a>
+									<li><a href="login.jsp"><i class="fas fa-angle-double-right"></i> Login</a></li>
+									<li><a href="register.jsp"><i class="fas fa-angle-double-right"></i> Register</a>
 									</li>
-									<li><a href="booking.html"><i class="fas fa-angle-double-right"></i> Booking</a>
+									<li><a href="booking.jsp"><i class="fas fa-angle-double-right"></i> Booking</a>
 									</li>
-									<li><a href="patient-dashboard.html"><i class="fas fa-angle-double-right"></i>
+									<li><a href="patient-dashboard.jsp"><i class="fas fa-angle-double-right"></i>
 											Patient Dashboard</a></li>
 								</ul>
 							</div>
@@ -802,13 +802,13 @@
 							<div class="footer-widget footer-menu">
 								<h2 class="footer-title">For Doctors</h2>
 								<ul>
-									<li><a href="appointments.html"><i class="fas fa-angle-double-right"></i>
+									<li><a href="appointments.jsp"><i class="fas fa-angle-double-right"></i>
 											Appointments</a></li>
-									<li><a href="chat.html"><i class="fas fa-angle-double-right"></i> Chat</a></li>
-									<li><a href="login.html"><i class="fas fa-angle-double-right"></i> Login</a></li>
-									<li><a href="doctor-register.html"><i class="fas fa-angle-double-right"></i>
+									<li><a href="chat.jsp"><i class="fas fa-angle-double-right"></i> Chat</a></li>
+									<li><a href="login.jsp"><i class="fas fa-angle-double-right"></i> Login</a></li>
+									<li><a href="doctor-register.jsp"><i class="fas fa-angle-double-right"></i>
 											Register</a></li>
-									<li><a href="doctor-dashboard.html"><i class="fas fa-angle-double-right"></i> Doctor
+									<li><a href="doctor-dashboard.jsp"><i class="fas fa-angle-double-right"></i> Doctor
 											Dashboard</a></li>
 								</ul>
 							</div>

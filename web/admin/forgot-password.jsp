@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/forgot-password.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
@@ -47,7 +47,7 @@
 								<p class="account-subtitle">Enter your email to get a password reset link</p>
 								
 								<!-- Form -->
-								<form action="https://dreamguys.co.in/demo/doccure/admin/login.html">
+								<form action="https://dreamguys.co.in/demo/doccure/admin/login.jsp">
 									<div class="form-group">
 										<input class="form-control" type="text" placeholder="Email">
 									</div>
@@ -57,7 +57,7 @@
 								</form>
 								<!-- /Form -->
 								
-								<div class="text-center dont-have">Remember your password? <a href="login.html">Login</a></div>
+								<div class="text-center dont-have">Remember your password? <a href="login.jsp">Login</a></div>
 							</div>
                         </div>
                     </div>
@@ -78,5 +78,5 @@
 		
     </body>
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/forgot-password.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/forgot-password.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:53 GMT -->
 </html>

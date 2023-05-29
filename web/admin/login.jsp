@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
 
 <head>
 	<meta charset="utf-8">
@@ -49,7 +49,7 @@
 							<p class="account-subtitle">Access to our dashboard</p>
 
 							<!-- Form -->
-							<form action="https://dreamguys.co.in/demo/doccure/admin/index.html">
+							<form action="https://dreamguys.co.in/demo/doccure/admin/index.jsp">
 								<div class="form-group">
 									<input class="form-control" type="text" placeholder="Email">
 								</div>
@@ -61,8 +61,8 @@
 								</div>
 							</form>
 							<!-- /Form -->
-							<div class="text-center dont-have"><a href="../login.html">Back to Clinic</a></div>
-							<div class="text-center dont-have"><a href="../admin/index.html">Go to Manager</a></div>
+							<div class="text-center dont-have"><a href="../login.jsp">Back to Clinic</a></div>
+							<div class="text-center dont-have"><a href="../admin/index.jsp">Go to Manager</a></div>
 
 						</div>
 					</div>
@@ -84,6 +84,6 @@
 
 </body>
 
-<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
 
 </html>
