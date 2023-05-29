@@ -67,7 +67,7 @@
 							<li>
 								<a href="index-2.jsp">Home</a>
 							</li>
-							<li class="has-submenu">
+<!--							<li class="has-submenu">
 								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
@@ -117,9 +117,9 @@
 									<li class="active"><a href="register.jsp">Register</a></li>
 									<li><a href="forgot-password.jsp">Forgot Password</a></li>
 								</ul>
-							</li>
+							</li>-->
 							<li>
-								<a href="admin/index.jsp" target="_blank">Admin</a>
+                                                            <a href="blank-page.jsp" >Blog</a>
 							</li>
 							<li class="login-link">
 								<a href="login.jsp">Login / Signup</a>
@@ -155,7 +155,7 @@
 							<div class="account-content">
 								<div class="row align-items-center justify-content-center">
 									<div class="col-md-7 col-lg-6 login-left">
-										<img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">	
+                                                                            <img src="assets/img/register.jpg" class="img-fluid" alt="Doccure Register">	
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">

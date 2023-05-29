@@ -55,7 +55,6 @@
                         </a>
 
                         <a href="index-2.jsp" class="navbar-brand logo">
-
                             <img style="object-fit: fill;" src="assets/img/final_logo.png" class="img-fluid" alt="Logo">
                         </a>
                     </div>
