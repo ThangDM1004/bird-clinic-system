@@ -4,9 +4,9 @@
     Author     : MSI AD
 --%>
 
-<%@page contentType="text/jsp" pageEncoding="UTF-8"%>
-<!DOCTYPE jsp>
-<jsp lang="en">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
     
 <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
 <head>
@@ -35,7 +35,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
 		
 		<!--[if lt IE 9]>
-			<script src="assets/js/jsp5shiv.min.js"></script>
+			<script src="assets/js/html5shiv.min.js"></script>
 			<script src="assets/js/respond.min.js"></script>
 		<![endif]-->
     </head>
@@ -538,4 +538,4 @@
     </body>
 
 <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
-</jsp>
+</html>
