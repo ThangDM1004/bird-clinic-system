@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import static sample.dao.ServiceDAO.serviceWithOutStart;
 import sample.utils.Utils;
 import sample.dto.ServiceDTO;
 
@@ -13,8 +15,8 @@ public class ServiceDAO {
     private static final String querryService = "select * from tbl_Service ";
     
     public static List<ServiceDTO> serviceWithOutStart() throws SQLException, ClassNotFoundException{
-        List<ServiceDTO> listService = null;
-        ServiceDTO ser = null;
+        List<ServiceDTO> listService = new ArrayList<>();
+        ServiceDTO ser;
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -47,13 +49,15 @@ public class ServiceDAO {
             }
         }
         return listService;   
-    }
+    }   
     
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    
+    
+    
+       public static void main(String[] args) throws SQLException, ClassNotFoundException {
         List<ServiceDTO> list = serviceWithOutStart();
         int i=list.size();
         System.out.println(i);
         
     }
-    
 }

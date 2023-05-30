@@ -3,21 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/index.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/login.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/dao/AppointmentDAO.java</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/utils/Utils.java</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/dao/UserDAO.java</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/admin/index.jsp</file>
-            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/dto/AppointmentDTO.java</file>
-=======
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/appointment-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/index.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/doctor-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/patient-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/specialities.jsp</file>
->>>>>>> daa055c624fc66d5c7ac1dbaae49b6c5096588d5
+            <file>file:/C:/Users/TPTNam/Desktop/main/src/java/sample/dto/ServiceDTO.java</file>
+            <file>file:/C:/Users/TPTNam/Desktop/main/web/admin/specialities.jsp</file>
+            <file>file:/C:/Users/TPTNam/Desktop/main/src/java/sample/controller/MainController.java</file>
+            <file>file:/C:/Users/TPTNam/Desktop/main/src/java/sample/utils/Utils.java</file>
+            <file>file:/C:/Users/TPTNam/Desktop/main/src/java/sample/dao/ServiceDAO.java</file>
         </group>
     </open-files>
 </project-private>
