@@ -159,9 +159,9 @@
                             <h1>Our doctor is available, Make an appointment now !</h1>
                             <p>Discover the best doctors, clinic & hospital the city nearest to you.</p>
                             <div style="margin-left: auto; margin-right: auto;" class="col-6">
-                                <a style="padding: 10px 0; font-size: 15px;" href="#" class="btn book-btn">Book Us Now</a>
+                                <a style="padding: 5px 0; font-size: 15px;" href="#" class="btn book-btn">Book Us Now</a>
                             </div>
-                            
+
 
                         </div>
 
