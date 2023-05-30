@@ -562,7 +562,7 @@
                                                 <tr>
                                                     <th>Doctor Name</th>
                                                     <th>Service</th>
-                                                    <th>Patient Name</th>
+                                                    <th>User Name</th>
                                                     <th>Apointment Time</th>
                                                     <th>Status</th>
                                                     <th class="text-right">Amount</th>
