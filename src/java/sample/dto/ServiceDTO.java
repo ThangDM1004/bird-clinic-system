@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sample.user;
+package sample.dto;
 
 /**
  *
  * @author MSI AD
  */
-public class UserDAO {
+public class ServiceDTO {
     
 }
