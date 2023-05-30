@@ -45,6 +45,7 @@ public class LoginGoogleController extends HttpServlet {
                 se.setAttribute("USER_GOOGLE", user_);
                 url = success;
             } else {
+                se.setAttribute("EMAIL_USER", user.getEmail());
                 url = error;
             }
 
