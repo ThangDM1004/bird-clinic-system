@@ -10,7 +10,7 @@ package sample.dto;
  * @author MSI AD
  */
 public class AppointmentDTO {
-        private String doctor_name;
+     private String doctor_name;
      private String service;
      private String user_name;
      private String apointment_date;

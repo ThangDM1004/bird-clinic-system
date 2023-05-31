@@ -573,16 +573,20 @@
                                             </thead>
                                             <tbody>
                                                 <%
+                                                    String img_doctor ="";
+                                                    String img_cus = "";
                                                     AppointmentDAO dao = new AppointmentDAO();
                                                     List<AppointmentDTO> list = dao.get_list_appointment();
                                                     for (AppointmentDTO x : list) {
+                                                        img_doctor = dao.get_image_doctor(x.getDoctor_name());
+                                                        img_cus = dao.get_image_cus(x.getUser_name());
                                                 %>
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-01.jpg"
+                                                                    src="<%= img_doctor %>"
                                                                     alt="User Image"></a>
                                                             <a><%= x.getDoctor_name() %></a>
                                                         </h2>
@@ -592,7 +596,7 @@
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient1.jpg"
+                                                                    src="<%= img_cus %>"
                                                                     alt="User Image"></a>
                                                             <a><%= x.getUser_name() %></a>
                                                         </h2>

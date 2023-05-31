@@ -3,6 +3,9 @@ package org.apache.jsp.admin;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import sample.dao.AppointmentDAO;
+import java.util.List;
+import sample.dto.AppointmentDTO;
 
 public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -41,6 +44,9 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -608,65 +614,69 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                </tr>\r\n");
       out.write("                                            </thead>\r\n");
       out.write("                                            <tbody>\r\n");
+      out.write("                                                ");
+
+                                                    String img_doctor ="";
+                                                    String img_cus = "";
+                                                    AppointmentDAO dao = new AppointmentDAO();
+                                                    List<AppointmentDTO> list = dao.get_list_appointment();
+                                                    for (AppointmentDTO x : list) {
+                                                        img_doctor = dao.get_image_doctor(x.getDoctor_name());
+                                                        img_cus = dao.get_image_cus(x.getUser_name());
+                                                
+      out.write("\r\n");
       out.write("                                                <tr>\r\n");
       out.write("                                                    <td>\r\n");
       out.write("                                                        <h2 class=\"table-avatar\">\r\n");
       out.write("                                                            <a class=\"avatar avatar-sm mr-2\"><img\r\n");
       out.write("                                                                    class=\"avatar-img rounded-circle\"\r\n");
-      out.write("                                                                    src=\"assets/img/doctors/doctor-thumb-01.jpg\"\r\n");
+      out.write("                                                                    src=\"");
+      out.print( img_doctor );
+      out.write("\"\r\n");
       out.write("                                                                    alt=\"User Image\"></a>\r\n");
-      out.write("                                                            <a>Dr. Ruby Perrin</a>\r\n");
+      out.write("                                                            <a>");
+      out.print( x.getDoctor_name() );
+      out.write("</a>\r\n");
       out.write("                                                        </h2>\r\n");
       out.write("                                                    </td>\r\n");
-      out.write("                                                    <td>Dental</td>\r\n");
+      out.write("                                                    <td>");
+      out.print( x.getService() );
+      out.write("</td>\r\n");
       out.write("                                                    <td>\r\n");
       out.write("                                                        <h2 class=\"table-avatar\">\r\n");
       out.write("                                                            <a class=\"avatar avatar-sm mr-2\"><img\r\n");
       out.write("                                                                    class=\"avatar-img rounded-circle\"\r\n");
-      out.write("                                                                    src=\"assets/img/patients/patient1.jpg\"\r\n");
+      out.write("                                                                    src=\"");
+      out.print( img_cus );
+      out.write("\"\r\n");
       out.write("                                                                    alt=\"User Image\"></a>\r\n");
-      out.write("                                                            <a>Charlene Reed </a>\r\n");
+      out.write("                                                            <a>");
+      out.print( x.getUser_name() );
+      out.write("</a>\r\n");
       out.write("                                                        </h2>\r\n");
       out.write("                                                    </td>\r\n");
-      out.write("                                                    <td>9 Nov 2019 <span class=\"text-primary d-block\">11.00 AM - 11.15\r\n");
+      out.write("                                                    <td>");
+      out.print( x.getApointment_date()  );
+      out.write(" <span class=\"text-primary d-block\">");
+      out.print( x.getApointment_time() );
+      out.write("\r\n");
       out.write("                                                            AM</span></td>\r\n");
       out.write("                                                    <td>\r\n");
-      out.write("                                                        <p>Pending</p>\r\n");
+      out.write("                                                        <p>");
+      out.print( x.getStatus() );
+      out.write("</p>\r\n");
       out.write("                                                    </td>\r\n");
       out.write("                                                    <td class=\"text-right\">\r\n");
       out.write("                                                        $200.00\r\n");
       out.write("                                                    </td>\r\n");
       out.write("                                                </tr>\r\n");
-      out.write("                                                <tr>\r\n");
-      out.write("                                                    <td>\r\n");
-      out.write("                                                        <h2 class=\"table-avatar\">\r\n");
-      out.write("                                                            <a class=\"avatar avatar-sm mr-2\"><img\r\n");
-      out.write("                                                                    class=\"avatar-img rounded-circle\"\r\n");
-      out.write("                                                                    src=\"assets/img/doctors/doctor-thumb-02.jpg\"\r\n");
-      out.write("                                                                    alt=\"User Image\"></a>\r\n");
-      out.write("                                                            <a>Dr. Darren Elder</a>\r\n");
-      out.write("                                                        </h2>\r\n");
-      out.write("                                                    </td>\r\n");
-      out.write("                                                    <td>Dental</td>\r\n");
-      out.write("                                                    <td>\r\n");
-      out.write("                                                        <h2 class=\"table-avatar\">\r\n");
-      out.write("                                                            <a class=\"avatar avatar-sm mr-2\"><img\r\n");
-      out.write("                                                                    class=\"avatar-img rounded-circle\"\r\n");
-      out.write("                                                                    src=\"assets/img/patients/patient2.jpg\"\r\n");
-      out.write("                                                                    alt=\"User Image\"></a>\r\n");
-      out.write("                                                            <a>Travis Trimble </a>\r\n");
-      out.write("                                                        </h2>\r\n");
-      out.write("                                                    </td>\r\n");
+      out.write("                                                ");
+
+                                                    }
+                                                
       out.write("\r\n");
-      out.write("                                                    <td>5 Nov 2019 <span class=\"text-primary d-block\">11.00 AM - 11.35\r\n");
-      out.write("                                                            AM</span></td>\r\n");
-      out.write("                                                    <td>\r\n");
-      out.write("                                                        <p>Pending</p>\r\n");
-      out.write("                                                    </td>\r\n");
-      out.write("                                                    <td class=\"text-right\">\r\n");
-      out.write("                                                        $300.00\r\n");
-      out.write("                                                    </td>\r\n");
-      out.write("                                                </tr>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("                                            </tbody>\r\n");
       out.write("                                        </table>\r\n");
