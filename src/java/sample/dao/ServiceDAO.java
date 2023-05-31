@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import static sample.dao.ServiceDAO.serviceWithOutStart;
 import sample.utils.Utils;
 import sample.dto.ServiceDTO;
 
 public class ServiceDAO {
-    
+
     private static final String querryService = "select * from tbl_Service ";
-    
-    public static List<ServiceDTO> serviceWithOutStart() throws SQLException, ClassNotFoundException{
+    private static final String querryStar = "select AVG(rating_star) as avgStar  from tbl_Feedback where service_id= ?";
+
+    public static List<ServiceDTO> serviceWithOutStar() throws SQLException, ClassNotFoundException {
         List<ServiceDTO> listService = new ArrayList<>();
         ServiceDTO ser;
         Connection conn = null;
@@ -48,16 +48,40 @@ public class ServiceDAO {
                 conn.close();
             }
         }
-        return listService;   
-    }   
-    
-    
-    
-    
-       public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        List<ServiceDTO> list = serviceWithOutStart();
-        int i=list.size();
-        System.out.println(i);
-        
+        return listService;
     }
+
+    public static List<ServiceDTO> serviceWithStar(List<ServiceDTO> ls) throws SQLException, ClassNotFoundException {
+        List<ServiceDTO> listService = new ArrayList<>();
+        ServiceDTO ser;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                for (ServiceDTO service : ls) {
+                    ptm = conn.prepareStatement(querryStar);
+                    ptm.setString(1, service.getService_id());
+                    rs = ptm.executeQuery();
+                    ser = new ServiceDTO(service.getService_id(), service.getService_name(), service.getFee(), service.getIcon_link(), service.isStatus(), rs.getFloat("avgStar"));
+                    listService.add(ser);
+                }
+            }
+        } catch (SQLException e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return listService;
+    }
+
 }
