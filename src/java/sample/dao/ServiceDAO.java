@@ -6,15 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import sample.utils.Utils;
 import sample.dto.ServiceDTO;
+import sample.utils.Utils;
 
 public class ServiceDAO {
 
     private static final String querryService = "select * from tbl_Service ";
     private static final String querryStar = "select AVG(rating_star) as avgStar  from tbl_Feedback where service_id= ?";
 
-    public static List<ServiceDTO> serviceWithOutStar() throws SQLException, ClassNotFoundException {
+    public List<ServiceDTO> serviceWithOutStar() throws SQLException, ClassNotFoundException {
         List<ServiceDTO> listService = new ArrayList<>();
         ServiceDTO ser;
         Connection conn = null;
@@ -51,7 +51,7 @@ public class ServiceDAO {
         return listService;
     }
 
-    public static List<ServiceDTO> serviceWithStar(List<ServiceDTO> ls) throws SQLException, ClassNotFoundException {
+    public List<ServiceDTO> serviceWithStar(List<ServiceDTO> ls) throws SQLException, ClassNotFoundException {
         List<ServiceDTO> listService = new ArrayList<>();
         ServiceDTO ser;
         Connection conn = null;
