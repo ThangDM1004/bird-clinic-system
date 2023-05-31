@@ -75,6 +75,7 @@ public class AppointmentDAO {
             conn = Utils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(IMAGE_DOCTOR);
+                ptm.setString(1, doctor);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     url = rs.getString("image");
@@ -105,6 +106,7 @@ public class AppointmentDAO {
             conn = Utils.getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(IMAGE_CUS);
+                ptm.setString(1, doctor);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     url = rs.getString("image");

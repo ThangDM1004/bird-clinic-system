@@ -573,7 +573,7 @@
                                             </thead>
                                             <tbody>
                                                 <%
-                                                    String img_doctor ="";
+                                                    String img_doctor = "";
                                                     String img_cus = "";
                                                     AppointmentDAO dao = new AppointmentDAO();
                                                     List<AppointmentDTO> list = dao.get_list_appointment();
@@ -587,24 +587,24 @@
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
                                                                     src="<%= img_doctor %>"
-                                                                    alt="User Image"></a>
-                                                            <a><%= x.getDoctor_name() %></a>
+                                                                    alt="Docotr Image"></a>
+                                                            <a><%= x.getDoctor_name()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td><%= x.getService() %></td>
+                                                    <td><%= x.getService()%></td>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
                                                                     src="<%= img_cus %>"
-                                                                    alt="User Image"></a>
-                                                            <a><%= x.getUser_name() %></a>
+                                                                    alt="Customer Image"></a>
+                                                            <a><%= x.getUser_name()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td><%= x.getApointment_date()  %> <span class="text-primary d-block"><%= x.getApointment_time() %>
+                                                    <td><%= x.getApointment_date()%> <span class="text-primary d-block"><%= x.getApointment_time()%>
                                                             AM</span></td>
                                                     <td>
-                                                        <p><%= x.getStatus() %></p>
+                                                        <p><%= x.getStatus()%></p>
                                                     </td>
                                                     <td class="text-right">
                                                         $200.00
