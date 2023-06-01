@@ -357,33 +357,28 @@
                                                 <%
                                                     List<ServiceDTO> ls = new ArrayList();
                                                     ServiceDAO dao = new ServiceDAO();
-                                                    List<ServiceDTO> lstemp = new ArrayList();
-                                                    lstemp = dao.serviceWithOutStar();
-                                                    ls = dao.serviceWithStar(lstemp);
+                                                    ls = dao.serviceWithStar();
                                                     for (ServiceDTO ser : ls) {
                                                 %>
                                                 <tr>
-                                                    <td><% ser.getService_id(); %></td>
+                                                    <td><%= ser.getService_id() %></td>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2">
                                                                 <img class="avatar-img"
-                                                                     src="<% ser.getIcon_link(); %>"
+                                                                     src="<%= ser.getIcon_link() %>"
                                                                      alt="Speciality">
                                                             </a>
                                                             <a data-toggle="modal"
-                                                               href="#view_specialities_details"><% ser.getService_name(); %></a>
+                                                               href="#view_specialities_details"><%= ser.getService_name() %></a>
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <p><% ser.getFee(); %></p>
+                                                        <p><%= ser.getFee() %></p>
                                                     </td>
                                                     <td>
                                                         <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star-o text-secondary"></i>
+                                                        <%= ser.getRating() %>
                                                     </td>
                                                     <td>
                                                         <div class="actions">
