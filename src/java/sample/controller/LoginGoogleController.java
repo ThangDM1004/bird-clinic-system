@@ -28,7 +28,7 @@ import sample.utils.Constants;
 public class LoginGoogleController extends HttpServlet {
 
     private static final String login = "login.jsp";
-    private static final String error = "patient-profile.jsp";
+    private static final String error = "register.jsp";
     private static final String success = "index_logged.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
