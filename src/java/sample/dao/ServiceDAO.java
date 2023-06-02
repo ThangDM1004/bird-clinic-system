@@ -11,9 +11,9 @@ import sample.utils.Utils;
 
 public class ServiceDAO {
 
-    private static final String querryService = "select tbl_Service.service_id, service_name, fee, icon_link, status, avg(rating_star) as avgStar "
-            + "from tbl_Service left join tbl_Feedback on tbl_Service.service_id = tbl_Feedback.service_id "
-            + "group by tbl_Service.service_id, tbl_Service.service_name, tbl_Service.fee, icon_link, status";
+    private static final String querryService = "select tbl_Service.service_id, service_name, fee, icon_link, status, avg(rating_star) as avgStar, service_detail, description,image\n" +
+"           from tbl_Service left join tbl_Feedback on tbl_Service.service_id = tbl_Feedback.service_id \n" +
+"           group by tbl_Service.service_id, tbl_Service.service_name, tbl_Service.fee, icon_link, status, service_detail, description, image ";
 
     public List<ServiceDTO> serviceWithStar() throws SQLException, ClassNotFoundException {
         List<ServiceDTO> listService = new ArrayList<>();
@@ -33,7 +33,10 @@ public class ServiceDAO {
                     String icon_link = rs.getString("icon_link");
                     boolean status = rs.getBoolean("status");
                     float avgStar = rs.getFloat("avgStar");
-                    ser = new ServiceDTO(ser_id, ser_name, fee, icon_link, status, avgStar);
+                    String detail = rs.getString("service_detail");
+                    String des = rs.getString("description");
+                    String img = rs.getString("image");
+                    ser = new ServiceDTO(ser_id, ser_name, detail, des, fee, icon_link, img, status, avgStar);
                     listService.add(ser);
                 }
             }
