@@ -26,7 +26,7 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
                 <script src="assets/js/html5shiv.min.js"></script>
@@ -159,45 +159,258 @@
                                     </div>
                                     <div class="col-md-12 col-lg-6 login-right">
                                         <div class="login-header">
-                                            <h3>Patient Register</h3>
+                                            <h3>Customer Register</h3>
                                         </div>
 
                                         <!-- Register Form -->
-                                        <form action="">
+                                        <form action="MainController" method="post">
                                             <div class="form-group form-focus">
-                                                <input type="text" class="form-control floating">
+                                                <input name="username" type="text" class="form-control floating" required=""d>
                                                 <label class="focus-label">Username</label>
+                                                <p style="color: #be4b49; margin-left: 10px;">${errorUser}</p>
                                             </div>
                                             <div class="form-group form-focus">
-                                                <input type="email" class="form-control floating">
+                                                <input name="fullname" type="text" class="form-control floating" required="">
+                                                <label class="focus-label">Full name</label>
+                                            </div>
+                                            <div class="form-group form-focus">
+                                                <input name="email" type="email" class="form-control floating" required="">
                                                 <label class="focus-label">Email</label>
+                                                <p style="color: #be4b49; margin-left: 10px;">${errorEmail}</p>
+
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 form-group form-focus">
+                                                    <label style="
+                                                           font-size: 14px;
+                                                           font-weight: 400;
+                                                           color: #b8b8b8;
+                                                           margin-right: 30px;
+
+                                                           "> Choose Gender
+                                                        <select name="gender" style="height: 50px;color: #b8b8b8;"required="" >
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Other">Other</option>
+                                                        </select>
+                                                    </label>
+                                                </div>
+                                                <div class="col-md-6 form-group form-focus" style="width: 50%;">
+                                                    <input name="dob" type="date" class="form-control floating" required="">
+                                                    <label class="focus-label" style="top: -18px; left: 27px;">Date of Birth</label>
+                                                </div>
+
+                                            </div>
+
                                             <div class="form-group form-focus">
-                                                <input type="" class="form-control floating">
+                                                <input type="tel" name="phone" class="form-control floating" required="">
                                                 <label class="focus-label">Phone number</label>
+                                                <p style="color: #be4b49; margin-left: 10px;">${errorPhone}</p>
                                             </div>
-                                            <div class="form-group form-focus">
-                                                <input type="password" class="form-control floating">
-                                                <label class="focus-label">Create Password</label>
+
+                                            <div class="box">
+                                                <div class="form-group form-focus inputBox">
+                                                    <input name="password" type="password" class="form-control floating" 
+                                                           id="pass" onkeyup="validatePassword(this.value); checkPassword(this.value)" 
+                                                           required="">
+                                                    <span id="toggleBtn"></span>
+
+                                                    <label class="focus-label">Create Password</label>   
+                                                </div>
+                                                <div class="validation" id="validation">
+                                                    <ul>
+                                                        <li id="lower">At least one lowercase character</li>
+                                                        <li id="upper">At least one upper character</li>
+                                                        <li id="number">At least one number</li>
+                                                        <li id="special">At least one special character</li>
+                                                        <li id="length">At least 8 character</li>
+                                                    </ul>
+                                                </div>
                                             </div>
+                                            <style>
+                                                .box {
+                                                    position: relative;
+                                                }
+                                                .box .inputBox input{
+                                                    position: relative;
+                                                    outline: none;
+                                                }
+                                                .box .inputBox #toggleBtn{
+                                                    position: absolute;
+                                                    width: 35px;
+                                                    height: 35px;
+                                                    background: rgba(0,0,0,0.09);
+                                                    top: 7px;
+                                                    right: 10px;
+                                                    border-radius: 50%;
+                                                    cursor: pointer;
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                }
+                                                .box .inputBox #toggleBtn::before {
+                                                    content: '\f06e';
+                                                    font-family: fontAwesome;
+                                                }
+
+                                                .box .inputBox #toggleBtn.hide::before  {
+                                                    content: '\f070';
+                                                }
+
+                                                .error {
+                                                    background: #f5f6f7;
+                                                    padding-top: 15px;
+                                                    border-radius: 7px;
+                                                    padding-bottom: 3px;
+                                                    margin-bottom: 20px;
+                                                    width: 70%;
+                                                }
+                                                .validation {
+                                                    display: none;
+                                                    background: #f5f6f7;
+                                                    padding-top: 15px;
+                                                    border-radius: 7px;
+                                                    padding-bottom: 3px;
+                                                    margin-bottom: 20px;
+                                                    width: 70%;
+                                                }
+
+                                                .validation ul {
+                                                    position: relative;
+                                                    display: flex;
+                                                    flex-direction: column;
+                                                    gap: 8px;
+                                                    padding-inline-start: 10px;                                           
+                                                }
+
+                                                .validation ul li {
+                                                    position: relative;
+                                                    list-style: none;
+                                                    color: #be4b49;
+                                                    font-size: 0.9375rem;
+                                                    transition: 0.5s;
+                                                }
+                                                .validation ul li.valid{
+
+                                                    color: rgba(19,87,54,0.18);
+                                                }
+                                                .validation ul li::before {
+                                                    content: '\f00d';
+                                                    width: 20px;
+                                                    height: 10px;
+                                                    font-family: fontAwesome;
+                                                    display: inline-flex;
+                                                }
+                                                .validation ul li.valid::before{
+                                                    content:'\f00c';
+                                                    color: rgba(19,87,54,0.18);
+                                                }
+                                            </style>
+                                            <script>
+                                                let pass = document.getElementById('pass');
+                                                let toggleBtn = document.getElementById('toggleBtn');
+
+                                                let lowerCase = document.getElementById('lower');
+                                                let upperCase = document.getElementById('upper');
+                                                let digit = document.getElementById('number');
+                                                let specialChar = document.getElementById('special');
+                                                let minLength = document.getElementById('length');
+
+                                                function checkPassword(data) {
+                                                    const lower = new RegExp('(?=.*[a-z])');
+                                                    const upper = new RegExp('(?=.*[A-Z])');
+                                                    const number = new RegExp('(?=.*[0-9])');
+                                                    const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+                                                    const length = new RegExp('(?=.{8,})');
+                                                    //lower case check
+                                                    if (lower.test(data)) {
+                                                        lowerCase.classList.add('valid');
+                                                    } else {
+                                                        lowerCase.classList.remove('valid');
+                                                    }
+                                                    //check upper case
+                                                    if (upper.test(data)) {
+                                                        upperCase.classList.add('valid');
+                                                    } else {
+                                                        upperCase.classList.remove('valid');
+                                                    }
+                                                    //check number
+                                                    if (number.test(data)) {
+                                                        digit.classList.add('valid');
+                                                    } else {
+                                                        digit.classList.remove('valid');
+                                                    }
+                                                    //check specialChar
+                                                    if (special.test(data)) {
+                                                        specialChar.classList.add('valid');
+                                                    } else {
+                                                        specialChar.classList.remove('valid');
+                                                    }
+                                                    //check min length
+                                                    if (length.test(data)) {
+                                                        minLength.classList.add('valid');
+                                                    } else {
+                                                        minLength.classList.remove('valid');
+                                                    }
+                                                }
+
+
+
+                                                // show hide password
+                                                toggleBtn.onclick = function () {
+                                                    if (pass.type === 'password') {
+                                                        pass.setAttribute('type', 'text');
+                                                        toggleBtn.classList.add('hide');
+                                                    } else {
+                                                        pass.setAttribute('type', 'password');
+                                                        toggleBtn.classList.remove('hide');
+
+                                                    }
+                                                }
+
+                                                // cái này để hiện thôi
+                                                function validatePassword(value) {
+                                                    var validationDiv = document.getElementById("validation");
+                                                    if (value.length > 0) {
+                                                        validationDiv.style.display = "block";
+                                                    } else {
+                                                        validationDiv.style.display = "none";
+                                                    }
+                                                }
+
+                                                function validateForm() {
+                                                    var password = document.getElementById("pass").value;
+
+                                                    // Kiểm tra điều kiện của password
+                                                    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
+                                                        return false; // Ngăn chặn sự kiện submit
+                                                    }
+                                                }
+
+
+                                            </script>
+
+
                                             <div class="form-group form-focus">
-                                                <input type="password" class="form-control floating">
+                                                <input name="confirm_password" type="password" class="form-control floating">
                                                 <label class="focus-label">Confirm Password</label>
                                             </div>
+
+
                                             <div class="text-right">
                                                 <a class="forgot-link" href="login.jsp">Already have an account?</a>
                                             </div>
-                                            <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
+                                            <button  class="btn btn-primary btn-block btn-lg login-btn" name="action" type="submit" 
+                                                     value="register" onclick="return validateForm()">Sign up</button>
                                             <div class="login-or">
                                                 <span class="or-line"></span>
                                                 <span class="span-or">or</span>
                                             </div>
                                             <div class="row form-row social-login">
                                                 <div style="margin-left: auto; margin-right: auto;" class="col-6">
-                                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/bird-clinic-system/LoginGoogleController&response_type=code
-                                                       &client_id=682520957809-oqj4srno5ntcptc8d15nts7il0iae4k4.apps.googleusercontent.com&approval_prompt=force" class="btn btn-google btn-block"><i
+                                                    <a href="#" class="btn btn-google btn-block"><i
                                                             class="fab fa-google mr-1"></i>Login</a>
-                                                            
                                                 </div>
                                             </div>
                                         </form>

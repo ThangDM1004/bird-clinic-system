@@ -1,20 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sample.dto;
 
+/**
+ *
+ * @author MSI AD
+ */
 public class ServiceDTO {
-        private String service_id;
-        private String service_name;
-        private String service_detail;
-        private String description;
-        private int fee;
-        private String icon_link;
-        private String image;
-        private boolean status;
-        private float rating;
+    private int id;
+    private int service_id;
+    private String service_name;
+    private String service_detail;
+    private String description;
+    private float fee;
+    private String icon_link;
+    private String image;
+    private int status;
 
     public ServiceDTO() {
     }
 
-    public ServiceDTO(String service_id, String service_name, String service_detail, String description, int fee, String icon_link, String image, boolean status, float rating) {
+    public ServiceDTO(int id,int service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status) {
+        this.id = id;
         this.service_id = service_id;
         this.service_name = service_name;
         this.service_detail = service_detail;
@@ -23,33 +33,21 @@ public class ServiceDTO {
         this.icon_link = icon_link;
         this.image = image;
         this.status = status;
-        this.rating = rating;
     }
 
-    public ServiceDTO(String service_id, String service_name, int fee, String icon_link, boolean status) {
-        this.service_id = service_id;
-        this.service_name = service_name;
-        this.fee = fee;
-        this.icon_link = icon_link;
-        this.status = status;
+    public int getId() {
+        return id;
     }
 
-    public ServiceDTO(String service_id, String service_name, int fee, String icon_link, boolean status, float rating) {
-        this.service_id = service_id;
-        this.service_name = service_name;
-        this.fee = fee;
-        this.icon_link = icon_link;
-        this.status = status;
-        this.rating = rating;
+    public void setId(int id) {
+        this.id = id;
     }
-    
-    
 
-    public String getService_id() {
+    public int getService_id() {
         return service_id;
     }
 
-    public void setService_id(String service_id) {
+    public void setService_id(int service_id) {
         this.service_id = service_id;
     }
 
@@ -77,11 +75,11 @@ public class ServiceDTO {
         this.description = description;
     }
 
-    public int getFee() {
+    public double getFee() {
         return fee;
     }
 
-    public void setFee(int fee) {
+    public void setFee(float fee) {
         this.fee = fee;
     }
 
@@ -101,15 +99,18 @@ public class ServiceDTO {
         this.image = image;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public float getRating() {
-        return rating;
+    @Override
+    public String toString() {
+        return "ServiceDTO{" + "id=" + id + ", service_id=" + service_id + ", service_name=" + service_name + ", service_detail=" + service_detail + ", description=" + description + ", fee=" + fee + ", icon_link=" + icon_link + ", image=" + image + ", status=" + status + '}';
     }
+
+  
 }

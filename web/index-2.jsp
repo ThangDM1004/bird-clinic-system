@@ -4,6 +4,10 @@
     Author     : MSI AD
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
+<%@page import="sample.dao.ServiceDAO"%>
+<%@page import="sample.dto.ServiceDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,12 +129,8 @@
                             <li>
                                 <a href="blank-page.jsp" >Blog</a>
                             </li>
-                            <li>
-                                <a href="index_logged.jsp" >Guest</a>
-                            </li>
-                            <li class="login-link">
-                                <a href="login.jsp">Login / Signup</a>
-                            </li>
+
+
                         </ul>
                     </div>
                     <ul class="nav header-navbar-rht">
@@ -143,9 +143,35 @@
                                 <p class="contact-info-header"> +1 315 369 5943</p>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link header-login" href="login.jsp">login / Signup </a>
-                        </li>
+                        <c:if test="${sessionScope.account == null}">
+                            <li class="nav-item">
+                                <a class="nav-link header-login" href="login.jsp">login / Signup </a>
+                            </li>
+                        </c:if>
+                        <c:if test="${sessionScope.account != null}">
+                            <li class="nav-item dropdown has-arrow logged-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <span class="user-img">
+                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="user-header">
+                                        <div class="avatar avatar-sm">
+                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                                        </div>
+                                        <div class="user-text">
+                                            <h6>${sessionScope.account.fullname}</h6>
+                                                <p class="text-muted mb-0">Patient</p>
+                                        </div>
+                                    </div>
+                                    <a class="dropdown-item" href="#">My Appoinment</a>
+                                    <a class="dropdown-item" href="#">Profile Settings</a>
+                                    <a class="dropdown-item" href="MainController?action=logout">Logout</a>
+                                </div>
+                            </li>
+                        </c:if>
+
                     </ul>
                 </nav>
             </header>
@@ -202,59 +228,24 @@
                             <div class="specialities-slider slider">
 
                                 <!-- Slider Item -->
+                                <%
+                                    ServiceDAO dao = new ServiceDAO();
+                                    List<ServiceDTO> list = dao.getListService();
+
+                                    for (ServiceDTO s : list) {
+                                %>
+
                                 <div class="speicality-item text-center">	
                                     <div class="speicality-img">
-                                        <img src="assets/img/specialities/specialities-01.png" class="img-fluid"
+                                        <img src="<%=s.getIcon_link()%>" class="img-fluid"
                                              alt="Speciality">
                                         <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                     </div>
-                                    <p>Urology</p>
+                                    <p><%=s.getService_name()%></p>
                                 </div>
+                                <%}%>
                                 <!-- /Slider Item -->
 
-                                <!-- Slider Item -->
-                                <div class="speicality-item text-center">
-                                    <div class="speicality-img">
-                                        <img src="assets/img/specialities/specialities-02.png" class="img-fluid"
-                                             alt="Speciality">
-                                        <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                    </div>
-                                    <p>Neurology</p>
-                                </div>
-                                <!-- /Slider Item -->
-
-                                <!-- Slider Item -->
-                                <div class="speicality-item text-center">
-                                    <div class="speicality-img">
-                                        <img src="assets/img/specialities/specialities-03.png" class="img-fluid"
-                                             alt="Speciality">
-                                        <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                    </div>
-                                    <p>Orthopedic</p>
-                                </div>
-                                <!-- /Slider Item -->
-
-                                <!-- Slider Item -->
-                                <div class="speicality-item text-center">
-                                    <div class="speicality-img">
-                                        <img src="assets/img/specialities/specialities-04.png" class="img-fluid"
-                                             alt="Speciality">
-                                        <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                    </div>
-                                    <p>Cardiologist</p>
-                                </div>
-                                <!-- /Slider Item -->
-
-                                <!-- Slider Item -->
-                                <div class="speicality-item text-center">
-                                    <div class="speicality-img">
-                                        <img src="assets/img/specialities/specialities-05.png" class="img-fluid"
-                                             alt="Speciality">
-                                        <span><i class="fa fa-circle" aria-hidden="true"></i></span>
-                                    </div>
-                                    <p>Dentist</p>
-                                </div>
-                                <!-- /Slider Item -->
 
                             </div>
                             <!-- /Slider -->
