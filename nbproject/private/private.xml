@@ -3,11 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/appointment-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/index.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/doctor-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/patient-list.jsp</file>
-            <file>file:/D:/demo.github-3/bird-clinic-system/web/admin/specialities.jsp</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/src/java/sample/controller/LogoutController.java</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/src/java/sample/controller/RegisterController.java</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/web/login.jsp</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/web/assets/css/style.css</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/web/index-2.jsp</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/src/java/sample/controller/MainController.java</file>
+            <file>file:/D:/demo.github-3/bird-clinic-system/src/java/sample/controller/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

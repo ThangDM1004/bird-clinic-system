@@ -25,6 +25,7 @@
         <!-- Fontawesome CSS -->
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
@@ -164,19 +165,71 @@
                                             <h3>Login<a href="admin/login.jsp">Are you an admin?</a></h3>
 
                                         </div>
-                                        <form action="">
+                                        <form action="MainController" method="post">
                                             <div class="form-group form-focus">
-                                                <input type="text" class="form-control floating">
+                                                <input name="username" type="text" class="form-control floating">
                                                 <label class="focus-label">Username</label>
                                             </div>
-                                            <div class="form-group form-focus">
-                                                <input type="password" class="form-control floating">
-                                                <label class="focus-label">Password</label>
+
+                                            <div class="box">
+                                                <div class="form-group form-focus inputBox">
+                                                    <input name="password" type="password" id="pass" class="form-control floating">
+                                                    <label class="focus-label">Password</label>                                       
+                                                    <span id="toggleBtn"></span>
+
+                                                </div>
                                             </div>
+                                            <style>
+                                                .box {
+                                                    position: relative;
+                                                }
+                                                .box .inputBox input{
+                                                    position: relative;
+                                                    outline: none;
+                                                }
+                                                .box .inputBox #toggleBtn{
+                                                    position: absolute;
+                                                    width: 35px;
+                                                    height: 35px;
+                                                    background: rgba(0,0,0,0.05);
+                                                    top: 7px;
+                                                    right: 10px;
+                                                    border-radius: 50%;
+                                                    cursor: pointer;
+                                                    display: flex;
+                                                    justify-content: center;
+                                                    align-items: center;
+                                                }
+                                                .box .inputBox #toggleBtn::before {
+                                                    content: '\f06e';
+                                                    font-family: fontAwesome;
+                                                }
+
+                                                .box .inputBox #toggleBtn.hide::before  {
+                                                    content: '\f070';
+                                                }
+                                            </style>
+
+                                            <script>
+                                                let pass = document.getElementById('pass');
+                                                let toggleBtn = document.getElementById('toggleBtn');
+
+                                                toggleBtn.onclick = function () {
+                                                    if (pass.type === 'password') {
+                                                        pass.setAttribute('type', 'text');
+                                                        toggleBtn.classList.add('hide');
+                                                    } else {
+                                                        pass.setAttribute('type', 'password');
+                                                        toggleBtn.classList.remove('hide');
+
+                                                    }
+                                                }
+                                            </script>
                                             <div class="text-right">
                                                 <a class="forgot-link" href="forgot-password.jsp">Forgot Password ?</a>
                                             </div>
-                                            <button class="btn btn-primary btn-block btn-lg login-btn"
+
+                                            <button name="action" value="login" class="btn btn-primary btn-block btn-lg login-btn"
                                                     type="submit">Login</button>
                                             <div class="login-or">
                                                 <span class="or-line"></span>
@@ -190,6 +243,7 @@
                                             </div>
                                             <div class="text-center dont-have">Don’t have an account? <a
                                                     href="register.jsp">Register</a></div>
+                                            <p style="color: green; margin-left: 10px;">${successSignUp}</p>
                                         </form>
                                     </div>
                                 </div>
