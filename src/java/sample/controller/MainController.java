@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MainController extends HttpServlet {
 
-
     private static String LOGIN = "login";
     private static String LOGIN_CONTROLLER = "LoginController";
     private static String LOGOUT = "logout";

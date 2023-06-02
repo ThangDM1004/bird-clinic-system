@@ -13,41 +13,24 @@ import java.text.SimpleDateFormat;
  * @author MSI AD
  */
 public class UserDTO {
-<<<<<<< HEAD
 
     private String username;
     private String password;
     private String email;
     private String phone;
     private Date date_of_birth;
-=======
-    private String user_name;
-    private String password;
-    private String email;
-    private String phone;
-    private String date_of_birth;
->>>>>>> main
     private String fullname;
     private String gender;
     private String bio;
     private String image;
     private boolean status;
-<<<<<<< HEAD
     private String role;
-=======
-    private int role_id;
->>>>>>> main
 
     public UserDTO() {
     }
 
-<<<<<<< HEAD
     public UserDTO(String username, String password, String email, String phone, Date date_of_birth, String fullname, String gender, String bio, String image, boolean status, String role) {
         this.username = username;
-=======
-    public UserDTO(String user_name, String password, String email, String phone, String date_of_birth, String fullname, String gender, String bio, String image, boolean status, int role_id) {
-        this.user_name = user_name;
->>>>>>> main
         this.password = password;
         this.email = email;
         this.phone = phone;
@@ -57,7 +40,6 @@ public class UserDTO {
         this.bio = bio;
         this.image = image;
         this.status = status;
-<<<<<<< HEAD
         this.role = role;
     }
 
@@ -67,17 +49,6 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
-=======
-        this.role_id = role_id;
-    }
-
-    public String getUser_name() {
-        return user_name;
-    }
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
->>>>>>> main
     }
 
     public String getPassword() {
@@ -104,19 +75,11 @@ public class UserDTO {
         this.phone = phone;
     }
 
-<<<<<<< HEAD
     public Date getDate_of_birth() {
         return date_of_birth;
     }
 
     public void setDate_of_birth(Date date_of_birth) {
-=======
-    public String getDate_of_birth() {
-        return date_of_birth;
-    }
-
-    public void setDate_of_birth(String date_of_birth) {
->>>>>>> main
         this.date_of_birth = date_of_birth;
     }
 
@@ -160,7 +123,6 @@ public class UserDTO {
         this.status = status;
     }
 
-<<<<<<< HEAD
     public String getRole() {
         return role;
     }
@@ -175,15 +137,4 @@ public class UserDTO {
         return "UserDTO{" + "username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone + ", date_of_birth=" + sdf.format(date_of_birth) + ", fullname=" + fullname + ", gender=" + gender + ", bio=" + bio + ", image=" + image + ", status=" + status + ", role=" + role + '}';
     }
 
-=======
-    public int getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
-    }
-    
-    
->>>>>>> main
 }
