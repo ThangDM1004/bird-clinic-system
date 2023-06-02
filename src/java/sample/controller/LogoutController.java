@@ -11,40 +11,30 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author MSI AD
+ * @author Minh
  */
-public class MainController extends HttpServlet {
+public class LogoutController extends HttpServlet {
 
-    private static String LOGIN = "login";
-    private static String LOGIN_CONTROLLER = "LoginController";
-    private static String LOGOUT = "logout";
-    private static String LOGOUT_CONTROLLER = "LogoutController";
-    private static String REGISTER = "register";
-    private static String REGISTER_CONTROLLER = "RegisterController";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = null;
-        try {
-            String actions = request.getParameter("action");
-            if (actions.equals(REGISTER)) {
-                url = REGISTER_CONTROLLER;
-            } else if (actions.equals(LOGIN)) {
-                url = LOGIN_CONTROLLER;
-            } else if (actions.equals(LOGOUT)) {
-                url = LOGOUT_CONTROLLER;
-            } else {
-                url = "error-404.jsp";
-            }
-        } catch (Exception e) {
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
-
+        
+        HttpSession session = request.getSession();
+        session.removeAttribute("account");
+        response.sendRedirect("index-2.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
