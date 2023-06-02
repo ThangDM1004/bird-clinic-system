@@ -4,6 +4,11 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.UserDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dto.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -309,7 +314,7 @@
                                     <li class="breadcrumb-item active">Doctor</li>
                                 </ul>
                             </div>
-<!--                            PHẦN ADD THÊM BÁC SĨ-->
+                            <!--                            PHẦN ADD THÊM BÁC SĨ-->
                             <!--                            <div class="col-sm-5 col">
                                             <a href="#Add_Specialities_details" data-toggle="modal"
                                                class="btn btn-primary float-right mt-2">Add</a>
@@ -336,18 +341,27 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%
+                                                    List<UserDTO> ls = new ArrayList<UserDTO>();
+                                                    UserDAO dao = new UserDAO();
+                                                    ls = dao.doctorList();
+                                                    for (UserDTO doc : ls) {
+
+
+                                                %>
+
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details" data-toggle="modal">Dr. Ruby Perrin</a>
+                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImg() %>" alt="User Image"></a>
+                                                            <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname() %></a>
                                                         </h2>
                                                     </td>
-                                                    <td>Dental</td>
+                                                    <td><%= doc.getBio()  %></td>
 
-                                                    <td>abcxyz@gmail.com</td>
+                                                    <td><%= doc.getEmail() %></td>
 
-                                                    <td>0228123123</td>
+                                                    <td><%= doc.getPhone()%></td>
 
                                                     <td>
                                                         <div class="status-toggle">
@@ -356,26 +370,11 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details" data-toggle="modal">Dr. Darren Elder</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
+                                                
 
-                                                    <td>abcxyz@gmail.com</td>
-
-                                                    <td>0912837123</td>
-
-                                                    <td>
-                                                        <div class="status-toggle">
-                                                            <input type="checkbox" id="status_1" class="check" checked>
-                                                            <label for="status_1" class="checktoggle">checkbox</label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <%
+                                                    }
+                                                %>
 
                                             </tbody>
                                         </table>

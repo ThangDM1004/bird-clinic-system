@@ -52,38 +52,4 @@ public class ServiceDAO {
         }
         return listService;
     }
-//
-//    public List<ServiceDTO> serviceWithStar(String id, List<ServiceDTO> ls) throws SQLException, ClassNotFoundException {
-//        List<ServiceDTO> listService = new ArrayList<>();
-//        ServiceDTO ser;
-//        Connection conn = null;
-//        PreparedStatement ptm = null;
-//        ResultSet rs = null;
-//        try {
-//            conn = Utils.getConnection();
-//            if (conn != null) {
-//               
-//                    ptm = conn.prepareStatement(querryStar);
-//                    ptm.setString(1, id);
-//                    rs = ptm.executeQuery();
-//                    ser = new ServiceDTO(service.getService_id(), service.getService_name(), service.getFee(), service.getIcon_link(), service.isStatus(), rs.getFloat("avgStar"));
-//                    listService.add(ser);
-//                
-//            }
-//        } catch (SQLException e) {
-//
-//        } finally {
-//            if (rs != null) {
-//                rs.close();
-//            }
-//            if (ptm != null) {
-//                ptm.close();
-//            }
-//            if (conn != null) {
-//                conn.close();
-//            }
-//        }
-//        return listService;
-//    }
-
 }
