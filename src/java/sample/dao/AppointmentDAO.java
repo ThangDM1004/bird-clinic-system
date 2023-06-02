@@ -22,11 +22,9 @@ import sample.utils.Utils;
  */
 public class AppointmentDAO {
 
-
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-
 
     private static final String APPOINTMENT_LIST_DASHBOARD = "SELECT TOP 5 b.username_customer, b.username_doctor, b.date, bs.booking_name, s.service_name, sl.time_slot \n"
             + "FROM tbl_Booking b, tbl_Booking_Status bs, tbl_Booking_Status_Details bsd, tbl_Service s, tbl_Slot sl \n"
@@ -55,7 +53,7 @@ public class AppointmentDAO {
                     String status = rs.getString("booking_name");
                     String service = rs.getString("service_name");
                     String time = rs.getString("time_slot");
-                    list.add(new AppointmentDTO(user_doctor, service, user_customer, date, time, status));
+                    list.add(new AppointmentDTO("", user_doctor, "", user_customer, null, time, status, 0, "", "", service, date));
                 }
             }
         } catch (Exception e) {
@@ -70,9 +68,11 @@ public class AppointmentDAO {
             if (conn != null) {
                 conn.close();
             }
+        }
+        return list;
+    }
 
-
-  public List<AppointmentDTO> getAppointment() {
+    public List<AppointmentDTO> getAppointment() {
         AppointmentDAO dao = new AppointmentDAO();
         List<AppointmentDTO> list = dao.getAppointmentNotReady();
         for (AppointmentDTO a : list) {
@@ -80,6 +80,7 @@ public class AppointmentDAO {
         }
         return list;
     }
+
     private List<AppointmentDTO> getAppointmentNotReady() {
         List<AppointmentDTO> list = new ArrayList<>();
         try {
@@ -114,7 +115,7 @@ public class AppointmentDAO {
                     + ") AS b ON a.booking_id = b.booking_id");
             rs = ps.executeQuery();
             while (rs.next()) {
-                AppointmentDTO a = new AppointmentDTO(rs.getString(7), rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), "", rs.getDouble(6), rs.getString(8),rs.getString(9));
+                AppointmentDTO a = new AppointmentDTO(rs.getString(7), rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), "", rs.getDouble(6), rs.getString(8), rs.getString(9), "", "");
                 //a.setStatus(getBookingStatus(a.getBookingID()));
                 list.add(a);
             }
@@ -159,7 +160,6 @@ public class AppointmentDAO {
         return null;
     }
 
-  
     public String get_image_doctor(String doctor) throws SQLException {
         String url = "";
         Connection conn = null;

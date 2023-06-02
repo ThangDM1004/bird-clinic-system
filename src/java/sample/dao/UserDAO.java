@@ -5,8 +5,6 @@
  */
 package sample.dao;
 
-
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,19 +16,15 @@ import java.util.List;
 import sample.dto.UserDTO;
 import sample.utils.Utils;
 
-
-
 /**
  *
  * @author MSI AD
  */
 public class UserDAO {
 
-
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-
 
     public List<UserDTO> get3PopularDoctor() {
         List<UserDTO> list = new ArrayList<>();
@@ -52,7 +46,7 @@ public class UserDAO {
                 if (count > 2) {
                     break;
                 }
-                list.add(new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(11)));
+                list.add(new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), true, rs.getString(11)));
                 count++;
             }
             return list;
@@ -98,7 +92,7 @@ public class UserDAO {
                     + "order by c.ID desc");
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(11)));
+                list.add(new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), true, rs.getString(11)));
             }
             for (UserDTO u : list) {
                 boolean a = true;
@@ -115,6 +109,9 @@ public class UserDAO {
             return list1;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        }
+        return null;
+    }
 
     public List<UserDTO> getListCustomer() {
         List<UserDTO> list = new ArrayList<>();
@@ -243,7 +240,6 @@ public class UserDAO {
         return null;
     }
 
-
     public List<String> getDateAndPaidForCustomerList(String name) {
         List<String> list = new ArrayList<>();
         try {
@@ -262,6 +258,10 @@ public class UserDAO {
                 list.add(rs.getString(2));
             }
             return list;
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     public UserDTO Login(String username, String password) {
         String query = "SELECT * FROM tbl_Account WHERE user_name = ? AND password = ?";
@@ -291,7 +291,8 @@ public class UserDAO {
         return null;
     }
 
-     private static final String LOGIN_GOOGLE = "SELECT email FROM tbl_Account WHERE email = ?";
+    private static final String LOGIN_GOOGLE = "SELECT email FROM tbl_Account WHERE email = ?";
+
     public UserDTO checkLogin(String email) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
@@ -305,7 +306,7 @@ public class UserDAO {
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     String email_ = rs.getString("email");
-                   user = new UserDTO("", "", email, "", null, "", "", "", "", true, "");
+                    user = new UserDTO("", "", email, "", null, "", "", "", "", true, "");
                 }
             }
         } catch (Exception e) {
@@ -324,5 +325,48 @@ public class UserDAO {
         return user;
 
     }
-}
+    private static final String querryDoctor = "select *\n"
+            + "from tbl_Account\n"
+            + "where role_id = 3;";
 
+    public List<UserDTO> doctorList() throws SQLException {
+        List<UserDTO> ls = new ArrayList<>();
+        UserDTO doctor;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(querryDoctor);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    String user_name = rs.getString("user_name");
+                    String email = rs.getString("email");
+                    String speciality = rs.getString("bio");
+                    String phone = rs.getString("phone");
+                    String fullname = rs.getString("fullname");
+                    String image = rs.getString("image");
+                    if (image == null) {
+                        image = "assets/img/doctors/blank-profile-picture.png";
+                    }
+                    boolean status = rs.getBoolean("status");
+                    doctor = new UserDTO(user_name, "", email, phone, null, fullname, "", speciality, image, status, "");
+                    ls.add(doctor);
+                }
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return ls;
+    }
+}
