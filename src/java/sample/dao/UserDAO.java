@@ -5,10 +5,12 @@
  */
 package sample.dao;
 
+
 /**
  *
  * @author MSI AD
  */
 public class UserDAO {
     
-}
+    }
+

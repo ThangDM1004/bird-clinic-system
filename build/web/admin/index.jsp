@@ -4,7 +4,9 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.ManagerDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -348,8 +350,15 @@
                                         <span class="dash-widget-icon text-primary border-primary">
                                             <i class="fe fe-users"></i>
                                         </span>
-                                        <div class="dash-count">
-                                            <h3>168</h3>
+                                        <div class="dash-count"> 
+                                            <h3>
+                                                <% 
+                                                    
+                                                       ManagerDao obj1 = new ManagerDao();                                                      
+                                                       int result1 = obj1.countDoctors();
+                                                %>
+                                                <%= result1 %>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
@@ -366,11 +375,18 @@
                                             <i class="fe fe-users"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>3</h3>
+                                            <h3>
+                                                <% 
+                                                    
+                                                       ManagerDao obj2 = new ManagerDao();                                                      
+                                                       int result2 = obj2.countCustomer();
+                                                %>
+                                                <%= result2 %>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6 class="text-muted">Patients</h6>
+                                        <h6 class="text-muted">Customers</h6>
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +399,14 @@
                                             <i class="fe fe-user"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>2</h3>
+                                            <h3>
+                                                <% 
+                                                    
+                                                       ManagerDao obj3 = new ManagerDao();                                                      
+                                                       int result3 = obj3.countStaff();
+                                                %>
+                                                <%= result3 %>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
@@ -400,11 +423,17 @@
                                             <i class="fe fe-money"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>487</h3>
+                                            <h3><% 
+                                                    
+                                                       ManagerDao obj4 = new ManagerDao();                                                      
+                                                       int result4 = obj4.countPatient();
+                                                %>
+                                                <%= result4 %>
+                                            </h3> 
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6 class="text-muted">Revenue</h6>
+                                        <h6 class="text-muted">Patient</h6>
 
                                     </div>
                                 </div>
@@ -420,7 +449,14 @@
                                             <i class="fe fe-calendar"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>485</h3>
+                                            <h3>
+                                                <% 
+                                                    
+                                                       ManagerDao obj5 = new ManagerDao();                                                      
+                                                       int result5 = obj5.countAppointment();
+                                                %>
+                                                <%= result5 %>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
