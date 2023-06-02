@@ -4,10 +4,14 @@
     Author     : MSI AD
 --%>
 
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.AppointmentDAO"%>
 <%@page import="sample.dao.ManagerDao"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -501,6 +505,8 @@
 
 
                     <div class="row">
+                        <jsp:useBean id="userDAO" scope="request" class="sample.dao.UserDAO" > 
+                        </jsp:useBean>
                         <div class="col-md-6 d-flex">
 
                             <!-- Recent Orders -->
@@ -519,22 +525,26 @@
                                                     <th class="text-center">Completed</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-01.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a style="list-style: none;">Dr. Ruby Perrin</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>0123456789</td>
-                                                    <td class="text-center">12</td>
-                                                </tr>
+                                                <c:forEach items="${userDAO.get3PopularDoctor()}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="${i.img}"
+                                                                        alt="User Image"></a>
+                                                                <a style="list-style: none;">${i.fullname}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.bio}</td>
+                                                        <td>${i.phone}</td>
+                                                        <td class="text-center">${userDAO.getCount(i.username)}</td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -543,7 +553,6 @@
 
                         </div>
                         <div class="col-md-6 d-flex">
-
                             <!-- Feed Activity -->
                             <div class="card  card-table flex-fill">
                                 <div class="card-header">
@@ -561,20 +570,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient1.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a> Charlene Reed </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>8286329170</td>
-                                                    <td>20 Oct 2019</td>
-                                                    <td class="text-right">$100.00</td>
-                                                </tr>
+                                                <c:forEach items="${userDAO.get3RecentCustomer()}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="${i.img}"
+                                                                        alt="User Image"></a>
+                                                                <a> ${i.fullname} </a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.phone}</td>
+                                                        <td>${userDAO.getDateAndPaidForCustomerList(i.username).get(0)}</td>
+                                                        <td class="text-right">${userDAO.getDateAndPaidForCustomerList(i.username).get(1)}</td>
+                                                    </tr>
+                                                </c:forEach>
 
                                             </tbody>
                                         </table>

@@ -5,11 +5,15 @@
  */
 package sample.dto;
 
+import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author MSI AD
  */
 public class AppointmentDTO {
+
      private String doctor_name;
      private String service;
      private String user_name;
@@ -67,6 +71,7 @@ public class AppointmentDTO {
 
     public void setApointment_time(String apointment_time) {
         this.apointment_time = apointment_time;
+
     }
 
     public String getStatus() {
@@ -76,5 +81,34 @@ public class AppointmentDTO {
     public void setStatus(String status) {
         this.status = status;
     }
-     
+
+
+    public double getFee() {
+        return fee;
+    }
+
+    public void setFee(double fee) {
+        this.fee = fee;
+    }
+
+    public String getImgDoc() {
+        return imgDoc;
+    }
+
+    public void setImgDoc(String imgDoc) {
+        this.imgDoc = imgDoc;
+    }
+
+    public String getImgCus() {
+        return imgCus;
+    }
+
+    public void setImgCus(String imgCus) {
+        this.imgCus = imgCus;
+    }
+
+    
+    
+    
+
 }

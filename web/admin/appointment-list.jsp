@@ -4,6 +4,7 @@
     Author     : MSI AD
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +41,7 @@
         <![endif]-->
     </head>
     <body>
-
+        <jsp:useBean id="appointmentDAO" scope="request" class="sample.dao.AppointmentDAO"/>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
@@ -332,82 +333,84 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_1" data-toggle="modal">Dr. Ruby Perrin</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_2" data-toggle="modal">username</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15 AM</span></td>
-                                                    <td>
-                                                        <p>Pending</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        $200.00
-                                                    </td>
-                                                    <td class="text-right">
-                                                        Updating
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_1" data-toggle="modal">Dr. Darren Elder</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_2" data-toggle="modal">username </a>
-                                                        </h2>
-                                                    </td>
+                                                <c:forEach items="${appointmentDAO.appointment}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="${i.imgDoc}" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_1" data-toggle="modal">${i.doctorName}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.speciality}</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="${i.imgCus}" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_2" data-toggle="modal">${i.customerName}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.date}<span class="text-primary d-block">${i.time}</span></td>
+                                                        <td>
+                                                            <p>${i.status}</p>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            ${i.fee}
+                                                        </td>
+                                                        <td class="text-right">
+                                                            Updating
+                                                        </td>
+                                                    </tr>
+                                                    <%--<tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_1" data-toggle="modal">Dr. Darren Elder</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>Dental</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_2" data-toggle="modal">username </a>
+                                                            </h2>
+                                                        </td>
 
-                                                    <td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35 AM</span></td>
-                                                    <td>
-                                                        <p>Pending</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        $200.00
-                                                    </td>
-                                                    <td class="text-right">
-                                                        Updating
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_1" data-toggle="modal">Dr. Deborah Angel</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Cardiology</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_2" data-toggle="modal">Carl Kelly</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>11 Nov 2019 <span class="text-primary d-block">12.00 PM - 12.15 PM</span></td>
-                                                    <td>
-                                                        <p>Pending</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        $200.00
-                                                    </td>
-                                                    <td class="text-right">
-                                                        Updating
-                                                    </td>
-                                                </tr>								
+                                                        <td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35 AM</span></td>
+                                                        <td>
+                                                            <p>Pending</p>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            $200.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            Updating
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_1" data-toggle="modal">Dr. Deborah Angel</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>Cardiology</td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="profile.jsp" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
+                                                                <a href="#view_specialities_details_2" data-toggle="modal">Carl Kelly</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>11 Nov 2019 <span class="text-primary d-block">12.00 PM - 12.15 PM</span></td>
+                                                        <td>
+                                                            <p>Pending</p>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            $200.00
+                                                        </td>
+                                                        <td class="text-right">
+                                                            Updating
+                                                        </td>
+                                                    </tr>	--%>
+                                                </c:forEach>							
                                             </tbody>
                                         </table>
                                     </div>
@@ -460,7 +463,7 @@
                         <div class="row form-row">
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                    <label>   Updating    </label>
+                                    <label>   Update    </label>
                                 </div>
                             </div>							
                         </div>
