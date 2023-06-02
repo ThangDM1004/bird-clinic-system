@@ -4,7 +4,16 @@
     Author     : MSI AD
 --%>
 
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@page import="sample.dto.AppointmentDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dao.AppointmentDAO"%>
+<%@page import="sample.dao.ManagerDao"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -348,8 +357,15 @@
                                         <span class="dash-widget-icon text-primary border-primary">
                                             <i class="fe fe-users"></i>
                                         </span>
-                                        <div class="dash-count">
-                                            <h3>168</h3>
+                                        <div class="dash-count"> 
+                                            <h3>
+                                                <%
+
+                                                    ManagerDao obj1 = new ManagerDao();
+                                                    int result1 = obj1.countDoctors();
+                                                %>
+                                                <%= result1%>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
@@ -366,11 +382,18 @@
                                             <i class="fe fe-users"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>3</h3>
+                                            <h3>
+                                                <%
+
+                                                    ManagerDao obj2 = new ManagerDao();
+                                                    int result2 = obj2.countCustomer();
+                                                %>
+                                                <%= result2%>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6 class="text-muted">Patients</h6>
+                                        <h6 class="text-muted">Customers</h6>
                                     </div>
                                 </div>
                             </div>
@@ -383,7 +406,14 @@
                                             <i class="fe fe-user"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>2</h3>
+                                            <h3>
+                                                <%
+
+                                                    ManagerDao obj3 = new ManagerDao();
+                                                    int result3 = obj3.countStaff();
+                                                %>
+                                                <%= result3%>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
@@ -400,11 +430,17 @@
                                             <i class="fe fe-money"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>487</h3>
+                                            <h3><%
+
+                                                ManagerDao obj4 = new ManagerDao();
+                                                int result4 = obj4.countPatient();
+                                                %>
+                                                <%= result4%>
+                                            </h3> 
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6 class="text-muted">Revenue</h6>
+                                        <h6 class="text-muted">Patient</h6>
 
                                     </div>
                                 </div>
@@ -420,7 +456,14 @@
                                             <i class="fe fe-calendar"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>485</h3>
+                                            <h3>
+                                                <%
+
+                                                    ManagerDao obj5 = new ManagerDao();
+                                                    int result5 = obj5.countAppointment();
+                                                %>
+                                                <%= result5%>
+                                            </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
@@ -462,6 +505,8 @@
 
 
                     <div class="row">
+                        <jsp:useBean id="userDAO" scope="request" class="sample.dao.UserDAO" > 
+                        </jsp:useBean>
                         <div class="col-md-6 d-flex">
 
                             <!-- Recent Orders -->
@@ -480,22 +525,26 @@
                                                     <th class="text-center">Completed</th>
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-01.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a style="list-style: none;">Dr. Ruby Perrin</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>0123456789</td>
-                                                    <td class="text-center">12</td>
-                                                </tr>
+                                                <c:forEach items="${userDAO.get3PopularDoctor()}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="${i.img}"
+                                                                        alt="User Image"></a>
+                                                                <a style="list-style: none;">${i.fullname}</a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.bio}</td>
+                                                        <td>${i.phone}</td>
+                                                        <td class="text-center">${userDAO.getCount(i.username)}</td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 </div>
@@ -504,7 +553,6 @@
 
                         </div>
                         <div class="col-md-6 d-flex">
-
                             <!-- Feed Activity -->
                             <div class="card  card-table flex-fill">
                                 <div class="card-header">
@@ -522,20 +570,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient1.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a> Charlene Reed </a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>8286329170</td>
-                                                    <td>20 Oct 2019</td>
-                                                    <td class="text-right">$100.00</td>
-                                                </tr>
+                                                <c:forEach items="${userDAO.get3RecentCustomer()}" var="i">
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="${i.img}"
+                                                                        alt="User Image"></a>
+                                                                <a> ${i.fullname} </a>
+                                                            </h2>
+                                                        </td>
+                                                        <td>${i.phone}</td>
+                                                        <td>${userDAO.getDateAndPaidForCustomerList(i.username).get(0)}</td>
+                                                        <td class="text-right">${userDAO.getDateAndPaidForCustomerList(i.username).get(1)}</td>
+                                                    </tr>
+                                                </c:forEach>
 
                                             </tbody>
                                         </table>
@@ -569,66 +619,49 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%
+                                                    String img_doctor = "";
+                                                    String img_cus = "";
+                                                    AppointmentDAO dao = new AppointmentDAO();
+                                                    List<AppointmentDTO> list = dao.get_list_appointment();
+                                                    for (AppointmentDTO x : list) {
+                                                        img_doctor = dao.get_image_doctor(x.getDoctorName());
+                                                        img_cus = dao.get_image_cus(x.getCustomerName());
+                                                %>
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-01.jpg"
+                                                                    src="<%= img_doctor%>"
                                                                     alt="User Image"></a>
-                                                            <a>Dr. Ruby Perrin</a>
+                                                            <a><%= x.getImgDoc()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td>Dental</td>
+                                                    <td><%= x.getService()%></td>
+
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient1.jpg"
+                                                                    src="<%= img_cus%>"
                                                                     alt="User Image"></a>
-                                                            <a>Charlene Reed </a>
+
+                                                            <a><%= x.getCustomerName()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15
-                                                            AM</span></td>
+                                                    <td><%= x.getDate_()%> <span class="text-primary d-block"><%= x.getTime()%>                                                                                                                           AM</span></td>
                                                     <td>
-                                                        <p>Pending</p>
+
+                                                        <p><%= x.getStatus()%></p>
                                                     </td>
                                                     <td class="text-right">
                                                         $200.00
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-02.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Dr. Darren Elder</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient2.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Travis Trimble </a>
-                                                        </h2>
-                                                    </td>
-
-                                                    <td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35
-                                                            AM</span></td>
-                                                    <td>
-                                                        <p>Pending</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        $300.00
-                                                    </td>
-                                                </tr>
-
+                                                <%
+                                                    }
+                                                %>
                                             </tbody>
                                         </table>
                                     </div>
