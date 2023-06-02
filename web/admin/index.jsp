@@ -625,8 +625,8 @@
                                                     AppointmentDAO dao = new AppointmentDAO();
                                                     List<AppointmentDTO> list = dao.get_list_appointment();
                                                     for (AppointmentDTO x : list) {
-                                                        img_doctor = dao.get_image_doctor(x.getDoctor_name());
-                                                        img_cus = dao.get_image_cus(x.getUser_name());
+                                                        img_doctor = dao.get_image_doctor(x.getDoctorName());
+                                                        img_cus = dao.get_image_cus(x.getCustomerName());
                                                 %>
                                                 <tr>
                                                     <td>
@@ -635,7 +635,7 @@
                                                                     class="avatar-img rounded-circle"
                                                                     src="<%= img_doctor%>"
                                                                     alt="User Image"></a>
-                                                            <a><%= x.getDoctor_name()%></a>
+                                                            <a><%= x.getImgDoc()%></a>
                                                         </h2>
                                                     </td>
                                                     <td><%= x.getService()%></td>
@@ -647,10 +647,10 @@
                                                                     src="<%= img_cus%>"
                                                                     alt="User Image"></a>
 
-                                                            <a><%= x.getUser_name()%></a>
+                                                            <a><%= x.getCustomerName()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td><%= x.getApointment_date()%> <span class="text-primary d-block"><%= x.getApointment_time()%>                                                                                                                           AM</span></td>
+                                                    <td><%= x.getDate_()%> <span class="text-primary d-block"><%= x.getTime()%>                                                                                                                           AM</span></td>
                                                     <td>
 
                                                         <p><%= x.getStatus()%></p>
