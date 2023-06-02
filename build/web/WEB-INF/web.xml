@@ -5,16 +5,42 @@
         <servlet-class>sample.controller.MainController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>sample.controller.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>sample.controller.LoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>sample.controller.LogoutController</servlet-class>
+=======
         <servlet-name>LoginGoogleController</servlet-name>
         <servlet-class>sample.controller.LoginGoogleController</servlet-class>
+>>>>>>> main
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/RegisterController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginController</servlet-name>
+        <url-pattern>/LoginController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+=======
         <servlet-name>LoginGoogleController</servlet-name>
         <url-pattern>/LoginGoogleController</url-pattern>
+>>>>>>> main
     </servlet-mapping>
     <session-config>
         <session-timeout>

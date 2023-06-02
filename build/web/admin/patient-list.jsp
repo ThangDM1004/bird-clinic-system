@@ -4,6 +4,9 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.UserDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -322,59 +325,38 @@
                                             <table class="datatable table table-hover table-center mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Customer ID</th>
+                                                        <th>Username</th>
                                                         <th>Customer Name</th>
-                                                        <th>Age</th>
-                                                        <th>Address</th>
+                                                        <th>Gender</th>
+                                                        <th>Email</th>
                                                         <th>Phone</th>
-                                                        <th>Last Visit</th>
-                                                        <th class="text-right">Paid</th>
+                                                        <th>Date Of Birth</th>
+                                                        <th class="text-right">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>#PT001</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient1.jpg" alt="User Image"></a>
-                                                                <a href="#view_specialities_details" data-toggle="modal">Charlene Reed </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>29</td>
-                                                        <td>4417  Goosetown Drive, Taylorsville, North Carolina, 28681</td>
-                                                        <td>8286329170</td>
-                                                        <td>20 Oct 2019</td>
-                                                        <td class="text-right">$100.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#PT002</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient2.jpg" alt="User Image"></a>
-                                                                <a  href="#view_specialities_details" data-toggle="modal">Travis Trimble </a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>23</td>
-                                                        <td>4026  Fantages Way, Brunswick, Maine, 04011</td>
-                                                        <td>2077299974</td>
-                                                        <td>22 Oct 2019</td>
-                                                        <td class="text-right">$200.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>#PT003</td>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/patients/patient3.jpg" alt="User Image"></a>
-                                                                <a  href="#view_specialities_details" data-toggle="modal">Carl Kelly</a>
-                                                            </h2>
-                                                        </td>
-                                                        <td>29</td>
-                                                        <td>2037 Pearcy Avenue, Decatur, Indiana, 46733</td>
-                                                        <td>2607247769</td>
-                                                        <td>21 Oct 2019</td>
-                                                        <td class="text-right">$250.00</td>
-                                                    </tr>
+                                                    <%
+                                                        UserDAO dao = new UserDAO();
+                                                        List<UserDTO> list = dao.getListCustomer();
 
+                                                        for (UserDTO user : list) {
+
+                                                    %>
+                                                    <tr>                                                    
+                                                        <td><%=user.getUsername()%></td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%=user.getImage()%>" alt="User Image"></a>
+                                                                <a href="#view_specialities_details" data-toggle="modal"><%=user.getFullname()%></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><%=user.getGender()%></td>
+                                                        <td><%=user.getEmail()%></td>
+                                                        <td><%=user.getPhone()%></td>
+                                                        <td><%=user.getDate_of_birth()%></td>
+                                                        <td class="text-right"><%=user.isStatus()%></td>                                                    
+                                                    </tr>
+                                                    <%}%>
                                                 </tbody>
                                             </table>
                                         </div>

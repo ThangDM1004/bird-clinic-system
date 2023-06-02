@@ -203,6 +203,55 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            <h3>Login<a href=\"admin/login.jsp\">Are you an admin?</a></h3>\r\n");
       out.write("\r\n");
       out.write("                                        </div>\r\n");
+<<<<<<< HEAD
+      out.write("                                        <form action=\"MainController\" method=\"post\">\r\n");
+      out.write("                                            <div class=\"form-group form-focus inputBox\">\r\n");
+      out.write("                                                <input name=\"username\" type=\"text\" class=\"form-control floating\">\r\n");
+      out.write("                                                <label class=\"focus-label\">Username</label>\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                            <div class=\"box\">\r\n");
+      out.write("                                                <div class=\"form-group form-focus\">\r\n");
+      out.write("                                                    <input name=\"password\" type=\"password\" id=\"pass\" class=\"form-control floating\">\r\n");
+      out.write("                                                    <label class=\"focus-label\">Password</label>\r\n");
+      out.write("                                                </div>\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("                                            <span id=\"toggleBtn\"></span>\r\n");
+      out.write("                                            <style>\r\n");
+      out.write("                                                .box {\r\n");
+      out.write("                                                    position: relative;\r\n");
+      out.write("                                                }\r\n");
+      out.write("                                                .box .inputBox input{\r\n");
+      out.write("                                                    position: relative;\r\n");
+      out.write("                                                    outline: none;\r\n");
+      out.write("                                                }\r\n");
+      out.write("                                                .box .inputBox #toggleBtn{\r\n");
+      out.write("                                                    position: absolute;\r\n");
+      out.write("                                                    width: 35px;\r\n");
+      out.write("                                                    height: 35px;\r\n");
+      out.write("                                                    background: rgba(0,0,0,0.09);\r\n");
+      out.write("                                                    top: 7px;\r\n");
+      out.write("                                                    right: 10px;\r\n");
+      out.write("                                                    border-radius: 50%;\r\n");
+      out.write("                                                    cursor: pointer;\r\n");
+      out.write("                                                    display: flex;\r\n");
+      out.write("                                                    justify-content: center;\r\n");
+      out.write("                                                    align-items: center;\r\n");
+      out.write("                                                }\r\n");
+      out.write("                                                .box .inputBox #toggleBtn::before {\r\n");
+      out.write("                                                    content: '\\f06e';\r\n");
+      out.write("                                                    font-family: fontAwesome;\r\n");
+      out.write("                                                }\r\n");
+      out.write("\r\n");
+      out.write("                                                .box .inputBox #toggleBtn.hide::before  {\r\n");
+      out.write("                                                    content: '\\f070';\r\n");
+      out.write("                                                }\r\n");
+      out.write("                                            </style>\r\n");
+      out.write("                                            <div class=\"text-right\">\r\n");
+      out.write("                                                <a class=\"forgot-link\" href=\"forgot-password.jsp\">Forgot Password ?</a>\r\n");
+      out.write("                                            </div>\r\n");
+      out.write("\r\n");
+      out.write("                                            <button name=\"action\" value=\"login\" class=\"btn btn-primary btn-block btn-lg login-btn\"\r\n");
+=======
       out.write("                                        <form action=\"\">\r\n");
       out.write("                                            <div class=\"form-group form-focus\">\r\n");
       out.write("                                                <input type=\"text\" class=\"form-control floating\">\r\n");
@@ -216,6 +265,7 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                                <a class=\"forgot-link\" href=\"forgot-password.jsp\">Forgot Password ?</a>\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                            <button class=\"btn btn-primary btn-block btn-lg login-btn\"\r\n");
+>>>>>>> main
       out.write("                                                    type=\"submit\">Login</button>\r\n");
       out.write("                                            <div class=\"login-or\">\r\n");
       out.write("                                                <span class=\"or-line\"></span>\r\n");
@@ -223,13 +273,23 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                            </div>\r\n");
       out.write("                                            <div class=\"row form-row social-login\">\r\n");
       out.write("                                                <div style=\"margin-left: auto; margin-right: auto;\" class=\"col-6\">\r\n");
+<<<<<<< HEAD
+      out.write("                                                    <a href=\"#\" class=\"btn btn-google btn-block\"><i\r\n");
+=======
       out.write("                                                    <a href=\"https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/bird-clinic-system/LoginGoogleController&response_type=code\r\n");
       out.write("                                                       &client_id=682520957809-oqj4srno5ntcptc8d15nts7il0iae4k4.apps.googleusercontent.com&approval_prompt=force\" class=\"btn btn-google btn-block\"><i\r\n");
+>>>>>>> main
       out.write("                                                            class=\"fab fa-google mr-1\"></i>Login</a>\r\n");
       out.write("                                                </div>\r\n");
       out.write("                                            </div>\r\n");
       out.write("                                            <div class=\"text-center dont-have\">Don’t have an account? <a\r\n");
       out.write("                                                    href=\"register.jsp\">Register</a></div>\r\n");
+<<<<<<< HEAD
+      out.write("                                            <p style=\"color: green; margin-left: 10px;\">");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${successSignUp}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("</p>\r\n");
+=======
+>>>>>>> main
       out.write("                                        </form>\r\n");
       out.write("                                    </div>\r\n");
       out.write("                                </div>\r\n");

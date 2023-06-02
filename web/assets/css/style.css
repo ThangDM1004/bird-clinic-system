@@ -2876,7 +2876,7 @@ html.menu-opened body {
 }
 
 .slick-dots li.slick-active button {
-	background-color: #0de0fe;
+	background-color: #6EC531;
 }
 
 .slick-dots li.slick-active button:before {
@@ -2941,7 +2941,7 @@ html.menu-opened body {
 
 .speicality-img span i {
 	font-size: 15px;
-	color: #0de0fe;
+	color: #6EC531;
 }
 
 .speicality-item p {
@@ -6925,7 +6925,7 @@ html.menu-opened body {
 		border-radius: 5px;
 		padding: 0;
 		margin: 0;
-		min-width: 200px;
+		min-width: 240px;
 		visibility: hidden;
 		opacity: 0;
 		-webkit-transition: all .2s ease;
