@@ -4,6 +4,10 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.ServiceDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.dto.ServiceDTO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,89 +227,89 @@
                             <li>
                                 <a href="reviews.jsp"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
                             </li>
-                            <!-- <li> 
-                                            <a href="transactions-list.jsp"><i class="fe fe-activity"></i> <span>Transactions</span></a>
-                                    </li>
-                                    <li> 
-                                            <a href="settings.jsp"><i class="fe fe-vector"></i> <span>Settings</span></a>
-                                    </li>
+                            <li> 
+                                <a href="transactions-list.jsp"><i class="fe fe-activity"></i> <span>Transactions</span></a>
+                            </li>
+                            <li> 
+                                <a href="settings.jsp"><i class="fe fe-vector"></i> <span>Settings</span></a>
+                            </li>
+                            <li class="submenu">
+                                <a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="invoice-report.jsp">Invoice Reports</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-title"> 
+                                <span>Pages</span>
+                            </li>
+                            <li> 
+                                <a href="profile.jsp"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+                            </li>
+                            <li class="submenu">
+                                <a href="#"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="login.jsp"> Login </a></li>
+                                    <li><a href="register.jsp"> Register </a></li>
+                                    <li><a href="forgot-password.jsp"> Forgot Password </a></li>
+                                    <li><a href="lock-screen.jsp"> Lock Screen </a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="error-404.jsp">404 Error </a></li>
+                                    <li><a href="error-500.jsp">500 Error </a></li>
+                                </ul>
+                            </li>
+                            <li> 
+                                <a href="blank-page.jsp"><i class="fe fe-file"></i> <span>Blank Page</span></a>
+                            </li>
+                            <li class="menu-title"> 
+                                <span>UI Interface</span>
+                            </li>
+                            <li> 
+                                <a href="components.jsp"><i class="fe fe-vector"></i> <span>Components</span></a>
+                            </li>
+                            <li class="submenu">
+                                <a href="#"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="form-basic-inputs.jsp">Basic Inputs </a></li>
+                                    <li><a href="form-input-groups.jsp">Input Groups </a></li>
+                                    <li><a href="form-horizontal.jsp">Horizontal Form </a></li>
+                                    <li><a href="form-vertical.jsp"> Vertical Form </a></li>
+                                    <li><a href="form-mask.jsp"> Form Mask </a></li>
+                                    <li><a href="form-validation.jsp"> Form Validation </a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="#"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
+                                    <li><a href="tables-basic.jsp">Basic Tables </a></li>
+                                    <li><a href="data-tables.jsp">Data Table </a></li>
+                                </ul>
+                            </li>
+                            <li class="submenu">
+                                <a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
+                                <ul style="display: none;">
                                     <li class="submenu">
-                                            <a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li><a href="invoice-report.jsp">Invoice Reports</a></li>
-                                            </ul>
+                                        <a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
+                                            <li class="submenu">
+                                                <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
+                                                <ul style="display: none;">
+                                                    <li><a href="javascript:void(0);">Level 3</a></li>
+                                                    <li><a href="javascript:void(0);">Level 3</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
+                                        </ul>
                                     </li>
-                                    <li class="menu-title"> 
-                                            <span>Pages</span>
+                                    <li>
+                                        <a href="javascript:void(0);"> <span>Level 1</span></a>
                                     </li>
-                                    <li> 
-                                            <a href="profile.jsp"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
-                                    </li>
-                                    <li class="submenu">
-                                            <a href="#"><i class="fe fe-document"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li><a href="login.jsp"> Login </a></li>
-                                                    <li><a href="register.jsp"> Register </a></li>
-                                                    <li><a href="forgot-password.jsp"> Forgot Password </a></li>
-                                                    <li><a href="lock-screen.jsp"> Lock Screen </a></li>
-                                            </ul>
-                                    </li>
-                                    <li class="submenu">
-                                            <a href="#"><i class="fe fe-warning"></i> <span> Error Pages </span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li><a href="error-404.jsp">404 Error </a></li>
-                                                    <li><a href="error-500.jsp">500 Error </a></li>
-                                            </ul>
-                                    </li>
-                                    <li> 
-                                            <a href="blank-page.jsp"><i class="fe fe-file"></i> <span>Blank Page</span></a>
-                                    </li>
-                                    <li class="menu-title"> 
-                                            <span>UI Interface</span>
-                                    </li>
-                                    <li> 
-                                            <a href="components.jsp"><i class="fe fe-vector"></i> <span>Components</span></a>
-                                    </li>
-                                    <li class="submenu">
-                                            <a href="#"><i class="fe fe-layout"></i> <span> Forms </span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li><a href="form-basic-inputs.jsp">Basic Inputs </a></li>
-                                                    <li><a href="form-input-groups.jsp">Input Groups </a></li>
-                                                    <li><a href="form-horizontal.jsp">Horizontal Form </a></li>
-                                                    <li><a href="form-vertical.jsp"> Vertical Form </a></li>
-                                                    <li><a href="form-mask.jsp"> Form Mask </a></li>
-                                                    <li><a href="form-validation.jsp"> Form Validation </a></li>
-                                            </ul>
-                                    </li>
-                                    <li class="submenu">
-                                            <a href="#"><i class="fe fe-table"></i> <span> Tables </span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li><a href="tables-basic.jsp">Basic Tables </a></li>
-                                                    <li><a href="data-tables.jsp">Data Table </a></li>
-                                            </ul>
-                                    </li>
-                                    <li class="submenu">
-                                            <a href="javascript:void(0);"><i class="fe fe-code"></i> <span>Multi Level</span> <span class="menu-arrow"></span></a>
-                                            <ul style="display: none;">
-                                                    <li class="submenu">
-                                                            <a href="javascript:void(0);"> <span>Level 1</span> <span class="menu-arrow"></span></a>
-                                                            <ul style="display: none;">
-                                                                    <li><a href="javascript:void(0);"><span>Level 2</span></a></li>
-                                                                    <li class="submenu">
-                                                                            <a href="javascript:void(0);"> <span> Level 2</span> <span class="menu-arrow"></span></a>
-                                                                            <ul style="display: none;">
-                                                                                    <li><a href="javascript:void(0);">Level 3</a></li>
-                                                                                    <li><a href="javascript:void(0);">Level 3</a></li>
-                                                                            </ul>
-                                                                    </li>
-                                                                    <li><a href="javascript:void(0);"> <span>Level 2</span></a></li>
-                                                            </ul>
-                                                    </li>
-                                                    <li>
-                                                            <a href="javascript:void(0);"> <span>Level 1</span></a>
-                                                    </li>
-                                            </ul>
-                                    </li> -->
+                                </ul>
+                            </li> 
                         </ul>
                     </div>
                 </div>
@@ -350,33 +354,37 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%
+                                                    List<ServiceDTO> ls = new ArrayList();
+                                                    ServiceDAO dao = new ServiceDAO();
+                                                    ls = dao.serviceWithStar();
+                                                    for (ServiceDTO ser : ls) {
+                                                        int index = ls.indexOf(ser);
+                                                %>
                                                 <tr>
-                                                    <td>#SP001</td>
+                                                    <td><%= ser.getService_id()%></td>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2">
                                                                 <img class="avatar-img"
-                                                                     src="assets/img/specialities/specialities-01.png"
+                                                                     src="<%= ser.getIcon_link()%>"
                                                                      alt="Speciality">
                                                             </a>
                                                             <a data-toggle="modal"
-                                                               href="#view_specialities_details">Urology</a>
+                                                               href="#view_specialities_details"><%= ser.getService_name()%></a>
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <p>200</p>
+                                                        <p><%= ser.getFee()%></p>
                                                     </td>
                                                     <td>
                                                         <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star text-warning"></i>
-                                                        <i class="fe fe-star-o text-secondary"></i>
+                                                      
                                                     </td>
                                                     <td>
                                                         <div class="actions">
                                                             <a class="btn btn-sm bg-success-light" data-toggle="modal"
-                                                               href="#edit_specialities_details">
+                                                               href="#edit_specialities_details_<%= index%>">
                                                                 <i class="fe fe-pencil"></i> Edit
                                                             </a>
                                                         </div>
@@ -390,6 +398,9 @@
                                                     </td>
 
                                                 </tr>
+                                                <%
+                                                    }
+                                                %>
 
                                             </tbody>
                                         </table>
@@ -406,74 +417,82 @@
             <!-- Add Modal -->
             <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Services</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+
+                    <form name="MainController" action="update" method="POST">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Services</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row form-row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Icon</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Image</label>
+                                                <input type="file" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Name</label>
+                                                <input style="width: 350px;" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Price</label>
+                                                <input type="number" placeholder="$" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Describe</label>
+                                                <textarea type="text" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row form-row">
+                                        <div class="col-12 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Service Details</label>
+                                                <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-block">Add new</button>
+                                </form>
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Icon</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Image</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Name</label>
-                                            <input style="width: 350px;" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+                    </form>
 
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Price</label>
-                                            <input type="number" placeholder="$" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Describe</label>
-                                            <textarea type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Details</label>
-                                            <textarea style="width: 300px;" type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block">Add new</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- /ADD Modal -->
 
             <!-- Edit Details Modal -->
-            <div class="modal fade" id="edit_specialities_details" aria-hidden="true" role="dialog">
+            <%
+                for (ServiceDTO ser : ls) {
+                    int index = ls.indexOf(ser);
+            %>
+            <div class="modal fade" id="edit_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -502,7 +521,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
                                             <label>Service Name</label>
-                                            <input style="width: 350px;" type="text" class="form-control">
+                                            <input style="width: 350px;" type="text" class="form-control" value="<%= ser.getService_name() %>"> 
                                         </div>
                                     </div>
                                 </div>
@@ -511,7 +530,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
                                             <label>Service Price</label>
-                                            <input type="number" placeholder="$" class="form-control">
+                                            <input type="number" placeholder="$" class="form-control "  value="<%= ser.getFee()%>" >
                                         </div>
                                     </div>
                                 </div>
@@ -520,7 +539,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
                                             <label>Service Describe</label>
-                                            <textarea type="text" class="form-control"></textarea>
+                                            <textarea type="text" class="form-control"> <%= ser.getDescription() %>  </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -529,7 +548,7 @@
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
                                             <label>Service Details</label>
-                                            <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                            <textarea style="width: 300px;" type="text" class="form-control"> <%= ser.getService_detail() %></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -539,6 +558,10 @@
                     </div>
                 </div>
             </div>
+
+            <%
+                }
+            %>
             <!-- /Edit Details Modal -->
 
 
