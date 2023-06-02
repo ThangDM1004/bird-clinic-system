@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Sem5/SWP391/BirdClinicSystem/bird-clinic-system/web/admin/appointment-list.jsp</file>
+
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/controller/LoginController.java</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/utils/Utils.java</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/dao/UserDAO.java</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/src/java/sample/controller/LoginGoogleController.java</file>
+            <file>file:/C:/Users/MSI%20AD/OneDrive/Máy%20tính/bird-clinic-system/web/admin/index.jsp</file>
+
         </group>
     </open-files>
 </project-private>

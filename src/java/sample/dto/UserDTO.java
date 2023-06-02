@@ -7,33 +7,45 @@ package sample.dto;
 
 import java.sql.Date;
 
+import java.text.SimpleDateFormat;
+
+
 /**
  *
  * @author MSI AD
  */
 public class UserDTO {
+
     private String username;
     private String password;
     private String email;
     private String phone;
-    private Date dateOfBirth;
+
+    private Date date_of_birth;
     private String fullname;
     private String gender;
     private String bio;
-    private String img;
-    private boolean status = true;
+    private String image;
+    private boolean status;
     private String role;
 
-    public UserDTO(String username, String password, String email, String phone, Date dateOfBirth, String fullname, String gender, String bio, String img, String role) {
+    public UserDTO() {
+    }
+
+    public UserDTO(String username, String password, String email, String phone, Date date_of_birth, String fullname, String gender, String bio, String image, boolean status, String role) {
+
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
-        this.dateOfBirth = dateOfBirth;
+
+        this.date_of_birth = date_of_birth;
         this.fullname = fullname;
         this.gender = gender;
         this.bio = bio;
-        this.img = img;
+        this.image = image;
+        this.status = status;
+
         this.role = role;
     }
 
@@ -69,12 +81,14 @@ public class UserDTO {
         this.phone = phone;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+
+    public Date getDate_of_birth() {
+        return date_of_birth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDate_of_birth(Date date_of_birth) {
+        this.date_of_birth = date_of_birth;
+
     }
 
     public String getFullname() {
@@ -101,12 +115,14 @@ public class UserDTO {
         this.bio = bio;
     }
 
-    public String getImg() {
-        return img;
+
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImage(String image) {
+        this.image = image;
+
     }
 
     public boolean isStatus() {
@@ -124,5 +140,12 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
-    
+
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return "UserDTO{" + "username=" + username + ", password=" + password + ", email=" + email + ", phone=" + phone + ", date_of_birth=" + sdf.format(date_of_birth) + ", fullname=" + fullname + ", gender=" + gender + ", bio=" + bio + ", image=" + image + ", status=" + status + ", role=" + role + '}';
+    }
+
 }

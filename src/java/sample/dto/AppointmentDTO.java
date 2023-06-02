@@ -13,77 +13,65 @@ import java.sql.Time;
  * @author MSI AD
  */
 public class AppointmentDTO {
-    
-    private String bookingID;
-    private String doctorName;
-    private String speciality;
-    private String customerName;
-    private Date date;
-    private String time;
-    private String status;
-    private double fee;
-    private String imgDoc;
-    private String imgCus;
 
-    public AppointmentDTO(String bookingID, String doctorName, String speciality, String customerName, Date date, String time, String status, double fee, String imgDoc, String imgCus) {
-        this.bookingID = bookingID;
-        this.doctorName = doctorName;
-        this.speciality = speciality;
-        this.customerName = customerName;
-        this.date = date;
-        this.time = time;
+     private String doctor_name;
+     private String service;
+     private String user_name;
+     private String apointment_date;
+     private String apointment_time;
+     private String status;
+
+    public AppointmentDTO() {
+    }
+
+    public AppointmentDTO(String doctor_name, String service, String user_name, String apointment_date, String apointment_time, String status) {
+        this.doctor_name = doctor_name;
+        this.service = service;
+        this.user_name = user_name;
+        this.apointment_date = apointment_date;
+        this.apointment_time = apointment_time;
         this.status = status;
-        this.fee = fee;
-        this.imgDoc = imgDoc;
-        this.imgCus = imgCus;
     }
 
-    public String getBookingID() {
-        return bookingID;
+    public String getDoctor_name() {
+        return doctor_name;
     }
 
-    public void setBookingID(String bookingID) {
-        this.bookingID = bookingID;
+    public void setDoctor_name(String doctor_name) {
+        this.doctor_name = doctor_name;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getService() {
+        return service;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public void setService(String service) {
+        this.service = service;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getApointment_date() {
+        return apointment_date;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setApointment_date(String apointment_date) {
+        this.apointment_date = apointment_date;
     }
 
-    public Date getDate() {
-        return date;
+    public String getApointment_time() {
+        return apointment_time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+    public void setApointment_time(String apointment_time) {
+        this.apointment_time = apointment_time;
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public String getStatus() {
@@ -93,6 +81,7 @@ public class AppointmentDTO {
     public void setStatus(String status) {
         this.status = status;
     }
+
 
     public double getFee() {
         return fee;
@@ -121,5 +110,5 @@ public class AppointmentDTO {
     
     
     
-    
+
 }
