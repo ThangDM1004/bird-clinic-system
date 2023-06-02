@@ -4,6 +4,9 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.AppointmentDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dto.AppointmentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -562,72 +565,56 @@
                                                 <tr>
                                                     <th>Doctor Name</th>
                                                     <th>Service</th>
-                                                    <th>Patient Name</th>
+                                                    <th>User Name</th>
                                                     <th>Apointment Time</th>
                                                     <th>Status</th>
                                                     <th class="text-right">Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%
+                                                    String img_doctor = "";
+                                                    String img_cus = "";
+                                                    AppointmentDAO dao = new AppointmentDAO();
+                                                    List<AppointmentDTO> list = dao.get_list_appointment();
+                                                    for (AppointmentDTO x : list) {
+                                                        img_doctor = dao.get_image_doctor(x.getDoctor_name());
+                                                        img_cus = dao.get_image_cus(x.getUser_name());
+                                                %>
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-01.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Dr. Ruby Perrin</a>
+                                                                    src="<%= img_doctor %>"
+                                                                    alt="Docotr Image"></a>
+                                                            <a><%= x.getDoctor_name()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td>Dental</td>
+                                                    <td><%= x.getService()%></td>
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient1.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Charlene Reed </a>
+                                                                    src="<%= img_cus %>"
+                                                                    alt="Customer Image"></a>
+                                                            <a><%= x.getUser_name()%></a>
                                                         </h2>
                                                     </td>
-                                                    <td>9 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.15
+                                                    <td><%= x.getApointment_date()%> <span class="text-primary d-block"><%= x.getApointment_time()%>
                                                             AM</span></td>
                                                     <td>
-                                                        <p>Pending</p>
+                                                        <p><%= x.getStatus()%></p>
                                                     </td>
                                                     <td class="text-right">
                                                         $200.00
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/doctors/doctor-thumb-02.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Dr. Darren Elder</a>
-                                                        </h2>
-                                                    </td>
-                                                    <td>Dental</td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src="assets/img/patients/patient2.jpg"
-                                                                    alt="User Image"></a>
-                                                            <a>Travis Trimble </a>
-                                                        </h2>
-                                                    </td>
+                                                <%
+                                                    }
+                                                %>
 
-                                                    <td>5 Nov 2019 <span class="text-primary d-block">11.00 AM - 11.35
-                                                            AM</span></td>
-                                                    <td>
-                                                        <p>Pending</p>
-                                                    </td>
-                                                    <td class="text-right">
-                                                        $300.00
-                                                    </td>
-                                                </tr>
+
 
                                             </tbody>
                                         </table>
