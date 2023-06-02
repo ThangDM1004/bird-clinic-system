@@ -347,7 +347,6 @@
                                                     ls = dao.doctorList();
                                                     for (UserDTO doc : ls) {
 
-
                                                 %>
 
                                                 <tr>

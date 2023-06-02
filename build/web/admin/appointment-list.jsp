@@ -341,7 +341,7 @@
                                                                 <a href="#view_specialities_details_1" data-toggle="modal">${i.doctorName}</a>
                                                             </h2>
                                                         </td>
-                                                        <td>${i.speciality}</td>
+                                                        <td>${i.speciality }</td>
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="${i.imgCus}" alt="User Image"></a>
