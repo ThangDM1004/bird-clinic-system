@@ -353,7 +353,7 @@
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImg() %>" alt="User Image"></a>
+                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
                                                             <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname() %></a>
                                                         </h2>
                                                     </td>
