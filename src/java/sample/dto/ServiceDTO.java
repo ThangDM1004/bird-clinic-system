@@ -19,11 +19,11 @@ public class ServiceDTO {
     private String icon_link;
     private String image;
     private int status;
-
+    private float rating;
     public ServiceDTO() {
     }
 
-    public ServiceDTO(int id,int service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status) {
+    public ServiceDTO(int id, int service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status, float rating) {
         this.id = id;
         this.service_id = service_id;
         this.service_name = service_name;
@@ -33,6 +33,7 @@ public class ServiceDTO {
         this.icon_link = icon_link;
         this.image = image;
         this.status = status;
+        this.rating = rating;
     }
 
     public int getId() {
@@ -75,7 +76,7 @@ public class ServiceDTO {
         this.description = description;
     }
 
-    public double getFee() {
+    public float getFee() {
         return fee;
     }
 
@@ -107,10 +108,15 @@ public class ServiceDTO {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceDTO{" + "id=" + id + ", service_id=" + service_id + ", service_name=" + service_name + ", service_detail=" + service_detail + ", description=" + description + ", fee=" + fee + ", icon_link=" + icon_link + ", image=" + image + ", status=" + status + '}';
+    public float getRating() {
+        return rating;
     }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+   
 
   
 }

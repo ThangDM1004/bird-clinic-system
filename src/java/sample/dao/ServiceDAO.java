@@ -40,7 +40,8 @@ public class ServiceDAO {
                         rs.getFloat(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9));
+                        rs.getInt(9),
+                        rs.getFloat(10));
                 list.add(s);
             }
             
@@ -81,7 +82,7 @@ public class ServiceDAO {
                     String detail = rs.getString("service_detail");
                     String des = rs.getString("description");
                     String img = rs.getString("image");
-                    ser = new ServiceDTO(0, ser_id, ser_name, detail, des, fee, icon_link, img, ser_id);
+                    ser = new ServiceDTO(0, ser_id, ser_name, detail, des, fee, icon_link, img, ser_id,avgStar);
                     listService.add(ser);
                 }
             }

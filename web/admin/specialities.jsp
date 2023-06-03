@@ -379,7 +379,7 @@
                                                     </td>
                                                     <td>
                                                         <i class="fe fe-star text-warning"></i>
-                                                      
+                                                        <%= ser.getRating() %>
                                                     </td>
                                                     <td>
                                                         <div class="actions">
