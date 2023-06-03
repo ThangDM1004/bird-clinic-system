@@ -351,7 +351,7 @@ public class UserDAO {
                         image = "assets/img/doctors/blank-profile-picture.png";
                     }
                     boolean status = rs.getBoolean("status");
-                    doctor = new UserDTO(user_name, "", email, phone, null, fullname, "", speciality, image, status, "");
+                    doctor = new UserDTO(user_name,null, email, phone, null, fullname, null, speciality, image, status, null);
                     ls.add(doctor);
                 }
             }
