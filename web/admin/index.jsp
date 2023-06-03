@@ -533,7 +533,7 @@
                                                             <h2 class="table-avatar">
                                                                 <a class="avatar avatar-sm mr-2"><img
                                                                         class="avatar-img rounded-circle"
-                                                                        src="${i.img}"
+                                                                        src="${i.image}"
                                                                         alt="User Image"></a>
                                                                 <a style="list-style: none;">${i.fullname}</a>
                                                             </h2>
@@ -576,7 +576,7 @@
                                                             <h2 class="table-avatar">
                                                                 <a class="avatar avatar-sm mr-2"><img
                                                                         class="avatar-img rounded-circle"
-                                                                        src="${i.img}"
+                                                                        src="${i.image}"
                                                                         alt="User Image"></a>
                                                                 <a> ${i.fullname} </a>
                                                             </h2>
