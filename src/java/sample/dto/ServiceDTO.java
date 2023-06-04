@@ -116,6 +116,11 @@ public class ServiceDTO {
         this.rating = rating;
     }
 
+    @Override
+    public String toString() {
+        return "ServiceDTO{" + "id=" + id + ", service_id=" + service_id + ", service_name=" + service_name + ", service_detail=" + service_detail + ", description=" + description + ", fee=" + fee + ", icon_link=" + icon_link + ", image=" + image + ", status=" + status + ", rating=" + rating + '}';
+    }
+
    
 
   

@@ -143,7 +143,7 @@ public class UserDAO {
     }
 
     public void signUpAccount(String username, String fullName, String email, String gender, Date dob, String phone, String password) {
-        String query = "INSERT INTO tbl_Account VALUES(?,?,?,?,?,?,?,NULL,NULL,1,4)";
+        String query = "INSERT INTO tbl_Account VALUES(?,?,?,?,?,?,?,NULL,'../assets/img/doctors/blank-profile-picture.png',1,4)";
 
         try {
             conn = new Utils().getConnection();

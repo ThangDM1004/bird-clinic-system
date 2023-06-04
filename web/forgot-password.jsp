@@ -11,12 +11,12 @@
     <!-- doccure/forgot-password.jsp  30 Nov 2019 04:12:20 GMT -->
     <head>
         <meta charset="utf-8">
-        <title>Doccure</title>
+        <title>thedearbird | Forgot Password</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
-
+        <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/logo-icon.png">
+        
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 

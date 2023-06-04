@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.ServiceDTO;
+import sample.dto.UserDTO;
 import sample.utils.Utils;
 /**
  *
@@ -41,7 +42,7 @@ public class ServiceDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getFloat(10));
+                        0);
                 list.add(s);
             }
             
@@ -49,13 +50,7 @@ public class ServiceDAO {
         }
         return list;
     }
-    public static void main(String[] args) {
-        ServiceDAO dao = new ServiceDAO();
-        List<ServiceDTO> list = dao.getListService();
-        for (ServiceDTO s : list) {
-            System.out.println(s);
-        }
-    }
+
     
     private static final String querryService = "select tbl_Service.service_id, service_name, fee, icon_link, status, avg(rating_star) as avgStar, service_detail, description,image\n" +
 "           from tbl_Service left join tbl_Feedback on tbl_Service.service_id = tbl_Feedback.service_id \n" +
@@ -100,5 +95,16 @@ public class ServiceDAO {
             }
         }
         return listService;
+    }
+    
+    public static void main(String[] args) {
+        ServiceDAO dao = new ServiceDAO();
+        List<ServiceDTO> list = dao.getListService();
+        
+        
+        for (ServiceDTO s : list) {
+            System.out.println(s.toString());
+        }
+        
     }
 }

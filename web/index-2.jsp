@@ -127,7 +127,7 @@
                                     </ul>
                             </li> -->
                             <li>
-                                <a href="blank-page.jsp" >Blog</a>
+                                <a href="" >Blog</a>
                             </li>
 
 
@@ -152,13 +152,13 @@
                             <li class="nav-item dropdown has-arrow logged-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <span class="user-img">
-                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                                        <img class="rounded-circle" src="assets/img/user.png" width="31" alt="${sessionScope.account.username}">
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                                            <img src="assets/img/user.png" alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
                                             <h6>${sessionScope.account.fullname}</h6>
