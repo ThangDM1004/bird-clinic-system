@@ -13,13 +13,13 @@
 
     <head>
         <meta charset="utf-8">
-                <title>thedearbird | Login</title>
+        <title>thedearbird | Login</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
         <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/logo-icon.png">
-        
+
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
@@ -163,8 +163,7 @@
                                     </div>
                                     <div class="col-md-12 col-lg-6 login-right">
                                         <div class="login-header">
-                                            <h3>Login<a href="admin/login.jsp">Are you an admin?</a></h3>
-
+                                            <h3>Login to thedearbird</h3>
                                         </div>
                                         <form action="MainController" method="post">
                                             <div class="form-group form-focus">

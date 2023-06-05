@@ -33,8 +33,9 @@ public class RegisterController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
         HttpSession session = request.getSession();
         //Get value of users input
         //Lists error when user input incorrect
@@ -46,19 +47,19 @@ public class RegisterController extends HttpServlet {
         String successSignUp = "*Registration Successful.";
         //Format date of birth after save into Database
         Date dob = null;
-        
+
         try {
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
             String email = request.getParameter("email");
-            
+
             String gender = request.getParameter("gender");
             String dobString = request.getParameter("dob");
             //Chỗ này đổi này tháng chuỗi sang java date
             SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date utilDate = inputDateFormat.parse(dobString);
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-            
+
             String phone = request.getParameter("phone");
             String password = request.getParameter("password");
             String confirm_password = request.getParameter("confirm_password");
@@ -87,17 +88,17 @@ public class RegisterController extends HttpServlet {
                     dao.signUpAccount(username, fullname, email, gender, sqlDate, phone, password);
                     UserDTO a = dao.Login(username, password);
                     session.setAttribute("account", a);
-                    response.sendRedirect("index-2.jsp");
+                    request.getRequestDispatcher("index-2.jsp").forward(request, response);
                 } else {
                     request.setAttribute("errorUser", errorUser);
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                 }
-                
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -112,6 +113,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 
@@ -126,6 +128,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 

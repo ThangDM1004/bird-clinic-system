@@ -143,7 +143,7 @@ public class UserDAO {
     }
 
     public void signUpAccount(String username, String fullName, String email, String gender, Date dob, String phone, String password) {
-        String query = "INSERT INTO tbl_Account VALUES(?,?,?,?,?,?,?,NULL,'../assets/img/doctors/blank-profile-picture.png',1,4)";
+        String query = "INSERT INTO tbl_Account VALUES(?,?,?,?,?,?,?,NULL,'assets/img/user_image_default.png',1,4)";
 
         try {
             conn = new Utils().getConnection();
@@ -278,7 +278,7 @@ public class UserDAO {
                         rs.getString(3),
                         rs.getString(4),
                         rs.getDate(5),
-                        rs.getString(6),
+                        rs.getNString(6),
                         rs.getString(7),
                         rs.getString(8),
                         rs.getString(9),
@@ -351,7 +351,7 @@ public class UserDAO {
                         image = "assets/img/doctors/blank-profile-picture.png";
                     }
                     boolean status = rs.getBoolean("status");
-                    doctor = new UserDTO(user_name,null, email, phone, null, fullname, null, speciality, image, status, null);
+                    doctor = new UserDTO(user_name, null, email, phone, null, fullname, null, speciality, image, status, null);
                     ls.add(doctor);
                 }
             }
@@ -369,4 +369,26 @@ public class UserDAO {
         }
         return ls;
     }
+
+    public String getRoleNameByUsername(String username) {
+        String query = "SELECT TOP 1 r.rolename \n"
+                + "FROM tbl_Account ac, tbl_Role r \n"
+                + "WHERE ac.role_id = r.role_id \n"
+                + "AND ac.role_id = (SELECT role_id FROM tbl_Account WHERE user_name = ?)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+    }
+
 }

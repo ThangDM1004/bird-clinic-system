@@ -3,15 +3,14 @@
     Created on : May 29, 2023, 5:08:35 PM
     Author     : MSI AD
 --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
-<html lang="en">
-
+<html lang="vn">
     <!-- doccure/register.jsp  30 Nov 2019 04:12:20 GMT -->
     <head>
-        <meta charset="utf-8">
-        <title>thedearbird | Register</title>
+        <meta http–equiv="Content-Type" content="text/html; charset=UTF-8">
+              <title>thedearbird | Register</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
@@ -163,9 +162,10 @@
                                         </div>
 
                                         <!-- Register Form -->
-                                        <form action="MainController" method="post">
+                                        <form action="MainController" method="" accept-charset="UTF-8">
+
                                             <div class="form-group form-focus">
-                                                <input name="username" type="text" class="form-control floating" required=""d>
+                                                <input name="username" type="text" class="form-control floating" required="">
                                                 <label class="focus-label">Username</label>
                                                 <p style="color: #be4b49; margin-left: 10px;">${errorUser}</p>
                                             </div>
@@ -395,6 +395,7 @@
                                             <div class="form-group form-focus">
                                                 <input name="confirm_password" type="password" class="form-control floating">
                                                 <label class="focus-label">Confirm Password</label>
+                                                <p style="color: #be4b49; margin-left: 10px;">${errorCoPass}</p>
                                             </div>
 
 
