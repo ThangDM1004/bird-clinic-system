@@ -8,6 +8,8 @@
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,25 +157,33 @@
                     <!-- /Notifications -->
 
                     <!-- User Menu -->
-                    <li class="nav-item dropdown has-arrow">
-                        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                            <span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <div class="user-header">
-                                <div class="avatar avatar-sm">
-                                    <img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+                    <c:if test="${sessionScope.account != null}">
+                        <li class="nav-item dropdown has-arrow logged-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <span class="user-img">
+                                    <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <div class="user-header">
+                                    <div class="avatar avatar-sm">
+                                        <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                                    </div>
+                                    <div class="user-text">
+                                        <h6>${sessionScope.account.fullname}</h6>
+                                        <c:set var="roleName" value="${sessionScope.account.role}"/>
+                                        <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                                            <p class="text-muted mb-0">Administrator</p>
+                                        </c:if>
+                                        <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                            <p class="text-muted mb-0">Manager</p>
+                                        </c:if>
+                                    </div>
                                 </div>
-                                <div class="user-text">
-                                    <h6>Ryan Taylor</h6>
-                                    <p class="text-muted mb-0">Administrator</p>
-                                </div>
+                                <a class="dropdown-item" href="../MainController?action=logout">Logout</a>
                             </div>
-                            <a class="dropdown-item" href="profile.jsp">My Profile</a>
-                            <a class="dropdown-item" href="settings.jsp">Settings</a>
-                            <a class="dropdown-item" href="login.jsp">Logout</a>
-                        </div>
-                    </li>
+                        </li>
+                    </c:if>
                     <!-- /User Menu -->
 
                 </ul>
@@ -187,27 +197,36 @@
                 <div class="sidebar-inner slimscroll">
                     <div id="sidebar-menu" class="sidebar-menu">
                         <ul>
-                            <li class="menu-title"> 
+                            <li class="menu-title">
                                 <span>Main</span>
                             </li>
-                            <li> 
-                                <a href="index.jsp"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+                            <li >
+                                <a href="index.jsp"><i class="fe fe-home"></i><span>Dashboard</span></a>
                             </li>
-                            <li> 
-                                <a href="appointment-list.jsp"><i class="fe fe-layout"></i> <span>Appointments</span></a>
-                            </li>
-                            <li> 
-                                <a href="specialities.jsp"><i class="fe fe-users"></i> <span>Services</span></a>
-                            </li>
-                            <li> 
-                                <a href="doctor-list.jsp"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
-                            </li>
-                            <li class="active"> 
-                                <a href="patient-list.jsp"><i class="fe fe-user"></i> <span>Customers</span></a>
-                            </li>
-                            <li> 
-                                <a href="reviews.jsp"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
-                            </li>
+
+                            <c:if test="${fn:containsIgnoreCase(roleName, '1') || fn:containsIgnoreCase(roleName, '5')}">
+                                <li>
+                                    <a href="appointment-list.jsp"><i class="fe fe-layout"></i> <span>Appointments</span></a>
+                                </li>
+                            </c:if>
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                <li>
+                                    <a href="specialities.jsp"><i class="fe fe-users"></i> <span>Services</span></a>
+                                </li>
+                            </c:if>
+                            <c:if test="${fn:containsIgnoreCase(roleName, '1') || fn:containsIgnoreCase(roleName, '5')}">
+                                <li>
+                                    <a href="doctor-list.jsp"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>
+                                </li>
+                                <li class="active">
+                                    <a href="patient-list.jsp"><i class="fe fe-user"></i> <span>Customers</span></a>
+                                </li>
+                            </c:if>
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                <li>
+                                    <a href="reviews.jsp"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+                                </li>
+                            </c:if>
                             <!-- <li> 
                                     <a href="transactions-list.jsp"><i class="fe fe-activity"></i> <span>Transactions</span></a>
                             </li>

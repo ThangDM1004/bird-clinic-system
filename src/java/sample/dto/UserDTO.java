@@ -9,7 +9,6 @@ import java.sql.Date;
 
 import java.text.SimpleDateFormat;
 
-
 /**
  *
  * @author MSI AD
@@ -29,7 +28,6 @@ public class UserDTO {
     private boolean status;
     private String role;
 
-     
     public UserDTO() {
     }
 
@@ -82,7 +80,6 @@ public class UserDTO {
         this.phone = phone;
     }
 
-
     public Date getDate_of_birth() {
         return date_of_birth;
     }
@@ -116,7 +113,6 @@ public class UserDTO {
         this.bio = bio;
     }
 
-
     public String getImage() {
         return image;
     }
@@ -141,7 +137,6 @@ public class UserDTO {
     public void setRole(String role) {
         this.role = role;
     }
-
 
     @Override
     public String toString() {

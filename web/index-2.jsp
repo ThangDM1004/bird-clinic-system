@@ -3,12 +3,12 @@
     Created on : May 29, 2023, 4:21:56 PM
     Author     : MSI AD
 --%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.ServiceDAO"%>
 <%@page import="sample.dto.ServiceDTO"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -152,17 +152,32 @@
                             <li class="nav-item dropdown has-arrow logged-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                                     <span class="user-img">
-                                        <img class="rounded-circle" src="assets/img/user.png" width="31" alt="${sessionScope.account.username}">
+                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <div class="user-header">
                                         <div class="avatar avatar-sm">
-                                            <img src="assets/img/user.png" alt="User Image" class="avatar-img rounded-circle">
+                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
                                         </div>
                                         <div class="user-text">
                                             <h6>${sessionScope.account.fullname}</h6>
-                                                <p class="text-muted mb-0">Patient</p>
+                                            <c:set var="roleName" value="${sessionScope.account.role}"/>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                                                <p class="text-muted mb-0">Administrator</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
+                                                <p class="text-muted mb-0">Staff</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
+                                                <p class="text-muted mb-0">Doctor</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
+                                                <p class="text-muted mb-0">Customer</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                                <p class="text-muted mb-0">Manager</p>
+                                            </c:if>
                                         </div>
                                     </div>
                                     <a class="dropdown-item" href="#">My Appoinment</a>

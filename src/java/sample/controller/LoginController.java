@@ -35,19 +35,25 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String userName = request.getParameter("username");
         String password = request.getParameter("password");
-        String errorLogin = "The username or password that you've entered is incorrect";
-        
+        String errorLogin = "The username or password is invalid";
+
         UserDAO dao = new UserDAO();
         UserDTO user = dao.Login(userName, password);
-        
         if (user == null) {
             request.setAttribute("errorLogin", errorLogin);
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("account", user);
-            response.sendRedirect("index-2.jsp");
-            
+            String getRoleID = user.getRole().trim();
+            if (getRoleID.equalsIgnoreCase("1") || getRoleID.equalsIgnoreCase("5")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("account", user);
+                response.sendRedirect("admin/index.jsp");
+            } else {
+                HttpSession session = request.getSession();
+                session.setAttribute("account", user);
+                response.sendRedirect("index-2.jsp");
+            }
+
         }
     }
 

@@ -10,6 +10,7 @@ package sample.dto;
  * @author MSI AD
  */
 public class ServiceDTO {
+
     private int id;
     private int service_id;
     private String service_name;
@@ -20,6 +21,7 @@ public class ServiceDTO {
     private String image;
     private int status;
     private float rating;
+
     public ServiceDTO() {
     }
 
@@ -121,7 +123,4 @@ public class ServiceDTO {
         return "ServiceDTO{" + "id=" + id + ", service_id=" + service_id + ", service_name=" + service_name + ", service_detail=" + service_detail + ", description=" + description + ", fee=" + fee + ", icon_link=" + icon_link + ", image=" + image + ", status=" + status + ", rating=" + rating + '}';
     }
 
-   
-
-  
 }
