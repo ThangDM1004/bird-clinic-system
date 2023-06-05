@@ -176,7 +176,7 @@
                                                     <input name="password" type="password" id="pass" class="form-control floating">
                                                     <label class="focus-label">Password</label>                                       
                                                     <span id="toggleBtn"></span>
-
+                                                    <p style="color: #be4b49; margin-left: 10px;">${errorLogin}</p>
                                                 </div>
                                             </div>
                                             <style>
