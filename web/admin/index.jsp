@@ -54,7 +54,7 @@
             HttpSession session1 = request.getSession();
             UserDTO user = (UserDTO) session1.getAttribute("account");
             String role = user.getRole().trim();
-            if (!role.equalsIgnoreCase("1") || role.equalsIgnoreCase("5")) {
+            if (!role.equalsIgnoreCase("1") || !role.equalsIgnoreCase("5")) {
                 response.sendRedirect("../index-2.jsp");
             }
         %>
