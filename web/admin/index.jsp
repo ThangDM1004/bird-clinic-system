@@ -54,7 +54,7 @@
             HttpSession session1 = request.getSession();
             UserDTO user = (UserDTO) session1.getAttribute("account");
             String role = user.getRole().trim();
-            if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5") ) {
+            if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5")) {
                 response.sendRedirect("../index-2.jsp");
             }
         %>
@@ -227,8 +227,8 @@
                             <li class="menu-title">
                                 <span>Main</span>
                             </li>
-                            <li class="active">
-                                <!--                               <a href="index.jsp"><i class="fe fe-home"></i><span>Dashboard</span></a>-->
+                            <li>
+                                <!--<a href="index.jsp"><i class="fe fe-home"></i><span>Dashboard</span></a>-->
                                 <a type="button" onclick="Dashboard()"><i class="fe fe-home"></i><span>Dashboard</span></a>
                             </li>
 
@@ -261,6 +261,7 @@
                                 </li>
                             </c:if>
 
+                            <!---------------------------- -->
 
 
                             <!-- <li>w
