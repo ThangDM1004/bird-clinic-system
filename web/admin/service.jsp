@@ -93,7 +93,7 @@
                                                     <h2 class="table-avatar">
                                                         <a class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img"
-                                                                 src="<%= ser.getIcon_link()%>"
+                                                                 src="../<%= ser.getIcon_link()%>"
                                                                  alt="Speciality">
                                                         </a>
                                                         <a data-toggle="modal"
