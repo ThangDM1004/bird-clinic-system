@@ -29,7 +29,7 @@ public class LoginGoogleController extends HttpServlet {
 
     private static final String login = "login.jsp";
     private static final String error = "register.jsp";
-    private static final String success = "index_logged.jsp";
+    private static final String success = "index-2.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class LoginGoogleController extends HttpServlet {
             UserDTO user = getUserInfo(accessToken);
             UserDTO user_ = dao.checkLogin(user.getEmail());
             if (user_ != null) {
-                se.setAttribute("USER_GOOGLE", user_);
+                se.setAttribute("account", user_);
                 url = success;
             } else {
                 se.setAttribute("EMAIL_USER", user.getEmail());

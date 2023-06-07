@@ -291,7 +291,7 @@ public class UserDAO {
         return null;
     }
 
-    private static final String LOGIN_GOOGLE = "SELECT email FROM tbl_Account WHERE email = ?";
+    private static final String LOGIN_GOOGLE = "SELECT * FROM tbl_Account WHERE email = ?";
 
     public UserDTO checkLogin(String email) throws SQLException {
         UserDTO user = null;
@@ -306,7 +306,17 @@ public class UserDAO {
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     String email_ = rs.getString("email");
-                    user = new UserDTO("", "", email, "", null, "", "", "", "", true, "");
+                    user = new UserDTO( rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getNString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getBoolean(10),
+                        rs.getString(11));
                 }
             }
         } catch (Exception e) {
