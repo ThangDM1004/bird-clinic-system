@@ -12,7 +12,7 @@ package sample.dto;
 public class ServiceDTO {
 
     private int id;
-    private int service_id;
+    private String service_id;
     private String service_name;
     private String service_detail;
     private String description;
