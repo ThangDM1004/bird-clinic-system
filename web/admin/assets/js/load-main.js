@@ -40,6 +40,7 @@ function Appointments() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "appointments.jsp", true);
@@ -54,6 +55,7 @@ function Services() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "service.jsp", true);
@@ -64,6 +66,7 @@ function Doctors() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "doctors.jsp", true);
@@ -74,6 +77,7 @@ function Customers() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "customers.jsp", true);
@@ -84,6 +88,7 @@ function Reviews() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     }
     ;

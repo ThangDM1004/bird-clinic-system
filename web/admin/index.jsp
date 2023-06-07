@@ -18,16 +18,15 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  
+
     <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/index.jsp by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:20 GMT -->
 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>thedearbird - Dashboard | Manager</title>
+ <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -38,15 +37,11 @@
         <!-- Feathericon CSS -->
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
 
-        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+        <!-- Datatables CSS -->
+        <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
-
-        <!--[if lt IE 9]>
-                        <script src="assets/js/html5shiv.min.js"></script>
-                        <script src="assets/js/respond.min.js"></script>
-                <![endif]-->
     </head>
 
     <body>
@@ -60,7 +55,7 @@
         %>
 
         <!-- Main Wrapper -->
-        <div class="main-wrapper">
+        <div  class="main-wrapper">
 
             <!-- Header -->
             <div class="header">
@@ -664,7 +659,7 @@
                                                                         class="avatar-img rounded-circle"
                                                                         src="<%= img_doctor%>"
                                                                         alt="User Image"></a>
-                                                                <a><%= x.getImgDoc()%></a>
+                                                                <a><%= x.getDoctorName()%></a>
                                                             </h2>
                                                         </td>
                                                         <td><%= x.getService()%></td>
@@ -707,53 +702,15 @@
 
             </div>
             <!-- /Main Wrapper -->
-            <div class="modal fade" id="view_specialities_details_1" aria-hidden="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">View Doctor Profile</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Updating</label>
-                                    </div>
-                                </div>
-                            </div>				
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="modal fade" id="view_specialities_details_2" aria-hidden="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">View User Profile</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>   Update    </label>
-                                    </div>
-                                </div>							
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
+         
+                                                
         <!-- jQuery -->
         <script src="assets/js/load-main.js"></script>
 
+        
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 
         <!-- Bootstrap Core JS -->
@@ -763,12 +720,12 @@
         <!-- Slimscroll JS -->
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <script src="assets/plugins/raphael/raphael.min.js"></script>
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/js/chart.morris.js"></script>
+        <!-- Datatables JS -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/datatables.min.js"></script>
 
         <!-- Custom JS -->
-        <script src="assets/js/script.js"></script>
+        <script  src="assets/js/script.js"></script>
 
     </body>
 

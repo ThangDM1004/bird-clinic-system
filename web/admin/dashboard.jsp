@@ -333,7 +333,7 @@
                                                                     class="avatar-img rounded-circle"
                                                                     src="<%= img_doctor%>"
                                                                     alt="User Image"></a>
-                                                            <a><%= x.getImgDoc()%></a>
+                                                            <a><%= x.getDoctorName()%></a>
                                                         </h2>
                                                     </td>
                                                     <td><%= x.getService()%></td>

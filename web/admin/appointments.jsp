@@ -7,7 +7,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -217,11 +217,11 @@
         <!-- Slimscroll JS -->
         <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <script src="assets/plugins/raphael/raphael.min.js"></script>
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/js/chart.morris.js"></script>
+        <!-- Datatables JS -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/datatables.min.js"></script>
 
         <!-- Custom JS -->
-        <script src="assets/js/script.js"></script>
+        <script  src="assets/js/script.js"></script>
     </body>
 </html>
