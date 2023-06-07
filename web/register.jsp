@@ -162,7 +162,7 @@
                                         </div>
 
                                         <!-- Register Form -->
-                                        <form action="MainController" method="" accept-charset="UTF-8">
+            
                                         <form action="MainController" method="POST" accept-charset="UTF-8">
 
                                             <div class="form-group form-focus">
