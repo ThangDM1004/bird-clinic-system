@@ -21,8 +21,9 @@
                         <select>
                             <option>Your bird</option>                            
                         </select>
-                        <div style="margin-left: 80%" class="submit-section">
-                            <button type="submit" class="btn btn-primary submit-btn">Add</button>
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add</a>
                         </div>
                         <div class="col-12 col-md-12">
                             <div class="form-group">
@@ -76,7 +77,9 @@
                 </form>
                 <!-- /Profile Settings Form -->
 
+
             </div>
         </div>
+        
     </body>
 </html>

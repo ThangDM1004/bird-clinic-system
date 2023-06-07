@@ -33,6 +33,7 @@
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
 
+
     </head>
     <body>
 
@@ -248,7 +249,7 @@
                             </div>
                         </div>
                         <!-- / Profile Sidebar -->
-                        
+
                         <div id="dashboard" class="col-md-7 col-lg-8 col-xl-9">
                             <div class="card">
                                 <div class="card-body pt-0">
@@ -313,7 +314,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                              
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -367,7 +368,7 @@
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                
+
                                                             </tbody>  	
                                                         </table>
                                                     </div>
@@ -510,6 +511,74 @@
             <!-- /Footer -->
 
         </div>
+        <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+
+                <form >
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="row form-row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Bird Image</label>
+                                            <input type="file" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Bird Name</label>
+                                            <input style="width: 350px;" type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Species</label>
+                                            <input type="text"  class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Age</label>
+                                            <textarea type="text" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row form-row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Add" >
+                            </form>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+       
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user_dashboard.js"></script>
@@ -526,6 +595,7 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
+
 
     </body>
 

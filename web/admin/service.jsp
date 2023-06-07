@@ -203,7 +203,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block">Add new</button>
+                                <input type="submit" value="Add" >
                             </form>
                         </div>
                     </div>
