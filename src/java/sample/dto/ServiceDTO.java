@@ -101,7 +101,7 @@ public class ServiceDTO {
     public void setImage(String image) {
         this.image = image;
     }
-
+//hieu ga test
     public int getStatus() {
         return status;
     }
