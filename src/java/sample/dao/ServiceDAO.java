@@ -97,14 +97,34 @@ public class ServiceDAO {
         return listService;
     }
     
-    public static void main(String[] args) {
-        ServiceDAO dao = new ServiceDAO();
-        List<ServiceDTO> list = dao.getListService();
-        
-        
-        for (ServiceDTO s : list) {
-            System.out.println(s.toString());
+    
+    public List<ServiceDTO> getListService1() {
+        List<ServiceDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM tbl_Service WHERE status = 'true' ORDER BY service_id DESC";
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+           
+            while (rs.next()) {                
+                ServiceDTO s = new ServiceDTO(
+                        rs.getInt(1), 
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getString(4), 
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        0);
+                list.add(s);
+            }
+            
+        } catch (Exception e) {
         }
+        return list;
+    }
         
     }
 }
