@@ -228,7 +228,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="MainController" method="POST" enctype="multipart/form-data">
+                        <form action="../MainController" method="POST" enctype="multipart/form-data">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
@@ -294,7 +294,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block" name="action" value="updateService">Save Changes</button>
+                            <button class="btn btn-primary btn-block"  type="submit" name="action" value="updateService">Save Changes</button>
                         </form>                    
                     </div>
                 </div>
