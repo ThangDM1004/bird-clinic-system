@@ -24,6 +24,8 @@ public class MainController extends HttpServlet {
     private static String LOGOUT_CONTROLLER = "LogoutController";
     private static String REGISTER = "register";
     private static String REGISTER_CONTROLLER = "RegisterController";
+    private static String UPDATESERVICE = "updateService";
+    private static String UPDATESERVICE_CONTROLLER = "UpdateServiceController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +39,8 @@ public class MainController extends HttpServlet {
                 url = LOGIN_CONTROLLER;
             } else if (actions.equals(LOGOUT)) {
                 url = LOGOUT_CONTROLLER;
+            } else if (actions.equals(UPDATESERVICE)) {
+                url = UPDATESERVICE_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }
