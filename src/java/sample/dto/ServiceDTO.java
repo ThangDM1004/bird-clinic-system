@@ -25,6 +25,17 @@ public class ServiceDTO {
     public ServiceDTO() {
     }
 
+    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status) {
+        this.service_id = service_id;
+        this.service_name = service_name;
+        this.service_detail = service_detail;
+        this.description = description;
+        this.fee = fee;
+        this.icon_link = icon_link;
+        this.image = image;
+        this.status = status;
+    }
+
     public ServiceDTO(int id, String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status, float rating) {
         this.id = id;
         this.service_id = service_id;
@@ -102,6 +113,7 @@ public class ServiceDTO {
         this.image = image;
     }
 //hieu ga test
+
     public int getStatus() {
         return status;
     }
