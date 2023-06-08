@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <Connector URIEncoding="UTF-8" connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
     <servlet>
@@ -22,6 +21,18 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>sample.controller.LogoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EmailCheckController</servlet-name>
+        <servlet-class>sample.controller.EmailCheckController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhoneCheckController</servlet-name>
+        <servlet-class>sample.controller.PhoneCheckController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UsernameCheckController</servlet-name>
+        <servlet-class>sample.controller.UsernameCheckController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -41,6 +52,18 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmailCheckController</servlet-name>
+        <url-pattern>/EmailCheckController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhoneCheckController</servlet-name>
+        <url-pattern>/PhoneCheckController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsernameCheckController</servlet-name>
+        <url-pattern>/UsernameCheckController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,7 +4,10 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 <!DOCTYPE html> 
 <html lang="en">
 
@@ -36,7 +39,15 @@
 
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            UserDTO user = (UserDTO) s.getAttribute("account");
+            if (user != null) {
 
+            } else {
+                response.sendRedirect("login.jsp");
+            }
+        %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
@@ -139,27 +150,44 @@
                         </li>
 
                         <!-- User Menu -->
-                        <li class="nav-item dropdown has-arrow logged-item">
-                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <span class="user-img">
-                                    <img class="rounded-circle" src="assets/img/patients/patient.jpg" width="31" alt="Ryan Taylor">
-                                </span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <div class="user-header">
-                                    <div class="avatar avatar-sm">
-                                        <img src="assets/img/patients/patient.jpg" alt="User Image" class="avatar-img rounded-circle">
+                        <c:if test="${sessionScope.account != null}">
+                            <li class="nav-item dropdown has-arrow logged-item">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                    <span class="user-img">
+                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <div class="user-header">
+                                        <div class="avatar avatar-sm">
+                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                                        </div>
+                                        <div class="user-text">
+                                            <h6>${sessionScope.account.fullname}</h6>
+                                            <c:set var="roleName" value="${sessionScope.account.role}"/>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                                                <p class="text-muted mb-0">Administrator</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
+                                                <p class="text-muted mb-0">Staff</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
+                                                <p class="text-muted mb-0">Doctor</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
+                                                <p class="text-muted mb-0">Customer</p>
+                                            </c:if>
+                                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                                <p class="text-muted mb-0">Manager</p>
+                                            </c:if>
+                                        </div>
                                     </div>
-                                    <div class="user-text">
-                                        <h6>Richard Wilson</h6>
-                                        <p class="text-muted mb-0">Patient</p>
-                                    </div>
+<!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                    <a class="dropdown-item" href="#">Profile Settings</a>
+                                    <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
-                                <a class="dropdown-item" href="patient-dashboard.jsp">My Appointment</a>
-                                <a class="dropdown-item" href="profile-settings.jsp">Profile Settings</a>
-                                <a class="dropdown-item" href="login.jsp">Logout</a>
-                            </div>
-                        </li>
+                            </li>
+                        </c:if>
                         <!-- /User Menu -->
 
                     </ul>
@@ -196,16 +224,15 @@
                             <div class="profile-sidebar">
                                 <div class="widget-profile pro-widget-content">
                                     <div class="profile-info-widget">
-                                        <a href="#" class="booking-doc-img">
-                                            <img src="assets/img/patients/patient.jpg" alt="User Image">
-                                        </a>
-                                        <div class="profile-det-info">
-                                            <h3>Richard Wilson</h3>
-                                            <div class="patient-details">
-                                                <h5><i class="fas fa-birthday-cake"></i> 24 Jul 1983, 38 years</h5>
-                                                <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+                                        <c:if test="${sessionScope.account != null}">
+                                            <a href="#" class="booking-doc-img">
+                                                <img src="${sessionScope.account.image}" alt="User Image">
+                                            </a>
+                                            <div class="profile-det-info">
+                                                <h3>${sessionScope.account.fullname}</h3>
+
                                             </div>
-                                        </div>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <div class="dashboard-widget">
@@ -578,7 +605,22 @@
 
             </div>
         </div>
-       
+
+        <script>
+            function sendOption() {
+                var selectElement = document.getElementById("select");
+                var selectedValue = selectElement.value;
+
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "load-bird-info.jsp?selectedOption=" + selectedValue, true);
+                xhttp.send();
+            }
+        </script>
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user_dashboard.js"></script>

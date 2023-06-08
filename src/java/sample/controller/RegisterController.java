@@ -6,6 +6,8 @@
 package sample.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.http.client.methods.HttpPost;
 import sample.dao.UserDAO;
 import sample.dto.UserDTO;
 
@@ -34,23 +37,19 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
 
         HttpSession session = request.getSession();
         //Get value of users input
         //Lists error when user input incorrect
         String errorUsername = "*Invalid input username";
-        String errorUser = "*The username has already been taken.";
         String errorEmail = "*The email has already been taken.";
         String errorPhone = "*The phone has already been taken.";
         String errorCoPass = "*The password confirmation does not match.";
-        String successSignUp = "*Registration Successful.";
-        //Format date of birth after save into Database
-        Date dob = null;
 
         try {
             String username = request.getParameter("username");
             String fullname = request.getParameter("fullname");
+            String fullname_decode = new String(fullname.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
             String email = request.getParameter("email");
 
             String gender = request.getParameter("gender");
@@ -70,10 +69,11 @@ public class RegisterController extends HttpServlet {
             UserDTO user2 = dao.checkExistEmail(email);
             UserDTO user3 = dao.checkExistPhone(phone);
             //Check input (password)
-            if (!username.matches(usernamePattern)) {
-                request.setAttribute("errorUsername", errorUsername);
-                request.getRequestDispatcher("register.jsp").forward(request, response);
-            } else if (!password.equalsIgnoreCase(confirm_password)) {
+//            if (!username.matches(usernamePattern)) {
+//                request.setAttribute("errorUsername", errorUsername);
+//                request.getRequestDispatcher("register.jsp").forward(request, response);
+//            } else 
+            if (!password.equalsIgnoreCase(confirm_password)) {
                 request.setAttribute("errorCoPass", errorCoPass);
                 request.getRequestDispatcher("register.jsp").forward(request, response);
             } else if (user2 != null) {
@@ -85,12 +85,11 @@ public class RegisterController extends HttpServlet {
             } else {
                 UserDTO user = dao.checkExistAccount(username);
                 if (user == null) {
-                    dao.signUpAccount(username, fullname, email, gender, sqlDate, phone, password);
+                    dao.signUpAccount(username, fullname_decode, email, gender, sqlDate, phone, password);
                     UserDTO a = dao.Login(username, password);
                     session.setAttribute("account", a);
-                    request.getRequestDispatcher("index-2.jsp").forward(request, response);
+                    response.sendRedirect("index-2.jsp");
                 } else {
-                    request.setAttribute("errorUser", errorUser);
                     request.getRequestDispatcher("register.jsp").forward(request, response);
                 }
 

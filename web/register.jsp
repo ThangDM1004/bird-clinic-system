@@ -31,6 +31,7 @@
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
+         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     </head>
     <body class="account-page">
@@ -161,23 +162,39 @@
                                             <h3>Customer Register</h3>
                                         </div>
 
-                                        <!-- Register Form -->
-            
-                                        <form action="MainController" method="POST" accept-charset="UTF-8">
-
+                                       <!-- Register Form -->
+                                        <form id="myform" action="MainController" method="POST" accept-charset="UTF-8">
                                             <div class="form-group form-focus">
-                                                <input name="username" type="text" class="form-control floating" required="">
+                                                <input id="myuser" name="username" type="text" class="form-control floating" required="">
                                                 <label class="focus-label">Username</label>
-                                                <p style="color: #be4b49; margin-left: 10px;">${errorUser}</p>
+                                                <span id="result" style="margin-left: 10px;"></span>
+                                                <style>
+                                                    .available {
+                                                        color: #006400;
+                                                        background: #E5FFE5;
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                    }
+
+                                                    .already-exists, .not-enough-length {
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                        background: #F8ECEC;
+                                                        color: #be4b49;
+                                                    }
+
+                                                </style>
                                             </div>
                                             <div class="form-group form-focus">
                                                 <input name="fullname" type="text" class="form-control floating" required="">
                                                 <label class="focus-label">Full name</label>
                                             </div>
                                             <div class="form-group form-focus">
-                                                <input name="email" type="email" class="form-control floating" required="">
+                                                <input id="myemail" name="email" type="email" class="form-control floating" required="">
                                                 <label class="focus-label">Email</label>
-                                                <p style="color: #be4b49; margin-left: 10px;">${errorEmail}</p>
+                                                <span id="result_1" class="status_1" style="margin-left: 10px;"></span>
 
                                             </div>
 
@@ -205,9 +222,9 @@
                                             </div>
 
                                             <div class="form-group form-focus">
-                                                <input type="tel" name="phone" class="form-control floating" required="">
+                                                <input id="myphone" type="tel" name="phone" class="form-control floating" required="">
                                                 <label class="focus-label">Phone number</label>
-                                                <p style="color: #be4b49; margin-left: 10px;">${errorPhone}</p>
+                                                <span id="result_2" class="status_2" style="margin-left: 10px;"></span>
                                             </div>
 
                                             <div class="box">
@@ -370,7 +387,7 @@
                                                     }
                                                 }
 
-                                                // cái này để hiện thôi
+                                                // cái này ?? hi?n thôi
                                                 function validatePassword(value) {
                                                     var validationDiv = document.getElementById("validation");
                                                     if (value.length > 0) {
@@ -383,9 +400,9 @@
                                                 function validateForm() {
                                                     var password = document.getElementById("pass").value;
 
-                                                    // Kiểm tra điều kiện của password
+                                                    // Ki?m tra ?i?u ki?n c?a password
                                                     if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
-                                                        return false; // Ngăn chặn sự kiện submit
+                                                        return false; // Ng?n ch?n s? ki?n submit
                                                     }
                                                 }
 
@@ -404,7 +421,7 @@
                                                 <a class="forgot-link" href="login.jsp">Already have an account?</a>
                                             </div>
                                             <button  class="btn btn-primary btn-block btn-lg login-btn" name="action" type="submit" 
-                                                     value="register" onclick="return validateForm()">Sign up</button>
+                                                     value="register" onclick="return validateForm()" id="submit">Sign up</button>
                                             <div class="login-or">
                                                 <span class="or-line"></span>
                                                 <span class="span-or">or</span>
@@ -551,6 +568,7 @@
         <!-- /Main Wrapper -->
 
         <!-- jQuery -->
+        <script src="assets/js/checkValidate.js"></script>
         <script src="assets/js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JS -->

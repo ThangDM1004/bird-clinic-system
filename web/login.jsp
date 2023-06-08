@@ -165,7 +165,7 @@
                                         <div class="login-header">
                                             <h3>Login to thedearbird</h3>
                                         </div>
-                                        <form action="MainController" method="post">
+                                         <form action="MainController" method="post">
                                             <div class="form-group form-focus">
                                                 <input name="username" type="text" class="form-control floating">
                                                 <label class="focus-label">Username</label>
@@ -176,7 +176,14 @@
                                                     <input name="password" type="password" id="pass" class="form-control floating">
                                                     <label class="focus-label">Password</label>                                       
                                                     <span id="toggleBtn"></span>
-                                                    <p style="color: #be4b49; margin-left: 10px;">${errorLogin}</p>
+                                                    <p style="
+                                                       margin-top: 5px;
+                                                       width: 280px;
+                                                       padding-left: 3px;
+                                                       padding-right: 3px;
+                                                       border-radius: 3px;
+                                                       background: #F8ECEC;
+                                                       color: #be4b49;">${errorLogin}</p>
                                                 </div>
                                             </div>
                                             <style>

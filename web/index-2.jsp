@@ -180,8 +180,8 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <a class="dropdown-item" href="#">My Appoinment</a>
-                                    <a class="dropdown-item" href="#">Profile Settings</a>
+                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                    <a class="dropdown-item" href="patient-dashboard.jsp">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
                             </li>
