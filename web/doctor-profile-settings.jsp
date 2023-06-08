@@ -300,10 +300,11 @@
 
                         </div>
                         <div class="col-md-7 col-lg-8 col-xl-9">
+                            
+                            <!-- Basic Information -->
                             <jsp:useBean id="UserDAO" scope="request" class="sample.dao.UserDAO" />
                             <c:set var="username" value="${sessionScope.account.username}" />
                             <c:set var="doctor" value="${UserDAO.getDoctorByID(username)}" />
-                            <!-- Basic Information -->
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Basic Information</h4>
