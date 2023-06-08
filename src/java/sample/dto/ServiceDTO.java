@@ -12,7 +12,7 @@ package sample.dto;
 public class ServiceDTO {
 
     private int id;
-    private int service_id;
+    private String service_id;
     private String service_name;
     private String service_detail;
     private String description;
@@ -25,7 +25,7 @@ public class ServiceDTO {
     public ServiceDTO() {
     }
 
-    public ServiceDTO(int id, int service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status, float rating) {
+    public ServiceDTO(int id, String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status, float rating) {
         this.id = id;
         this.service_id = service_id;
         this.service_name = service_name;
@@ -46,11 +46,11 @@ public class ServiceDTO {
         this.id = id;
     }
 
-    public int getService_id() {
+    public String getService_id() {
         return service_id;
     }
 
-    public void setService_id(int service_id) {
+    public void setService_id(String service_id) {
         this.service_id = service_id;
     }
 
