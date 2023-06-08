@@ -33,6 +33,10 @@
         <servlet-name>UsernameCheckController</servlet-name>
         <servlet-class>sample.controller.UsernameCheckController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateServiceController</servlet-name>
+        <servlet-class>sample.controller.UpdateServiceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -64,6 +68,10 @@
     <servlet-mapping>
         <servlet-name>UsernameCheckController</servlet-name>
         <url-pattern>/UsernameCheckController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateServiceController</servlet-name>
+        <url-pattern>/UpdateServiceController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

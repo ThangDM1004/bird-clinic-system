@@ -8,6 +8,7 @@ package sample.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.PatientDTO;
@@ -18,16 +19,12 @@ import sample.utils.Utils;
  * @author MSI AD
  */
 public class PatientDAO {
-    
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
 
     private static String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.patient_id , pb.age, pb.gender, pb.image\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
             + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? ";
 
-    public  List<PatientDTO> getBird(String user_name) {
+    public List<PatientDTO> getBird(String user_name) throws SQLException {
         List<PatientDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ps = null;
@@ -50,7 +47,16 @@ public class PatientDAO {
                 }
             }
         } catch (Exception e) {
-
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -58,29 +64,43 @@ public class PatientDAO {
     private static String SPECIES = "select sp.species_name\n"
             + "from tbl_Patient_Bird pb, tbl_Species sp\n"
             + "where pb.patient_id = sp.species_id and pb.patient_id =?";
-    public String getSpecies(String species_id){
+
+    public String getSpecies(String species_id) throws SQLException {
         String species_name = "";
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        try{
+        try {
             conn = Utils.getConnection();
-            if(conn!=null){
+            if (conn != null) {
                 ps = conn.prepareStatement(SPECIES);
                 ps.setString(1, species_id);
                 rs = ps.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     species_name = rs.getString(1);
                 }
             }
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return species_name;
     }
-    
-    public List<PatientDTO> viewPatientListByDoctorID(String id) {
+
+    public List<PatientDTO> viewPatientListByDoctorID(String id) throws SQLException {
         List<PatientDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         try {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("select pb.*\n"
@@ -88,12 +108,22 @@ public class PatientDAO {
                     + "where username_doctor = ?");
             ps.setString(1, id);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 list.add(new PatientDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
             }
             return list;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return null;
     }

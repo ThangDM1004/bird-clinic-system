@@ -143,86 +143,9 @@
         <!-- Add Modal -->
         <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
-
-                <form name="MainController" action="update" method="POST">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Services</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Icon</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Image</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Name</label>
-                                            <input style="width: 350px;" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Price</label>
-                                            <input type="number" placeholder="$" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Describe</label>
-                                            <textarea type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Service Details</label>
-                                            <textarea style="width: 300px;" type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Add" >
-                            </form>
-                        </div>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-        <!-- /ADD Modal -->
-
-        <!-- Edit Details Modal -->
-        <%
-            for (ServiceDTO ser : ls) {
-                int index = ls.indexOf(ser);
-        %>
-        <div class="modal fade" id="edit_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Specialities</h5>
+                        <h5 class="modal-title">Add Services</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -247,7 +170,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Name</label>
-                                        <input style="width: 350px;" type="text" class="form-control" value="<%= ser.getService_name()%>"> 
+                                        <input style="width: 350px;" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +179,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Price</label>
-                                        <input type="number" placeholder="$" class="form-control "  value="<%= ser.getFee()%>" >
+                                        <input type="number" placeholder="$" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +188,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Describe</label>
-                                        <textarea type="text" class="form-control"> <%= ser.getDescription()%>  </textarea>
+                                        <textarea type="text" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -274,20 +197,110 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Details</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"> <%= ser.getService_detail()%></textarea>
+                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                            <input type="submit" value="Add" >
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /ADD Modal -->
 
+        <!-- Edit Details Modal -->
+        <%
+            for (ServiceDTO ser : ls) {
+                int index = ls.indexOf(ser);
+        %>enctype="multipart/form-data"
+        <form action="../MainController" method="post" enctype= multipart/form-data>
+            <div class="modal fade" id="edit_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Specialities</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Icon</label>
+                                        <input type="file" class="form-control" name="icon">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Image</label>
+                                        <input type="file" class="form-control" name="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Name</label>
+                                        <input style="width: 350px;" type="text" class="form-control" value="<%= ser.getService_name()%>" name="serviceName"> 
+                                        <input type="hidden" value="<%=ser.getService_id().trim()%>" name="service_id">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Price</label>
+                                        <input type="number" placeholder="$" class="form-control "  value="<%= ser.getFee()%>" name="serviceFee">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Describe</label>
+                                        <textarea type="text" class="form-control" name="serviceDescription"> <%= ser.getDescription()%>  </textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Service Details</label>
+                                        <textarea style="width: 300px;" type="text" class="form-control" name="serviceDetail"> <%= ser.getService_detail()%></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Status</label><br>
+                                        <input type="radio" id="active" name="status" value="active" <% if (ser.getStatus() == 1) {
+                                                out.print("checked");
+                                            } %>/>
+                                        <label for="active">Active</label><br>
+                                        <input type="radio" id="inactive" name="status" value="inactive" <% if (ser.getStatus() == 0) {
+                                                out.print("checked");
+                                            } %>/>
+                                        <label for="inactive">Inactive</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary btn-block"  type="submit" name="action" value="updateService">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>   
         <%
             }
         %>
+
         <!-- /Edit Details Modal -->
 
 
