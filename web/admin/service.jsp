@@ -144,7 +144,6 @@
         <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
 
-                <form name="MainController" action="update" method="POST">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Add Services</h5>
@@ -153,7 +152,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form>
                                 <div class="row form-row">
                                     <div class="col-12 col-sm-6">
                                         <div class="form-group">
@@ -228,18 +226,18 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="MainController" method="POST" enctype="multipart/form-data">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Icon</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" class="form-control" name="icon">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Image</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" class="form-control" name="image">
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +245,8 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Name</label>
-                                        <input style="width: 350px;" type="text" class="form-control" value="<%= ser.getService_name()%>"> 
+                                        <input style="width: 350px;" type="text" class="form-control" value="<%= ser.getService_name()%>" name="serviceName"> 
+                                        <input type="text" value="<% ser.getId(); %>" hidden="" name="service_id">
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +255,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Price</label>
-                                        <input type="number" placeholder="$" class="form-control "  value="<%= ser.getFee()%>" >
+                                        <input type="number" placeholder="$" class="form-control "  value="<%= ser.getFee()%>" name="serviceFee">
                                     </div>
                                 </div>
                             </div>
@@ -265,7 +264,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Describe</label>
-                                        <textarea type="text" class="form-control"> <%= ser.getDescription()%>  </textarea>
+                                        <textarea type="text" class="form-control" name="serviceDescription"> <%= ser.getDescription()%>  </textarea>
                                     </div>
                                 </div>
                             </div>
@@ -274,12 +273,27 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Details</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"> <%= ser.getService_detail()%></textarea>
+                                        <textarea style="width: 300px;" type="text" class="form-control" name="serviceDetail"> <%= ser.getService_detail()%></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
-                        </form>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Status</label><br>
+                                        <input type="radio" id="active" name="status" value="active" <% if (ser.getStatus() == 1) {
+                                                out.print("checked");
+                                            } %>/>
+                                        <label for="active">Active</label><br>
+                                        <input type="radio" id="inactive" name="status" value="inactive" <% if (ser.getStatus() == 0) {
+                                                out.print("checked");
+                                            } %>/>
+                                        <label for="inactive">Inactive</label><br>
+                                    </div>
+                                </div>
+                            </div>
+                                        <button type="submit" class="btn btn-primary btn-block" name="action" value="updateService">Save Changes</button>
+                        </form>                    
                     </div>
                 </div>
             </div>
