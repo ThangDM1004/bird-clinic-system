@@ -61,12 +61,12 @@ public class UpdateServiceController extends HttpServlet {
                 String iconFileName = icon.getSubmittedFileName();
                 icon.write(realPath + "/" + iconFileName);
                 ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, realPath + "/" + iconFileName,null, ser_status);
-                dao.update(ser);
+                dao.updateWithOutImage(ser);
             } else if(icon == null && img != null){
                 String imageFileName = img.getSubmittedFileName();
                 icon.write(realPath + "/" + imageFileName);
                 ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee,null, realPath + "/" + imageFileName, ser_status);
-                dao.update(ser);
+                dao.updateWithOutIcon(ser);
             }
 
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
