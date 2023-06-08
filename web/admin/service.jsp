@@ -230,13 +230,13 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Icon</label>
-                                        <input type="file" class="form-control" name="icon">
+                                        <input type="file" class="form-control" name="icon" accept="image/jpeg, image/png, image/jpg">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Image</label>
-                                        <input type="file" class="form-control" name="image">
+                                        <input type="file" class="form-control" name="image" accept="image/jpeg, image/png, image/jpg">
                                     </div>
                                 </div>
                             </div>
