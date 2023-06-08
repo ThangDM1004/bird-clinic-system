@@ -42,7 +42,7 @@ public class ServiceDAO {
                         rs.getFloat(6),
                         rs.getString(7),
                         rs.getString(8),
-                        rs.getInt(9),
+                        rs.getBoolean(9),
                         0);
                 list.add(s);
             }
@@ -82,12 +82,12 @@ public class ServiceDAO {
                     String ser_name = rs.getString("service_name");
                     float fee = rs.getFloat("fee");
                     String icon_link = rs.getString("icon_link");
-                    int status = rs.getInt("status");
+                    boolean status = rs.getBoolean("status");
                     float avgStar = rs.getFloat("avgStar");
                     String detail = rs.getString("service_detail");
                     String des = rs.getString("description");
                     String img = rs.getString("image");
-                    ser = new ServiceDTO(status, ser_id, ser_name, detail, des, fee, icon_link, img, status, avgStar);
+                    ser = new ServiceDTO(0, ser_id, ser_name, detail, des, fee, icon_link, img, status, avgStar);
                     listService.add(ser);
                 }
             }
@@ -125,7 +125,7 @@ public class ServiceDAO {
                 ptm.setFloat(4, ser.getFee());
                 ptm.setString(5, ser.getIcon_link());
                 ptm.setString(6, ser.getImage());
-                ptm.setInt(7, ser.getStatus());
+                ptm.setBoolean(7, ser.isStatus());
                 ptm.setString(8, ser.getService_id());
                 check = ptm.execute();
 
@@ -164,7 +164,7 @@ public class ServiceDAO {
                 ptm.setString(3, ser.getDescription());
                 ptm.setFloat(4, ser.getFee());
                 ptm.setString(5, ser.getImage());
-                ptm.setInt(6, ser.getStatus());
+                ptm.setBoolean(6, ser.isStatus());
                 ptm.setString(7, ser.getService_id());
                 check = ptm.execute();
 
@@ -203,7 +203,7 @@ public class ServiceDAO {
                 ptm.setString(3, ser.getDescription());
                 ptm.setFloat(4, ser.getFee());
                 ptm.setString(5, ser.getIcon_link());
-                ptm.setInt(6, ser.getStatus());
+                ptm.setBoolean(6, ser.isStatus());
                 ptm.setString(7, ser.getService_id());
                 check = ptm.execute();
 
@@ -241,7 +241,7 @@ public class ServiceDAO {
                 ptm.setString(2, ser.getService_detail());
                 ptm.setString(3, ser.getDescription());
                 ptm.setFloat(4, ser.getFee());
-                ptm.setInt(5, ser.getStatus());
+                ptm.setBoolean(5, ser.isStatus());
                 ptm.setString(6, ser.getService_id());
                 check = ptm.execute();
 

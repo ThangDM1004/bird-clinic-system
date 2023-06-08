@@ -280,13 +280,9 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Status</label><br>
-                                        <input type="radio" id="active" name="status" value="active" <% if (ser.getStatus() == 1) {
-                                                out.print("checked");
-                                            } %>/>
+                                        <input type="radio" id="active" name="status" value="true" <% if (ser.isStatus() == true) {out.print("checked");} %>/>
                                         <label for="active">Active</label><br>
-                                        <input type="radio" id="inactive" name="status" value="inactive" <% if (ser.getStatus() == 0) {
-                                                out.print("checked");
-                                            } %>/>
+                                        <input type="radio" id="inactive" name="status" value="false" <% if (ser.isStatus() == false) {out.print("checked");} %>/>
                                         <label for="inactive">Inactive</label><br>
                                     </div>
                                 </div>
