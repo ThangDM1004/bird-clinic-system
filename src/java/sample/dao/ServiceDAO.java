@@ -34,7 +34,7 @@ public class ServiceDAO {
             while (rs.next()) {                
                 ServiceDTO s = new ServiceDTO(
                         rs.getInt(1), 
-                        rs.getInt(2),
+                        rs.getString(2),
                         rs.getString(3),
                         rs.getString(4), 
                         rs.getString(5),
@@ -68,7 +68,7 @@ public class ServiceDAO {
                 ptm = conn.prepareStatement(querryService);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
-                    int ser_id = rs.getInt("service_id");
+                    String ser_id = rs.getString("service_id");
                     String ser_name = rs.getString("service_name");
                     float fee = rs.getFloat("fee");
                     String icon_link = rs.getString("icon_link");
@@ -77,7 +77,7 @@ public class ServiceDAO {
                     String detail = rs.getString("service_detail");
                     String des = rs.getString("description");
                     String img = rs.getString("image");
-                    ser = new ServiceDTO(0, ser_id, ser_name, detail, des, fee, icon_link, img, ser_id,avgStar);
+                    ser = new ServiceDTO(status, ser_id, ser_name, detail, des, fee, icon_link, img, status, avgStar);
                     listService.add(ser);
                 }
             }
@@ -97,14 +97,5 @@ public class ServiceDAO {
         return listService;
     }
     
-    public static void main(String[] args) {
-        ServiceDAO dao = new ServiceDAO();
-        List<ServiceDTO> list = dao.getListService();
-        
-        
-        for (ServiceDTO s : list) {
-            System.out.println(s.toString());
-        }
-        
-    }
+ 
 }
