@@ -18,6 +18,10 @@ import sample.utils.Utils;
  * @author MSI AD
  */
 public class PatientDAO {
+    
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
 
     private static String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.patient_id , pb.age, pb.gender, pb.image\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
@@ -73,5 +77,24 @@ public class PatientDAO {
             
         }
         return species_name;
+    }
+    
+    public List<PatientDTO> viewPatientListByDoctorID(String id) {
+        List<PatientDTO> list = new ArrayList<>();
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select pb.*\n"
+                    + "from tbl_Booking b inner join tbl_Patient_Bird pb on b.patient_id = pb.patient_id\n"
+                    + "where username_doctor = ?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                list.add(new PatientDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+            }
+            return list;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }
