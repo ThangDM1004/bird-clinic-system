@@ -416,8 +416,28 @@ public class UserDAO {
         return null;
     }
 
+    public UserDTO getDoctorByID(String id) {
+        UserDTO u = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select *\n"
+                    + "from tbl_Account\n"
+                    + "where USER_NAME = ?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                u = new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), true, rs.getString(11));
+            }
+            return u;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
+        System.out.println(dao.getDoctorByID("doctor1"));
     }
 
 }
