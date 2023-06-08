@@ -25,6 +25,18 @@ public class ServiceDTO {
     public ServiceDTO() {
     }
 
+    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, int status, float rating) {
+        this.service_id = service_id;
+        this.service_name = service_name;
+        this.service_detail = service_detail;
+        this.description = description;
+        this.fee = fee;
+        this.status = status;
+        this.rating = rating;
+    }
+    
+    
+
     public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status) {
         this.service_id = service_id;
         this.service_name = service_name;

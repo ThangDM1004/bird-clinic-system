@@ -72,7 +72,7 @@ public class AppointmentDAO {
         return list;
     }
 
-    public List<AppointmentDTO> getAppointment() {
+    public List<AppointmentDTO> getAppointment() throws SQLException {
         AppointmentDAO dao = new AppointmentDAO();
         List<AppointmentDTO> list = dao.getAppointmentNotReady();
         for (AppointmentDTO a : list) {
@@ -81,7 +81,7 @@ public class AppointmentDAO {
         return list;
     }
 
-    private List<AppointmentDTO> getAppointmentNotReady() {
+    private List<AppointmentDTO> getAppointmentNotReady() throws SQLException {
         List<AppointmentDTO> list = new ArrayList<>();
         try {
             conn = Utils.getConnection();
@@ -122,11 +122,21 @@ public class AppointmentDAO {
             return list;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return null;
     }
 
-    private String getBookingStatus(String id) {
+    private String getBookingStatus(String id) throws SQLException {
         String stt = null;
         List<String> list = new ArrayList<>();
         try {
@@ -155,6 +165,16 @@ public class AppointmentDAO {
             return stt;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
 
         return null;

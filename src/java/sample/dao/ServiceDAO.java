@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.ServiceDTO;
-import sample.dto.UserDTO;
 import sample.utils.Utils;
 
 /**
@@ -25,7 +24,7 @@ public class ServiceDAO {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-    public List<ServiceDTO> getListService() {
+    public List<ServiceDTO> getListService() throws SQLException {
         List<ServiceDTO> list = new ArrayList<>();
         try {
             String query = "SELECT * FROM tbl_Service WHERE status = 'true' ORDER BY service_id DESC";
@@ -49,6 +48,16 @@ public class ServiceDAO {
             }
 
         } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
         }
         return list;
     }
@@ -195,6 +204,44 @@ public class ServiceDAO {
                 ptm.setFloat(4, ser.getFee());
                 ptm.setString(5, ser.getIcon_link());
                 ptm.setInt(6, ser.getStatus());
+                ptm.setString(7, ser.getService_id());
+                check = ptm.execute();
+
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            return check;
+        }
+    }
+
+    public boolean updateWithAnyIconImg(ServiceDTO ser) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        boolean check = false;
+
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("update tbl_Service\n"
+                        + "set service_name = ?, service_detail= ?, description =?, fee = ?, status = ?\n"
+                        + "where service_id = ?");
+                ptm.setString(1, ser.getService_name());
+                ptm.setString(2, ser.getService_detail());
+                ptm.setString(3, ser.getDescription());
+                ptm.setFloat(4, ser.getFee());
+                ptm.setInt(5, ser.getStatus());
                 ptm.setString(6, ser.getService_id());
                 check = ptm.execute();
 

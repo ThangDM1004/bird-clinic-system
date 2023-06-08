@@ -21,7 +21,7 @@ import sample.dto.ServiceDTO;
  *
  * @author TPTNam
  */
-@MultipartConfig
+@MultipartConfig()
 public class UpdateServiceController extends HttpServlet {
 
     /**
@@ -67,11 +67,14 @@ public class UpdateServiceController extends HttpServlet {
                 icon.write(realPath + "/" + imageFileName);
                 ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee,null, realPath + "/" + imageFileName, ser_status);
                 dao.updateWithOutIcon(ser);
-            }
+            } else if(icon == null && img == null){
+                String imageFileName = img.getSubmittedFileName();
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee,null, null, ser_status);
+                dao.updateWithOutIcon(ser);}
 
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
         } finally {
-            request.getRequestDispatcher("service.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
     }
