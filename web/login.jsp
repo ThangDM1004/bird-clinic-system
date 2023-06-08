@@ -72,7 +72,8 @@
                             <li class="active">
                                 <a href="index-2.jsp">Home</a>
                             </li>
-                            <!-- <li class="has-submenu">
+                            
+                            <!-- 12312 <li class="has-submenu">
                                     <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
                                     <ul class="submenu">
                                             <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
@@ -165,7 +166,7 @@
                                         <div class="login-header">
                                             <h3>Login to thedearbird</h3>
                                         </div>
-                                         <form action="MainController" method="post">
+                                        <form action="MainController" method="post">
                                             <div class="form-group form-focus">
                                                 <input name="username" type="text" class="form-control floating">
                                                 <label class="focus-label">Username</label>
