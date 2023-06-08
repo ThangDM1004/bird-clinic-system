@@ -306,17 +306,17 @@ public class UserDAO {
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     String email_ = rs.getString("email");
-                    user = new UserDTO( rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getDate(5),
-                        rs.getNString(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getString(9),
-                        rs.getBoolean(10),
-                        rs.getString(11));
+                    user = new UserDTO(rs.getString(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getDate(5),
+                            rs.getNString(6),
+                            rs.getString(7),
+                            rs.getString(8),
+                            rs.getString(9),
+                            rs.getBoolean(10),
+                            rs.getString(11));
                 }
             }
         } catch (Exception e) {
@@ -393,6 +393,25 @@ public class UserDAO {
             rs.next();
             return rs.getString(1);
         } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public UserDTO viewCustomerByPatientID(String id) {
+        UserDTO u = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select a.*\n"
+                    + "from tbl_Patient_Bird pb inner join tbl_Account a on pb.user_name = a.user_name\n"
+                    + "where pb.patient_id = ?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                u = new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), true, rs.getString(11));
+            }
+            return u;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }
