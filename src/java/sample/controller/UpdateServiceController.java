@@ -45,36 +45,35 @@ public class UpdateServiceController extends HttpServlet {
             float ser_fee = Float.parseFloat(request.getParameter("serviceFee"));
             String ser_des = request.getParameter("serviceDescription");
             String ser_detail = request.getParameter("serviceDetail");
-            int ser_status = Integer.parseInt(request.getParameter("status"));
+            boolean ser_status = Boolean.parseBoolean(request.getParameter("status"));
             Part icon = request.getPart("icon");
             Part img = request.getPart("image");
-            URL resourceUrl = request.getServletContext().getResource("/web/admin/assets/img/specialities");
-            String realPath = resourceUrl.getPath();
-            if (icon != null && img != null) {
+            String realPath = request.getServletContext().getRealPath("/assets/img/Services_List/");
+            if (!icon.getSubmittedFileName().equals("") && !img.getSubmittedFileName().equals("")) {
                 String iconFileName = icon.getSubmittedFileName();
                 String imageFileName = img.getSubmittedFileName();
-                icon.write(realPath + "/" + iconFileName);
-                icon.write(realPath + "/" + imageFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, realPath + "/" + iconFileName, realPath + "/" + imageFileName, ser_status);
+                icon.write(realPath  + iconFileName);
+                img.write(realPath + imageFileName);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/"+iconFileName, "assets/img/Services_List/"+ imageFileName, ser_status);
                 dao.update(ser);
-            } else if (icon != null && img == null) {
+            } else if (!icon.getSubmittedFileName().equals("") && img.getSubmittedFileName().equals("")) {
                 String iconFileName = icon.getSubmittedFileName();
-                icon.write(realPath + "/" + iconFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, realPath + "/" + iconFileName,null, ser_status);
+                icon.write(realPath + iconFileName);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/"+iconFileName, null, ser_status);
                 dao.updateWithOutImage(ser);
-            } else if(icon == null && img != null){
+            } else if (icon.getSubmittedFileName().equals("") && !img.getSubmittedFileName().equals("")) {
                 String imageFileName = img.getSubmittedFileName();
-                icon.write(realPath + "/" + imageFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee,null, realPath + "/" + imageFileName, ser_status);
+                img.write(realPath + imageFileName);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, null,"assets/img/Services_List/"+ imageFileName, ser_status);
                 dao.updateWithOutIcon(ser);
-            } else if(icon == null && img == null){
-                String imageFileName = img.getSubmittedFileName();
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee,null, null, ser_status);
-                dao.updateWithOutIcon(ser);}
+            } else if (icon.getSubmittedFileName().equals("") && img.getSubmittedFileName().equals("")) {
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, null, null, ser_status);
+                dao.updateWithAnyIconImg(ser);
+            }
 
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
         } finally {
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/index.jsp").forward(request, response);
         }
 
     }

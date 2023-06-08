@@ -19,13 +19,13 @@ public class ServiceDTO {
     private float fee;
     private String icon_link;
     private String image;
-    private int status;
+    private boolean status;
     private float rating;
 
     public ServiceDTO() {
     }
 
-    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, int status, float rating) {
+    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, boolean status, float rating) {
         this.service_id = service_id;
         this.service_name = service_name;
         this.service_detail = service_detail;
@@ -37,7 +37,7 @@ public class ServiceDTO {
     
     
 
-    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status) {
+    public ServiceDTO(String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, boolean status) {
         this.service_id = service_id;
         this.service_name = service_name;
         this.service_detail = service_detail;
@@ -48,7 +48,7 @@ public class ServiceDTO {
         this.status = status;
     }
 
-    public ServiceDTO(int id, String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, int status, float rating) {
+    public ServiceDTO(int id, String service_id, String service_name, String service_detail, String description, float fee, String icon_link, String image, boolean status, float rating) {
         this.id = id;
         this.service_id = service_id;
         this.service_name = service_name;
@@ -124,15 +124,15 @@ public class ServiceDTO {
     public void setImage(String image) {
         this.image = image;
     }
-//hieu ga test
 
-    public int getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+
 
     public float getRating() {
         return rating;
