@@ -553,7 +553,7 @@
                     </div>
                     <div class="modal-body">
                         <form action="AddBirdController" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="user_name" value="<%= user.getUsername() %>">
+                            <input type="hidden" name="user_name" value="<%= user.getUsername()%>">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
@@ -614,14 +614,30 @@
                         </form>
                     </div>
                 </div>
-                <
+
 
             </div>
         </div>
-
+        <%
+            String status = (String) s.getAttribute("status");
+            if (status == "AddBirdSucces") {
+        %>
         <script>
 
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("dashboard").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "bird-profile.jsp", true);
+            xhttp.send();
+
         </script>
+        <%
+            }
+        %>
+
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user-dashboard.js"></script>
