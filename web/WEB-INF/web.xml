@@ -37,6 +37,10 @@
         <servlet-name>UpdateServiceController</servlet-name>
         <servlet-class>sample.controller.UpdateServiceController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddBirdController</servlet-name>
+        <servlet-class>sample.controller.AddBirdController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -72,6 +76,10 @@
     <servlet-mapping>
         <servlet-name>UpdateServiceController</servlet-name>
         <url-pattern>/UpdateServiceController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBirdController</servlet-name>
+        <url-pattern>/AddBirdController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

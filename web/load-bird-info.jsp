@@ -16,27 +16,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
-        
+
     </head>
     <body>
         <%
-            HttpSession s = request.getSession();
-            UserDTO user = (UserDTO) s.getAttribute("account");
-            PatientDAO dao = new PatientDAO();
-            String selectedOption = request.getParameter("selectedOption");
-            List<PatientDTO> listBird = dao.getBird(user.getUsername());
+
         %>
         <div class="row form-row">
-            <%
+            <% 
+                HttpSession s = request.getSession();
+                UserDTO user = (UserDTO) s.getAttribute("account");
+                PatientDAO dao = new PatientDAO();
+                String selectedOption = request.getParameter("selectedOption");
+                List<PatientDTO> listBird = dao.getBird(user.getUsername());
                 for (PatientDTO list : listBird) {
-                    String name = list.getName();
-                //    if (list.getName() == selectedOption) {
+                    if (list.getName().equalsIgnoreCase(selectedOption)) {
             %>
             <div class="col-12 col-md-12">
                 <div class="form-group">
                     <div class="change-avatar">
                         <div class="profile-img">
-                            <img src="<%= list.getImage()%>" alt="User Image">
+                            <img src="<%= list.getImage()%>" alt="Patient Image">
                         </div>
                         <div class="upload-img">
                             <div class="change-photo-btn">
@@ -80,7 +80,7 @@
                 <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
             </div>
             <%
-              //      }
+                    }
                 }
             %>
 

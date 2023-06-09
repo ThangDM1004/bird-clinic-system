@@ -27,7 +27,6 @@
         <select id="select" onchange="sendOption()">
             <%
                 for (PatientDTO x : listBird) {
-                  
             %>
             <option value="<%= x.getName()%>"> <%= x.getName()%></option>    
             <%
@@ -47,6 +46,7 @@
                     <%
                         for (PatientDTO x : listBird) {
                             count++;
+                            String species = dao.getSpecies(x.getSpecies_id());
                     %>
                     <div class="col-12 col-md-12">
                         <div class="form-group">
@@ -74,7 +74,7 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Species</label>
-                            <input type="text" class="form-control" value="<%= dao.getSpecies(x.getSpecies_id())%>">
+                            <input type="text" class="form-control" value="<%= species.trim() %>">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">

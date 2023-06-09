@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="sample.dao.PatientDAO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -182,7 +184,7 @@
                                             </c:if>
                                         </div>
                                     </div>
-<!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
                                     <a class="dropdown-item" href="#">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
@@ -541,89 +543,88 @@
         <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
 
-                <form >
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Bird Image</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Bird Name</label>
-                                            <input style="width: 350px;" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Species</label>
-                                            <input type="text"  class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Age</label>
-                                            <textarea type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <select>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Add" >
-                            </form>
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Details bird </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </form>
+                    <div class="modal-body">
+                        <form action="AddBirdController" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="user_name" value="<%= user.getUsername() %>">
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Bird Image</label>
+                                        <input name="bird_image" type="file" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Bird Name</label>
+                                        <input style="width: 350px;" type="text" class="form-control" name="bird_name" required="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Species</label>
+                                        <select  name="species">
+                                            <%
+                                                PatientDAO dao = new PatientDAO();
+                                                ArrayList<String> list = dao.getListSpecies();
+                                                for (String x : list) {
+                                            %>
+                                            <option value="<%=x%>"><%=x%></option>
+                                            <%
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Age</label>
+                                        <textarea type="text" class="form-control" name="age" required=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <select name="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" name="action" value="Add Bird" >
+                        </form>
+                    </div>
+                </div>
+                <
 
             </div>
         </div>
 
         <script>
-            function sendOption() {
-                var selectElement = document.getElementById("select");
-                var selectedValue = selectElement.value;
 
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        document.getElementById("demo").innerHTML = this.responseText;
-                    }
-                };
-                xhttp.open("GET", "load-bird-info.jsp?selectedOption=" + selectedValue, true);
-                xhttp.send();
-            }
         </script>
         <!-- /Main Wrapper -->
 
-        <script src="assets/js/user_dashboard.js"></script>
+        <script src="assets/js/user-dashboard.js"></script>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
 
