@@ -12,6 +12,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import sample.dao.PatientDAO;
 import sample.dto.PatientDTO;
@@ -43,6 +44,8 @@ public class AddBirdController extends HttpServlet {
             boolean check_Insert = dao.addBird(bird);
             if(check_Insert){
                  part.write(uploadPath);
+                 HttpSession session = request.getSession();
+                 session.setAttribute("status", "AddBirdSucces");
                  response.sendRedirect("patient-dashboard.jsp");
                 
             }else{
