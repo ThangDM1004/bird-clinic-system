@@ -141,28 +141,28 @@
 
 
         <!-- Add Modal -->
-        <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Services</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
+        <form action="../MainController" method="post" enctype= multipart/form-data>
+            <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Services</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Icon</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" class="form-control" name="icon">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Image</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" class="form-control" name="image">
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Name</label>
-                                        <input style="width: 350px;" type="text" class="form-control">
+                                        <input style="width: 350px;" type="text" class="form-control" name="ser_name" required="">
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Price</label>
-                                        <input type="number" placeholder="$" class="form-control">
+                                        <input type="number" placeholder="$" class="form-control" name="fee" required="">
                                     </div>
                                 </div>
                             </div>
@@ -188,7 +188,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Describe</label>
-                                        <textarea type="text" class="form-control"></textarea>
+                                        <textarea type="text" class="form-control" name="ser_des"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -197,16 +197,17 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Details</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                        <textarea style="width: 300px;" type="text" class="form-control" name="ser_details" required=""></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" value="Add" >
-                        </form>
+                            <input type="submit" value="Add" name="action" >
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
         <!-- /ADD Modal -->
 
         <!-- Edit Details Modal -->
@@ -280,9 +281,13 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Status</label><br>
-                                        <input type="radio" id="active" name="status" value="true" <% if (ser.isStatus() == true) {out.print("checked");} %>/>
+                                        <input type="radio" id="active" name="status" value="true" <% if (ser.isStatus() == true) {
+                                                out.print("checked");
+                                            } %>/>
                                         <label for="active">Active</label><br>
-                                        <input type="radio" id="inactive" name="status" value="false" <% if (ser.isStatus() == false) {out.print("checked");} %>/>
+                                        <input type="radio" id="inactive" name="status" value="false" <% if (ser.isStatus() == false) {
+                                                out.print("checked");
+                                            } %>/>
                                         <label for="inactive">Inactive</label><br>
                                     </div>
                                 </div>

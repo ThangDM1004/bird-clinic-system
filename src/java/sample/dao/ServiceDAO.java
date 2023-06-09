@@ -263,4 +263,66 @@ public class ServiceDAO {
         }
     }
 
+    public boolean addService(ServiceDTO ser) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        boolean check = false;
+
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("insert into tbl_Service(service_id,service_name,service_detail,description,fee,icon_link,image,status)\n"
+                        + "values(?,?,?,?,?,?,?,?);");
+                ptm.setString(1, ser.getService_id());
+                ptm.setString(2, ser.getService_name());
+                ptm.setString(3, ser.getService_detail());
+                ptm.setString(4, ser.getDescription());
+                ptm.setFloat(5, ser.getFee());
+                ptm.setString(6, ser.getIcon_link());
+                ptm.setString(7, ser.getImage());
+                ptm.setBoolean(8, true);
+                check = ptm.execute();
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+            return check;
+        }
+    }
+
+    public String getSerIdNext() {
+        int maxID = 0;
+        String result = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("SELECT TOP 1 service_id\n"
+                        + "FROM tbl_Service\n"
+                        + "ORDER BY ID DESC");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    String max = rs.getString("service_id").trim();
+                    maxID = Integer.parseInt(max) + 1;
+                    result = String.format("%03d", maxID);
+                }
+            }
+        } catch (Exception e) {
+        }
+        return result;
+    }
+
 }
