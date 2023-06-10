@@ -25,7 +25,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>thedearbird - Dashboard | Manager</title>
- <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
 
 
         <!-- Bootstrap CSS -->
@@ -705,12 +705,33 @@
 
 
         </div>
-         
-                                                
+        <%
+            HttpSession se = request.getSession();
+            String status = (String) se.getAttribute("status_dashboard");
+            if (status == "Service") {
+        %>
+        <script>
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("main").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+            };
+            xhttp.open("GET", "service.jsp", true);
+            xhttp.send();
+
+        </script>
+        <%
+            }
+        %>
+
+
         <!-- jQuery -->
         <script src="assets/js/load-main.js"></script>
 
-        
+
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 
         <!-- Bootstrap Core JS -->

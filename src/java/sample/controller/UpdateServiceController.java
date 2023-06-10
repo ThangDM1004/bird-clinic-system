@@ -13,6 +13,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import sample.dao.ServiceDAO;
 import sample.dto.ServiceDTO;
@@ -49,31 +50,38 @@ public class UpdateServiceController extends HttpServlet {
             Part icon = request.getPart("icon");
             Part img = request.getPart("image");
             String realPath = request.getServletContext().getRealPath("/assets/img/Services_List/");
+            HttpSession session = request.getSession();
             if (!icon.getSubmittedFileName().equals("") && !img.getSubmittedFileName().equals("")) {
                 String iconFileName = icon.getSubmittedFileName();
                 String imageFileName = img.getSubmittedFileName();
-                icon.write(realPath  + iconFileName);
+                icon.write(realPath + iconFileName);
                 img.write(realPath + imageFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/"+iconFileName, "assets/img/Services_List/"+ imageFileName, ser_status);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/" + iconFileName, "assets/img/Services_List/" + imageFileName, ser_status);
+                session.setAttribute("status_dashboard", "Service");
                 dao.update(ser);
+                response.sendRedirect("admin/index.jsp");
             } else if (!icon.getSubmittedFileName().equals("") && img.getSubmittedFileName().equals("")) {
                 String iconFileName = icon.getSubmittedFileName();
                 icon.write(realPath + iconFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/"+iconFileName, null, ser_status);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, "assets/img/Services_List/" + iconFileName, null, ser_status);
+                session.setAttribute("status_dashboard", "Service");
                 dao.updateWithOutImage(ser);
+                response.sendRedirect("admin/index.jsp");
             } else if (icon.getSubmittedFileName().equals("") && !img.getSubmittedFileName().equals("")) {
                 String imageFileName = img.getSubmittedFileName();
                 img.write(realPath + imageFileName);
-                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, null,"assets/img/Services_List/"+ imageFileName, ser_status);
+                ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, null, "assets/img/Services_List/" + imageFileName, ser_status);
+                session.setAttribute("status_dashboard", "Service");
                 dao.updateWithOutIcon(ser);
+                response.sendRedirect("admin/index.jsp");
             } else if (icon.getSubmittedFileName().equals("") && img.getSubmittedFileName().equals("")) {
                 ser = new ServiceDTO(ser_id, ser_name, ser_detail, ser_des, ser_fee, null, null, ser_status);
+                session.setAttribute("status_dashboard", "Service");
                 dao.updateWithAnyIconImg(ser);
+                response.sendRedirect("admin/index.jsp");
             }
 
         } catch (IOException | NumberFormatException | SQLException | ServletException e) {
-        } finally {
-            request.getRequestDispatcher("admin/index.jsp").forward(request, response);
         }
 
     }
