@@ -38,20 +38,31 @@ public class AddBirdController extends HttpServlet {
             // Lưu hình ảnh
             Part part = request.getPart("bird_image");
             String fileName = getFileName(part);
-            String uploadPath = "C:/Users/MSI AD/OneDrive/Máy tính/bird-clinic-system/web/assets/img/patients/" + fileName;  // Đường dẫn để lưu trữ hình ảnh trên máy tính
+            String realPath = request.getServletContext().getRealPath("/assets/img/patients/");// Đường dẫn để lưu trữ hình ảnh trên máy tính
             String url = "assets/img/patients/" + fileName;
-            PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name);
-            boolean check_Insert = dao.addBird(bird);
-            if(check_Insert){
-                 part.write(uploadPath);
-                 HttpSession session = request.getSession();
-                 session.setAttribute("status", "AddBirdSucces");
-                 response.sendRedirect("patient-dashboard.jsp");
-                
-            }else{
-                 response.sendRedirect("index-2.jsp");
+            if ("".equals(fileName)) {
+                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, null, user_name);
+                boolean check_Insert = dao.addBird(bird);
+                if (check_Insert) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
+            } else {
+                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name);
+                boolean check_Insert = dao.addBird(bird);
+                if (check_Insert) {
+                    part.write(realPath);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
             }
-           
+
         } catch (Exception e) {
 
         }
