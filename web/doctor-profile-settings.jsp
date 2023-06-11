@@ -329,7 +329,7 @@
                                                                 <span><i class="fa fa-upload"></i> Upload Photo</span>
                                                                 <input type="file" name="file" class="upload">
                                                             </div>
-                                                            <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                                            <small class="form-text text-muted"> Allowed JPG, GIF or PNG. Max size of 2MB</small>
                                                         </div>
                                                     </div>
                                                 </div>
