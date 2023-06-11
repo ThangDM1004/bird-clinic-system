@@ -48,6 +48,10 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", user);
                 response.sendRedirect("admin/index.jsp");
+            } else if (getRoleID.equalsIgnoreCase("3")) {
+                HttpSession session = request.getSession();
+                session.setAttribute("account", user);
+                response.sendRedirect("doctor-dashboard.jsp");
             } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", user);

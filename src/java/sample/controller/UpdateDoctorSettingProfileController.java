@@ -5,48 +5,60 @@
  */
 package sample.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import sample.dao.UserDAO;
 
 @MultipartConfig
-public class MainController extends HttpServlet {
+public class UpdateDoctorSettingProfileController extends HttpServlet {
 
-    private static String LOGIN = "login";
-    private static String LOGIN_CONTROLLER = "LoginController";
-    private static String LOGOUT = "logout";
-    private static String LOGOUT_CONTROLLER = "LogoutController";
-    private static String REGISTER = "register";
-    private static String REGISTER_CONTROLLER = "RegisterController";
-    private static String UPDATE_DOCTOR_SETTING_PROFILE = "update-doctor-profile-setting";
-    private static String UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER = "UpdateDoctorSettingProfileController";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = null;
-        try {
-            String actions = request.getParameter("action");
-            if (actions.equals(REGISTER)) {
-                url = REGISTER_CONTROLLER;
-            } else if (actions.equals(LOGIN)) {
-                url = LOGIN_CONTROLLER;
-            } else if (actions.equals(LOGOUT)) {
-                url = LOGOUT_CONTROLLER;
-            } else if (actions.equals(UPDATE_DOCTOR_SETTING_PROFILE)) {
-                url = UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER;
-            } else {
-                url = "error-404.jsp";
-            }
-        } catch (Exception e) {
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
-        }
+        String username = request.getParameter("username");
+        String fullname = request.getParameter("fullname");
+        String phone = request.getParameter("phone");
+        String gender = request.getParameter("gender");
+        String dob = request.getParameter("date_of_birth");
+        String bio = request.getParameter("bio");
+        UserDAO dao = new UserDAO();
 
+        Part filePart = request.getPart("file");
+        String uploadPath = "D:\\Sem5\\SWP391\\BirdClinicSystem\\bird-clinic-system\\web\\assets\\img\\doctors";
+        String fileName = filePart.getSubmittedFileName(); // Lấy tên tệp ảnh gốc
+        String destinationPath = uploadPath + "\\" + fileName;
+
+        filePart.write(destinationPath);
+
+        String imagePath = "assets/img/doctors/" + fileName; // Đường dẫn tệp ảnh từ gốc ứng dụng web
+
+        
+        
+        try {
+            dao.UpdateDoctorProfile(username, fullname, phone, gender, dob, bio, imagePath);
+        } catch (Exception e) {
+            log("Error at UpdateDoctorSettingProfileController" + e.toString());
+        } finally {
+            //response.sendRedirect("doctor-profile-settings.jsp");
+            
+            request.getRequestDispatcher("doctor-profile-settings.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

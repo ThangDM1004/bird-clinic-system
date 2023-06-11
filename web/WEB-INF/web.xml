@@ -33,6 +33,10 @@
         <servlet-name>UsernameCheckController</servlet-name>
         <servlet-class>sample.controller.UsernameCheckController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateDoctorSettingProfileController</servlet-name>
+        <servlet-class>sample.controller.UpdateDoctorSettingProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -64,6 +68,10 @@
     <servlet-mapping>
         <servlet-name>UsernameCheckController</servlet-name>
         <url-pattern>/UsernameCheckController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateDoctorSettingProfileController</servlet-name>
+        <url-pattern>/UpdateDoctorSettingProfileController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

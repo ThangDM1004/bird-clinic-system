@@ -25,7 +25,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
         <title>thedearbird - Dashboard | Manager</title>
- <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
 
 
         <!-- Bootstrap CSS -->
@@ -48,9 +48,13 @@
         <%
             HttpSession session1 = request.getSession();
             UserDTO user = (UserDTO) session1.getAttribute("account");
-            String role = user.getRole().trim();
-            if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5")) {
+            if (user == null) {
                 response.sendRedirect("../index-2.jsp");
+            } else {
+                String role = user.getRole().trim();
+                if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5")) {
+                    response.sendRedirect("../index-2.jsp");
+                }
             }
         %>
 
@@ -705,12 +709,12 @@
 
 
         </div>
-         
-                                                
+
+
         <!-- jQuery -->
         <script src="assets/js/load-main.js"></script>
 
-        
+
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 
         <!-- Bootstrap Core JS -->

@@ -435,9 +435,30 @@ public class UserDAO {
         return null;
     }
 
+    public void UpdateDoctorProfile(String username, String fullname, String phone, String gender, String dob,String bio, String img) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("UPDATE tbl_Account\n"
+                    + "SET fullname = ?, phone = ?, gender = ? , date_of_birth = ?, bio = ?, image = ? \n"
+                    + "where USER_NAME = ?");
+            ps.setString(1, fullname);
+            ps.setString(2, phone);
+            ps.setString(3, gender);
+            ps.setString(4, dob);
+            ps.setString(5, bio);
+            ps.setString(6, img);
+            ps.setString(7, username);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        System.out.println(dao.getDoctorByID("doctor1"));
+        dao.UpdateDoctorProfile("doctor1", "Nguyen Van A", "0909050402", "Female", "02/02/2001", "","assets/img/doctors/doctor-thumb-02.jpg");
+        //System.out.println(dao.getDoctorByID("doctor1").getGender().trim());
     }
 
 }
