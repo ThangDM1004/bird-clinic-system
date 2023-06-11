@@ -5,21 +5,19 @@
  */
 package sample.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import sample.dao.UserDAO;
-import sample.dto.UserDTO;
 
-/**
- *
- * @author Minh
- */
-public class LoginController extends HttpServlet {
+@MultipartConfig
+public class UpdateDoctorSettingProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,32 +31,44 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        String errorLogin = "The username or password is invalid";
-
+        String username = request.getParameter("username");
+        String fullname = request.getParameter("fullname");
+        String phone = request.getParameter("phone");
+        String gender = request.getParameter("gender");
+        String dob = request.getParameter("date_of_birth");
+        String bio = request.getParameter("bio");
         UserDAO dao = new UserDAO();
-        UserDTO user = dao.Login(userName, password);
-        if (user == null) {
-            request.setAttribute("errorLogin", errorLogin);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            String getRoleID = user.getRole().trim();
-            if (getRoleID.equalsIgnoreCase("1") || getRoleID.equalsIgnoreCase("5")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("admin/index.jsp");
-            } else if (getRoleID.equalsIgnoreCase("3")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("doctor-dashboard.jsp");
-            } else {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("index-2.jsp");
-            }
+        Part filePart = request.getPart("file");
+        String uploadPath = "D:\\Sem5\\SWP391\\BirdClinicSystem\\bird-clinic-system\\web\\assets\\img\\doctors";
+        String fileName = filePart.getSubmittedFileName(); // Lấy tên tệp ảnh gốc
+        if (!fileName.isEmpty()) {
 
+            String destinationPath = uploadPath + "\\" + fileName;
+
+            filePart.write(destinationPath);
+
+            String imagePath = "assets/img/doctors/" + fileName; // Đường dẫn tệp ảnh từ gốc ứng dụng web
+            try {
+                dao.UpdateDoctorProfile(username, fullname, phone, gender, dob, bio, imagePath);
+            } catch (Exception e) {
+                log("Error at UpdateDoctorSettingProfileController" + e.toString());
+            } finally {
+                //response.sendRedirect("doctor-profile-settings.jsp");
+
+                request.getRequestDispatcher("doctor-profile-settings.jsp").forward(request, response);
+            }
+        } else {
+            try {
+                dao.UpdateDoctorProfile(username, fullname, phone, gender, dob, bio);
+            } catch (Exception e) {
+                log("Error at UpdateDoctorSettingProfileController" + e.toString());
+            } finally {
+                //response.sendRedirect("doctor-profile-settings.jsp");
+
+                request.getRequestDispatcher("doctor-profile-settings.jsp").forward(request, response);
+            }
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

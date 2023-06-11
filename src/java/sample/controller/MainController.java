@@ -30,6 +30,8 @@ public class MainController extends HttpServlet {
     private static String UPDATESERVICE_CONTROLLER = "UpdateServiceController";
     private static String ADDSERVICE = "Add";
     private static String ADDSERVICE_CONTROLLER = "AddServiceController";
+    private static String UPDATE_DOCTOR_SETTING_PROFILE = "update-doctor-profile-setting";
+    private static String UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER = "UpdateDoctorSettingProfileController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,6 +49,8 @@ public class MainController extends HttpServlet {
                 url = UPDATESERVICE_CONTROLLER;
             } else if (actions.equals(ADDSERVICE)) {
                 url = ADDSERVICE_CONTROLLER;
+            } else if (actions.equals(UPDATE_DOCTOR_SETTING_PROFILE)) {
+                url = UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }

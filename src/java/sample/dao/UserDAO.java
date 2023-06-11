@@ -425,7 +425,7 @@ public class UserDAO {
                     + "where USER_NAME = ?");
             ps.setString(1, id);
             rs = ps.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 a = new UserDTO(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), true, rs.getString(11));
             }
             return a;
@@ -433,6 +433,45 @@ public class UserDAO {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void UpdateDoctorProfile(String username, String fullname, String phone, String gender, String dob, String bio, String img) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("UPDATE tbl_Account\n"
+                    + "SET fullname = ?, phone = ?, gender = ? , date_of_birth = ?, bio = ?, image = ? \n"
+                    + "where USER_NAME = ?");
+            ps.setString(1, fullname);
+            ps.setString(2, phone);
+            ps.setString(3, gender);
+            ps.setString(4, dob);
+            ps.setString(5, bio);
+            ps.setString(6, img);
+            ps.setString(7, username);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void UpdateDoctorProfile(String username, String fullname, String phone, String gender, String dob, String bio) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("UPDATE tbl_Account\n"
+                    + "SET fullname = ?, phone = ?, gender = ? , date_of_birth = ?, bio = ?\n"
+                    + "where USER_NAME = ?");
+            ps.setString(1, fullname);
+            ps.setString(2, phone);
+            ps.setString(3, gender);
+            ps.setString(4, dob);
+            ps.setString(5, bio);
+            ps.setString(6, username);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
