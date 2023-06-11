@@ -122,7 +122,7 @@
                                                         <label class="switch">
                                                             <input name="username" value="<%=doc.getUsername()%>" type="hidden">
                                                             <input name="statusName" value="<%= isStatus%>" type="hidden">
-                                                            <input type="checkbox" onchange="document.getElementById('statusForm<%= rowCounter%>').submit()"  <%= isStatus ? "checked" : "unchecked"%>>
+                                                            <input type="checkbox" onchange="document.getElementById('statusForm<%= rowCounter%>').submit()" <%= isStatus ? "checked" : "unchecked"%>>
                                                             <span class="slider round"></span>
                                                         </label>  
                                                     </form>

@@ -397,6 +397,20 @@ public class UserDAO {
         return null;
     }
 
+    public String getRoleIdByUsername(String username) {
+        String query = "SELECT role_id FROM tbl_Account WHERE user_name = ?";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public UserDTO viewCustomerByPatientID(String id) {
         UserDTO u = null;
         try {
@@ -497,6 +511,7 @@ public class UserDAO {
         } catch (Exception e) {
         }
     }
+
     public List<UserDTO> listStaffAndManager() {
         List<UserDTO> list = new ArrayList<>();
         String query = "SELECT *\n"
@@ -530,7 +545,5 @@ public class UserDAO {
         }
         return list;
     }
-
-    
 
 }
