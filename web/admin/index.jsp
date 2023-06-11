@@ -45,14 +45,34 @@
     </head>
 
     <body>
+        <script>
+            function Staff() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("main").innerHTML = this.responseText;
+                        var table = $('.datatable').DataTable();
+                    }
+                }
+                ;
+                xhttp.open("GET", "staff-list.jsp", true);
+                xhttp.send();
+            }
+        </script>
+
         <%
             HttpSession session1 = request.getSession();
             UserDTO user = (UserDTO) session1.getAttribute("account");
-            String role = user.getRole().trim();
-            if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5")) {
+            if (user == null) {
                 response.sendRedirect("../index-2.jsp");
+            } else {
+                String role = user.getRole().trim();
+                if (!role.equalsIgnoreCase("1") && !role.equalsIgnoreCase("5")) {
+                    response.sendRedirect("../index-2.jsp");
+                }
             }
         %>
+
 
         <!-- Main Wrapper -->
         <div  class="main-wrapper">
@@ -222,36 +242,38 @@
                             <li class="menu-title">
                                 <span>Main</span>
                             </li>
-                            <li>
-                                <!--<a href="index.jsp"><i class="fe fe-home"></i><span>Dashboard</span></a>-->
-                                <a type="button" onclick="Dashboard()"><i class="fe fe-home"></i><span>Dashboard</span></a>
-                            </li>
-
-                            <c:if test="${fn:containsIgnoreCase(roleName, '1') || fn:containsIgnoreCase(roleName, '5')}">
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
-                                    <!--                                    <a href="appointment-list.jsp"><i class="fe fe-layout"></i> <span>Appointments</span></a>-->
+                                    <a type="button" onclick="Dashboard()"><i class="fe fe-home"></i><span>Dashboard</span></a>
+                                </li>
+                            </c:if>
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                                <li>
                                     <a type="button" onclick="Appointments()"><i class="fe fe-layout"></i><span>Appointments</span></a>
                                 </li>
                             </c:if>
+
                             <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
-                                    <!--                                    <a href="specialities.jsp"><i class="fe fe-users"></i> <span>Services</span></a>-->
                                     <a type="button" onclick="Services()"><i class="fe fe-users"></i><span>Services</span></a>
                                 </li>
                             </c:if>
+                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                                <li>
+                                    <a type="button" onclick="Staff()"><i class="fe fe-user-plus"></i><span>Staff</span></a>
+                                </li>
+                            </c:if> 
                             <c:if test="${fn:containsIgnoreCase(roleName, '1') || fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
-                                    <!--                                    <a href="doctor-list.jsp"><i class="fe fe-user-plus"></i> <span>Doctors</span></a>-->
-                                    <a type="button" onclick="Doctors()"><i class="fe fe-user-plus"></i><span>Doctors</span></a>
+                                    <a type="button" onclick="Doctors()"><i class="fe fe-users"></i><span>Doctors</span></a>
                                 </li>
                                 <li>
-                                    <!--                                    <a href="patient-list.jsp"><i class="fe fe-user"></i> <span>Customers</span></a>-->
-                                    <a type="button" onclick="Customers()"><i class="fe fe-user"></i> <span>Customers</span></a>
+                                    <a type="button" onclick="Customers()"><i class="fe fe-user-plus"></i><span>Customers</span></a>
                                 </li>
                             </c:if>
+
                             <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
-                                    <!--                                    <a href="reviews.jsp"><i class="fe fe-star-o"></i> <span>Reviews</span></a>-->
                                     <a type="button" onclick="Reviews()"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
                                 </li>
                             </c:if>
@@ -273,7 +295,7 @@
                                             <li><a href="invoice-report.jsp">Invoice Reports</a></li>
                                     </ul>
                             </li>
-
+    
                             <li class="menu-title">
                                     <span>Pages</span>
                             </li>
@@ -432,7 +454,6 @@
                                             <div class="dash-count">
                                                 <h3>
                                                     <%
-
                                                         ManagerDao obj3 = new ManagerDao();
                                                         int result3 = obj3.countStaff();
                                                     %>
@@ -703,12 +724,33 @@
             </div>
             <!-- /Main Wrapper -->
 
-
         </div>
         <%
+            HttpSession session2 = request.getSession();
+            String status = (String) session2.getAttribute("status");
+            if (status == "setStatus") {
+        %>     
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("main").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+            }
+            ;
+            xhttp.open("GET", "staff-list.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+            }
+
+        %>
+        
+         <%
             HttpSession se = request.getSession();
-            String status = (String) se.getAttribute("status_dashboard");
-            if (status == "Service") {
+            String status1 = (String) se.getAttribute("status_dashboard");
+            if (status1 == "Service") {
         %>
         <script>
 
@@ -726,7 +768,6 @@
         <%
             }
         %>
-
 
         <!-- jQuery -->
         <script src="assets/js/load-main.js"></script>

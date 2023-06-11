@@ -214,7 +214,7 @@
         <%
             for (ServiceDTO ser : ls) {
                 int index = ls.indexOf(ser);
-        %>enctype="multipart/form-data"
+        %>
         <form action="../MainController" method="post" enctype= multipart/form-data>
             <div class="modal fade" id="edit_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">

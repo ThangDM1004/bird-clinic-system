@@ -32,6 +32,7 @@
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
                 <script src="assets/js/html5shiv.min.js"></script>
@@ -636,7 +637,27 @@
         <%
             }
         %>
+        
+        <%
+            HttpSession session2 = request.getSession();
+            String status2 = (String) session2.getAttribute("status");
+            if (status2 == "changePassword") {
+        %>        
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("dashboard").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "user-change-password.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+            }
 
+        %>
+        <script src="assets/js/checkValidate.js"></script>
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user-dashboard.js"></script>
