@@ -474,9 +474,63 @@ public class UserDAO {
         }
     }
 
-    public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.getDoctorByID("doctor1"));
+    public void changePasswordByUsername(String username, String password) {
+        String query = "UPDATE tbl_Account SET password = ? WHERE user_name = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, password);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
     }
+
+    public void setStatusByName(String username, int status) {
+        String query = "UPDATE tbl_Account SET status = ? WHERE user_name = ?";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, status);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    public List<UserDTO> listStaffAndManager() {
+        List<UserDTO> list = new ArrayList<>();
+        String query = "SELECT *\n"
+                + "FROM tbl_Account\n"
+                + "WHERE role_id IN (2, 5)\n"
+                + "ORDER BY CASE role_id\n"
+                + "    WHEN 5 THEN 0 \n"
+                + "    WHEN 2 THEN 1  -- Staf\n"
+                + "    ELSE 2        \n"
+                + "END";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                UserDTO user = new UserDTO(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getNString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getBoolean(10),
+                        rs.getString(11));
+                list.add(user);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    
 
 }

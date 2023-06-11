@@ -8,61 +8,47 @@ package sample.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.dao.UserDAO;
 
 /**
  *
- * @author MSI AD
+ * @author Minh
  */
-@MultipartConfig()
-public class MainController extends HttpServlet {
+public class SetStatusController extends HttpServlet {
 
-    private static String LOGIN = "login";
-    private static String LOGIN_CONTROLLER = "LoginController";
-    private static String LOGOUT = "logout";
-    private static String LOGOUT_CONTROLLER = "LogoutController";
-    private static String REGISTER = "register";
-    private static String REGISTER_CONTROLLER = "RegisterController";
-    private static String UPDATESERVICE = "updateService";
-    private static String UPDATESERVICE_CONTROLLER = "UpdateServiceController";
-    private static String ADDSERVICE = "Add";
-    private static String ADDSERVICE_CONTROLLER = "AddServiceController";
-    private static String UPDATE_DOCTOR_SETTING_PROFILE = "update-doctor-profile-setting";
-    private static String UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER = "UpdateDoctorSettingProfileController";
-    private static String CHANGEPASS = "changepass";
-    private static String CHANGEPASS_CONTROLLER = "ChangePassController";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = null;
+
         try {
-            String actions = request.getParameter("action");
-            if (actions.equals(REGISTER)) {
-                url = REGISTER_CONTROLLER;
-            } else if (actions.equals(LOGIN)) {
-                url = LOGIN_CONTROLLER;
-            } else if (actions.equals(LOGOUT)) {
-                url = LOGOUT_CONTROLLER;
-            } else if (actions.equals(UPDATESERVICE)) {
-                url = UPDATESERVICE_CONTROLLER;
-            } else if (actions.equals(ADDSERVICE)) {
-                url = ADDSERVICE_CONTROLLER;
-            } else if (actions.equals(UPDATE_DOCTOR_SETTING_PROFILE)) {
-                url = UPDATE_DOCTOR_SETTING_PROFILE_CONTROLLER;
-            }else if (actions.equals(CHANGEPASS)) {
-                url = CHANGEPASS_CONTROLLER;
-            } else {
-                url = "error-404.jsp";
+            UserDAO dao = new UserDAO();
+            HttpSession session2 = request.getSession();
+            String status = request.getParameter("statusName").trim();
+            String username = request.getParameter("username");
+            if (status.equalsIgnoreCase("false")) {
+                session2.setAttribute("status", "setStatus");
+                dao.setStatusByName(username, 1);
+                response.sendRedirect("admin/index.jsp");
+            } else if (status.equalsIgnoreCase("true")) {
+                session2.setAttribute("status", "setStatus");
+                dao.setStatusByName(username, 0);
+                response.sendRedirect("admin/index.jsp");
             }
         } catch (Exception e) {
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

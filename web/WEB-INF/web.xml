@@ -49,6 +49,14 @@
         <servlet-name>UpdateDoctorSettingProfileController</servlet-name>
         <servlet-class>sample.controller.UpdateDoctorSettingProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangePassController</servlet-name>
+        <servlet-class>sample.controller.ChangePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SetStatusController</servlet-name>
+        <servlet-class>sample.controller.SetStatusController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -96,6 +104,14 @@
     <servlet-mapping>
         <servlet-name>UpdateDoctorSettingProfileController</servlet-name>
         <url-pattern>/UpdateDoctorSettingProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePassController</servlet-name>
+        <url-pattern>/ChangePassController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SetStatusController</servlet-name>
+        <url-pattern>/SetStatusController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

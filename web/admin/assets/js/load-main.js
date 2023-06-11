@@ -95,4 +95,15 @@ function Reviews() {
     xhttp.open("GET", "reviews.jsp", true);
     xhttp.send();
 }
-
+function Staff() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("main").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
+        }
+    }
+    ;
+    xhttp.open("GET", "staff-list.jsp", true);
+    xhttp.send();
+}
