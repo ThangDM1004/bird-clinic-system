@@ -52,6 +52,7 @@ public class UpdateBirdController extends HttpServlet {
             PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
             boolean checkUpdate = dao.UpdateBird(bird);
             if (checkUpdate == true) {
+                part.write(realPath);
                 HttpSession session = request.getSession();
                 session.setAttribute("status", "AddBirdSucces");
                 response.sendRedirect("patient-dashboard.jsp");
