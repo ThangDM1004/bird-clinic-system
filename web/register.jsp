@@ -31,7 +31,7 @@
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
-         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     </head>
     <body class="account-page">
@@ -162,7 +162,7 @@
                                             <h3>Customer Register</h3>
                                         </div>
 
-                                       <!-- Register Form -->
+                                        <!-- Register Form -->
                                         <form id="myform" action="MainController" method="POST" accept-charset="UTF-8">
                                             <div class="form-group form-focus">
                                                 <input id="myuser" name="username" type="text" class="form-control floating" required="">
