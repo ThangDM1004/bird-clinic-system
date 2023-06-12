@@ -20,7 +20,7 @@ import sample.utils.Utils;
  */
 public class PatientDAO {
 
-   private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image\n"
+    private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
             + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? ";
 
@@ -188,11 +188,36 @@ public class PatientDAO {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     String max = rs.getString("patient_id").trim();
-                     maxID = Integer.parseInt(max);
+                    maxID = Integer.parseInt(max);
                 }
             }
         } catch (Exception e) {
         }
         return maxID;
+    }
+
+    private static final String UPDATE_BIRD = "UPDATE tbl_Patient_Bird SET bird_name = ?,species_id = ? ,age = ?,gender = ?,image=? WHERE patient_id=?";
+
+    public boolean UpdateBird(PatientDTO bird) throws ClassNotFoundException {
+        boolean checkUpdate = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(UPDATE_BIRD);
+                ps.setString(1, bird.getName());
+                ps.setString(2, bird.getSpecies_id());
+                ps.setString(3, bird.getAge());
+                ps.setString(4, bird.getGender());
+                ps.setString(5, bird.getImage());
+                ps.setString(6, bird.getPatient_id());
+                checkUpdate = ps.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return checkUpdate;
     }
 }
