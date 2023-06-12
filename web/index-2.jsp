@@ -127,7 +127,7 @@
                                     </ul>
                             </li> -->
                             <li>
-                                <a href="" >Blog</a>
+                                <a href="blog.jsp" >Blog</a>
                             </li>
 
 
