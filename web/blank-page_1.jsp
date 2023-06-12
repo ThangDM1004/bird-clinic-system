@@ -164,15 +164,216 @@
 
             <!-- Page Content -->
             <div class="content">
-                <div class="post-filter container">
-                    <span class="filter-item active-filter" data-filter=""></span>
-                    <span class="filter-item"></span>
-                    <span class="filter-item"></span>
-                    <span class="filter-item"></span>
-                </div>
+                <section id="blog">
+                    <!--blog-heading--------------->
+                    <div class="blog-heading">
+                        <span>My Recent Posts</span>
+                        <h3>My Blog</h3>
+                    </div>
 
+
+                    <!--container---------------->
+                    <div class="blog-container">
+
+                        <!--box-1------------->
+                        <div class="blog-box">
+
+                            <!--img---->
+                            <div class="blog-img">
+                                <img src="assets/img/post/blog-1.png" alt="blog">
+                            </div>
+                            <!--text--->
+                            <div class="blog-text">
+                                <span>18 July 2021 / Web Design</span>
+                                <a href="#" class="blog-title">What Has Happened to All of the Web Design Ideas?</a>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate facilis modi veritatis adipisci omnis perferendis deleniti tempore quasi? Explicabo recusandae soluta vel cum perspiciatis consequuntur dolorum distinctio minima voluptate quae?</p>
+                                <a href="#">Read More</a>
+                            </div>
+
+                        </div>
+
+                        <!--box-1------------->
+                        <div class="blog-box">
+
+                            <!--img---->
+                            <div class="blog-img">
+                                <img src="assets/img/post/blog-1.png" alt="blog">
+                            </div>
+                            <!--text--->
+                            <div class="blog-text">
+                                <span>18 July 2021 / Web Design</span>
+                                <a href="#" class="blog-title">What Has Happened to All of the Web Design Ideas?</a>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate facilis modi veritatis adipisci omnis perferendis deleniti tempore quasi? Explicabo recusandae soluta vel cum perspiciatis consequuntur dolorum distinctio minima voluptate quae?</p>
+                                <a href="#">Read More</a>
+                            </div>
+
+                        </div>
+
+                        <!--box-1------------->
+                        <div class="blog-box">
+
+                            <!--img---->
+                            <div class="blog-img">
+                                <img src="assets/img/post/blog-1.png" alt="blog">
+                            </div>
+                            <!--text--->
+                            <div class="blog-text">
+                                <span>18 July 2021 / Web Design</span>
+                                <a href="#" class="blog-title">What Has Happened to All of the Web Design Ideas?</a>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate facilis modi veritatis adipisci omnis perferendis deleniti tempore quasi? Explicabo recusandae soluta vel cum perspiciatis consequuntur dolorum distinctio minima voluptate quae?</p>
+                                <a href="#">Read More</a>
+                            </div>
+
+                        </div><!--box-1------------->
+                        <div class="blog-box">
+
+                            <!--img---->
+                            <div class="blog-img">
+                                <img src="assets/img/post/blog-1.png" alt="blog">
+                            </div>
+                            <!--text--->
+                            <div class="blog-text">
+                                <span>18 July 2021 / Web Design</span>
+                                <a href="#" class="blog-title">What Has Happened to All of the Web Design Ideas?</a>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate facilis modi veritatis adipisci omnis perferendis deleniti tempore quasi? Explicabo recusandae soluta vel cum perspiciatis consequuntur dolorum distinctio minima voluptate quae?</p>
+                                <a href="#">Read More</a>
+                            </div>
+
+                        </div>
+                        <!--box-1------------->
+                        <div class="blog-box">
+
+                            <!--img---->
+                            <div class="blog-img">
+                                <img src="assets/img/post/blog-1.png" alt="blog">
+                            </div>
+                            <!--text--->
+                            <div class="blog-text">
+                                <span>18 July 2021 / Web Design</span>
+                                <a href="#" class="blog-title">What Has Happened to All of the Web Design Ideas?</a>
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate facilis modi veritatis adipisci omnis perferendis deleniti tempore quasi? Explicabo recusandae soluta vel cum perspiciatis consequuntur dolorum distinctio minima voluptate quae?</p>
+                                <a href="#">Read More</a>
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </section>
             </div>	
             <!-- /Page Content -->
+
+            <style>
+                #blog{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 40px;
+                    border-top: 1px solid rgba(0, 0, 0, 0.05);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                }
+                .blog-heading{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                }
+                .blog-heading span{
+                    color: #f33c3c;
+                }
+                .blog-heading h3{
+                    font-size: 2.4rem;
+                    color: #2b2b2b;
+                    font-weight: 600;
+                }
+                .blog-container{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 20px 0px;
+                    flex-wrap: wrap;
+                }
+
+                .blog-box{
+                    width:350px;
+                    background-color: #ffffff;
+                    border: 1px solid #ececec;
+                    margin: 20px 20px;
+
+                }
+                .blog-img{
+                    width:100%;
+                    height: auto;
+                }
+                .blog-img img{
+                    width:100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+                .blog-text{
+                    padding: 30px;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .blog-text span{
+                    color: #f33c3c;
+                    font-size: 0.9rem;
+                }
+                .blog-text .blog-title{
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    color: #272727;
+                }
+                .blog-text p{
+                    color: #9b9b9b;
+                    font-size: 0.9rem;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin: 20px 0px;
+                }
+                .blog-text a{
+                    color: #0f0f0f;
+                }
+                .blog-text a:hover{
+                    color: #c74242;
+                    transition: all ease 0.3s;
+                }
+
+
+                @media(max-width:1250px){
+
+                    .blog-box{
+                        width: 300px;
+                    }
+                } 
+                @media(max-width:1100px){
+                    .blog-box{
+                        width:70%;
+                    }
+                }
+
+                @media(max-width:550px){
+
+                    .blog-box{
+                        margin: 20px 10px;
+                        width: 100%;
+                    }
+                    #blog{
+                        padding:20px;
+                    }
+                }
+
+
+            </style>
 
             <!-- Footer -->
             <footer class="footer">

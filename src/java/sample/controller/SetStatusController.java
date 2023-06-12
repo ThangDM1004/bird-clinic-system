@@ -38,15 +38,39 @@ public class SetStatusController extends HttpServlet {
             HttpSession session2 = request.getSession();
             String status = request.getParameter("statusName").trim();
             String username = request.getParameter("username");
-            if (status.equalsIgnoreCase("false")) {
-                session2.setAttribute("status", "setStatus");
-                dao.setStatusByName(username, 1);
-                response.sendRedirect("admin/index.jsp");
-            } else if (status.equalsIgnoreCase("true")) {
-                session2.setAttribute("status", "setStatus");
-                dao.setStatusByName(username, 0);
-                response.sendRedirect("admin/index.jsp");
+            String roleIdByName = dao.getRoleIdByUsername(username).trim();
+            if (roleIdByName.equalsIgnoreCase("2") || roleIdByName.equalsIgnoreCase("5")) {
+                if (status.equalsIgnoreCase("false")) {
+                    session2.setAttribute("status", "setStatus");
+                    dao.setStatusByName(username, 1);
+                    response.sendRedirect("admin/index.jsp");
+                } else if (status.equalsIgnoreCase("true")) {
+                    session2.setAttribute("status", "setStatus");
+                    dao.setStatusByName(username, 0);
+                    response.sendRedirect("admin/index.jsp");
+                }
+            } else if (roleIdByName.equalsIgnoreCase("3")) {
+                if (status.equalsIgnoreCase("false")) {
+                    session2.setAttribute("status", "setStatus_1");
+                    dao.setStatusByName(username, 1);
+                    response.sendRedirect("admin/index.jsp");
+                } else if (status.equalsIgnoreCase("true")) {
+                    session2.setAttribute("status", "setStatus_1");
+                    dao.setStatusByName(username, 0);
+                    response.sendRedirect("admin/index.jsp");
+                }
+            } else if (roleIdByName.equalsIgnoreCase("4")) {
+                if (status.equalsIgnoreCase("false")) {
+                    session2.setAttribute("status", "setStatus_2");
+                    dao.setStatusByName(username, 1);
+                    response.sendRedirect("admin/index.jsp");
+                } else if (status.equalsIgnoreCase("true")) {
+                    session2.setAttribute("status", "setStatus_2");
+                    dao.setStatusByName(username, 0);
+                    response.sendRedirect("admin/index.jsp");
+                }
             }
+
         } catch (Exception e) {
         }
     }

@@ -45,11 +45,12 @@
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Date Of Birth</th>
-                                            <th class="text-right">Status</th>
+                                            <th class="text-right">Account Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <%
+                                            int rowCounter = 1;
                                             UserDAO dao = new UserDAO();
                                             List<UserDTO> list = dao.getListCustomer();
 
@@ -68,9 +69,90 @@
                                             <td><%=user.getEmail()%></td>
                                             <td><%=user.getPhone()%></td>
                                             <td><%=user.getDate_of_birth()%></td>
-                                            <td class="text-right"><%=user.isStatus()%></td>                                                    
+
+                                            <td class="text-right">
+                                                <%
+                                                    boolean isStatus = user.isStatus();
+                                                %>
+                                                <form id="statusForm<%=rowCounter%>" action="../SetStatusController" method="POST">
+                                                    <label class="switch">
+                                                        <input name="username" value="<%=user.getUsername()%>" type="hidden">                                                        <input name="username" value="<%=user.getUsername()%>" type="hidden">
+                                                        <input name="statusName" value="<%=isStatus%>" type="hidden">
+                                                        <input type="checkbox" onchange="document.getElementById('statusForm<%= rowCounter%>').submit()" <%= isStatus ? "checked" : "unchecked"%>>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </form>
+                                                <style>
+                                                    .switch {
+                                                        margin-left: 10px;
+                                                        position: relative;
+                                                        display: inline-block;
+                                                        width: 60px;
+                                                        height: 34px;
+                                                    }
+
+                                                    /* Hide default HTML checkbox */
+                                                    .switch input {
+                                                        opacity: 0;
+                                                        width: 0;
+                                                        height: 0;
+                                                    }
+
+                                                    /* The slider */
+                                                    .slider {
+                                                        position: absolute;
+                                                        cursor: pointer;
+                                                        top: 0;
+                                                        left: 0;
+                                                        right: 0;
+                                                        bottom: 0;
+                                                        background-color: #ccc;
+                                                        -webkit-transition: .4s;
+                                                        transition: .4s;
+                                                    }
+
+                                                    .slider:before {
+                                                        position: absolute;
+                                                        content: "";
+                                                        height: 26px;
+                                                        width: 26px;
+                                                        left: 4px;
+                                                        bottom: 4px;
+                                                        background-color: white;
+                                                        -webkit-transition: .4s;
+                                                        transition: .4s;
+                                                    }
+
+                                                    input:checked + .slider {
+                                                        background-color: #6EC531;
+                                                    }
+
+                                                    input:focus + .slider {
+                                                        box-shadow: 0 0 1px #6EC531;
+                                                    }
+
+                                                    input:checked + .slider:before {
+                                                        -webkit-transform: translateX(26px);
+                                                        -ms-transform: translateX(26px);
+                                                        transform: translateX(26px);
+                                                    }
+
+                                                    /* Rounded sliders */
+                                                    .slider.round {
+                                                        border-radius: 34px;
+                                                    }
+
+                                                    .slider.round:before {
+                                                        border-radius: 50%;
+                                                    }
+
+                                                </style>
+                                            </td>                                                    
                                         </tr>
-                                        <%}%>
+                                        <%
+                                                rowCounter++;
+                                            }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>

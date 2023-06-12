@@ -1,6 +1,6 @@
 var links = document.querySelectorAll("#sidebar-menu a");
 for (var i = 0; i < links.length; i++) {
-  links[i].addEventListener("click", handleClick);
+    links[i].addEventListener("click", handleClick);
 }
 
 // Set the second <li> element as active by default
@@ -8,21 +8,20 @@ var defaultActiveItem = document.querySelector("#sidebar-menu li:nth-child(2)");
 defaultActiveItem.classList.add("active");
 
 function handleClick(event) {
-  var listItems = document.querySelectorAll("#sidebar-menu li");
-  for (var i = 0; i < listItems.length; i++) {
-    listItems[i].classList.remove("active");
-  }
+    var listItems = document.querySelectorAll("#sidebar-menu li");
+    for (var i = 0; i < listItems.length; i++) {
+        listItems[i].classList.remove("active");
+    }
 
-  var clickedLink = event.target;
-  clickedLink.closest("li").classList.add("active");
+    var clickedLink = event.target;
+    clickedLink.closest("li").classList.add("active");
 
-  // Prevent the default behavior of the link (e.g., navigating to a new page)
-  event.preventDefault();
+    // Prevent the default behavior of the link (e.g., navigating to a new page)
+    event.preventDefault();
 }
 
 
 function Dashboard() {
-
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

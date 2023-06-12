@@ -744,16 +744,55 @@
         </script>
         <%
             }
-
         %>
-        
-         <%
-            HttpSession se = request.getSession();
+
+        <%
+            HttpSession session3 = request.getSession();
+            String status_1 = (String) session3.getAttribute("status");
+            if (status_1 == "setStatus_1") {
+        %>     
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("main").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+
+            }
+            ;
+            xhttp.open("GET", "doctors.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+            }
+        %>
+
+        <%            HttpSession session4 = request.getSession();
+            String status_2 = (String) session4.getAttribute("status");
+            if (status_2 == "setStatus_2") {
+        %>     
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("main").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+            }
+            ;
+            xhttp.open("GET", "customers.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+            }
+        %>
+
+        <%  HttpSession se = request.getSession();
             String status1 = (String) se.getAttribute("status_dashboard");
             if (status1 == "Service") {
         %>
         <script>
-
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -763,11 +802,11 @@
             };
             xhttp.open("GET", "service.jsp", true);
             xhttp.send();
-
         </script>
         <%
             }
         %>
+
 
         <!-- jQuery -->
         <script src="assets/js/load-main.js"></script>
