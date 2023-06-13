@@ -19,9 +19,8 @@
 
     </head>
     <body>
-        <%
-
-        %>
+       
+         <form action="MainController" method="post" enctype="multipart/form-data">
         <div class="row form-row">
 
 
@@ -34,7 +33,7 @@
                 for (PatientDTO list : listBird) {
                     if (list.getName().equalsIgnoreCase(selectedOption)) {
             %>
-            <form action="MainController" method="post" enctype="multipart/form-data">
+           
                 <div class="col-12 col-md-12">
                     <div class="form-group">
                         <div class="change-avatar">
@@ -84,7 +83,7 @@
                     <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                 </div>
 
-            </form>
+           
             <%
                     }
                 }
@@ -92,6 +91,7 @@
 
             <!-- /Profile Settings Form -->
         </div>
+             </form>
         <script src="assets/js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JS -->
