@@ -16,24 +16,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-       
-         <form action="MainController" method="post" enctype="multipart/form-data">
-        <div class="row form-row">
+
+        <form action="MainController" method="post" enctype="multipart/form-data">
+            <div class="row form-row">
 
 
 
-            <%                HttpSession s = request.getSession();
-                UserDTO user = (UserDTO) s.getAttribute("account");
-                PatientDAO dao = new PatientDAO();
-                String selectedOption = request.getParameter("selectedOption");
-                List<PatientDTO> listBird = dao.getBird(user.getUsername());
-                for (PatientDTO list : listBird) {
-                    if (list.getName().equalsIgnoreCase(selectedOption)) {
-            %>
-           
+                <%
+                    HttpSession s = request.getSession();
+                    UserDTO user = (UserDTO) s.getAttribute("account");
+                    PatientDAO dao = new PatientDAO();
+                    String selectedOption = request.getParameter("selectedOption");
+                    List<PatientDTO> listBird = dao.getBird(user.getUsername());
+                    for (PatientDTO list : listBird) {
+                        if (list.getName().equalsIgnoreCase(selectedOption)) {
+                %>
+
                 <div class="col-12 col-md-12">
                     <div class="form-group">
                         <div class="change-avatar">
@@ -43,25 +44,28 @@
                             <div class="upload-img">
                                 <div class="change-photo-btn">
                                     <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                    <input name="image_bird" type="file" class="upload">
+                                    <input onchange="checkImage()" id="bird_image_dash" name="image_bird" type="file" class="upload">
+
                                 </div>
-                                <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                <small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small>
                             </div>
                         </div>
                     </div>
+                    <span id="result_3" style="margin-left: 10px;color: red"></span>
                 </div>
                 <input type="hidden" name="patient_id" value="<%= list.getPatient_id()%>">
-                <input type="hidden" name="species_id" value="<%= list.getSpecies_id()%>">
+                <input type="hidden" name="species_id" value="<%= list.getSpecies_id()%>" required="">
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label>Name</label>
-                        <input name="birdname" type="text" class="form-control" value="<%= list.getName()%>">
+                        <input onchange="checkUsername()" id="birdname_dash" name="birdname" type="text" class="form-control" value="<%= list.getName()%>" required="">
+                        <span id="result_4" style="margin-left: 10px;color: red"></span>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label>Species</label>
-                        <input name="species" type="text" class="form-control" value="<%= dao.getSpecies(list.getSpecies_id())%>">
+                        <input name="species" type="text" class="form-control" value="<%= dao.getSpecies(list.getSpecies_id())%>" readonly="">
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -83,16 +87,17 @@
                     <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                 </div>
 
-           
-            <%
-                    }
-                }
-            %>
 
-            <!-- /Profile Settings Form -->
-        </div>
-             </form>
+                <%
+                        }
+                    }
+                %>
+
+                <!-- /Profile Settings Form -->
+            </div>
+        </form>
         <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/checkUpdate_validate.js"></script>
 
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>

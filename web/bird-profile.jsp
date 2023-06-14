@@ -13,6 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     </head>
     <body>
@@ -35,13 +36,13 @@
         </select>
 
         <div  class="card">
-            <div style="margin-left: 640px;" class="col-sm-5 col">
+            <div style="margin-left: 640px; " class="col-sm-5 col">
                 <a href="#Add_Specialities_details" data-toggle="modal"
                    class="btn btn-primary float-right mt-2">Add</a>
             </div>
             <div id="demo" class="card-body">
                 <!-- Profile Settings Form -->
-                <form action="MainController" method="post" enctype="multipart/form-data">
+                <form name="formUpdate" action="MainController" method="post" enctype="multipart/form-data">
                     <div class="row form-row">
                         <%
                             for (PatientDTO x : listBird) {
@@ -52,48 +53,53 @@
                             <div class="form-group">
                                 <div class="change-avatar">
                                     <div class="profile-img">
-                                        <img src="<%= x.getImage()%>" alt="User Image">
+                                        <img  src="<%= x.getImage()%>" alt="Patient Image">
                                     </div>
                                     <div class="upload-img">
                                         <div class="change-photo-btn">
                                             <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                            <input type="file" class="upload">
+                                            <input onchange="checkImage()" id="bird_image_dash" name="image_bird" type="file" class="upload">
                                         </div>
-                                        <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                        <small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small>
                                     </div>
+
                                 </div>
                             </div>
+                            <span id="result_3" style="margin-left: 10px;color: red"></span>
                         </div>
-
+                        <input type="hidden" name="patient_id" value="<%= x.getPatient_id()%>">
+                        <input type="hidden" name="species_id" value="<%= x.getSpecies_id()%>" readonly="">
+                        <input type="hidden" id="username" name="user_name" value="<%= user.getUsername()%>">
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" value="<%= x.getName()%>">
+                                <input onchange="checkUsername()" id="birdname_dash" name="birdname" type="text" class="form-control" value="<%= x.getName()%>" required="">
+                                <span id="result_4" style="margin-left: 10px;color: red"></span>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Species</label>
-                                <input type="text" class="form-control" value="<%= species.trim()%>">
+                                <input name="species" type="text" class="form-control" value="<%= dao.getSpecies(x.getSpecies_id())%>" readonly="">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Age</label>
                                 <div>
-                                    <input type="text" class="form-control datetimepicker" value="<%= x.getAge()%>">
+                                    <input name="age" type="text" class="form-control datetimepicker" value="<%= x.getAge()%>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Gender</label>
-                                <input type="text" class="form-control datetimepicker" value="<%= x.getGender()%>">
+                                <input name="gender" type="text" class="form-control datetimepicker" value="<%= x.getGender()%>">
                             </div>
                         </div>
 
                         <div class="submit-section">
-                          <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
+                            <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                         </div>
                         <%
                                 if (count == 1) {
@@ -107,6 +113,18 @@
                 </form>
             </div>
         </div>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/checkUpdate_validate.js"></script>
 
+        <!-- Bootstrap Core JS -->
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <!-- Sticky Sidebar JS -->
+        <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+        <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+        <!-- Custom JS -->
+        <script src="assets/js/script.js"></script>
     </body>
 </html>

@@ -553,13 +553,14 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="AddBirdController" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="user_name" value="<%= user.getUsername()%>">
+                        <form action="MainController" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" id="username" name="user_name" value="<%= user.getUsername()%>">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Bird Image</label>
-                                        <input name="bird_image" type="file" class="form-control">
+                                        <input id="imgbird"  name="bird_image" type="file" class="form-control">
+                                        <span id="result_1" style="margin-left: 10px;color: red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -567,7 +568,8 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Bird Name</label>
-                                        <input style="width: 350px;" type="text" class="form-control" name="bird_name" required="">
+                                        <input id="birdname"  style="width: 350px;" type="text" class="form-control" name="bird_name" required="">
+                                        <span  id="result" style="margin-left: 10px; color: red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -611,7 +613,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" name="action" value="Add Bird" >
+                                        <input id="submit" type="submit" name="action" value="Add Bird" >
                         </form>
                     </div>
                 </div>
@@ -658,6 +660,8 @@
 
         %>
         <script src="assets/js/checkValidate.js"></script>
+        <script src="assets/js/checkBirdValidate.js"></script>
+        <script src="assets/js/checkUpdate_validate.js"></script>
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user-dashboard.js"></script>

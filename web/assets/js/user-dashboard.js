@@ -51,4 +51,4 @@ function sendOption() {
     xhttp.open("GET", "load-bird-info.jsp?selectedOption=" + selectedValue, true);
     xhttp.send();
 }
- 
+

@@ -51,10 +51,10 @@ public class AddBirdController extends HttpServlet {
                     response.sendRedirect("index-2.jsp");
                 }
             } else {
+                part.write(realPath + fileName);
                 PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name);
                 boolean check_Insert = dao.addBird(bird);
                 if (check_Insert) {
-                    part.write(realPath);
                     HttpSession session = request.getSession();
                     session.setAttribute("status", "AddBirdSucces");
                     response.sendRedirect("patient-dashboard.jsp");
