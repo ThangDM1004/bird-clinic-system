@@ -49,19 +49,30 @@ public class UpdateBirdController extends HttpServlet {
             String realPath = request.getServletContext().getRealPath("/assets/img/patients/");// Đường dẫn để lưu trữ hình ảnh trên máy tính
             String url = "assets/img/patients/" + fileName;
             PatientDAO dao = new PatientDAO();
-            PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
-            boolean checkUpdate = dao.UpdateBird(bird);
-            if (checkUpdate == true) {
-                if ("".equals(fileName)) {
+            if ("".equals(fileName)) {
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                boolean checkUpdate = dao.UpdateBirdNoImage(bird);
+                if (checkUpdate == true) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
                 } else {
-                    part.write(realPath);
+                    response.sendRedirect("index-2.jsp");
                 }
-                HttpSession session = request.getSession();
-                session.setAttribute("status", "AddBirdSucces");
-                response.sendRedirect("patient-dashboard.jsp");
             } else {
-                response.sendRedirect("index-2.jsp");
+                part.write(realPath + fileName);
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                boolean checkUpdate = dao.UpdateBird(bird);
+                if (checkUpdate == true) {
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
             }
+
         } catch (Exception e) {
 
         }

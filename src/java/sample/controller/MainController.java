@@ -36,6 +36,8 @@ public class MainController extends HttpServlet {
     private static String CHANGEPASS_CONTROLLER = "ChangePassController";
     private static String UPDATE_BIRD = "Update";
     private static String UPDATE_BIRD_CONTROLLER = "UpdateBirdController";
+     private static String ADD_BIRD = "Add Bird";
+    private static String ADD_BIRD_CONTROLLER = "AddBirdController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,6 +61,8 @@ public class MainController extends HttpServlet {
                 url = CHANGEPASS_CONTROLLER;
             }else if (actions.equals(UPDATE_BIRD)) {
                 url = UPDATE_BIRD_CONTROLLER;
+            }else if (actions.equals(ADD_BIRD)) {
+                url = ADD_BIRD_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }

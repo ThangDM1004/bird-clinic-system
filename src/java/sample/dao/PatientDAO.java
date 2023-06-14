@@ -220,4 +220,28 @@ public class PatientDAO {
         }
         return checkUpdate;
     }
+    
+    private static final String UPDATE_BIRD_NO_IMAGE = "UPDATE tbl_Patient_Bird SET bird_name = ?,species_id = ? ,age = ?,gender = ? WHERE patient_id=?";
+
+    public boolean UpdateBirdNoImage(PatientDTO bird) throws ClassNotFoundException {
+        boolean checkUpdate = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(UPDATE_BIRD_NO_IMAGE);
+                ps.setString(1, bird.getName());
+                ps.setString(2, bird.getSpecies_id());
+                ps.setString(3, bird.getAge());
+                ps.setString(4, bird.getGender());
+                ps.setString(5, bird.getPatient_id());
+                checkUpdate = ps.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return checkUpdate;
+    }
 }
