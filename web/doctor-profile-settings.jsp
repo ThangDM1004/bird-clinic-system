@@ -361,7 +361,8 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
-                                                    <input type="text" name="phone" class="form-control" value="${doctor.phone}">
+                                                    <input id="myphone_" type="text" name="phone" class="form-control" value="${doctor.phone}">
+                                                    <span id="result_2" class="status_2" style="margin-left: 10px;" ></span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -414,7 +415,7 @@
 
                                 <!-- Registrations -->
                                 <div class="submit-section submit-btn-bottom">
-                                    <button type="submit" name="action" value="update-doctor-profile-setting" class="btn btn-primary submit-btn">Save Changes</button>
+                                    <button id="submit" type="submit" name="action" value="update-doctor-profile-setting" class="btn btn-primary submit-btn">Save Changes</button>
                                 </div>
                             </form>
 
@@ -570,7 +571,24 @@
 
         </div>
         <!-- /Main Wrapper -->
+        <style>
+            .available {
+                color: #006400;
+                background: #E5FFE5;
+                padding-left: 3px;
+                padding-right: 3px;
+                border-radius: 3px;
+            }
 
+            .already-exists, .not-enough-length {
+                padding-left: 3px;
+                padding-right: 3px;
+                border-radius: 3px;
+                background: #F8ECEC;
+                color: #be4b49;
+            }
+
+        </style>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
 
@@ -596,7 +614,7 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
-
+        <script src="assets/js/checkValidate.js"></script>
     </body>
 
     <!-- doccure/doctor-profile-settings.jsp  30 Nov 2019 04:12:15 GMT -->
