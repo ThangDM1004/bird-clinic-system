@@ -58,6 +58,8 @@
         <servlet-class>sample.controller.SetStatusController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>SetStatusBlogController</servlet-name>
+        <servlet-class>sample.controller.SetStatusBlogController</servlet-class>
         <servlet-name>UpdateBirdController</servlet-name>
         <servlet-class>sample.controller.UpdateBirdController</servlet-class>
     </servlet>
@@ -134,6 +136,8 @@
         <url-pattern>/SetStatusController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>SetStatusBlogController</servlet-name>
+        <url-pattern>/SetStatusBlogController</url-pattern>
         <servlet-name>UpdateBirdController</servlet-name>
         <url-pattern>/UpdateBirdController</url-pattern>
     </servlet-mapping>

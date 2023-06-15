@@ -3,7 +3,8 @@
     Created on : Jun 6, 2023, 5:43:09 PM
     Author     : MSI AD
 --%>
-
+<%@page import="sample.dto.BlogDTO"%>
+<%@page import="sample.dao.BlogDAO"%>
 <%@page import="sample.dao.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.sun.javafx.scene.control.skin.VirtualFlow.ArrayLinkedList"%>
@@ -44,6 +45,7 @@
         <![endif]-->
     </head>
     <body>
+
         <div class="page-wrapper">
             <div class="content container-fluid">
 
@@ -51,17 +53,18 @@
                 <div class="page-header">
                     <div class="row">
                         <div class="col-sm-7 col-auto">
-                            <h3 class="page-title">List of Doctors</h3>
+                            <h3 class="page-title">List of Blogs</h3>
                             <ul class="breadcrumb">
+                                <!--                                <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>-->
                                 <li class="breadcrumb-item"><a href="javascript:(0);">Admin</a></li>
-                                <li class="breadcrumb-item active">Doctor</li>
+                                <li class="breadcrumb-item active">Blog</li>
                             </ul>
                         </div>
                         <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                        <!--                            <div class="col-sm-5 col">
-                                        <a href="#Add_Specialities_details" data-toggle="modal"
-                                           class="btn btn-primary float-right mt-2">Add</a>
-                                    </div>-->
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add Blog</a>
+                        </div>
                     </div>
 
                 </div>
@@ -75,49 +78,52 @@
                                     <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Doctor Name</th>
-                                                <th>Speciality</th>
-                                                <th>Email</th>
-                                                <th>Phone Contact</th>
-                                                <th>Account Status</th>
+                                                <th>ID</th>
+                                                <th>Title</th>
+                                                <th>Content</th>
+                                                <th>Category</th>
+                                                <th>Author</th>
+                                                <th>Blog Status</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <%
                                                 int rowCounter = 1;
-                                                List<UserDTO> ls = new ArrayList<UserDTO>();
-                                                UserDAO dao = new UserDAO();
-                                                ls = dao.doctorList();
-                                                for (UserDTO doc : ls) {
+                                                List<BlogDTO> ls = new ArrayList<BlogDTO>();
+                                                BlogDAO dao = new BlogDAO();
+                                                ls = dao.getListBlog();
+                                                for (BlogDTO b : ls) {
 
                                             %>
 
-                                            <tr>
+                                            <tr style="height: 100px !important;">
+                                                <td><%=b.getBlog_id()%></td>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
-                                                        <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname()%></a>
+                                                        <a href="#view_specialities_details" data-toggle="modal"><%=b.getTitle()%></a>
                                                     </h2>
                                                 </td>
-                                                <td><%= doc.getBio()%></td>
 
-                                                <td><%= doc.getEmail()%></td>
+                                                <td><%=b.getDetails().substring(0, 50) + "..."%></td>
+                                                <td><%=b.getCategories_blog_name()%></td>
 
-                                                <td><%= doc.getPhone()%></td>
+                                                <td><%=b.getAuthor()%></td>
 
                                                 <td>
+
                                                     <%
-                                                        boolean isStatus = doc.isStatus();
+                                                        boolean isStatus = b.isStatus();
                                                     %>
-                                                    <form id="statusForm<%=rowCounter%>" action="../SetStatusController" method="POST">
+                                                    <form id="statusForm<%= rowCounter%>" action="../SetStatusBlogController" method="POST">
                                                         <label class="switch">
-                                                            <input name="username" value="<%=doc.getUsername()%>" type="hidden">
-                                                            <input name="statusName" value ="<%=isStatus%>" type="hidden">
+                                                            <input name="blogID" value="<%=b.getBlog_id()%>" type="hidden">
+                                                            <input name="statusName" value="<%= isStatus%>" type="hidden">
                                                             <input type="checkbox" onchange="document.getElementById('statusForm<%= rowCounter%>').submit()" <%= isStatus ? "checked" : "unchecked"%>>
                                                             <span class="slider round"></span>
-                                                        </label>
+                                                        </label>  
                                                     </form>
+
                                                     <style>
                                                         .switch {
                                                             margin-left: 10px;
@@ -185,12 +191,7 @@
                                                     </style>
                                                 </td>
                                             </tr>
-
-
-                                            <%
-                                                    rowCounter++;
-                                                }
-                                            %>
+                                            <% }%>
 
                                         </tbody>
                                     </table>

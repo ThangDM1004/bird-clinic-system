@@ -12,26 +12,30 @@ import java.sql.Date;
  * @author MSI AD
  */
 public class BlogDTO {
+
     private String blog_id;
     private String title;
     private String details;
     private Date date_post;
     private String image;
-    private boolean status = true;
+    private boolean status;
     private String user_name;
     private String author;
+    private String categories_blog_name;
 
     public BlogDTO() {
     }
 
-    public BlogDTO(String blog_id, String title, String details, Date date_post, String image, String user_name, String author) {
+    public BlogDTO(String blog_id, String title, String details, Date date_post, String image, boolean status, String user_name, String author, String categories_blog_name) {
         this.blog_id = blog_id;
         this.title = title;
         this.details = details;
         this.date_post = date_post;
         this.image = image;
+        this.status = status;
         this.user_name = user_name;
         this.author = author;
+        this.categories_blog_name = categories_blog_name;
     }
 
     public String getBlog_id() {
@@ -97,6 +101,21 @@ public class BlogDTO {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public String getCategories_blog_name() {
+        return categories_blog_name;
+    }
+
+    public void setCategories_blog_name(String categories_blog_name) {
+        this.categories_blog_name = categories_blog_name;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogDTO{" + "blog_id=" + blog_id + ", title=" + title + ", details=" + details + ", date_post=" + date_post + ", image=" + image + ", status=" + status + ", user_name=" + user_name + ", author=" + author + ", categories_blog_name=" + categories_blog_name + '}';
+    }
+
+   
     
-    
+
 }

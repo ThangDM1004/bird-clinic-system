@@ -13,13 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BlogDAO;
-import sample.dao.UserDAO;
 
 /**
  *
  * @author Minh
  */
-public class SetStatusController extends HttpServlet {
+public class SetStatusBlogController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,43 +32,19 @@ public class SetStatusController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         try {
-            UserDAO dao = new UserDAO();
-            HttpSession session2 = request.getSession();
+            BlogDAO dao = new BlogDAO();
+            HttpSession session = request.getSession();
+            String blogID = request.getParameter("blogID").trim();
             String status = request.getParameter("statusName").trim();
-            String username = request.getParameter("username");
-            String roleIdByName = dao.getRoleIdByUsername(username).trim();
-            if (roleIdByName.equalsIgnoreCase("2") || roleIdByName.equalsIgnoreCase("5")) {
-                if (status.equalsIgnoreCase("false")) {
-                    session2.setAttribute("status", "setStatus");
-                    dao.setStatusByName(username, 1);
-                    response.sendRedirect("admin/index.jsp");
-                } else if (status.equalsIgnoreCase("true")) {
-                    session2.setAttribute("status", "setStatus");
-                    dao.setStatusByName(username, 0);
-                    response.sendRedirect("admin/index.jsp");
-                }
-            } else if (roleIdByName.equalsIgnoreCase("3")) {
-                if (status.equalsIgnoreCase("false")) {
-                    session2.setAttribute("status", "setStatus_1");
-                    dao.setStatusByName(username, 1);
-                    response.sendRedirect("admin/index.jsp");
-                } else if (status.equalsIgnoreCase("true")) {
-                    session2.setAttribute("status", "setStatus_1");
-                    dao.setStatusByName(username, 0);
-                    response.sendRedirect("admin/index.jsp");
-                }
-            } else if (roleIdByName.equalsIgnoreCase("4")) {
-                if (status.equalsIgnoreCase("false")) {
-                    session2.setAttribute("status", "setStatus_2");
-                    dao.setStatusByName(username, 1);
-                    response.sendRedirect("admin/index.jsp");
-                } else if (status.equalsIgnoreCase("true")) {
-                    session2.setAttribute("status", "setStatus_2");
-                    dao.setStatusByName(username, 0);
-                    response.sendRedirect("admin/index.jsp");
-                }
+            if (status.equalsIgnoreCase("true")) {
+                session.setAttribute("status", "setStatus_5");
+                dao.setStatusByBlogID(blogID, 0);
+                response.sendRedirect("admin/index.jsp");
+            } else {
+                session.setAttribute("status", "setStatus_5");
+                dao.setStatusByBlogID(blogID, 1);
+                response.sendRedirect("admin/index.jsp");
             }
 
         } catch (Exception e) {

@@ -58,6 +58,19 @@
                 xhttp.open("GET", "staff-list.jsp", true);
                 xhttp.send();
             }
+
+            function Blogs() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        document.getElementById("main").innerHTML = this.responseText;
+                        var table = $('.datatable').DataTable();
+                    }
+                }
+                ;
+                xhttp.open("GET", "blogx.jsp", true);
+                xhttp.send();
+            }
         </script>
 
         <%
@@ -260,7 +273,7 @@
                             </c:if>
                             <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
                                 <li>
-                                    <a type="button" onclick="Staff()"><i class="fe fe-user-plus"></i><span>Staff</span></a>
+                                    <a type="button" onclick="Staff()"><i class="fe fe-user-plus"></i><span>Staffs</span></a>
                                 </li>
                             </c:if> 
                             <c:if test="${fn:containsIgnoreCase(roleName, '1') || fn:containsIgnoreCase(roleName, '5')}">
@@ -272,9 +285,15 @@
                                 </li>
                             </c:if>
 
+                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                                <li>
+                                    <a type="button" onclick="Blogs()"><i class="fe fe-file-word"></i> <span>Blogs</span></a>
+                                </li>
+                            </c:if> 
+
                             <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
-                                    <a type="button" onclick="Reviews()"><i class="fe fe-star-o"></i> <span>Reviews</span></a>
+                                    <a type="button" onclick="Reviews()"><i class="fa-solid fa-blog"></i></i> <span>Reviews</span></a>
                                 </li>
                             </c:if>
 
@@ -787,6 +806,28 @@
         <%
             }
         %>
+
+
+        <%            HttpSession session5 = request.getSession();
+            String status_3 = (String) session5.getAttribute("status");
+            if (status_3 == "setStatus_5") {
+        %>     
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("main").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+            }
+            ;
+            xhttp.open("GET", "blogx.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+            }
+        %>
+
 
         <%  HttpSession se = request.getSession();
             String status1 = (String) se.getAttribute("status_dashboard");
