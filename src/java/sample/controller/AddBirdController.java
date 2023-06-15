@@ -41,7 +41,7 @@ public class AddBirdController extends HttpServlet {
             String realPath = request.getServletContext().getRealPath("/assets/img/patients/");// Đường dẫn để lưu trữ hình ảnh trên máy tính
             String url = "assets/img/patients/" + fileName;
             if ("".equals(fileName)) {
-                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, null, user_name);
+                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, null, user_name, true);
                 boolean check_Insert = dao.addBird(bird);
                 if (check_Insert) {
                     HttpSession session = request.getSession();
@@ -52,7 +52,7 @@ public class AddBirdController extends HttpServlet {
                 }
             } else {
                 part.write(realPath + fileName);
-                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name);
+                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name, true);
                 boolean check_Insert = dao.addBird(bird);
                 if (check_Insert) {
                     HttpSession session = request.getSession();

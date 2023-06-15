@@ -81,6 +81,10 @@
         <servlet-name>ImageUpdateBirdController</servlet-name>
         <servlet-class>sample.controller.ImageUpdateBirdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteBirdController</servlet-name>
+        <servlet-class>sample.controller.DeleteBirdController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -141,7 +145,7 @@
         <servlet-name>SetStatusBlogController</servlet-name>
         <url-pattern>/SetStatusBlogController</url-pattern>
     </servlet-mapping>
-    <servlet-mapping> 
+    <servlet-mapping>
         <servlet-name>UpdateBirdController</servlet-name>
         <url-pattern>/UpdateBirdController</url-pattern>
     </servlet-mapping>
@@ -160,6 +164,10 @@
     <servlet-mapping>
         <servlet-name>ImageUpdateBirdController</servlet-name>
         <url-pattern>/ImageUpdateBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBirdController</servlet-name>
+        <url-pattern>/DeleteBirdController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
