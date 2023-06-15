@@ -17,11 +17,9 @@ public class PatientDTO {
     private String gender;
     private String image;
     private String user_name;
+    private boolean status;
 
-    public PatientDTO() {
-    }
-
-    public PatientDTO(String patient_id, String name, String species_id, String age, String gender, String image, String user_name) {
+    public PatientDTO(String patient_id, String name, String species_id, String age, String gender, String image, String user_name, boolean status) {
         this.patient_id = patient_id;
         this.name = name;
         this.species_id = species_id;
@@ -29,7 +27,12 @@ public class PatientDTO {
         this.gender = gender;
         this.image = image;
         this.user_name = user_name;
+        this.status = status;
     }
+    public PatientDTO() {
+    }
+
+    
 
     public String getPatient_id() {
         return patient_id;
@@ -86,5 +89,15 @@ public class PatientDTO {
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    
     
 }

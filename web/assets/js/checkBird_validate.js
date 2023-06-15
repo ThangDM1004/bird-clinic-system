@@ -1,6 +1,8 @@
 jQuery(document).ready(function () {
     var isBirdnameAvailable = false;
-   
+     var isBirdImgAvailable = false;
+    
+    
     $('#birdname').change(function () {
         var birdname = $('#birdname').val();
           var username = $('#username').val();
@@ -18,7 +20,7 @@ jQuery(document).ready(function () {
                     $('#result').removeClass().addClass('already-exists');
                     isUsernameAvailable = false;
                 }
-                
+               
             }
         });
     });
@@ -31,7 +33,6 @@ jQuery(document).ready(function () {
             url: 'ImageBirdController',
             success: function (result_1) {
                 $('#result_1').html(result_1);
-
                 if (result_1 === 'Image is available to use') {
                     $('#result_1').removeClass().addClass('available');
                     isEmailAvailable = true;
@@ -39,7 +40,6 @@ jQuery(document).ready(function () {
                     $('#result_1').removeClass().addClass('already-exists');
                     isEmailAvailable = false;
                 }
-                
             }
         });
     });

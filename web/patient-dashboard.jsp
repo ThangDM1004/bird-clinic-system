@@ -613,7 +613,7 @@
                                     </div>
                                 </div>
                             </div>
-                                        <input id="submit" type="submit" name="action" value="Add Bird" >
+                                        <input  id="submit" type="submit" name="action" value="Add Bird" >
                         </form>
                     </div>
                 </div>
@@ -660,7 +660,7 @@
 
         %>
         <script src="assets/js/checkValidate.js"></script>
-        <script src="assets/js/checkBirdValidate.js"></script>
+        <script src="assets/js/checkBird_validate.js"></script>
         <script src="assets/js/checkUpdate_validate.js"></script>
         <!-- /Main Wrapper -->
 

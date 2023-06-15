@@ -85,6 +85,7 @@
 
                 <div class="submit-section">
                     <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
+                    <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
                 </div>
 
 
