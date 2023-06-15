@@ -24,7 +24,8 @@ public class AppointmentDTO {
     private String imgDoc;
     private String imgCus;
     private String service;
-     private String date_;
+    private String date_;
+    private Date dateStatus;
 
     public AppointmentDTO() {
     }
@@ -44,6 +45,30 @@ public class AppointmentDTO {
         this.date_ = date_;
     }
 
+    public AppointmentDTO(String bookingID, String doctorName, String speciality, String customerName, Date date, String time, String status, double fee, String imgDoc, String imgCus, String service, Date dateStatus) {
+        this.bookingID = bookingID;
+        this.doctorName = doctorName;
+        this.speciality = speciality;
+        this.customerName = customerName;
+        this.date = date;
+        this.time = time;
+        this.status = status;
+        this.fee = fee;
+        this.imgDoc = imgDoc;
+        this.imgCus = imgCus;
+        this.service = service;
+        this.dateStatus = dateStatus;
+    }
+
+    public Date getDateStatus() {
+        return dateStatus;
+    }
+
+    public void setDateStatus(Date dateStatus) {
+        this.dateStatus = dateStatus;
+    }
+    
+   
     public String getBookingID() {
         return bookingID;
     }

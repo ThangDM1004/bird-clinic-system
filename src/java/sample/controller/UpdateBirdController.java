@@ -20,54 +20,7 @@ import sample.dto.PatientDTO;
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
         maxFileSize = 1024 * 1024 * 10, // 10MB
         maxRequestSize = 1024 * 1024 * 50)	// 50MB
-public class AddBirdController extends HttpServlet {
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Xử lý dữ liệu đăng ký
-        try {
-            PatientDAO dao = new PatientDAO();
-            String user_name = request.getParameter("user_name");
-            String bird_name = request.getParameter("bird_name");
-            String age = request.getParameter("age");
-            String gender = request.getParameter("gender");
-            String species = request.getParameter("species");
-            String species_id = dao.getIDSpecies(species).trim();
-            String patient_id = Integer.toString(dao.MaxId() + 1);
-
-            // Lưu hình ảnh
-            Part part = request.getPart("bird_image");
-            String fileName = getFileName(part);
-            String realPath = request.getServletContext().getRealPath("/assets/img/patients/");// Đường dẫn để lưu trữ hình ảnh trên máy tính
-            String url = "assets/img/patients/" + fileName;
-            if ("".equals(fileName)) {
-                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, null, user_name);
-                boolean check_Insert = dao.addBird(bird);
-                if (check_Insert) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("status", "AddBirdSucces");
-                    response.sendRedirect("patient-dashboard.jsp");
-                } else {
-                    response.sendRedirect("index-2.jsp");
-                }
-            } else {
-                part.write(realPath + fileName);
-                PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, url, user_name);
-                boolean check_Insert = dao.addBird(bird);
-                if (check_Insert) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("status", "AddBirdSucces");
-                    response.sendRedirect("patient-dashboard.jsp");
-                } else {
-                    response.sendRedirect("index-2.jsp");
-                }
-            }
-
-        } catch (Exception e) {
-
-        }
-
-    }
+public class UpdateBirdController extends HttpServlet {
 
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
@@ -79,4 +32,50 @@ public class AddBirdController extends HttpServlet {
         }
         return "";
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            String name_bird = request.getParameter("birdname");
+            String species = request.getParameter("species");
+            String age = request.getParameter("age");
+            String gender = request.getParameter("gender");
+            String patient_id = request.getParameter("patient_id");
+            String species_id = request.getParameter("species_id");
+
+            Part part = request.getPart("image_bird");
+            String fileName = getFileName(part);
+            String realPath = request.getServletContext().getRealPath("/assets/img/patients/");// Đường dẫn để lưu trữ hình ảnh trên máy tính
+            String url = "assets/img/patients/" + fileName;
+            PatientDAO dao = new PatientDAO();
+            if ("".equals(fileName)) {
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                boolean checkUpdate = dao.UpdateBirdNoImage(bird);
+                if (checkUpdate == true) {
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
+            } else {
+                part.write(realPath + fileName);
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                boolean checkUpdate = dao.UpdateBird(bird);
+                if (checkUpdate == true) {
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("status", "AddBirdSucces");
+                    response.sendRedirect("patient-dashboard.jsp");
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
 }

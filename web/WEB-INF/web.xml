@@ -60,6 +60,24 @@
     <servlet>
         <servlet-name>SetStatusBlogController</servlet-name>
         <servlet-class>sample.controller.SetStatusBlogController</servlet-class>
+        <servlet-name>UpdateBirdController</servlet-name>
+        <servlet-class>sample.controller.UpdateBirdController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BirdnameCheckController</servlet-name>
+        <servlet-class>sample.controller.BirdnameCheckController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageBirdController</servlet-name>
+        <servlet-class>sample.controller.ImageBirdController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BirdnameCheckUpdateController</servlet-name>
+        <servlet-class>sample.controller.BirdnameCheckUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageUpdateBirdController</servlet-name>
+        <servlet-class>sample.controller.ImageUpdateBirdController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -120,6 +138,24 @@
     <servlet-mapping>
         <servlet-name>SetStatusBlogController</servlet-name>
         <url-pattern>/SetStatusBlogController</url-pattern>
+        <servlet-name>UpdateBirdController</servlet-name>
+        <url-pattern>/UpdateBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BirdnameCheckController</servlet-name>
+        <url-pattern>/BirdnameCheckController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageBirdController</servlet-name>
+        <url-pattern>/ImageBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BirdnameCheckUpdateController</servlet-name>
+        <url-pattern>/BirdnameCheckUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageUpdateBirdController</servlet-name>
+        <url-pattern>/ImageUpdateBirdController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

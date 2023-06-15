@@ -76,8 +76,43 @@ jQuery(document).ready(function () {
             }
         });
     });
-    
-    
+
+    $('#myphone_').change(function () {
+        var myphone = $('#myphone_').val();
+        $.ajax({
+            type: 'POST',
+            data: {myphone: myphone},
+            url: 'PhoneCheckController',
+            success: function (result_2) {
+                if (result_2 === 'It looks like you may have entered an incorrect phone!') {
+                    $('#result_2').html(result_2);
+                    $('#result_2').css('color', 'red');
+                } else {
+                    $('#result_2').html('Phone is available to use !');
+                    $('#result_2').css('color', 'green');
+                }
+
+                if (result_2 === 'It looks like you may have entered an incorrect phone!') {
+                    $('#result_2').removeClass().addClass('already-exists');
+                    isPhoneAvailable = false;
+                } else {
+                    $('#result_2').removeClass().addClass('available');
+                    isPhoneAvailable = true;
+                }
+
+                enableSubmitButton();
+            }
+        });
+    });
+
+    function enableSubmitButton() {
+        if (isPhoneAvailable) {
+            $('#submit').prop('disabled', false);
+        } else {
+            $('#submit').prop('disabled', true);
+        }
+    }
+
 });
 
 

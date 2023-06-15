@@ -545,5 +545,8 @@ public class UserDAO {
         }
         return list;
     }
-
+    public static void main(String[] args) {
+        UserDAO dao = new UserDAO();
+        System.out.println(dao.getDoctorByID("doctor1").getImage());
+    }
 }

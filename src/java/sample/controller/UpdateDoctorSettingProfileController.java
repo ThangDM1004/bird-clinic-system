@@ -39,11 +39,11 @@ public class UpdateDoctorSettingProfileController extends HttpServlet {
         String bio = request.getParameter("bio");
         UserDAO dao = new UserDAO();
         Part filePart = request.getPart("file");
-        String uploadPath = "D:\\Sem5\\SWP391\\BirdClinicSystem\\bird-clinic-system\\web\\assets\\img\\doctors";
+        String realPath = request.getServletContext().getRealPath("/assets/img/doctors/");
         String fileName = filePart.getSubmittedFileName(); // Lấy tên tệp ảnh gốc
         if (!fileName.isEmpty()) {
 
-            String destinationPath = uploadPath + "\\" + fileName;
+            String destinationPath = realPath + fileName;
 
             filePart.write(destinationPath);
 

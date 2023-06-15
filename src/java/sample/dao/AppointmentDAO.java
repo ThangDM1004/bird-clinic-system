@@ -242,4 +242,43 @@ public class AppointmentDAO {
         return url;
     }
 
+    private List<AppointmentDTO> getAppointmentForUser(String user_name) throws SQLException {
+        List<AppointmentDTO> list = new ArrayList<>();
+        AppointmentDAO dao = new AppointmentDAO();
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("SELECT booking_id, username_customer, username_doctor,booking_date, service_id, patient_id, booking_status, latest_date\n"
+                    + "FROM (\n"
+                    + "  SELECT tbl_Booking.booking_id, username_customer,tbl_Booking.username_doctor, tbl_Booking.date AS booking_date, service_id, patient_id, booking_status, tbl_Booking_Status_Details.date AS latest_date,\n"
+                    + "         ROW_NUMBER() OVER (PARTITION BY tbl_Booking.booking_id ORDER BY tbl_Booking_Status_Details.date DESC) AS row_num\n"
+                    + "  FROM tbl_Booking\n"
+                    + "  JOIN tbl_Booking_Status_Details ON tbl_Booking.booking_id = tbl_Booking_Status_Details.booking_id\n"
+                    + "  WHERE username_customer = ?\n"
+                    + ") AS subquery\n" +
+            "WHERE row_num = 1;");
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                AppointmentDTO a = new AppointmentDTO(rs.getString(1), rs.getString(3), "", rs.getString(2), rs.getDate(4), "", rs.getString(7), 0, "", "", rs.getString(5), rs.getDate(8));
+                String imgCus = dao.get_image_cus(a.getCustomerName());
+                String imgDoc = dao.get_image_doctor(a.getDoctorName());
+                list.add(a);
+            }
+            return list;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
+    }
+
 }
