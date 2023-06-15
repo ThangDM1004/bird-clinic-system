@@ -808,7 +808,8 @@
         %>
 
 
-        <%            HttpSession session5 = request.getSession();
+        <%
+            HttpSession session5 = request.getSession();
             String status_3 = (String) session5.getAttribute("status");
             if (status_3 == "setStatus_5") {
         %>     
