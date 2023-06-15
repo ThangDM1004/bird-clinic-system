@@ -21,9 +21,8 @@
                 <div class="col-sm-12">
                     <h3 class="page-title">List of Customer</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-                        <li class="breadcrumb-item active">Patient</li>
+                        <li class="breadcrumb-item"><a href="javascript:(0);">Admin</a></li>
+                        <li class="breadcrumb-item active">Customer</li>
                     </ul>
                 </div>
             </div>

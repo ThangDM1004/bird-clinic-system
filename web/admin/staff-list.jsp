@@ -55,8 +55,8 @@
                             <h3 class="page-title">List of Staff</h3>
                             <ul class="breadcrumb">
                                 <!--                                <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>-->
-                                <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-                                <li class="breadcrumb-item active">Doctor</li>
+                                <li class="breadcrumb-item"><a href="javascript:(0);">Admin</a></li>
+                                <li class="breadcrumb-item active">Staff</li>
                             </ul>
                         </div>
                         <!--                            PHẦN ADD THÊM BÁC SĨ-->
