@@ -48,7 +48,7 @@
     <body>
         <script src="assets/ckeditor/ckeditor.js"></script>
         <script>
-           
+
 
         <%
             HttpSession session1 = request.getSession();
@@ -529,7 +529,10 @@
         %>
         <!-- jQuery -->
 
+        <script src="assets/ckeditor/ckeditor.js"></script>
+
         <script src="assets/js/load-main.js"></script>
+
 
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 

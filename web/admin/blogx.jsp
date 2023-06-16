@@ -38,8 +38,8 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
-
         <script src="assets/ckeditor/ckeditor.js"></script>
+
         <!--[if lt IE 9]>
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
@@ -209,12 +209,47 @@
                     </div>
                 </div>
 
-                <div class="row">
+
+                <div class="row" style="border: 1px solid #f0f0f0; background: #fff; border-radius: 3px;">
                     <form style="width: 100%;">
-                        <textarea name="content" cols="30" rows="10" style="width: 100%;"></textarea>
-                        <script>
-                            CKEDITOR.replace('content');
-                        </script>
+
+
+                        <div class="col-auto" style="margin-bottom: 15px; margin-top: 10px;">
+                            <label style="display: block; margin-bottom: 5px; " for="inputTitle">Title *</label>
+                            <input id="inputTitle" placeholder="this content will be displayed in the TITLE of blog *">
+                            <style>
+                                input {
+                                    background-color: #fff;
+                                    padding: 10px;
+                                    border: 1px solid #ccc;
+                                    font-size: 15px;
+                                    color: #333;
+                                    width: 100%;
+                                }
+                                #inputTitle::placeholder {
+                                    color: #b2b2b2; /* Màu chữ nhạt hơn */
+                                }
+                            </style>
+                        </div>
+
+                        <div class="col-auto" style="width: 50; margin-bottom: 10px;">
+                            <div class="upload-img">
+                                <div class="change-photo-btn">
+                                    <span style="display: block;"><i class="fa fa-upload"></i> Upload Photo</span>
+                                    <input id="bird_image_dash" name="image_bird" type="file" class="upload" style="width: 30%;">
+                                </div>
+                                <small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small>
+                            </div>
+                        </div>
+                        <div class="col-auto" style="margin-bottom: 10px;">
+                            <label style="display: block; margin-bottom: 5px;" for="inputDescription">Content of Blog *</label>
+                            <textarea id="inputDescription" name="content" cols="30" rows="10" style="width: 100%;" placeholder=""></textarea>
+                        </div>
+
+                        <textarea id="content" name="content" cols="30" rows="10" style="width: 100%;"></textarea>
+
+
+
                     </form>
                 </div>
 
@@ -222,6 +257,18 @@
         </div>
         <!-- /Page Wrapper -->
 
+
+
+
+        <!-- Add Modal -->
+
+        <script>
+            CKEDITOR.replace('content');
+        </script>
+
+
+
+        <!-- /ADD Modal -->
 
 
         <!-- /ADD Modal -->
@@ -241,17 +288,17 @@
                     <div class="row form-row">
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
-                                <label>Updating</label>
+
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+
     <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/ckeditor/ckeditor.js"></script>
 
     <!-- Bootstrap Core JS -->
     <script src="assets/js/popper.min.js"></script>
