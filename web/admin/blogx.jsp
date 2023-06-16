@@ -39,6 +39,7 @@
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
 
+        <script src="assets/ckeditor/ckeditor.js"></script>
         <!--[if lt IE 9]>
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
@@ -61,10 +62,10 @@
                             </ul>
                         </div>
                         <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                        <div class="col-sm-5 col">
-                            <a href="#Add_Specialities_details" data-toggle="modal"
-                               class="btn btn-primary float-right mt-2">Add Blog</a>
-                        </div>
+                        <!--                        <div class="col-sm-5 col">
+                                                    <a href="#Add_Specialities_details" data-toggle="modal"
+                                                       class="btn btn-primary float-right mt-2">Add Blog</a>
+                                                </div>-->
                     </div>
 
                 </div>
@@ -187,7 +188,6 @@
                                                         .slider.round:before {
                                                             border-radius: 50%;
                                                         }
-
                                                     </style>
                                                 </td>
                                             </tr>
@@ -201,110 +201,31 @@
                     </div>			
                 </div>
 
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-7 col-auto">
+                            <h3 class="page-title">Add new Blogs</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <form style="width: 100%;">
+                        <textarea name="content" cols="30" rows="10" style="width: 100%;"></textarea>
+                        <script>
+                            CKEDITOR.replace('content');
+                        </script>
+                    </form>
+                </div>
+
             </div>			
         </div>
         <!-- /Page Wrapper -->
 
 
-        <!-- Add Modal -->
-        <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add Doctor</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Image Profile</label>
-                                        <input type="file" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-md-7">
-                                    <div class="form-group">
-                                        <label>Full Name</label>
-                                        <input style="width: 250px;" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Gender</label>
-                                        <br>
-                                        <select>
-                                            <option value="">Male</option>
-                                            <option value="">Female</option>
-                                            <option value="">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-md-7">
-                                    <div class="form-group">
-                                        <label>Date of Birth</label>
-                                        <input type="date" placeholder="$" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Specialities</label>
-                                        <br>
-                                        <select style="height: 40px;  border-radius: 4px; boder: 1px solid #ff1;">
-                                            <option style="height: 20px;" value="">Internal</option>
-                                            <option style="height: 20px;" value="">External</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Email Contact</label>
-                                        <input  type="email" placeholder="abcxyz@gmail.com" class="form-control"></input>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Phone Contact</label>
-                                        <input  type="number" class="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Username</label>
-                                        <input  type="text"  class="form-control"></input>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Add new</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
         <!-- /ADD Modal -->
     </div>
 
