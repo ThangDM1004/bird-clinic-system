@@ -1,18 +1,16 @@
 jQuery(document).ready(function () {
     var isBirdnameAvailable = false;
     var isBirdImgAvailable = false;
-    
+
     function enableSubmitButton() {
         if (isBirdnameAvailable === true && isBirdImgAvailable === true) {
             $('#submit').prop('disabled', false);
         } else if (isBirdnameAvailable === true && isBirdImgAvailable === false) {
             $('#submit').prop('disabled', true);
-        }else{
-              $('#submit').prop('disabled', true);
+        } else {
+            $('#submit').prop('disabled', true);
         }
     }
-
-
     $('#birdname').change(function () {
         var birdname = $('#birdname').val();
         var username = $('#username').val();
@@ -30,7 +28,7 @@ jQuery(document).ready(function () {
                     $('#result').removeClass().addClass('already-exists');
                     isBirdnameAvailable = false;
                 }
-                    enableSubmitButton();
+                enableSubmitButton();
             }
         });
     });
