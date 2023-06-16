@@ -54,6 +54,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         document.getElementById("main").innerHTML = this.responseText;
                         var table = $('.datatable').DataTable();
+
                     }
                 }
                 ;
@@ -61,17 +62,19 @@
                 xhttp.send();
             }
 
+
             function Blogs() {
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function () {
                     if (this.readyState === 4 && this.status === 200) {
                         document.getElementById("main").innerHTML = this.responseText;
                     }
-                }
-                ;
+                };
+
                 xhttp.open("GET", "blogx.jsp", true);
                 xhttp.send();
             }
+
         </script>
 
         <%
@@ -860,7 +863,10 @@
         %>
         <!-- jQuery -->
 
+        <script src="assets/ckeditor/ckeditor.js"></script>
+
         <script src="assets/js/load-main.js"></script>
+
 
         <script src="assets/js/jquery-3.2.1.min.js"></script>
 

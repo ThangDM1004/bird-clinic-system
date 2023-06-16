@@ -1,3 +1,5 @@
+
+
 var links = document.querySelectorAll("#sidebar-menu a");
 for (var i = 0; i < links.length; i++) {
     links[i].addEventListener("click", handleClick);
@@ -114,6 +116,12 @@ function Blogs() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
             var table = $('.datatable').DataTable();
+            var ckeditorScript = document.createElement('script');
+            ckeditorScript.src = 'assets/ckeditor/ckeditor.js';
+            ckeditorScript.onload = function () {
+                CKEDITOR.replace('content');
+            };
+            document.head.appendChild(ckeditorScript);
         }
     }
     ;

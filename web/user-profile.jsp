@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
+
         <div class="card">
             <div class="card-body">
 
