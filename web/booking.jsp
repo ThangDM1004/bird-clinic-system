@@ -502,7 +502,10 @@
 
         </div>
         <!-- /Main Wrapper -->
-
+        <script>
+            var submitButton = document.querySelector(".submit-section .submit-btn");
+            submitButton.disabled = true;
+        </script>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
 
