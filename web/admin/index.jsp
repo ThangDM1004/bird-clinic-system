@@ -42,6 +42,7 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <script src="assets/ckeditor/ckeditor.js"></script>
     </head>
 
     <body>
@@ -813,7 +814,9 @@
             String status_3 = (String) session5.getAttribute("status");
             if (status_3 == "setStatus_5") {
         %>     
+
         <script>
+
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -822,6 +825,7 @@
                 }
             }
             ;
+
             xhttp.open("GET", "blogx.jsp", true);
             xhttp.send();
         </script>
@@ -830,7 +834,8 @@
         %>
 
 
-        <%  HttpSession se = request.getSession();
+        <%
+            HttpSession se = request.getSession();
             String status1 = (String) se.getAttribute("status_dashboard");
             if (status1 == "Service") {
         %>

@@ -4,6 +4,9 @@
     Author     : MSI AD
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="sample.dao.BlogDAO"%>
+<%@page import="sample.dto.BlogDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html lang="en">
@@ -118,158 +121,43 @@
             <!-- Page Content -->
             <div class="content">
                 <!--Post Filter-->
+                <%
+                    BlogDAO dao = new BlogDAO();
+                    List<BlogDTO> list = dao.getListCategoriesBlog();
+                %>
                 <div class="post-filter container">
                     <span class="filter-item active-filter" data-filter='all'>All</span>
-                    <span class="filter-item " data-filter='design'>Design</span>
-                    <span class="filter-item " data-filter='tech'>Tech</span>
-                    <span class="filter-item " data-filter='mobile'>Mobile</span>
+                    <% for (BlogDTO blog : list) {%>
+                    <span class="filter-item " data-filter='<%=blog.getCategories_blog_name()%>'><%=blog.getCategories_blog_name()%></span>
+                    <%
+                        }
+                    %>
                 </div>
 
                 <!--Post-->
                 <section class="post container">
                     <!--Post Box 1-->
-                    <div class="post-box mobile">
-                        <img src="assets/img/post/post-1.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Mobile</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
+                    <%
+                        List<BlogDTO> list_blog = dao.getListBlog();
+                        for (BlogDTO blog : list_blog) {
+                    %>
+                    <div class="post-box <%=blog.getCategories_blog_name()%>">
+                        <img src="<%=blog.getImage()%>" alt="post-1" class="post-img">
+                        <h2 class="category"><%=blog.getCategories_blog_name()%></h2>
+                        <a href="blog_details.jsp?blogID=<%=blog.getBlog_id()%>" class="post-title">
+                            <%=blog.getTitle()%>
                         </a>
                         <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
+                        <p class="post-description"><%=blog.getDetails()%></p>
                         <!--Profile author-->
                         <div class="profile">
                             <img src="assets/img/post/profile-1.jpg" alt="" class="profile-img">
                             <span class="profile-name">Marques Brown</span>
                         </div>
-                    </div>
-
-                    <!--Post Box 2-->
-                    <div class="post-box tech">
-                        <img src="assets/img/post/post-2.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Tech</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-2.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Thomas Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 3-->
-                    <div class="post-box design">
-                        <img src="assets/img/post/post-1.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Design</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-3.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 4-->
-                    <div class="post-box mobile">
-                        <img src="assets/img/post/post-4.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Mobile</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-1.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 5-->
-                    <div class="post-box tech">
-                        <img src="assets/img/post/post-5.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Tech</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-2.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Thomas Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 6-->
-                    <div class="post-box design">
-                        <img src="assets/img/post/post-6.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Design</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-3.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 7-->
-                    <div class="post-box mobile">
-                        <img src="assets/img/post/post-7.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Mobile</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-1.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 8-->
-                    <div class="post-box tech">
-                        <img src="assets/img/post/post-8.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Tech</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-2.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Thomas Brown</span>
-                        </div>
-                    </div>
-
-                    <!--Post Box 9-->
-                    <div class="post-box design">
-                        <img src="assets/img/post/post-9.jpg" alt="post-1" class="post-img">
-                        <h2 class="category">Design</h2>
-                        <a href="blog_details.jsp" class="post-title">
-                            How To Create Best UX Design With Adobe
-                        </a>
-                        <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptas iure odio facilis ipsam eum, in quibusdam modi! Perferendis rerum qui tempore mollitia cupiditate, repudiandae veritatis?</p>
-                        <!--Profile author-->
-                        <div class="profile">
-                            <img src="assets/img/post/profile-3.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
-                        </div>
-                    </div>
+                    </div>   
+                    <%
+                        }
+                    %>
                 </section>
 
             </div>	

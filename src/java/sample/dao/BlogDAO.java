@@ -48,6 +48,32 @@ public class BlogDAO {
         return list;
     }
 
+    public List<BlogDTO> getListBlogByID(String id) {
+        List<BlogDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT blog_id, title,detail,date_post,image,status,user_name,author,c.categories_blog_name FROM tbl_Blog x, tbl_Category_Blog c WHERE x.categories_blog_id = c.categories_blog_id AND x.blog_id = ?";
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                BlogDTO b = new BlogDTO(
+                        rs.getString(1),
+                        rs.getNString(2),
+                        rs.getNString(3),
+                        rs.getDate(4),
+                        rs.getString(5),
+                        rs.getBoolean(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9));
+                list.add(b);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public void setStatusByBlogID(String blog_id, int status) {
         String query = "UPDATE tbl_Blog SET status = ? WHERE blog_id = ?";
         try {
@@ -60,13 +86,30 @@ public class BlogDAO {
         }
     }
 
+    public List<BlogDTO> getListCategoriesBlog() {
+        List<BlogDTO> list = new ArrayList<>();
+        String query = "SELECT DISTINCT c.categories_blog_name FROM tbl_Blog b JOIN tbl_Category_Blog c ON b.categories_blog_id = c.categories_blog_id ";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String categoryName = rs.getString("categories_blog_name");
+                BlogDTO blogDTO = new BlogDTO();
+                blogDTO.setCategories_blog_name(categoryName);
+                list.add(blogDTO);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-        List<BlogDTO> list = dao.getListBlog();
-//        for (BlogDTO blogDTO : list) {
-//            System.out.println(blogDTO);
-//        }
+        List<BlogDTO> list = dao.getListBlogByID("BL1");
+        for (BlogDTO blogDTO : list) {
+            System.out.println(blogDTO);
+        }
 
-        dao.setStatusByBlogID("BL1", 0);
     }
 }
