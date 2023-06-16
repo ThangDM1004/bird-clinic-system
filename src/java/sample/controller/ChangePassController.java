@@ -39,7 +39,6 @@ public class ChangePassController extends HttpServlet {
             String password = request.getParameter("password");
 
             String newPass = request.getParameter("newPass");
-            String newConPass = request.getParameter("newConPass");
             String incorectPass = "Current password is incorrect. Please try again !";
             String correctPass = "Change password successfully !";
 

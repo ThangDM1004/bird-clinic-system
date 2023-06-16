@@ -31,6 +31,7 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,6 +43,10 @@
 
     </head>
     <body>
+
+
+
+
         <%
             HttpSession s = request.getSession();
             UserDTO user = (UserDTO) s.getAttribute("account");
@@ -198,6 +203,7 @@
             </header>
             <!-- /Header -->
 
+
             <!-- Breadcrumb -->
             <div class="breadcrumb-bar">
                 <div class="container-fluid">
@@ -261,7 +267,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a type="button" onclick="ChangePass()()">
+                                                <a type="button" onclick="ChangePass()">
                                                     <i class="fas fa-lock"></i>
                                                     <span>Change Password</span>
                                                 </a>
@@ -532,9 +538,10 @@
         </script>
         <%
             }
-
         %>
-        <script src="assets/js/checkValidate.js"></script>
+
+        
+
         <script src="assets/js/checkBird_validate.js"></script>
         <script src="assets/js/checkUpdateValidate.js"></script>
         <!-- /Main Wrapper -->

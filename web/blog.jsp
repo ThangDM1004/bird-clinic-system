@@ -138,7 +138,7 @@
                 <section class="post container">
                     <!--Post Box 1-->
                     <%
-                        List<BlogDTO> list_blog = dao.getListBlog();
+                        List<BlogDTO> list_blog = dao.getListBlogHome();
                         for (BlogDTO blog : list_blog) {
                     %>
                     <div class="post-box <%=blog.getCategories_blog_name()%>">
