@@ -85,6 +85,10 @@
         <servlet-name>DeleteBirdController</servlet-name>
         <servlet-class>sample.controller.DeleteBirdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingSelectDayController</servlet-name>
+        <servlet-class>sample.controller.BookingSelectDayController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
