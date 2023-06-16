@@ -11,15 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import sample.dao.UserDAO;
-import sample.dto.UserDTO;
 
 /**
  *
- * @author Minh
+ * @author sasak
  */
-public class LoginController extends HttpServlet {
+public class BookingSelectDayController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,31 +30,12 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        String errorLogin = "The username or password is invalid";
-
-        UserDAO dao = new UserDAO();
-        UserDTO user = dao.Login(userName, password);
-        if (user == null) {
-            request.setAttribute("errorLogin", errorLogin);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            String getRoleID = user.getRole().trim();
-            if (getRoleID.equalsIgnoreCase("1") || getRoleID.equalsIgnoreCase("5")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("admin/index.jsp");
-            } else if (getRoleID.equalsIgnoreCase("3")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("doctor-dashboard.jsp");
-            }else {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("index-2.jsp");
-            }
-
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            String selectedDay = request.getParameter("selectedDay");
+            String selectedSlot = request.getParameter("selectedSlot");
+            request.setAttribute("s", selectedDay);
+            request.getRequestDispatcher("checkout.jsp").forward(request, response);
         }
     }
 

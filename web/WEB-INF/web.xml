@@ -61,6 +61,10 @@
         <servlet-name>UpdateBirdController</servlet-name>
         <servlet-class>sample.controller.UpdateBirdController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingSelectDayController</servlet-name>
+        <servlet-class>sample.controller.BookingSelectDayController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -120,6 +124,10 @@
     <servlet-mapping>
         <servlet-name>UpdateBirdController</servlet-name>
         <url-pattern>/UpdateBirdController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingSelectDayController</servlet-name>
+        <url-pattern>/BookingSelectDayController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
