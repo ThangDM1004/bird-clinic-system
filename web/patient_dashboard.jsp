@@ -52,8 +52,12 @@
                         <%
                             AppointmentDAO daoApp = new AppointmentDAO();
                             List<AppointmentDTO> ls = daoApp.getAppointmentForUser(user.getUsername());
+                            if (ls == null) {
+                        %>
+                        <h1> Bạn chưa có lịch nào </h1>
+                        <%
+                        } else {
                             for (AppointmentDTO apt : ls) {
-
                         %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
@@ -65,7 +69,6 @@
                                                 <th>Appt Date</th>
                                                 <th>Booking Date</th>
                                                 <th>Amount</th>
-                                                <!--                                                                    <th>Follow Up</th>-->
                                                 <th>Status</th>
                                                 <th></th>
                                             </tr>
@@ -75,7 +78,7 @@
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+                                                            <img class="avatar-img rounded-circle" src="<%= !apt.getImgDoc().equals("") ? apt.getImgDoc() : "assets/img/user_image_default.png" %>" alt="User Image">
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= apt.getDoctorName()%><span><%= apt.getSpeciality()%></span></a>
                                                     </h2>
@@ -102,7 +105,8 @@
                                 </div>
                             </div>
                         </div>
-                        <% }%>
+                        <% }
+                            }%>
                     </div>
 
 
@@ -148,7 +152,7 @@
                                                             <i class="far fa-eye"></i> View
                                                         </a>
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                            <i class="fas fa-print"></i> Print
+                                                            <i class="fas fa-window-restore"></i> Feedback
                                                         </a>
                                                     </div>
                                                 </td>

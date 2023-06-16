@@ -379,6 +379,40 @@ public class AppointmentDAO {
         return date;
     }
 
+    public String getDocName(String username_doc) throws SQLException {
+        String docname = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select fullname\n"
+                        + "from tbl_Account\n"
+                        + "where user_name = ?");
+                ptm.setString(1, username_doc);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    docname = rs.getString("fullname");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return docname;
+    }
+
     public List<AppointmentDTO> getAppointmentForUser(String user_name) throws SQLException {
         List<AppointmentDTO> list = new ArrayList<>();
         AppointmentDAO dao = new AppointmentDAO();
@@ -403,7 +437,8 @@ public class AppointmentDAO {
                 double fee = dao.getFeeSer(a.getService().trim());
                 String ser_name = dao.getSerNam(a.getService());
                 Date date = dao.getDateBooking(a.getBookingID());
-                a = new AppointmentDTO(rs.getString(1), rs.getString(3), spec, rs.getString(2), rs.getDate(4), rs.getString(9), rs.getString(7), fee, imgDoc, imgCus, ser_name, date);
+                String docname = dao.getDocName(a.getDoctorName());
+                a = new AppointmentDTO(rs.getString(1), docname.trim(), spec, rs.getString(2), rs.getDate(4), rs.getString(9), rs.getString(7), fee, imgDoc, imgCus, ser_name, date);
                 list.add(a);
             }
             return list;
