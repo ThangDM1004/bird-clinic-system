@@ -173,6 +173,10 @@
         <servlet-name>DeleteBirdController</servlet-name>
         <url-pattern>/DeleteBirdController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingSelectDayController</servlet-name>
+        <url-pattern>/BookingSelectDayController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
