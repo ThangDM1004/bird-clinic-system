@@ -23,4 +23,9 @@ function Click(element) {
         // Xóa thuộc tính name trong thẻ <input> được click
         inputElement.removeAttribute("name");
     }
+    if (document.querySelector(".timing.selected")) {
+        submitButton.disabled = false; // Enable nút submit
+    } else {
+        submitButton.disabled = true; // Disable nút submit
+    }
 }
