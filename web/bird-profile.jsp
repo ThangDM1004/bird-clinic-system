@@ -98,19 +98,19 @@
                         <div class="submit-section">
                             <button disabled="true" id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                             <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
+
                             
-                            <a  href="#Add_Specialities_details" data-toggle="modal"
-                               class="btn btn-primary submit-btn">Add</a>
-                            
+
                         </div>
-                        
+
                         <%
                                 if (count == 1) {
                                     break;
                                 }
                             }
                         %>
-
+                        <a  href="#Add_Specialities_details" data-toggle="modal"
+                            class="btn btn-primary submit-btn">Add</a>
                         <!-- /Profile Settings Form -->
                     </div>
                 </form>
