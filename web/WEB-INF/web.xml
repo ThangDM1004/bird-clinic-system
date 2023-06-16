@@ -62,6 +62,26 @@
         <servlet-class>sample.controller.UpdateBirdController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>BirdnameCheckController</servlet-name>
+        <servlet-class>sample.controller.BirdnameCheckController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageBirdController</servlet-name>
+        <servlet-class>sample.controller.ImageBirdController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BirdnameCheckUpdateController</servlet-name>
+        <servlet-class>sample.controller.BirdnameCheckUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageUpdateBirdController</servlet-name>
+        <servlet-class>sample.controller.ImageUpdateBirdController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBirdController</servlet-name>
+        <servlet-class>sample.controller.DeleteBirdController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>BookingSelectDayController</servlet-name>
         <servlet-class>sample.controller.BookingSelectDayController</servlet-class>
     </servlet>
