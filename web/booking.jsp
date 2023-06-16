@@ -299,7 +299,6 @@
                                                     </ul>
                                                 </div>
                                                 <!-- /Day Slot -->
-
                                             </div>
                                         </div>
                                     </div>
