@@ -30,11 +30,11 @@ public class ImageUpdateBirdController extends HttpServlet {
             if ("jpg".equals(parts[parts.length - 1]) || "png".equals(parts[parts.length - 1])) {
                 response.setContentType("text/html");
                 PrintWriter out = response.getWriter();
-                out.print("Image is available to use !");
+                out.print("Image is available to use");
             } else {
                 response.setContentType("text/html");
                 PrintWriter out = response.getWriter();
-                out.print("Allowed JPG, or PNG, try another!");
+                out.print("Allowed JPG, or PNG, try another");
             }
         } catch (Exception e) {
             e.getMessage();

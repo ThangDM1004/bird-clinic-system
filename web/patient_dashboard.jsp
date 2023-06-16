@@ -4,6 +4,10 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.UserDTO"%>
+<%@page import="sample.dto.AppointmentDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dao.AppointmentDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,8 +17,15 @@
     </head>
     <body>
         <%
-             
+            HttpSession s = request.getSession();
+            UserDTO user = (UserDTO) s.getAttribute("account");
+            if (user != null) {
+
+            } else {
+                response.sendRedirect("login.jsp");
+            }
         %>
+
         <div class="card">
             <div class="card-body pt-0">
 
@@ -33,10 +44,17 @@
                 <!-- /Tab Menu -->
 
                 <!-- Tab Content -->
-                <div class="tab-content pt-0">
 
+                <div class="tab-content pt-0">
                     <!-- Appointment Tab -->
+
                     <div id="pat_appointments" class="tab-pane fade show active">
+                        <%
+                            AppointmentDAO daoApp = new AppointmentDAO();
+                            List<AppointmentDTO> ls = daoApp.getAppointmentForUser(user.getUsername());
+                            for (AppointmentDTO apt : ls) {
+
+                        %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -47,7 +65,7 @@
                                                 <th>Appt Date</th>
                                                 <th>Booking Date</th>
                                                 <th>Amount</th>
-                                                <th>Follow Up</th>
+                                                <!--                                                                    <th>Follow Up</th>-->
                                                 <th>Status</th>
                                                 <th></th>
                                             </tr>
@@ -59,14 +77,14 @@
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
                                                         </a>
-                                                        <a href="doctor-profile.jsp">Dr. Ruby Perrin <span>Dental</span></a>
+                                                        <a href="doctor-profile.jsp"><%= apt.getDoctorName()%><span><%= apt.getSpeciality()%></span></a>
                                                     </h2>
                                                 </td>
-                                                <td>14 Nov 2019 <span class="d-block text-info">10.00 AM</span></td>
-                                                <td>12 Nov 2019</td>
-                                                <td>$160</td>
-                                                <td>16 Nov 2019</td>
-                                                <td><span class="badge badge-pill bg-success-light">Confirm</span></td>
+                                                <td><%= apt.getDate()%><span class="d-block text-info"><%= apt.getTime()%></span></td>
+                                                <td><%= apt.getDateBooking()%></td>
+                                                <td><%= apt.getFee()%></td>
+<!--                                                            //         <td><%= apt.getDate_()%></td>-->
+                                                <td><span class="badge badge-pill bg-success-light">Confirm </span></td>
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
@@ -84,7 +102,10 @@
                                 </div>
                             </div>
                         </div>
+                        <% }%>
                     </div>
+
+
                     <!-- /Appointment Tab -->
 
                     <!-- Prescription Tab -->

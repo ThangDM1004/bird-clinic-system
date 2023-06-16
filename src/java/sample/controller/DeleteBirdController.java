@@ -12,14 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sample.dao.UserDAO;
-import sample.dto.UserDTO;
+import sample.dao.PatientDAO;
 
 /**
  *
- * @author Minh
+ * @author MSI AD
  */
-public class LoginController extends HttpServlet {
+public class DeleteBirdController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,30 +32,18 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String userName = request.getParameter("username");
-        String password = request.getParameter("password");
-        String errorLogin = "The username or password is invalid";
-
-        UserDAO dao = new UserDAO();
-        UserDTO user = dao.Login(userName, password);
-        if (user == null) {
-            request.setAttribute("errorLogin", errorLogin);
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        } else {
-            String getRoleID = user.getRole().trim();
-            if (getRoleID.equalsIgnoreCase("1") || getRoleID.equalsIgnoreCase("5")) {
+        try {
+            String patient_id = request.getParameter("patient_id");
+            PatientDAO dao = new PatientDAO();
+            boolean checkDelete = dao.DeleteBird(0, patient_id);
+            if (checkDelete == true) {
                 HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("admin/index.jsp");
-            } else if (getRoleID.equalsIgnoreCase("3")) {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
-                response.sendRedirect("doctor-dashboard.jsp");
-            }else {
-                HttpSession session = request.getSession();
-                session.setAttribute("account", user);
+                session.setAttribute("status", "AddBirdSucces");
+                response.sendRedirect("patient-dashboard.jsp");
+            } else {
                 response.sendRedirect("index-2.jsp");
             }
+        } catch (Exception e) {
 
         }
     }

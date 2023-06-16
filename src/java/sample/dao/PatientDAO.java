@@ -20,9 +20,9 @@ import sample.utils.Utils;
  */
 public class PatientDAO {
 
-    private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image\n"
+    private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image, pb.status_bird\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
-            + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? ";
+            + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? and pb.status_bird = 'True'";
 
     public List<PatientDTO> getBird(String user_name) {
         List<PatientDTO> list = new ArrayList<>();
@@ -42,7 +42,8 @@ public class PatientDAO {
                     String age = rs.getString("age").trim();
                     String gender = rs.getString("gender").trim();
                     String image = rs.getString("image");
-                    PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, image, user_name);
+                    boolean status = Boolean.parseBoolean(rs.getString("status_bird"));
+                    PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, image, user_name, status);
                     list.add(bird);
                 }
             }
@@ -90,7 +91,7 @@ public class PatientDAO {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new PatientDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8)));
+                list.add(new PatientDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getBoolean(9)));
             }
             return list;
         } catch (Exception e) {
@@ -129,7 +130,7 @@ public class PatientDAO {
         }
         return list;
     }
-    private static final String ADD_BIRD = "INSERT INTO tbl_Patient_Bird(patient_id,bird_name,species_id,age,gender,image,user_name) " + " VALUES(?,?,?,?,?,?,?)";
+    private static final String ADD_BIRD = "INSERT INTO tbl_Patient_Bird(patient_id,bird_name,species_id,age,gender,image,user_name,status_bird) " + " VALUES(?,?,?,?,?,?,?,?)";
 
     public boolean addBird(PatientDTO bird) {
         boolean check = false;
@@ -146,6 +147,7 @@ public class PatientDAO {
                 ps.setString(5, bird.getGender());
                 ps.setString(6, bird.getImage());
                 ps.setString(7, bird.getUser_name());
+                ps.setBoolean(8, bird.isStatus());
                 check = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -244,4 +246,24 @@ public class PatientDAO {
         }
         return checkUpdate;
     }
+     private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status_bird=? WHERE patient_id=?";
+      public boolean DeleteBird(int status, String patient_id) throws ClassNotFoundException {
+        boolean checkDelete = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(DELETE_BIRD);
+                ps.setInt(1, status);
+                ps.setString(2, patient_id);
+                checkDelete = ps.executeUpdate() > 0 ? true : false;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return checkDelete;
+    }
+    
 }

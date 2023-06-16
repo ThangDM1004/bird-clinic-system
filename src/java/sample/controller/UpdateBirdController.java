@@ -50,7 +50,7 @@ public class UpdateBirdController extends HttpServlet {
             String url = "assets/img/patients/" + fileName;
             PatientDAO dao = new PatientDAO();
             if ("".equals(fileName)) {
-                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "", true);
                 boolean checkUpdate = dao.UpdateBirdNoImage(bird);
                 if (checkUpdate == true) {
                     HttpSession session = request.getSession();
@@ -61,7 +61,7 @@ public class UpdateBirdController extends HttpServlet {
                 }
             } else {
                 part.write(realPath + fileName);
-                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "");
+                PatientDTO bird = new PatientDTO(patient_id, name_bird, species_id, age, gender, url, "", true);
                 boolean checkUpdate = dao.UpdateBird(bird);
                 if (checkUpdate == true) {
                     
