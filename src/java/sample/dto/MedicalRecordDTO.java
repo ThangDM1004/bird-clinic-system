@@ -20,11 +20,13 @@ public class MedicalRecordDTO {
     private String note;
     private String patent_id;
     private String booking_id;
+    private String ser_id;
+    private String doctorName;
 
     public MedicalRecordDTO() {
     }
 
-    public MedicalRecordDTO(String record_id, Date date_again, double total_fee, String phone, String note, String patent_id, String booking_id) {
+    public MedicalRecordDTO(String record_id, Date date_again, double total_fee, String phone, String note, String patent_id, String booking_id, String ser_id, String doctorName) {
         this.record_id = record_id;
         this.date_again = date_again;
         this.total_fee = total_fee;
@@ -32,6 +34,8 @@ public class MedicalRecordDTO {
         this.note = note;
         this.patent_id = patent_id;
         this.booking_id = booking_id;
+        this.ser_id = ser_id;
+        this.doctorName = doctorName;
     }
 
     public String getRecord_id() {
@@ -89,5 +93,25 @@ public class MedicalRecordDTO {
     public void setBooking_id(String booking_id) {
         this.booking_id = booking_id;
     }
+
+    public String getSer_id() {
+        return ser_id;
+    }
+
+    public void setSer_id(String ser_id) {
+        this.ser_id = ser_id;
+    }
+
+    public String getDoctorName() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
+    }
+    
+    
+
+  
 
 }
