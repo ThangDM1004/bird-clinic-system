@@ -191,7 +191,11 @@
                                                     </style>
                                                 </td>
                                             </tr>
-                                            <% }%>
+                                            
+                                            <% 
+                                                rowCounter++;
+                                                }
+                                            %>
 
                                         </tbody>
                                     </table>
@@ -245,7 +249,7 @@
                             <textarea id="inputDescription" name="content" cols="30" rows="10" style="width: 100%;" placeholder=""></textarea>
                         </div>
 
-                        <textarea id="content" name="content" cols="30" rows="10" style="width: 100%;"></textarea>
+
 
 
                     </form>

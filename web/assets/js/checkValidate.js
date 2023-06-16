@@ -105,6 +105,8 @@ jQuery(document).ready(function () {
         });
     });
 
+
+
     function enableSubmitButton() {
         if (isPhoneAvailable) {
             $('#submit').prop('disabled', false);
@@ -114,5 +116,122 @@ jQuery(document).ready(function () {
     }
 
 });
+
+function enableSubmitButton() {
+    if (isUsernameAvailable && isEmailAvailable && isPhoneAvailable) {
+        $('#submit').prop('disabled', false);
+    } else {
+        $('#submit').prop('disabled', true);
+    }
+}
+
+function checkPassDup() {
+    var mypass = $('#mypass').val();
+    var myusername = $('#myusername').val();
+    $.ajax({
+        type: 'POST',
+        data: {mypass: mypass, myusername: myusername},
+        url: 'CheckPasswordController',
+        success: function (result) {
+            $('#resultss').html(result);
+            if (result === 'Your password correct!') {
+                $('#resultss').removeClass().addClass('available');
+            } else if (result === 'Your password incorrect!') {
+                $('#resultss').removeClass().addClass('already-exists');
+                $('#myForm').submit(function (event) {
+                    event.preventDefault(); // Ngăn chặn gửi form
+                });
+            } else {
+                $('#myForm').off('submit'); // Bỏ ngăn chặn gửi form nếu mật khẩu chính xác
+            }
+        }
+    });
+}
+
+function checkPassConfirm() {
+    var mynewpass = $('#pass').val();
+    var myconpass = $('#myconpass').val();
+    $.ajax({
+        success: function () {
+            if (mynewpass === myconpass) {
+                $('#resultsss').html('Your password is ok');
+                $('#resultsss').removeClass().addClass('available');
+            } else {
+                $('#resultsss').html('Your password is not ok');
+                $('#resultss').removeClass().addClass('already-exists');
+                $('#submit').prop('disabled', false);
+            }
+
+        }
+    });
+}
+
+
+let toggleBtn = document.getElementById('toggleBtn');
+let lowerCase = document.getElementById('lower');
+let upperCase = document.getElementById('upper');
+let digit = document.getElementById('number');
+let specialChar = document.getElementById('special');
+let minLength = document.getElementById('length');
+
+
+function checkPassword(data) {
+    const lower = new RegExp('(?=.*[a-z])');
+    const upper = new RegExp('(?=.*[A-Z])');
+    const number = new RegExp('(?=.*[0-9])');
+    const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+    const length = new RegExp('(?=.{8,})');
+    //lower case check
+    if (lower.test(data)) {
+        lowerCase.classList.add('valid');
+    } else {
+        lowerCase.classList.remove('valid');
+    }
+    //check upper case
+    if (upper.test(data)) {
+        upperCase.classList.add('valid');
+    } else {
+        upperCase.classList.remove('valid');
+    }
+    //check number
+    if (number.test(data)) {
+        digit.classList.add('valid');
+    } else {
+        digit.classList.remove('valid');
+    }
+    //check specialChar
+    if (special.test(data)) {
+        specialChar.classList.add('valid');
+    } else {
+        specialChar.classList.remove('valid');
+    }
+    //check min length
+    if (length.test(data)) {
+        minLength.classList.add('valid');
+    } else {
+        minLength.classList.remove('valid');
+    }
+}
+
+
+
+function validatePassword(value) {
+    var validationDiv = document.getElementById("validation");
+    if (value.length > 0) {
+        validationDiv.style.display = "block";
+    } else {
+        validationDiv.style.display = "none";
+    }
+}
+
+function validateForm() {
+    var password = document.getElementById("pass").value;
+    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
+        return false;
+    }
+}
+
+
+
 
 

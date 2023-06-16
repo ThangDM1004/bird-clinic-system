@@ -48,6 +48,31 @@ public class BlogDAO {
         return list;
     }
 
+    public List<BlogDTO> getListBlogHome() {
+        List<BlogDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT blog_id, title,detail,date_post,image,status,user_name,author,c.categories_blog_name FROM tbl_Blog x, tbl_Category_Blog c WHERE x.categories_blog_id = c.categories_blog_id AND status = 1";
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                BlogDTO b = new BlogDTO(
+                        rs.getString(1),
+                        rs.getNString(2),
+                        rs.getNString(3),
+                        rs.getDate(4),
+                        rs.getString(5),
+                        rs.getBoolean(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9));
+                list.add(b);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public List<BlogDTO> getListBlogByID(String id) {
         List<BlogDTO> list = new ArrayList<>();
         try {
