@@ -213,6 +213,7 @@
                 <div class="row" style="border: 1px solid #f0f0f0; background: #fff; border-radius: 3px;">
                     <form style="width: 100%;">
 
+
                         <div class="col-auto" style="margin-bottom: 15px; margin-top: 10px;">
                             <label style="display: block; margin-bottom: 5px; " for="inputTitle">Title *</label>
                             <input id="inputTitle" placeholder="this content will be displayed in the TITLE of blog *">
@@ -248,6 +249,7 @@
                         <textarea id="content" name="content" cols="30" rows="10" style="width: 100%;"></textarea>
 
 
+
                     </form>
                 </div>
 
@@ -257,11 +259,13 @@
 
 
 
+
         <!-- Add Modal -->
 
         <script>
             CKEDITOR.replace('content');
         </script>
+
 
 
         <!-- /ADD Modal -->
