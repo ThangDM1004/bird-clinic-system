@@ -6,6 +6,7 @@
 package sample.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -242,26 +243,167 @@ public class AppointmentDAO {
         return url;
     }
 
-    private List<AppointmentDTO> getAppointmentForUser(String user_name) throws SQLException {
+    public String getSpec(String username_doc) throws SQLException {
+        String spec = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select *\n"
+                        + "from tbl_Account\n"
+                        + "where role_id = '3' and user_name = ?");
+                ptm.setString(1, username_doc);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    spec = rs.getString("bio");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return spec;
+    }
+
+    public double getFeeSer(String ser_id) throws SQLException {
+        double fee = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select *\n"
+                        + "from tbl_Service\n"
+                        + "where service_id = ?");
+                ptm.setString(1, ser_id);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    fee = rs.getDouble("fee");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return fee;
+    }
+
+    public String getSerNam(String ser_id) throws SQLException {
+        String spec = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select *\n"
+                        + "from tbl_Account\n"
+                        + "where role_id = '3' and user_name = ?");
+                ptm.setString(1, ser_id);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    spec = rs.getString("service_name");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return spec;
+    }
+
+    public Date getDateBooking(String bk_id) throws SQLException {
+        Date date = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select date\n"
+                        + "from tbl_Booking_Status_Details\n"
+                        + "where booking_id = ? and tbl_Booking_Status_Details.booking_status = '1'");
+                ptm.setString(1, bk_id);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    date = rs.getDate("date");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return date;
+    }
+
+    public List<AppointmentDTO> getAppointmentForUser(String user_name) throws SQLException {
         List<AppointmentDTO> list = new ArrayList<>();
         AppointmentDAO dao = new AppointmentDAO();
         try {
             conn = Utils.getConnection();
-            ps = conn.prepareStatement("SELECT booking_id, username_customer, username_doctor,booking_date, service_id, patient_id, booking_status, latest_date\n"
+            ps = conn.prepareStatement("SELECT booking_id, username_customer, username_doctor, booking_date, service_id, patient_id, booking_status, latest_date, CONVERT(varchar(5), time, 108) AS formatted_time\n"
                     + "FROM (\n"
-                    + "  SELECT tbl_Booking.booking_id, username_customer,tbl_Booking.username_doctor, tbl_Booking.date AS booking_date, service_id, patient_id, booking_status, tbl_Booking_Status_Details.date AS latest_date,\n"
+                    + "  SELECT tbl_Booking.booking_id, username_customer, tbl_Booking.username_doctor, tbl_Booking.date AS booking_date, service_id, patient_id, booking_status, tbl_Booking_Status_Details.date AS latest_date, tbl_Booking_Status_Details.time,\n"
                     + "         ROW_NUMBER() OVER (PARTITION BY tbl_Booking.booking_id ORDER BY tbl_Booking_Status_Details.date DESC) AS row_num\n"
                     + "  FROM tbl_Booking\n"
                     + "  JOIN tbl_Booking_Status_Details ON tbl_Booking.booking_id = tbl_Booking_Status_Details.booking_id\n"
                     + "  WHERE username_customer = ?\n"
-                    + ") AS subquery\n" +
-            "WHERE row_num = 1;");
+                    + ") AS subquery\n"
+                    + "WHERE row_num = 1;");
             ps.setString(1, user_name);
             rs = ps.executeQuery();
             while (rs.next()) {
                 AppointmentDTO a = new AppointmentDTO(rs.getString(1), rs.getString(3), "", rs.getString(2), rs.getDate(4), "", rs.getString(7), 0, "", "", rs.getString(5), rs.getDate(8));
                 String imgCus = dao.get_image_cus(a.getCustomerName());
                 String imgDoc = dao.get_image_doctor(a.getDoctorName());
+                String spec = dao.getSpec(a.getDoctorName()).trim();
+                double fee = dao.getFeeSer(a.getService().trim());
+                String ser_name = dao.getSerNam(a.getService());
+                Date date = dao.getDateBooking(a.getBookingID());
+                a = new AppointmentDTO(rs.getString(1), rs.getString(3), spec, rs.getString(2), rs.getDate(4), rs.getString(9), rs.getString(7), fee, imgDoc, imgCus, ser_name, date);
                 list.add(a);
             }
             return list;
