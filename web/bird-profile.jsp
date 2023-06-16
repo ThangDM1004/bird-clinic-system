@@ -36,10 +36,7 @@
         </select>
 
         <div  class="card">
-            <div style="margin-left: 640px; " class="col-sm-5 col">
-                <a href="#Add_Specialities_details" data-toggle="modal"
-                   class="btn btn-primary float-right mt-2">Add</a>
-            </div>
+
             <div id="demo" class="card-body">
                 <!-- Profile Settings Form -->
                 <form name="formUpdate" action="MainController" method="post" enctype="multipart/form-data">
@@ -100,8 +97,13 @@
 
                         <div class="submit-section">
                             <button disabled="true" id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
-                             <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
+                            <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
+                            
+                            <a  href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary submit-btn">Add</a>
+                            
                         </div>
+                        
                         <%
                                 if (count == 1) {
                                     break;
