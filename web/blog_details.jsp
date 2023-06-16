@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.BlogDTO"%>
+<%@page import="sample.dao.BlogDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
@@ -212,8 +214,16 @@
             </div>
             <!-- /Breadcrumb -->
 
+
             <!-- Page Content -->
             <div class="content">
+                <%
+                    String blogID = request.getParameter("blogID");
+                    BlogDAO dao = new BlogDAO();
+                    List<BlogDTO> list = dao.getListBlogByID(blogID);
+                    for (BlogDTO blog : list) {
+
+                %>
                 <!--Post Content-->
                 <section class="post-header"> 
                     <div class="header-content post-container">
@@ -221,29 +231,24 @@
                         <a href="index-2.jsp" class="back-home">Back To Home</a>
 
                         <!--Title-->
-                        <h1 class="header-title">How to Create Best UX Design With Adobe Xd</h1>
-                        <img src="assets/img/post/post-1.jpg" alt="" class="header-img">
+                        <h1 class="header-title"><%=blog.getTitle()%></h1>
+                        <img src="<%=blog.getImage()%>" alt="" class="header-img">
                     </div>
                 </section>
 
 
                 <!--Post-->
-                <section class="post-content post-container">
-                    <h2 class="sub-heading">Create Best UX Design</h2>
-                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, adipisci similique! Quia unde similique, porro magnam repudiandae consectetur. Harum exercitationem iste voluptatum corporis id mollitia dolores quam, beatae autem unde ipsa fuga, omnis placeat obcaecati numquam porro labore, adipisci provident voluptatibus. Nesciunt ratione eum ipsam.</p>
-                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, adipisci similique! Quia unde similique, porro magnam repudiandae consectetur. Harum exercitationem iste voluptatum corporis id mollitia dolores quam, beatae autem unde ipsa fuga, omnis placeat obcaecati numquam porro labore, adipisci provident voluptatibus. Nesciunt ratione eum ipsam.</p>
-                    <h2 class="sub-heading">Create Best UX Design</h2>
-                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, adipisci similique! Quia unde similique, porro magnam repudiandae consectetur. Harum exercitationem iste voluptatum corporis id mollitia dolores quam, beatae autem unde ipsa fuga, omnis placeat obcaecati numquam porro labore, adipisci provident voluptatibus. Nesciunt ratione eum ipsam.</p>
-                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, adipisci similique! Quia unde similique, porro magnam repudiandae consectetur. Harum exercitationem iste voluptatum corporis id mollitia dolores quam, beatae autem unde ipsa fuga, omnis placeat obcaecati numquam porro labore, adipisci provident voluptatibus. Nesciunt ratione eum ipsam.</p>
-                    <p class="post-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, adipisci similique! Quia unde similique, porro magnam repudiandae consectetur. Harum exercitationem iste voluptatum corporis id mollitia dolores quam, beatae autem unde ipsa fuga, omnis placeat obcaecati numquam porro labore, adipisci provident voluptatibus. Nesciunt ratione eum ipsam.</p>
+                <section class="post-content post-container">                                   
+                    <p class="post-text"><%=blog.getDetails()%></p>
                 </section>
 
                 <!--Share-->
                 <div class="share post-container">
                     <span class="share-title">Date / Time</span>
-                    <span>2020-20-</span>
+                    <span><%=blog.getDate_post()%></span>
                 </div>
-
+                <%                    }
+                %>
             </div>	
             <!-- /Page Content -->
 

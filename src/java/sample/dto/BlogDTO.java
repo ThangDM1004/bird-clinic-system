@@ -115,7 +115,4 @@ public class BlogDTO {
         return "BlogDTO{" + "blog_id=" + blog_id + ", title=" + title + ", details=" + details + ", date_post=" + date_post + ", image=" + image + ", status=" + status + ", user_name=" + user_name + ", author=" + author + ", categories_blog_name=" + categories_blog_name + '}';
     }
 
-   
-    
-
 }
