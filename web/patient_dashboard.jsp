@@ -151,8 +151,8 @@
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                             <i class="far fa-eye"></i> View
                                                         </a>
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                            <i class="fas fa-window-restore"></i> Feedback
+                                                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                                            <i class="fas fa-print"></i> Feedback
                                                         </a>
                                                     </div>
                                                 </td>
