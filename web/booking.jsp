@@ -258,11 +258,11 @@
                                                 <!-- Day Slot -->
                                                 <div class="day-slot">
                                                     <ul>
-                                                        <li class="left-arrow">
+<!--                                                        <li class="left-arrow">
                                                             <a href="#">
                                                                 <i class="fa fa-chevron-left"></i>
                                                             </a>
-                                                        </li>
+                                                        </li>-->
                                                         <li>
                                                             <span>Mon</span>
                                                             <span class="slot-date">${BookingDAO.getWeekDates().get(0)}</span>
@@ -291,11 +291,11 @@
                                                             <span>Sun</span>
                                                             <span class="slot-date">${BookingDAO.getWeekDates().get(6)}</span>
                                                         </li>
-                                                        <li class="right-arrow">
+<!--                                                        <li class="right-arrow">
                                                             <a href="#">
                                                                 <i class="fa fa-chevron-right"></i>
                                                             </a>
-                                                        </li>
+                                                        </li>-->
                                                     </ul>
                                                 </div>
                                                 <!-- /Day Slot -->
