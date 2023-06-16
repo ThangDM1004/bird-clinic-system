@@ -211,18 +211,16 @@
 
                 <div class="row">
                     <form style="width: 100%;">
-                        <textarea id="content" name="content" cols="30" rows="10" style="width: 100%;"></textarea>
-
+                        <textarea name="content" cols="30" rows="10" style="width: 100%;"></textarea>
+                        <script>
+                            CKEDITOR.replace('content');
+                        </script>
                     </form>
                 </div>
 
             </div>			
         </div>
         <!-- /Page Wrapper -->
-
-        <script>
-            CKEDITOR.replace('content');
-        </script>
 
 
 
