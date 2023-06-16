@@ -613,7 +613,7 @@
                                     </div>
                                 </div>
                             </div>
-                                        <input  id="submit" type="submit" name="action" value="Add Bird" >
+                                        <input disabled="true" id="submit" type="submit" name="action" value="Add Bird" >
                         </form>
                     </div>
                 </div>
@@ -661,7 +661,7 @@
         %>
         <script src="assets/js/checkValidate.js"></script>
         <script src="assets/js/checkBird_validate.js"></script>
-        <script src="assets/js/checkUpdate_validate.js"></script>
+        <script src="assets/js/checkUpdateValidate.js"></script>
         <!-- /Main Wrapper -->
 
         <script src="assets/js/user-dashboard.js"></script>

@@ -99,7 +99,7 @@
                         </div>
 
                         <div class="submit-section">
-                            <button name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
+                            <button disabled="true" id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                              <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
                         </div>
                         <%
@@ -115,7 +115,7 @@
             </div>
         </div>
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/checkUpdate_validate.js"></script>
+        <script src="assets/js/checkUpdateValidate.js"></script>
 
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
