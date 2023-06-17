@@ -20,6 +20,9 @@ import sample.utils.Utils;
  */
 public class PatientDAO {
 
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
     private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image, pb.status_bird\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
             + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? and pb.status_bird = 'True'";
@@ -222,7 +225,7 @@ public class PatientDAO {
         }
         return checkUpdate;
     }
-    
+
     private static final String UPDATE_BIRD_NO_IMAGE = "UPDATE tbl_Patient_Bird SET bird_name = ?,species_id = ? ,age = ?,gender = ? WHERE patient_id=?";
 
     public boolean UpdateBirdNoImage(PatientDTO bird) throws ClassNotFoundException {
@@ -246,8 +249,9 @@ public class PatientDAO {
         }
         return checkUpdate;
     }
-     private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status_bird=? WHERE patient_id=?";
-      public boolean DeleteBird(int status, String patient_id) throws ClassNotFoundException {
+    private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status_bird=? WHERE patient_id=?";
+
+    public boolean DeleteBird(int status, String patient_id) throws ClassNotFoundException {
         boolean checkDelete = false;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -265,5 +269,28 @@ public class PatientDAO {
         }
         return checkDelete;
     }
-    
+
+    public List<PatientDTO> getPatientBird(String username) {
+        List<PatientDTO> list = new ArrayList<>();
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select *\n"
+                    + "from tbl_Patient_Bird\n"
+                    + "where user_name = ? and status = 1");
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                PatientDTO p = new PatientDTO(rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), true);
+                list.add(p);
+            }
+            return list;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        PatientDAO dao = new PatientDAO();
+        System.out.println(dao.getPatientBird("minhga1").size());
+    }
 }

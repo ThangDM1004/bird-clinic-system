@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import sample.dto.PatientDTO;
 import sample.dto.SlotDTO;
 import sample.utils.Utils;
 
@@ -126,6 +127,24 @@ public class BookingDAO {
         return null;
     }
 
+    public SlotDTO getSlotByID(int id) {
+        SlotDTO s = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select *\n"
+                    + "from tbl_Slot\n"
+                    + "where slot_number = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                s = new SlotDTO(rs.getInt(1), rs.getString(2));
+            }
+            return s;
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
     public String getToday() {
         // Lấy ngày hiện tại
         Date currentDate = new Date();
@@ -141,8 +160,7 @@ public class BookingDAO {
     }
 
     public static void main(String[] args) {
-        for (String string : getNextWeek()) {
-            System.out.println(string);
-        }
+        BookingDAO dao = new BookingDAO();
+        System.out.println(dao.getSlotByID(1).getTime_slot());
     }
 }
