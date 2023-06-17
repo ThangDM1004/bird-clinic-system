@@ -1,6 +1,6 @@
 jQuery(document).ready(function () {
     var isBirdnameAvailable = false;
-    var isBirdImgAvailable = false;
+    var isBirdImgAvailable = true;
 
     function enableSubmitButton() {
         if (isBirdnameAvailable === true && isBirdImgAvailable === true) {
@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
                 if (result_1 === 'Image is available to use') {
                     $('#result_1').removeClass().addClass('available');
                     isBirdImgAvailable = true;
-                } else if (result_1 === 'Allowed JPG, GIF or PNG., try another') {
+                } else if (result_1 === 'Allowed JPG, or PNG, try another') {
                     $('#result_1').removeClass().addClass('already-exists');
                     isBirdImgAvailable = false;
                 }

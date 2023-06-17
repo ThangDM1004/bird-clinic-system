@@ -640,7 +640,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Age</label>
-                                        <textarea type="text" class="form-control" name="age" required=""></textarea>
+                                        <input type="number" class="form-control" name="age" required="">
                                     </div>
                                 </div>
                             </div>
@@ -704,7 +704,7 @@
 
 
 
-        <script src="assets/js/checkBird_validate.js"></script>
+        <script src="assets/js/checkBirdValidate.js"></script>
         <script src="assets/js/checkUpdateValidate.js"></script>
         <!-- /Main Wrapper -->
 

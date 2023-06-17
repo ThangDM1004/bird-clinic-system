@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label>Age</label>
                                 <div>
-                                    <input name="age" type="text" class="form-control datetimepicker" value="<%= x.getAge()%>">
+                                    <input name="age" type="number" class="form-control datetimepicker" value="<%= x.getAge()%>">
                                 </div>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                         </div>
 
                         <div class="submit-section">
-                            <button disabled="true" id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
+                            <button  id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                             <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
                         </div>
 
