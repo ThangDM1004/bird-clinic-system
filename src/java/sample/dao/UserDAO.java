@@ -10,7 +10,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.UserDTO;
@@ -545,6 +544,42 @@ public class UserDAO {
         }
         return list;
     }
+
+    public UserDTO getUser(String user_name) throws SQLException {
+        UserDTO us = new UserDTO();
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement("select email, phone, date_of_birth, fullname, gender, image\n"
+                    + "from tbl_Account\n"
+                    + "where user_name = ?");
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                Date date = rs.getDate("date_of_birth");
+                String fullname = rs.getString("fullname");
+                String gender = rs.getString("gender").trim();
+                String urlimg = rs.getString("image");
+                us = new UserDTO(user_name, email, phone, date, fullname, gender, urlimg);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return us;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         System.out.println(dao.getDoctorByID("doctor1").getImage());
