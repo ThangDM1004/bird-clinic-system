@@ -319,9 +319,9 @@ public class AppointmentDAO {
         try {
             conn = Utils.getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement("select *\n"
-                        + "from tbl_Account\n"
-                        + "where role_id = '3' and user_name = ?");
+                ptm = conn.prepareStatement("select service_name\n"
+                        + "from tbl_Service\n"
+                        + "where service_id = ?");
                 ptm.setString(1, ser_id);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
@@ -343,6 +343,40 @@ public class AppointmentDAO {
         }
 
         return spec;
+    }
+
+    public String getStatusName(String status) throws SQLException {
+        String stt = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select *\n"
+                        + "from tbl_Booking_Status\n"
+                        + "where tbl_Booking_Status.booking_status = ?");
+                ptm.setString(1, status);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    stt = rs.getString("booking_name");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return stt;
     }
 
     public Date getDateBooking(String bk_id) throws SQLException {
