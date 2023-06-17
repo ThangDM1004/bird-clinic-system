@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.UserDAO"%>
+<%@page import="sample.dto.UserDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +14,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            HttpSession s = request.getSession();
+            UserDTO user = (UserDTO) s.getAttribute("account");
+            UserDAO daoUs = new UserDAO();
+            UserDTO users = daoUs.getUser(user.getUsername());
+        %>
 
         <div class="card">
             <div class="card-body">
@@ -22,94 +30,47 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <div class="change-avatar">
-                                    <div class="profile-img">
-                                        <img src="assets/img/patients/patient.jpg" alt="User Image">
-                                    </div>
-                                    <div class="upload-img">
-                                        <div class="change-photo-btn">
-                                            <span><i class="fa fa-upload"></i> Upload Photo</span>
-                                            <input type="file" class="upload">
-                                        </div>
-                                        <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                    <div class="form-group">
+                                        <label> CHANGE AVATAR </label>
+                                        <input type="file" class="form-control" name="icon" accept="image/jpeg, image/png, image/jpg">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-12">
                             <div class="form-group">
-                                <label>First Name</label>
-                                <input type="text" class="form-control" value="Richard">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" value="Wilson">
+                                <label>Full Name</label>
+                                <input type="text" class="form-control" value="<%= user.getFullname()%>">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Date of Birth</label>
-                                <div class="cal-icon">
-                                    <input type="text" class="form-control datetimepicker" value="24-07-1983">
+                                <div>
+                                    <input type="date" data-date="" data-date-format="DD MMMM YYYY" class="form-control" value="<%= user.getDate_of_birth()%>">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
-                                <label>Blood Group</label>
+                                <label>Gender</label>
                                 <select class="form-control select">
-                                    <option>A-</option>
-                                    <option>A+</option>
-                                    <option>B-</option>
-                                    <option>B+</option>
-                                    <option>AB-</option>
-                                    <option>AB+</option>
-                                    <option>O-</option>
-                                    <option>O+</option>
+                                    <option <% if (user.getGender().trim().equalsIgnoreCase("male")) { %> selected <% } %>>Male</option>
+                                    <option <% if (user.getGender().trim().equalsIgnoreCase("female")) { %> selected <% }%>>Female</option>
                                 </select>
+
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email ID</label>
-                                <input type="email" class="form-control" value="richard@example.com">
+                                <input type="email" class="form-control" value="<%= user.getEmail()%>">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Mobile</label>
-                                <input type="text" value="+1 202-555-0125" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text" class="form-control" value="806 Twin Willow Lane">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>City</label>
-                                <input type="text" class="form-control" value="Old Forge">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>State</label>
-                                <input type="text" class="form-control" value="Newyork">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>Zip Code</label>
-                                <input type="text" class="form-control" value="13420">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="form-group">
-                                <label>Country</label>
-                                <input type="text" class="form-control" value="United States">
+                                <input type="text" value="<%= user.getPhone()%>" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -122,4 +83,5 @@
             </div>
         </div>
     </body>
+     <script src="assets/js/checkUpdateValidate.js"></script>
 </html>

@@ -48,6 +48,18 @@ public class UserDTO {
         this.role = role;
     }
 
+    public UserDTO(String username, String email, String phone, Date date_of_birth, String fullname, String gender, String image) {
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.date_of_birth = date_of_birth;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.image = image;
+    }
+    
+    
+
     public String getUsername() {
         return username;
     }
