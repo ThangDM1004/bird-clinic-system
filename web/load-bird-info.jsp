@@ -21,6 +21,12 @@
     <body>
 
         <form action="MainController" method="post" enctype="multipart/form-data">
+             <div class="submit-section">
+                            <a  href="#Add_Specialities_details" data-toggle="modal"
+                                class="btn btn-primary submit-btn">Add</a>
+                            <!-- /Profile Settings Form -->
+                        </div>
+            <br>
             <div class="row form-row">
 
 
@@ -94,8 +100,7 @@
                         }
                     }
                 %>
-                <a  href="#Add_Specialities_details" data-toggle="modal"
-                    class="btn btn-primary submit-btn">Add</a>
+                
                 <!-- /Profile Settings Form -->
             </div>
         </form>
