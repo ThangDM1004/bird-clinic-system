@@ -4,10 +4,12 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.MedicalRecordDTO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.AppointmentDAO"%>
+<%@page import="sample.dao.MedicalRecordDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -69,8 +71,8 @@
                                                 <th>Appt Date</th>
                                                 <th>Booking Date</th>
                                                 <th>Amount</th>
+                                                <th>Service</th>
                                                 <th>Status</th>
-                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,7 +80,7 @@
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="<%= !apt.getImgDoc().equals("") ? apt.getImgDoc() : "assets/img/user_image_default.png" %>" alt="User Image">
+                                                            <img class="avatar-img rounded-circle" src="<%= !apt.getImgDoc().equals("") ? apt.getImgDoc() : "assets/img/user_image_default.png"%>" alt="User Image">
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= apt.getDoctorName()%><span><%= apt.getSpeciality()%></span></a>
                                                     </h2>
@@ -86,9 +88,9 @@
                                                 <td><%= apt.getDate()%><span class="d-block text-info"><%= apt.getTime()%></span></td>
                                                 <td><%= apt.getDateBooking()%></td>
                                                 <td><%= apt.getFee()%></td>
-<!--                                                            //         <td><%= apt.getDate_()%></td>-->
-                                                <td><span class="badge badge-pill bg-success-light">Confirm </span></td>
-                                                <td class="text-right">
+                                                <td><%= apt.getService()%></td>
+                                                <td><span class="badge badge-pill"><%= daoApp.getStatusName(apt.getStatus())    %> </span></td>
+<!--                                                <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                             <i class="fas fa-print"></i> Print
@@ -97,7 +99,7 @@
                                                             <i class="far fa-eye"></i> View
                                                         </a>
                                                     </div>
-                                                </td>
+                                                </td>-->
                                             </tr>
 
                                         </tbody>
@@ -118,40 +120,50 @@
 
                     <!-- Medical Records Tab -->
                     <div id="pat_medical_records" class="tab-pane fade">
+                        <%
+                            MedicalRecordDAO daoMR = new MedicalRecordDAO();
+                            List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
+                            if (MR == null) {
+                        %>
+                        <h1> Bạn chưa có không có ghi nhận nào </h1>
+                        <%
+                        } else {
+                            for (MedicalRecordDTO mrr : MR) {
+                        %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Date </th>
-                                                <th>Description</th>
-                                                <th>Attachment</th>
+
+                                                <th>Date Again </th>
+                                                <th>Service</th>
+                                                <th>Note</th>
                                                 <th>Created</th>
                                                 <th></th>
                                             </tr>     
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><a href="javascript:void(0);">#MR-0010</a></td>
-                                                <td>14 Nov 2019</td>
-                                                <td>Dental Filling</td>
-                                                <td><a href="#">dental-test.pdf</a></td>
+
+                                                <td><%= mrr.getDate_again()%></td>
+                                                <td><%= daoMR.getSerNam(mrr.getSer_id())%></td>
+                                                <td> <textarea readonly=""> <%= mrr.getNote()%> </textarea> </td>
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
                                                         </a>
-                                                        <a href="doctor-profile.jsp">Dr. Ruby Perrin <span>Dental</span></a>
+                                                        <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
                                                     </h2>
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+<!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                             <i class="far fa-eye"></i> View
-                                                        </a>
-                                                      <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                                        </a>-->
+                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                             <i class="fas fa-print"></i> Feedback
                                                         </a>
                                                     </div>
@@ -163,6 +175,9 @@
                                 </div>
                             </div>
                         </div>
+
+                        <% }
+                                                        }%>
                     </div>
                     <!-- /Medical Records Tab -->
 

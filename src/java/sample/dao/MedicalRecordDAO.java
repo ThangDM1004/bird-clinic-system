@@ -178,6 +178,74 @@ public class MedicalRecordDAO {
         return ls;
     }
 
+    public String getDocName(String username_doc) throws SQLException {
+        String docname = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select fullname\n"
+                        + "from tbl_Account\n"
+                        + "where user_name = ?");
+                ptm.setString(1, username_doc);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    docname = rs.getString("fullname");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return docname;
+    }
+
+    public String getSerNam(String ser_id) throws SQLException {
+        String spec = "";
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("select service_name\n"
+                        + "from tbl_Service\n"
+                        + "where service_id = ?");
+                ptm.setString(1, ser_id);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    spec = rs.getString("service_name");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+
+        return spec;
+    }
+
     public List<MedicalRecordDTO> getMR(String username) throws SQLException {
         List<MedicalRecordDTO> ls = new ArrayList();
         MedicalRecordDTO a = new MedicalRecordDTO();
@@ -186,16 +254,19 @@ public class MedicalRecordDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
-            ptm = conn.prepareStatement("select  tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor\n"
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id\n"
                     + "from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n"
                     + "where tbl_Booking.username_customer = ?");
             ptm.setString(1, username);
             rs = ptm.executeQuery();
             while (rs.next()) {
+                MedicalRecordDAO dao = new MedicalRecordDAO();
                 String patient_id = rs.getString("patient_id").trim();
                 Date date_again = rs.getDate("date_again");
                 String note = rs.getString("note");
-                String username_doc = rs.getString("username_doctor");
+
+                a = new MedicalRecordDTO("", date_again, 0, "", note, patient_id, "", rs.getString("service_id"), rs.getString("username_doctor"));
+                ls.add(a);
 
             }
             return ls;
