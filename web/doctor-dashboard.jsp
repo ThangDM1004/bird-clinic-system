@@ -57,9 +57,9 @@
                 String doctorUsername = user.getUsername();
                 int patientCount = UserDAO.countPatients(doctorUsername);
                 int todayCount = UserDAO.countTodayPatients(doctorUsername);
-                int appointmentCount = UserDAO.countAppoinments(doctorUsername);              
+                int appointmentCount = UserDAO.countAppoinments(doctorUsername);
                 String doctorFullName = user.getFullname();
-                String doctorImage = user.getImage();           
+                String doctorImage = user.getImage();
             } else {
                 response.sendRedirect("login.jsp");
             }
@@ -227,9 +227,8 @@
                                 <div class="widget-profile pro-widget-content">
                                     <div class="profile-info-widget">
                                         <a href="#" class="booking-doc-img">
-                                            <img src="<%String doctorImage = user.getImage();
-                                                                                    out.print(doctorImage);%>
-                                                 " alt="User Image">
+                                            <img src=""
+                                                  alt="User Image">
                                         </a>
                                         <div class="profile-det-info">
                                             <h3><%
@@ -443,11 +442,10 @@
                                                                         <th></th>
                                                                     </tr>
                                                                 </thead>
-                                                                    <%
-                                                                        
-                                                                        ls1 = dao.NextDayAppt(doctorUsername);
-                                                                        for (AppointmentDTO appt1 : ls1) {                                                          
-                                                                    %>
+                                                                <%
+                                                                    ls1 = dao.NextDayAppt(doctorUsername);
+                                                                    for (AppointmentDTO appt1 : ls1) {
+                                                                %>
                                                                 <tbody>                                                                 
                                                                     <tr>
                                                                         <td>
@@ -455,17 +453,17 @@
                                                                                 <a href="patient-profile.jsp"
                                                                                    class="avatar avatar-sm mr-2"><img
                                                                                         class="avatar-img rounded-circle"
-                                                                                        src="<%= appt1.getImgCus() %>"
+                                                                                        src="<%= appt1.getImgCus()%>"
                                                                                         alt="User Image"></a>
-                                                                                <a href="patient-profile.jsp"><span><%= appt1.getCustomerName() %></span></a>
+                                                                                <a href="patient-profile.jsp"><span><%= appt1.getCustomerName()%></span></a>
                                                                             </h2>
                                                                         </td>
-                                                                        <td><%= appt1.getDate_() %> <span
+                                                                        <td><%= appt1.getDate_()%> <span
                                                                                 class="d-block text-info"></span>
                                                                         </td>
-                                                                        <td><%= appt1.getService() %> </td>
-                                                                        
-                                                                        <td class="text-center"><%= appt1.getTime() %></td>
+                                                                        <td><%= appt1.getService()%> </td>
+
+                                                                        <td class="text-center"><%= appt1.getTime()%></td>
                                                                         <td class="text-right">
                                                                             <div class="table-action">
                                                                                 <a href="javascript:void(0);"
@@ -485,7 +483,7 @@
                                                                         </td>
                                                                     </tr>                                                                
                                                                 </tbody>
-                                                                <% 
+                                                                <%
                                                                     }
                                                                 %> 
                                                             </table>
@@ -493,7 +491,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                                                                      
+
                                             <!-- /Upcoming Appointment Tab -->
 
                                             <!-- Today Appointment Tab -->    
@@ -514,8 +512,8 @@
                                                                         <th></th>
                                                                     </tr>
                                                                 </thead>
-                                                                <%                                                                                                                                        
-                                                                    for (AppointmentDTO appt2 : ls2) {                                                          
+                                                                <%
+                                                                    for (AppointmentDTO appt2 : ls2) {
                                                                 %>
                                                                 <tbody>
                                                                     <tr>
@@ -529,8 +527,8 @@
                                                                                 <a href="patient-profile.jsp"><%= appt2.getCustomerName()%>
                                                                             </h2>
                                                                         </td>
-                                                                        <td><%= appt2.getDate_() %><span class="d-block text-info">
-                                                                          </span></td>
+                                                                        <td><%= appt2.getDate_()%><span class="d-block text-info">
+                                                                            </span></td>
                                                                         <td><%= appt2.getService()%> </td>
                                                                         <td class="text-center"><%= appt2.getTime()%></td>
                                                                         <td class="text-right">
@@ -551,7 +549,7 @@
                                                                             </div>
                                                                         </td>
                                                                     </tr>
-                                                                    
+
                                                                 </tbody>
                                                                 <%
                                                                     }
@@ -561,7 +559,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <!-- /Today Appointment Tab -->
 
                                         </div>

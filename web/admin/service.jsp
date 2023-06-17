@@ -327,7 +327,7 @@
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <h3>Service Image</h3>
-                                    <><%= ser.getImage()%></h5>
+                                    <img src="../<%= ser.getImage()%>" alt="t">
                                 </div>
                             </div>
                         </div>
