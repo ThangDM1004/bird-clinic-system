@@ -53,4 +53,14 @@ jQuery(document).ready(function () {
         });
     });
 });
+  function Gender() {
+       
+            $('#update').prop('disabled', false);
+       
+    }
+    function Age() {
+       
+            $('#update').prop('disabled', false);
+       
+    }
 
