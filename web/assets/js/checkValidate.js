@@ -125,6 +125,9 @@ function enableSubmitButton() {
     }
 }
 
+var isPassAvailable = false;
+
+
 function checkPassDup() {
     var mypass = $('#mypass').val();
     var myusername = $('#myusername').val();
@@ -136,18 +139,26 @@ function checkPassDup() {
             $('#resultss').html(result);
             if (result === 'Your password correct!') {
                 $('#resultss').removeClass().addClass('available');
+                isPassAvailable = true;
             } else if (result === 'Your password incorrect!') {
                 $('#resultss').removeClass().addClass('already-exists');
-                $('#myForm').submit(function (event) {
-                    event.preventDefault(); // Ngăn chặn gửi form
-                });
+                isPassAvailable = false;
+            }
+            if (isPassAvailable) {
+                $('#submit').prop('disabled', false);
             } else {
-                $('#myForm').off('submit'); // Bỏ ngăn chặn gửi form nếu mật khẩu chính xác
+                $('#submit').prop('disabled', true);
             }
         }
     });
 }
 
+
+
+
+
+
+var isPassAvailable_2 = false;
 function checkPassConfirm() {
     var mynewpass = $('#pass').val();
     var myconpass = $('#myconpass').val();
@@ -156,10 +167,16 @@ function checkPassConfirm() {
             if (mynewpass === myconpass) {
                 $('#resultsss').html('Your password is ok');
                 $('#resultsss').removeClass().addClass('available');
+                isPassAvailable_2 = true;
             } else {
                 $('#resultsss').html('Your password is not ok');
-                $('#resultss').removeClass().addClass('already-exists');
+                $('#resultsss').removeClass().addClass('already-exists');
+                isPassAvailable_2 = false;
+            }
+            if (isPassAvailable_2) {
                 $('#submit').prop('disabled', false);
+            } else {
+                $('#submit').prop('disabled', true);
             }
 
         }

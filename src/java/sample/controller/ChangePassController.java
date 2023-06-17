@@ -33,27 +33,28 @@ public class ChangePassController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        
         try {
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-
+            
             String newPass = request.getParameter("newPass");
             String incorectPass = "Current password is incorrect. Please try again !";
             String correctPass = "Change password successfully !";
-
+            
             UserDAO dao = new UserDAO();
             UserDTO user = dao.Login(username, password);
-
+            
             if (user == null) {
                 request.setAttribute("incorectPass", incorectPass);
                 request.getRequestDispatcher("patient-dashboard.jsp").forward(request, response);
             } else {
+                dao.changePasswordByUsername(username, newPass);
                 HttpSession session1 = request.getSession();
                 session1.setAttribute("status", "changePassword");
-                dao.changePasswordByUsername(username, newPass);
-                request.setAttribute("correctPass", correctPass);
-                request.getRequestDispatcher("patient-dashboard.jsp").forward(request, response);
+                session1.setAttribute("correctPass", correctPass);
+                session1.setMaxInactiveInterval(8);
+                response.sendRedirect("patient-dashboard.jsp");
             }
         } catch (Exception e) {
             e.getMessage();

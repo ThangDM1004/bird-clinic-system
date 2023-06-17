@@ -184,7 +184,6 @@
                                                         background: #F8ECEC;
                                                         color: #be4b49;
                                                     }
-
                                                 </style>
                                             </div>
                                             <div class="form-group form-focus">

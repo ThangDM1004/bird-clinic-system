@@ -273,7 +273,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="index-2.jsp">
+                                                <a href="MainController?action=logout">
                                                     <i class="fas fa-sign-out-alt"></i>
                                                     <span>Logout</span>
                                                 </a>
@@ -540,7 +540,7 @@
             }
         %>
 
-        
+
 
         <script src="assets/js/checkBird_validate.js"></script>
         <script src="assets/js/checkUpdateValidate.js"></script>
