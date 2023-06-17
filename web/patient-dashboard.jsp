@@ -273,7 +273,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="index-2.jsp">
+                                                <a href="MainController?action=logout">
                                                     <i class="fas fa-sign-out-alt"></i>
                                                     <span>Logout</span>
                                                 </a>

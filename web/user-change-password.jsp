@@ -28,8 +28,19 @@
                                 <input id="mypass" name="password" type="password" class="form-control" required="" onchange="checkPassDup()">
                                 <p id="resultss" style="margin-left: 10px;"></p>
                                 <style>
-                                    #resultss{
-                                        width: 60%;
+                                    #resultss {
+                                        margin-top: 5px;
+                                        width: 45%;
+                                    }
+                                    .available {
+                                        color: #006400;
+                                        background: #E5FFE5;
+                                        padding-left: 3px;
+                                        padding-right: 3px;
+                                        border-radius: 3px;
+                                    }
+
+                                    .already-exists, .not-enough-length {
                                         padding-left: 3px;
                                         padding-right: 3px;
                                         border-radius: 3px;
@@ -219,21 +230,37 @@
                             <div class="form-group">
                                 <label>Confirm Password</label>
                                 <input id="myconpass" name="newConPass" type="password"  required="" class="form-control" onchange="checkPassConfirm()">
-                                <p id="resultsss" style="margin-left: 10px;">${correctPass}</p>
+                                <p id="resultsss" style="margin-left: 10px;"></p>
+                                <style>
+                                    #resultsss {
+                                        margin-top: 5px;
+                                        width: 45%;
+                                    }
+                                    .available {
+                                        color: #006400;
+                                        background: #E5FFE5;
+                                        padding-left: 3px;
+                                        padding-right: 3px;
+                                        border-radius: 3px;
+                                    }
+
+                                    .already-exists, .not-enough-length {
+                                        padding-left: 3px;
+                                        padding-right: 3px;
+                                        border-radius: 3px;
+                                        background: #F8ECEC;
+                                        color: #be4b49;
+                                    }
+                                </style>
+
                             </div>
                             <div class="submit-section">
-                                <button id="submit" name="action" value="changepass" type="submit" class="btn btn-primary submit-btn">Save Change</button>
+                                <button id="submit" name="action" value="changepass" type="submit" class="btn btn-primary submit-btn" disabled = "true">Save Change</button>
                             </div>
                             <p id="results" style="margin-left: 10px;">${correctPass}</p>
                             <style>
-                                #results{
-                                    width: 60%;
-                                    color: #006400;
-                                    background: #E5FFE5;
-                                    padding-left: 3px;
-                                    padding-right: 3px;
-                                    border-radius: 3px;
-                                }
+
+
                             </style>
 
                         </form>
