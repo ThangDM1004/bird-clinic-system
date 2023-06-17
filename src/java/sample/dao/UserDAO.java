@@ -10,8 +10,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import sample.dto.AppointmentDTO;
 import sample.dto.UserDTO;
 import sample.utils.Utils;
 
@@ -579,6 +581,179 @@ public class UserDAO {
 
         return us;
     }
+     public static int countPatients(String doctorUsername) {
+        Connection cn = null;
+        int count = 0;
+        try {
+            cn = Utils.getConnection();
+            String sql = "SELECT username_doctor, COUNT(patient_id) AS count FROM tbl_Booking WHERE username_doctor = ? "
+                    + "GROUP BY username_doctor";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, doctorUsername);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return count = rs.getInt("count");
+            }
+        } catch (Exception e) {
+
+        }
+        return 0; // Trả về 0 nếu không có kết quả
+    }
+
+    public static int countTodayPatients(String doctorUsername) {
+        Connection cn = null;
+        int count = 0;
+        try {
+            cn = Utils.getConnection();
+            LocalDate today = LocalDate.now();
+            java.sql.Date todayDate = java.sql.Date.valueOf(today);
+            String sql = "SELECT COUNT(booking_date) AS count FROM tbl_Booking WHERE username_doctor = ? "
+                    + "AND booking_date = ?";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, doctorUsername);
+            stm.setDate(2, todayDate);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt("count"); // Gán giá trị của trường "count" vào biến count
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng kết nối và các tài nguyên liên quan
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return count;
+    }
+
+    public static int countAppoinments(String doctorUsername) {
+        Connection cn = null;
+        int count = 0;
+        try {
+            cn = Utils.getConnection();
+            String sql = "SELECT username_doctor, COUNT(booking_id) AS count FROM tbl_Booking WHERE username_doctor = ? "
+                    + "GROUP BY username_doctor";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, doctorUsername);
+            ResultSet rs = stm.executeQuery();
+
+            if (rs.next()) {
+                return count = rs.getInt("count");
+            }
+        } catch (Exception e) {
+
+        }
+        return 0; // Trả về 0 nếu không có kết quả
+    }
+
+    public void getBookingInformation(String doctorUsername) {
+        Connection cn = null;
+        try {
+            cn = Utils.getConnection();
+            String sql = "SELECT * FROM tbl_booking";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery(sql);
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    public List<AppointmentDTO> TodayAppt(String doctorUsername) {
+        List<AppointmentDTO> list2 = new ArrayList<>();
+        Connection cn = null;
+
+        try {
+            cn = Utils.getConnection();
+            LocalDate today = LocalDate.now();
+            java.sql.Date todayDate = java.sql.Date.valueOf(today);
+            String sql = "SELECT a.image, a.fullname, b.booking_date, s.service_name, sl.time_slot "
+                    + "FROM tbl_Booking b "
+                    + "JOIN tbl_Account a ON b.username_customer = a.user_name "
+                    + "JOIN tbl_Service s ON b.service_id = s.service_id "
+                    + "JOIN tbl_Slot sl ON b.slot_number = sl.slot_number "
+                    + "WHERE b.username_doctor = ? AND b.booking_date = ?";
+
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, doctorUsername);
+            stm.setDate(2, todayDate);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String user_customer = rs.getString("fullname");
+                String date = rs.getString("booking_date");
+                String service = rs.getString("service_name");
+                String time = rs.getString("time_slot");
+                String image_cus = rs.getString("image");
+                list2.add(new AppointmentDTO("", "", "", user_customer, null, time, "", 0, "", image_cus, service, date));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng kết nối và các tài nguyên liên quan
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return list2;
+    }
+
+    public List<AppointmentDTO> NextDayAppt(String doctorUsername) {
+        List<AppointmentDTO> list1 = new ArrayList<>();
+        Connection cn = null;
+
+        try {
+            cn = Utils.getConnection();
+            LocalDate tomorrow = LocalDate.now();
+            java.sql.Date tomorrowDate = java.sql.Date.valueOf(tomorrow);
+            String sql = "SELECT a.image, a.fullname, b.booking_date, s.service_name, sl.time_slot "
+                    + "FROM tbl_Booking b "
+                    + "JOIN tbl_Account a ON b.username_customer = a.user_name "
+                    + "JOIN tbl_Service s ON b.service_id = s.service_id "
+                    + "JOIN tbl_Slot sl ON b.slot_number = sl.slot_number "
+                    + "WHERE b.username_doctor = ? AND b.booking_date > ? \n"
+                    + "ORDER by b.booking_date";
+
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, doctorUsername);
+            stm.setDate(2, tomorrowDate);
+            ResultSet rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String user_customer = rs.getString("fullname");
+                String date = rs.getString("booking_date");
+                String service = rs.getString("service_name");
+                String time = rs.getString("time_slot");
+                String image_cus = rs.getString("image");
+                list1.add(new AppointmentDTO("", "", "", user_customer, null, time, "", 0, "", image_cus, service, date));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đảm bảo đóng kết nối và các tài nguyên liên quan
+            if (cn != null) {
+                try {
+                    cn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return list1;
+    }
+
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();

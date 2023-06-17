@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : service
     Created on : Jun 6, 2023, 5:38:29 PM
@@ -97,7 +98,7 @@
                                                                  alt="Speciality">
                                                         </a>
                                                         <a data-toggle="modal"
-                                                           href="#view_specialities_details"><%= ser.getService_name()%></a>
+                                                           href="#view_specialities_details_<%= index%>"><%= ser.getService_name()%></a>
                                                     </h2>
                                                 </td>
                                                 <td>
@@ -141,6 +142,7 @@
 
 
         <!-- Add Modal -->
+
         <form action="../MainController" method="post" enctype= multipart/form-data>
             <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -214,7 +216,7 @@
         <%
             for (ServiceDTO ser : ls) {
                 int index = ls.indexOf(ser);
-        %>
+        %>enctype="multipart/form-data"
         <form action="../MainController" method="post" enctype= multipart/form-data>
             <div class="modal fade" id="edit_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -306,7 +308,11 @@
 
 
         <!-- View Details Modal -->
-        <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+        <%
+            for (ServiceDTO ser : ls) {
+                int index = ls.indexOf(ser);
+        %>
+        <div class="modal fade" id="view_specialities_details_<%= index%>" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -315,57 +321,99 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
                         <div class="row form-row">
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
-                                    <label>Updating</label>
+                                    <h3>Service Image</h3>
+                                    <><%= ser.getImage()%></h5>
                                 </div>
                             </div>
-
                         </div>
-
+                        <div class="row form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Service Name</h3>
+                                    <h5><%= ser.getService_name()%></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Service Price</h3>
+                                    <h5><%= ser.getFee()%></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Service Description</h3>
+                                    <label><%= ser.getDescription()%></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <h3>Service Details</h3>
+                                    <label><%= ser.getService_detail()%></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /View Details Modal -->
-        <!-- Delete Modal -->
-        <div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <!--	<div class="modal-header">
-                                    <h5 class="modal-title">Delete</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                    </button>
-                            </div>-->
-                    <div class="modal-body">
-                        <div class="form-content p-2">
-                            <h4 class="modal-title">Delete</h4>
-                            <p class="mb-4">Are you sure want to delete?</p>
-                            <button type="button" class="btn btn-primary">Save </button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+
+    </div>
+</div>
+</div>
+</div>
+</div>
+<%
+    }
+%>
+
+<!-- /View Details Modal -->
+<!-- Delete Modal -->
+<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <!--	<div class="modal-header">
+                            <h5 class="modal-title">Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>-->
+            <div class="modal-body">
+                <div class="form-content p-2">
+                    <h4 class="modal-title">Delete</h4>
+                    <p class="mb-4">Are you sure want to delete?</p>
+                    <button type="button" class="btn btn-primary">Save </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+    </div>
+</div>
+<script src="assets/js/jquery-3.2.1.min.js"></script>
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- Slimscroll JS -->
+<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Datatables JS -->
-        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/plugins/datatables/datatables.min.js"></script>
+<!-- Datatables JS -->
+<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assets/plugins/datatables/datatables.min.js"></script>
 
-        <!-- Custom JS -->
-        <script  src="assets/js/script.js"></script>
-        <!-- /Delete Modal -->
-    </body>
+<!-- Custom JS -->
+<script  src="assets/js/script.js"></script>
+<!-- /Delete Modal -->
+</body>
 </html>

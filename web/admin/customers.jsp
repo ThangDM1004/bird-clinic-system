@@ -54,14 +54,14 @@
                                             List<UserDTO> list = dao.getListCustomer();
 
                                             for (UserDTO user : list) {
-
+                                                int index = list.indexOf(user);
                                         %>
                                         <tr>                                                    
                                             <td><%=user.getUsername()%></td>
                                             <td>
                                                 <h2 class="table-avatar">
                                                     <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%=user.getImage()%>" alt="User Image"></a>
-                                                    <a href="#view_specialities_details" data-toggle="modal"><%=user.getFullname()%></a>
+                                                    <a href="#view_specialities_details_<%=index%>" data-toggle="modal"><%=user.getFullname()%></a>
                                                 </h2>
                                             </td>
                                             <td><%=user.getGender()%></td>
@@ -168,7 +168,11 @@
 </div>
 <!-- /Main Wrapper -->
 <!-- View Details Modal -->
-<div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+<%
+    for (UserDTO user : list) {
+        int index = list.indexOf(user);
+%>
+<div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -178,16 +182,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="row form-row">
-                    <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                            <label>Updating</label>
+                <div class="form-group">
+                    <div class="widget-profile pro-widget-content">
+                        <div class="profile-info-widget">
+                            <a href="#" class="booking-doc-img">
+                                <img src="<%=user.getImage()%>" style width="100%" alt="User Image"> 
+                            </a>
+                            <div class="profile-det-info">
+                                <h3>Full name: <%=user.getFullname()%></h3>
+                                <h3>Gender: <%=user.getGender()%></h3>
+                                <h3>Email: <%=user.getEmail()%></h3>
+                                <h3>Phone: <%=user.getPhone()%></h3>
+
+
+                                <div class="patient-details">
+                                    <h5 class="mb-0"></h5>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
+                    </div>  
                 </div>
-
             </div>
+
         </div>
+
     </div>
 </div>
+<%
+    }
+%>
+
+
