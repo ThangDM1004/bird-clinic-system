@@ -42,7 +42,7 @@ public class MainController extends HttpServlet {
     private static String DELETE_BIRD_CONTROLLER = "DeleteBirdController";
     private static String BOOKING_SELECTDAY = "Next";
     private static String BOOKING_SELECTDAY_CONTROLLER = "BookingSelectDayController";
-    private static String PENDING = "Submit";
+    private static String PENDING = "Accept";
     private static String PENDING_CONTROLLER = "PendingController";
     private static String CHECKOUTCOMFIRM = "CheckoutConfirm";
     private static String CHECKOUTCOMFIRM_CONTROLLER = "CheckOutController";
