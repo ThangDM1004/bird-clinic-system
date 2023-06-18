@@ -97,6 +97,10 @@
         <servlet-name>PendingController</servlet-name>
         <servlet-class>sample.controller.PendingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>sample.controller.CheckOutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -192,6 +196,10 @@
     <servlet-mapping>
         <servlet-name>PendingController</servlet-name>
         <url-pattern>/PendingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/CheckOutController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
