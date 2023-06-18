@@ -8,35 +8,36 @@ package sample.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BookingDAO;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  *
  * @author MSI AD
  */
-public class PendingController extends HttpServlet {
+public class CancelController extends HttpServlet {
 
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
             String doctor = request.getParameter("select_doctor");
-            int booking_status = Integer.parseInt(request.getParameter("status_booking").trim());
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.AssignBooking(bookingID, doctor, booking_status);
+            boolean checkUpdate = dao.CancelBooking(bookingID, doctor);
+            String note = request.getParameter("note");
             if (checkUpdate) {
                 LocalDate ngayHienTai = LocalDate.now();
                 LocalTime gioHienTai = LocalTime.now();
                 Time gioSQL = Time.valueOf(gioHienTai);
-                boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
+                boolean checkHistory = dao.InsertHistory(bookingID, 4, ngayHienTai, gioSQL,note);
                 if (checkHistory) {
                     HttpSession session = request.getSession();
                     session.setAttribute("status", "Pending");
@@ -46,6 +47,7 @@ public class PendingController extends HttpServlet {
         } catch (Exception e) {
 
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

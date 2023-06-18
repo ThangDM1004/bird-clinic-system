@@ -338,9 +338,11 @@ public class BookingDAO {
         }
         return service_name;
     }
-    private static final String ASSIGN_BOOKING = "UPDATE tbl_Booking SET booking_status = 2,username_doctor = ? WHERE booking_id = ?";
 
-    public boolean AssignBooking(String bookingID, String doctor) throws SQLException {
+    private static final String ASSIGN_BOOKING = "UPDATE tbl_Booking SET booking_status = ?,username_doctor = ? WHERE booking_id = ?";
+
+    public boolean AssignBooking(String bookingID, String doctor, int booking_status) throws SQLException {
+
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkUpdate = false;
@@ -348,6 +350,61 @@ public class BookingDAO {
             conn = Utils.getConnection();
             if (conn != null) {
                 ps = conn.prepareStatement(ASSIGN_BOOKING);
+                ps.setInt(1, booking_status);
+                ps.setString(2, doctor);
+                ps.setString(3, bookingID);
+                checkUpdate = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkUpdate;
+    }
+    private static final String CHECKIN_BOOKING = "UPDATE tbl_Booking SET booking_status = ? WHERE booking_id = ?";
+
+    public boolean CheckInBooking(String bookingID, int booking_status) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        boolean checkUpdate = false;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(CHECKIN_BOOKING);
+                ps.setInt(1, booking_status);
+                ps.setString(2, bookingID);
+                checkUpdate = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkUpdate;
+    }
+    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 4,username_doctor = ? WHERE booking_id = ?";
+
+    public boolean CancelBooking(String bookingID, String doctor) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        boolean checkUpdate = false;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(CANCEL_BOOKING);
                 ps.setString(1, doctor);
                 ps.setString(2, bookingID);
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
@@ -365,9 +422,11 @@ public class BookingDAO {
         }
         return checkUpdate;
     }
-    private static final String HISTORY_BOOKING = "INSERT INTO tbl_Booking_Status_Details(booking_id,booking_status,date,time)" + " VALUES(?,?,?,?)";
 
-    public boolean InsertHistory(String bookingID, int booking_status, LocalDate date, Time gio) throws SQLException {
+    private static final String HISTORY_BOOKING = "INSERT INTO tbl_Booking_Status_Details(booking_id,booking_status,date,time,note)" + " VALUES(?,?,?,?,?)";
+
+    public boolean InsertHistory(String bookingID, int booking_status, LocalDate date, Time gio, String note) throws SQLException {
+
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkInsert = false;
@@ -379,6 +438,7 @@ public class BookingDAO {
                 ps.setInt(2, booking_status);
                 ps.setObject(3, date);
                 ps.setTime(4, gio);
+                ps.setString(5, note);
                 checkInsert = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -394,6 +454,82 @@ public class BookingDAO {
         }
         return checkInsert;
     }
+
+    private static final String CUSNAME = "select a.fullname\n"
+            + "from tbl_Booking b join tbl_Account a\n"
+            + "on ( a.user_name = b.username_customer and b.username_customer = ?)";
+
+    public String customerName(String userName) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String user_name = "";
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(CUSNAME);
+
+                ps.setString(1, userName);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    user_name = rs.getString("fullname");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user_name;
+    }
+    private static final String DOCNAME = "select a.fullname\n"
+            + "from tbl_Booking b join tbl_Account a\n"
+            + "on ( a.user_name = b.username_doctor and b.username_doctor = ?)";
+
+    public String doctorName(String doctorName) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String doc_name = "";
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(DOCNAME);
+
+                ps.setString(1, doctorName);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    doc_name = rs.getString("fullname");
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return doc_name;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        BookingDAO bookingDAO = new BookingDAO();
+        List<BookingDTO> bookings = bookingDAO.getAllBooking();
+
 
     public void insertIntoBooking(BookingDTO b){
         try {

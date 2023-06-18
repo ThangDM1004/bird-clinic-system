@@ -61,9 +61,7 @@
                             <h1> Hiện chưa có lịch nào </h1>
                             <%
                             } else {
-                                for (BookingDTO x : list) {
 
-                                    if (x.getBooking_status() == 1) {
                             %>
                             <div class="card card-table mb-0">
                                 <div class="card-body">
@@ -75,23 +73,28 @@
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
                                                     <th style="width: 250px">Service</th>
-                                                    <th>Status</th>
                                                     <th>Doctor</th>
+                                                    <th>Note</th>
                                                     <th></th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%                                                 
+                                                    for (BookingDTO x : list) {
+                                                        if (x.getBooking_status() == 1) {
+                                                %>
                                                 <tr>
                                                     <td>
-                                                        <%=x.getUsername_customer()%>
+                                                        <%=dao.customerName(x.getUsername_customer())%>
                                                     </td>
-                                            <input type="hidden" name="bookingID" value=" <%=x.getBooking_id() %>">
+                                            <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
-                                            <td><%= dao.getSlotTime(x.getBooking_id())%></td>
+                                            <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>                                          
                                             <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
-                                            <td><%= dao.getBookingStatus(x.getBooking_id())%></td>
                                             <td>
                                                 <select name="select_doctor">
+
                                                     <%
                                                         for (UserDTO d : doctor) {
                                                     %>
@@ -101,17 +104,23 @@
                                                     %>
                                                 </select>
                                             </td>
+                                            <input type="hidden" value="2" name="status_booking">
+                                            <td><textarea name="note"></textarea></td>
                                             <td><div class="submit-section">
                                                     <button name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button>
+                                                    <button style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Decline</button>
                                                 </div></td>
+
+                                            <%
+                                                    }
+                                                }
+                                            %>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <%
-                                        }
-                                    }
                                 }
                             %>
                         </div>

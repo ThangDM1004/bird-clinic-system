@@ -61,7 +61,6 @@
                         response.sendRedirect("../index-2.jsp");
                     }
                 }
-                String status = (String) session1.getAttribute("status");
             %>
 
         </script>
@@ -401,27 +400,344 @@
                 <%
                     }
                 %>
-                
-                <%
-                    if(status == null){
-                        %>
-                        <script>
-                             var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function () {
-                        if (this.readyState === 4 && this.status === 200) {
-                            document.getElementById("main").innerHTML = this.responseText;
-                            var table = $('.datatable').DataTable();
-                        }
-                    }
-                    ;
-                    xhttp.open("GET", "dashboard.jsp", true);
-                    xhttp.send();
-                            
-                        </script>
-                <%
-                    }
-                %>
-                
+                <div class="page-wrapper" id="page-wrapper">
+                    <div class="content container-fluid">
+                        <!-- Page Header -->
+                        <div class="page-header" ">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3 class="page-title">Welcome administrator</h3>
+                                    <ul class="breadcrumb">
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Page Header -->
+
+                        <div class="row">
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon text-primary border-primary">
+                                                <i class="fe fe-users"></i>
+                                            </span>
+                                            <div class="dash-count"> 
+                                                <h3>
+                                                    <%
+                                                        ManagerDao obj1 = new ManagerDao();
+                                                        int result1 = obj1.countDoctors();
+                                                    %>
+                                                    <%= result1%>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                            <h6 class="text-muted">Doctors</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon text-warning border-warning">
+                                                <i class="fe fe-users"></i>
+                                            </span>
+                                            <div class="dash-count">
+                                                <h3>
+                                                    <%
+                                                        ManagerDao obj2 = new ManagerDao();
+                                                        int result2 = obj2.countCustomer();
+                                                    %>
+                                                    <%= result2%>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                            <h6 class="text-muted">Customers</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon text-warning border-warning">
+                                                <i class="fe fe-user"></i>
+                                            </span>
+                                            <div class="dash-count">
+                                                <h3>
+                                                    <%
+
+                                                        ManagerDao obj3 = new ManagerDao();
+                                                        int result3 = obj3.countStaff();
+                                                    %>
+                                                    <%= result3%>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                            <h6 class="text-muted">Staffs</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon text-success">
+                                                <i class="fe fe-money"></i>
+                                            </span>
+                                            <div class="dash-count">
+                                                <h3><%
+
+                                                    ManagerDao obj4 = new ManagerDao();
+                                                    int result4 = obj4.countPatient();
+                                                    %>
+                                                    <%= result4%>
+                                                </h3> 
+                                            </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                            <h6 class="text-muted">Patient</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xl-3 col-sm-6 col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="dash-widget-header">
+                                            <span class="dash-widget-icon text-danger border-danger">
+                                                <i class="fe fe-calendar"></i>
+                                            </span>
+                                            <div class="dash-count">
+                                                <h3>
+                                                    <%
+
+                                                        ManagerDao obj5 = new ManagerDao();
+                                                        int result5 = obj5.countAppointment();
+                                                    %>
+                                                    <%= result5%>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="dash-widget-info">
+                                            <h6 class="text-muted">Appointment</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <div class="row">
+                                <div class="col-md-12 col-lg-6">
+                                        Sales Chart 
+                                        <div class="card card-chart">
+                                                <div class="card-header">
+                                                        <h4 class="card-title">Revenue</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                        <div id="morrisArea"></div>
+                                                </div>
+                                        </div>
+                                         Sales Chart 
+    
+                                </div>
+                                <div class="col-md-12 col-lg-6">
+                                         Invoice Chart 
+                                        <div class="card card-chart">
+                                                <div class="card-header">
+                                                        <h4 class="card-title">Status</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                        <div id="morrisLine"></div>
+                                                </div>
+                                        </div>
+                                        Invoice Chart 
+                                </div>
+                        </div>  -->
+
+
+                        <div class="row">
+                            <jsp:useBean id="userDAO" scope="request" class="sample.dao.UserDAO" > 
+                            </jsp:useBean>
+                            <div class="col-md-6 d-flex">
+
+                                <!-- Recent Orders -->
+                                <div class="card card-table flex-fill">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Doctors List</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Doctor Name</th>
+                                                        <th>Speciality</th>
+                                                        <th>Phone</th>
+                                                        <th class="text-center">Completed</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <c:forEach items="${userDAO.get3PopularDoctor()}" var="i">
+                                                        <tr>
+                                                            <td>
+                                                                <h2 class="table-avatar">
+                                                                    <a class="avatar avatar-sm mr-2"><img
+                                                                            class="avatar-img rounded-circle"
+                                                                            src="${i.image}"
+                                                                            alt="User Image"></a>
+                                                                    <a style="list-style: none;">${i.fullname}</a>
+                                                                </h2>
+                                                            </td>
+                                                            <td>${i.bio}</td>
+                                                            <td>${i.phone}</td>
+                                                            <td class="text-center">${userDAO.getCount(i.username)}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Recent Orders -->
+
+                            </div>
+                            <div class="col-md-6 d-flex">
+                                <!-- Feed Activity -->
+                                <div class="card  card-table flex-fill">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Patients List</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Last Visit</th>
+                                                        <th class="text-right">Paid</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${userDAO.get3RecentCustomer()}" var="i">
+                                                        <tr>
+                                                            <td>
+                                                                <h2 class="table-avatar">
+                                                                    <a class="avatar avatar-sm mr-2"><img
+                                                                            class="avatar-img rounded-circle"
+                                                                            src="${i.image}"
+                                                                            alt="User Image"></a>
+                                                                    <a> ${i.fullname} </a>
+                                                                </h2>
+                                                            </td>
+                                                            <td>${i.phone}</td>
+                                                            <td>${userDAO.getDateAndPaidForCustomerList(i.username).get(0)}</td>
+                                                            <td class="text-right">${userDAO.getDateAndPaidForCustomerList(i.username).get(1)}</td>
+                                                        </tr>
+                                                    </c:forEach>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Feed Activity -->
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!-- Recent Orders -->
+                                <!---->
+                                <div class="card card-table">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Appointment List</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-center mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Doctor Name</th>
+                                                        <th>Service</th>
+                                                        <th>Patient Name</th>
+                                                        <th>Apointment Time</th>
+                                                        <th>Status</th>
+                                                        <th class="text-right">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <%
+                                                        String img_doctor = "";
+                                                        String img_cus = "";
+                                                        AppointmentDAO dao = new AppointmentDAO();
+                                                        List<AppointmentDTO> list = dao.get_list_appointment();
+                                                        for (AppointmentDTO x : list) {
+                                                            img_doctor = dao.get_image_doctor(x.getDoctorName());
+                                                            img_cus = dao.get_image_cus(x.getCustomerName());
+                                                    %>
+                                                    <tr>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="<%= img_doctor%>"
+                                                                        alt="User Image"></a>
+                                                                <a><%= x.getDoctorName()%></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><%= x.getService()%></td>
+
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a class="avatar avatar-sm mr-2"><img
+                                                                        class="avatar-img rounded-circle"
+                                                                        src="<%= img_cus%>"
+                                                                        alt="User Image"></a>
+
+                                                                <a><%= x.getCustomerName()%></a>
+                                                            </h2>
+                                                        </td>
+                                                        <td><%= x.getDate_()%> <span class="text-primary d-block"><%= x.getTime()%>                                                                                                                           AM</span></td>
+                                                        <td>
+
+                                                            <p><%= x.getStatus()%></p>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            $200.00
+                                                        </td>
+                                                    </tr>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /Recent Orders -->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <!-- /Page Wrapper -->
 
             </div>
@@ -476,7 +792,8 @@
         <!-- /Main Wrapper -->
     </div>
     <%
-        
+        HttpSession session2 = request.getSession();
+        String status = (String) session2.getAttribute("status");
         if (status == "setStatus") {
     %>     
     <script>
@@ -496,8 +813,8 @@
     %>
 
     <%
-       
-        String status_1 = (String) session1.getAttribute("status");
+        HttpSession session3 = request.getSession();
+        String status_1 = (String) session3.getAttribute("status");
         if (status_1 == "setStatus_1") {
     %>     
     <script>
@@ -517,8 +834,8 @@
         }
     %>
 
-    <%           
-        String status_2 = (String) session1.getAttribute("status");
+    <%            HttpSession session4 = request.getSession();
+        String status_2 = (String) session4.getAttribute("status");
         if (status_2 == "setStatus_2") {
     %>     
     <script>
@@ -539,8 +856,8 @@
 
 
     <%
-       
-        String status_3 = (String) session1.getAttribute("status");
+        HttpSession session5 = request.getSession();
+        String status_3 = (String) session5.getAttribute("status");
         if (status_3 == "setStatus_5") {
     %>     
 
@@ -564,8 +881,8 @@
 
 
     <%
-        
-        String status1 = (String) session1.getAttribute("status_dashboard");
+        HttpSession se = request.getSession();
+        String status1 = (String) se.getAttribute("status_dashboard");
         if (status1 == "Service") {
     %>
     <script>

@@ -69,7 +69,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="${appointmentDAO.get_list_appointment()}" var="i">
+                                            <c:forEach items="${appointmentDAO.appointment}" var="i">
                                                 <tr>
                                                     <td>
                                                         <h2 class="table-avatar">

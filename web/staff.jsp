@@ -394,7 +394,7 @@
             <!-- /Footer -->
 
         </div>
-        
+
         <%
             if (status == "Pending") {
         %>
@@ -410,11 +410,7 @@
 
         </script>
         <%
-            }
-        %>
-
-        <%
-            if (status == "changePassword") {
+        } else if (status == "Assign") {
         %>        
         <script>
             var xhttp = new XMLHttpRequest();
@@ -423,7 +419,20 @@
                     document.getElementById("dashboard").innerHTML = this.responseText;
                 }
             };
-            xhttp.open("GET", "user-change-password.jsp", true);
+            xhttp.open("GET", "assign.jsp", true);
+            xhttp.send();
+        </script>
+        <%
+        } else if (status == "CheckIn") {
+        %>        
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("dashboard").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "check-in.jsp", true);
             xhttp.send();
         </script>
         <%
