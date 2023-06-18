@@ -44,6 +44,8 @@ public class MainController extends HttpServlet {
     private static String BOOKING_SELECTDAY_CONTROLLER = "BookingSelectDayController";
     private static String PENDING = "Submit";
     private static String PENDING_CONTROLLER = "PendingController";
+    private static String CHECKOUTCOMFIRM = "CheckoutConfirm";
+    private static String CHECKOUTCOMFIRM_CONTROLLER = "CheckOutController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -73,9 +75,11 @@ public class MainController extends HttpServlet {
                 url = DELETE_BIRD_CONTROLLER;
             } else if (actions.equals(BOOKING_SELECTDAY)) {
                 url = BOOKING_SELECTDAY_CONTROLLER;
-            }else if (actions.equals(PENDING)) {
+            } else if (actions.equals(PENDING)) {
                 url = PENDING_CONTROLLER;
-            }  else {
+            } else if (actions.equals(CHECKOUTCOMFIRM)) {
+                url = CHECKOUTCOMFIRM_CONTROLLER;
+            } else {
                 url = "error-404.jsp";
             }
         } catch (Exception e) {
