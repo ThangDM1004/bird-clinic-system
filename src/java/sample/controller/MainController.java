@@ -42,6 +42,8 @@ public class MainController extends HttpServlet {
     private static String DELETE_BIRD_CONTROLLER = "DeleteBirdController";
     private static String BOOKING_SELECTDAY = "Next";
     private static String BOOKING_SELECTDAY_CONTROLLER = "BookingSelectDayController";
+    private static String PENDING = "Submit";
+    private static String PENDING_CONTROLLER = "PendingController";
     private static String CHECKOUTCOMFIRM = "CheckoutConfirm";
     private static String CHECKOUTCOMFIRM_CONTROLLER = "CheckOutController";
 
@@ -73,7 +75,9 @@ public class MainController extends HttpServlet {
                 url = DELETE_BIRD_CONTROLLER;
             } else if (actions.equals(BOOKING_SELECTDAY)) {
                 url = BOOKING_SELECTDAY_CONTROLLER;
-            }else if (actions.equals(CHECKOUTCOMFIRM)) {
+            } else if (actions.equals(PENDING)) {
+                url = PENDING_CONTROLLER;
+            } else if (actions.equals(CHECKOUTCOMFIRM)) {
                 url = CHECKOUTCOMFIRM_CONTROLLER;
             } else {
                 url = "error-404.jsp";
