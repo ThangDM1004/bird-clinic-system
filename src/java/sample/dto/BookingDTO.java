@@ -20,11 +20,12 @@ public class BookingDTO {
     private String service_id;
     private int slot_number;
     private String patient_id;
+    private int booking_status;
 
     public BookingDTO() {
     }
 
-    public BookingDTO(String booking_id, String username_doctor, String username_customer, Date date, String service_id, int slot_number, String patient_id) {
+    public BookingDTO(String booking_id, String username_doctor, String username_customer, Date date, String service_id, int slot_number, String patient_id, int booking_status) {
         this.booking_id = booking_id;
         this.username_doctor = username_doctor;
         this.username_customer = username_customer;
@@ -32,6 +33,7 @@ public class BookingDTO {
         this.service_id = service_id;
         this.slot_number = slot_number;
         this.patient_id = patient_id;
+        this.booking_status = booking_status;
     }
 
     public String getBooking_id() {
@@ -89,5 +91,15 @@ public class BookingDTO {
     public void setPatient_id(String patient_id) {
         this.patient_id = patient_id;
     }
+
+    public int getBooking_status() {
+        return booking_status;
+    }
+
+    public void setBooking_status(int booking_status) {
+        this.booking_status = booking_status;
+    }
+
+   
     
 }
