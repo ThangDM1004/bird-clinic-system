@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -165,7 +166,6 @@ public class BookingDAO {
         // Trả về ngày đã định dạng
         return formattedDate;
     }
-
 
     public List<BookingDTO> getAllBooking() throws SQLException {
         List<BookingDTO> list = new ArrayList<>();
@@ -338,23 +338,24 @@ public class BookingDAO {
         }
         return service_name;
     }
-     private static final String ASSIGN_BOOKING = "UPDATE tbl_Booking SET booking_status = 2,username_doctor = ? WHERE booking_id = ?";
-    public boolean AssignBooking(String bookingID, String doctor ) throws SQLException{
+    private static final String ASSIGN_BOOKING = "UPDATE tbl_Booking SET booking_status = 2,username_doctor = ? WHERE booking_id = ?";
+
+    public boolean AssignBooking(String bookingID, String doctor) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkUpdate = false;
-        try{
-             conn = Utils.getConnection();
-            if(conn!= null){
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
                 ps = conn.prepareStatement(ASSIGN_BOOKING);
                 ps.setString(1, doctor);
                 ps.setString(2, bookingID);
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
             }
-        }catch(Exception e){
-           
+        } catch (Exception e) {
+
         } finally {
-           
+
             if (ps != null) {
                 ps.close();
             }
@@ -362,27 +363,28 @@ public class BookingDAO {
                 conn.close();
             }
         }
-        return  checkUpdate;
+        return checkUpdate;
     }
-    private static final String HISTORY_BOOKING = "INSERT INTO tbl_Booking_Status_Details(booking_id,booking_status,date,time)" +" VALUES(?,?,?,?)";
-    public boolean InsertHistory(String bookingID, int booking_status,LocalDate date, Time gio) throws SQLException{
+    private static final String HISTORY_BOOKING = "INSERT INTO tbl_Booking_Status_Details(booking_id,booking_status,date,time)" + " VALUES(?,?,?,?)";
+
+    public boolean InsertHistory(String bookingID, int booking_status, LocalDate date, Time gio) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkInsert = false;
-        try{
+        try {
             conn = Utils.getConnection();
-            if(conn!= null){
+            if (conn != null) {
                 ps = conn.prepareStatement(HISTORY_BOOKING);
                 ps.setString(1, bookingID);
-                ps.setInt(2,booking_status );
+                ps.setInt(2, booking_status);
                 ps.setObject(3, date);
                 ps.setTime(4, gio);
                 checkInsert = ps.executeUpdate() > 0 ? true : false;
             }
-        }catch(Exception e){
-           
+        } catch (Exception e) {
+
         } finally {
-           
+
             if (ps != null) {
                 ps.close();
             }
@@ -392,15 +394,44 @@ public class BookingDAO {
         }
         return checkInsert;
     }
-    
-    public static void main(String[] args) throws SQLException {
+
+    public void insertIntoBooking(BookingDTO b){
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("INSERT INTO tbl_Booking\n"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, b.getBooking_id());
+            ps.setString(2, b.getUsername_doctor());
+            ps.setString(3, b.getUsername_customer());
+            ps.setDate(4, b.getDate());
+            ps.setString(5, b.getService_id());
+            ps.setInt(6, b.getSlot_number());
+            ps.setString(7, b.getPatient_id());
+            ps.setInt(8, b.getBooking_status());
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
+
+    public String getLastedBookingID() {
+        String b = "";
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select top 1 booking_id\n"
+                    + "from tbl_Booking\n"
+                    + "order by ID desc");
+            rs = ps.executeQuery();
+            if(rs.next()) b = rs.getString(1);
+        } catch (Exception e) {
+        }
+        return b;
+    }
+
+    public static void main(String[] args) throws SQLException, ParseException {
         BookingDAO bookingDAO = new BookingDAO();
         List<BookingDTO> bookings = bookingDAO.getAllBooking();
-
-        // Xử lý danh sách đặt chỗ ở đây
-        for (BookingDTO booking : bookings) {
-            System.out.println(booking.toString());
-        }
+        System.out.println(bookingDAO.getLastedBookingID());
     }
 
 }
