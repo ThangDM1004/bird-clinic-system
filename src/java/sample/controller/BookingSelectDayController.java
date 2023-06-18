@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.dao.BookingDAO;
 
 /**
  *
@@ -34,7 +35,11 @@ public class BookingSelectDayController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             String selectedDay = request.getParameter("selectedDay");
             String selectedSlot = request.getParameter("selectedSlot");
-            request.setAttribute("s", selectedDay);
+            BookingDAO dao = new BookingDAO();
+            String time_slot = dao.getSlotByID(Integer.parseInt(selectedSlot)).getTime_slot();
+            request.setAttribute("selectedDay", selectedDay);
+            request.setAttribute("selectedSlot", selectedSlot);
+            request.setAttribute("time_slot", time_slot);
             request.getRequestDispatcher("checkout.jsp").forward(request, response);
         }
     }
