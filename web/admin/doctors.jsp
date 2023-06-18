@@ -44,259 +44,307 @@
         <![endif]-->
     </head>
     <body>
-          <div class="page-wrapper">
-                <div class="content container-fluid">
+        <div class="page-wrapper">
+            <div class="content container-fluid">
 
-                    <!-- Page Header -->
-                    <div class="page-header">
-                        <div class="row">
-                            <div class="col-sm-7 col-auto">
-                                <h3 class="page-title">List of Doctors</h3>
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-                                    <li class="breadcrumb-item active">Doctor</li>
-                                </ul>
-                            </div>
-                            <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                            <!--                            <div class="col-sm-5 col">
-                                            <a href="#Add_Specialities_details" data-toggle="modal"
-                                               class="btn btn-primary float-right mt-2">Add</a>
-                                        </div>-->
-                        </div>
-
-                    </div>
-                    <!-- /Page Header -->
-
+                <!-- Page Header -->
+                <div class="page-header">
                     <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="datatable table table-hover table-center mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Doctor Name</th>
-                                                    <th>Speciality</th>
-                                                    <th>Email</th>
-                                                    <th>Phone Contact</th>
-                                                    <th>Account Status</th>
+                        <div class="col-sm-7 col-auto">
+                            <h3 class="page-title">List of Doctors</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:(0);">Admin</a></li>
+                                <li class="breadcrumb-item active">Doctor</li>
+                            </ul>
+                        </div>
+                        <!--                            PHẦN ADD THÊM BÁC SĨ-->
+                        <!--                            <div class="col-sm-5 col">
+                                        <a href="#Add_Specialities_details" data-toggle="modal"
+                                           class="btn btn-primary float-right mt-2">Add</a>
+                                    </div>-->
+                    </div>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <%
-                                                    List<UserDTO> ls = new ArrayList<UserDTO>();
-                                                    UserDAO dao = new UserDAO();
-                                                    ls = dao.doctorList();
-                                                    for (UserDTO doc : ls) {
-                                                            int index = ls.indexOf(doc);
-                                                %>
+                </div>
+                <!-- /Page Header -->
 
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
-                                                            <a href="#view_specialities_details_<%=index%>" data-toggle="modal"><%= doc.getFullname()%></a>
-                                                        </h2>
-                                                    </td>
-                                                    <td><%= doc.getBio()%></td>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="datatable table table-hover table-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Doctor Name</th>
+                                                <th>Speciality</th>
+                                                <th>Email</th>
+                                                <th>Phone Contact</th>
+                                                <th>Account Status</th>
 
-                                                    <td><%= doc.getEmail()%></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                                int rowCounter = 1;
+                                                List<UserDTO> ls = new ArrayList<UserDTO>();
+                                                UserDAO dao = new UserDAO();
+                                                ls = dao.doctorList();
+                                                for (UserDTO doc : ls) {
 
-                                                    <td><%= doc.getPhone()%></td>
+                                            %>
 
-                                                    <td>
-                                                        <div class="status-toggle">
-                                                            <input type="checkbox" id="status_1" class="check" checked>
-                                                            <label for="status_1" class="checktoggle">checkbox</label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
+                                                        <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname()%></a>
+                                                    </h2>
+                                                </td>
+                                                <td><%= doc.getBio()%></td>
+
+                                                <td><%= doc.getEmail()%></td>
+
+                                                <td><%= doc.getPhone()%></td>
+
+                                                <td>
+                                                    <%
+                                                        boolean isStatus = doc.isStatus();
+                                                    %>
+                                                    <form id="statusForm<%=rowCounter%>" action="../SetStatusController" method="POST">
+                                                        <label class="switch">
+                                                            <input name="username" value="<%=doc.getUsername()%>" type="hidden">
+                                                            <input name="statusName" value ="<%=isStatus%>" type="hidden">
+                                                            <input type="checkbox" onchange="document.getElementById('statusForm<%= rowCounter%>').submit()" <%= isStatus ? "checked" : "unchecked"%>>
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </form>
+                                                    <style>
+                                                        .switch {
+                                                            margin-left: 10px;
+                                                            position: relative;
+                                                            display: inline-block;
+                                                            width: 60px;
+                                                            height: 34px;
+                                                        }
+
+                                                        /* Hide default HTML checkbox */
+                                                        .switch input {
+                                                            opacity: 0;
+                                                            width: 0;
+                                                            height: 0;
+                                                        }
+
+                                                        /* The slider */
+                                                        .slider {
+                                                            position: absolute;
+                                                            cursor: pointer;
+                                                            top: 0;
+                                                            left: 0;
+                                                            right: 0;
+                                                            bottom: 0;
+                                                            background-color: #ccc;
+                                                            -webkit-transition: .4s;
+                                                            transition: .4s;
+                                                        }
+
+                                                        .slider:before {
+                                                            position: absolute;
+                                                            content: "";
+                                                            height: 26px;
+                                                            width: 26px;
+                                                            left: 4px;
+                                                            bottom: 4px;
+                                                            background-color: white;
+                                                            -webkit-transition: .4s;
+                                                            transition: .4s;
+                                                        }
+
+                                                        input:checked + .slider {
+                                                            background-color: #6EC531;
+                                                        }
+
+                                                        input:focus + .slider {
+                                                            box-shadow: 0 0 1px #6EC531;
+                                                        }
+
+                                                        input:checked + .slider:before {
+                                                            -webkit-transform: translateX(26px);
+                                                            -ms-transform: translateX(26px);
+                                                            transform: translateX(26px);
+                                                        }
+
+                                                        /* Rounded sliders */
+                                                        .slider.round {
+                                                            border-radius: 34px;
+                                                        }
+
+                                                        .slider.round:before {
+                                                            border-radius: 50%;
+                                                        }
+
+                                                    </style>
+                                                </td>
+                                            </tr>
 
 
-                                                <%
-                                                    }
-                                                %>
+                                            <%
+                                                    rowCounter++;
+                                                }
+                                            %>
 
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </div>			
-                    </div>
-
-                </div>			
-            </div>
-            <!-- /Page Wrapper -->
-
-
-            <!-- Add Modal -->
-            <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Doctor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Image Profile</label>
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label>Full Name</label>
-                                            <input style="width: 250px;" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Gender</label>
-                                            <br>
-                                            <select>
-                                                <option value="">Male</option>
-                                                <option value="">Female</option>
-                                                <option value="">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <label>Date of Birth</label>
-                                            <input type="date" placeholder="$" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <label>Specialities</label>
-                                            <br>
-                                            <select style="height: 40px;  border-radius: 4px; boder: 1px solid #ff1;">
-                                                <option style="height: 20px;" value="">Internal</option>
-                                                <option style="height: 20px;" value="">External</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Email Contact</label>
-                                            <input  type="email" placeholder="abcxyz@gmail.com" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Phone Contact</label>
-                                            <input  type="number" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Bio</label>
-                                            <textarea style="width: 300px;" type="text" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row form-row">
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input  type="text"  class="form-control"></input>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input type="password" class="form-control"></input>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block">Add new</button>
-                            </form>
-                        </div>
-                    </div>
+                    </div>			
                 </div>
-            </div>
-            <!-- /ADD Modal -->
-        </div>
 
-        <!-- View Details Modal -->
-        <%
-                                            for (UserDTO doc : ls) {
-                                            int index = ls.indexOf(doc);
-                                            %>enctype="multipart/form-data"
-        <div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
+            </div>			
+        </div>
+        <!-- /Page Wrapper -->
+
+
+        <!-- Add Modal -->
+        <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">View Specialities</h5>
+                        <h5 class="modal-title">Add Doctor</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        
-                            
-                                <div class="form-group">
- 
-                                        <div class="widget-profile pro-widget-content">
-                                                                    <div class="profile-info-widget">
-                                                                            <a href="#" class="booking-doc-img">
-                                                                                <img src="<%=doc.getImage()%>" style width="100%" alt="User Image"> 
-                                                                            </a>
-                                                                            <div class="profile-det-info">
-                                                                                <h3>Full name: <%=doc.getFullname()%></h3>
-                                                                                <h3>Gender: <%=doc.getGender()%></h3>
-                                                                                <h3>Email: <%=doc.getEmail()%></h3>
-                                                                                <h3>Phone: <%=doc.getPhone()%></h3>
-                                                                                <h3>Other Infomation: <%=doc.getBio()%></h3>
-                                                                                
-                                                                                    <div class="patient-details">
-                                                                                            <h5 class="mb-0"></h5>
-                                                                                    </div>
-                                                                            </div>
-                                                                    </div>
-					</div>                                             
+                        <form>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Image Profile</label>
+                                        <input type="file" class="form-control">
+                                    </div>
+                                </div>
                             </div>
+                            <div class="row form-row">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Full Name</label>
+                                        <input style="width: 250px;" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Gender</label>
+                                        <br>
+                                        <select>
+                                            <option value="">Male</option>
+                                            <option value="">Female</option>
+                                            <option value="">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label>Date of Birth</label>
+                                        <input type="date" placeholder="$" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label>Specialities</label>
+                                        <br>
+                                        <select style="height: 40px;  border-radius: 4px; boder: 1px solid #ff1;">
+                                            <option style="height: 20px;" value="">Internal</option>
+                                            <option style="height: 20px;" value="">External</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Email Contact</label>
+                                        <input  type="email" placeholder="abcxyz@gmail.com" class="form-control"></input>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Phone Contact</label>
+                                        <input  type="number" class="form-control"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Bio</label>
+                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input  type="text"  class="form-control"></input>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Add new</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /ADD Modal -->
+    </div>
 
-                       
+    <!-- View Details Modal -->
+    <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View Specialities</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Updating</label>
+                            </div>
+                        </div>
 
-                    
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-                                                                                <%
-                                                                                    }
-                                                                                    %>
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- Slimscroll JS -->
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-        <!-- Datatables JS -->
-        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="assets/plugins/datatables/datatables.min.js"></script>
+    <!-- Datatables JS -->
+    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/plugins/datatables/datatables.min.js"></script>
 
-        <!-- Custom JS -->
-        <script  src="assets/js/script.js"></script>
-    </body>
+    <!-- Custom JS -->
+    <script  src="assets/js/script.js"></script>
+</body>
 </html>
