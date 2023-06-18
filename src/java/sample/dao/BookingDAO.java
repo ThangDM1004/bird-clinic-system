@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -337,9 +338,11 @@ public class BookingDAO {
         }
         return service_name;
     }
+
     private static final String ASSIGN_BOOKING = "UPDATE tbl_Booking SET booking_status = ?,username_doctor = ? WHERE booking_id = ?";
 
     public boolean AssignBooking(String bookingID, String doctor, int booking_status) throws SQLException {
+
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkUpdate = false;
@@ -423,6 +426,7 @@ public class BookingDAO {
     private static final String HISTORY_BOOKING = "INSERT INTO tbl_Booking_Status_Details(booking_id,booking_status,date,time,note)" + " VALUES(?,?,?,?,?)";
 
     public boolean InsertHistory(String bookingID, int booking_status, LocalDate date, Time gio, String note) throws SQLException {
+
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkInsert = false;
@@ -450,6 +454,7 @@ public class BookingDAO {
         }
         return checkInsert;
     }
+
     private static final String CUSNAME = "select a.fullname\n"
             + "from tbl_Booking b join tbl_Account a\n"
             + "on ( a.user_name = b.username_customer and b.username_customer = ?)";
@@ -525,10 +530,44 @@ public class BookingDAO {
         BookingDAO bookingDAO = new BookingDAO();
         List<BookingDTO> bookings = bookingDAO.getAllBooking();
 
-        // Xử lý danh sách đặt chỗ ở đây
-        for (BookingDTO booking : bookings) {
-            System.out.println(booking.toString());
+
+    public void insertIntoBooking(BookingDTO b){
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("INSERT INTO tbl_Booking\n"
+                    + "values (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, b.getBooking_id());
+            ps.setString(2, b.getUsername_doctor());
+            ps.setString(3, b.getUsername_customer());
+            ps.setDate(4, b.getDate());
+            ps.setString(5, b.getService_id());
+            ps.setInt(6, b.getSlot_number());
+            ps.setString(7, b.getPatient_id());
+            ps.setInt(8, b.getBooking_status());
+            ps.executeUpdate();
+        } catch (Exception e) {
+
         }
+    }
+
+    public String getLastedBookingID() {
+        String b = "";
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select top 1 booking_id\n"
+                    + "from tbl_Booking\n"
+                    + "order by ID desc");
+            rs = ps.executeQuery();
+            if(rs.next()) b = rs.getString(1);
+        } catch (Exception e) {
+        }
+        return b;
+    }
+
+    public static void main(String[] args) throws SQLException, ParseException {
+        BookingDAO bookingDAO = new BookingDAO();
+        List<BookingDTO> bookings = bookingDAO.getAllBooking();
+        System.out.println(bookingDAO.getLastedBookingID());
     }
 
 }

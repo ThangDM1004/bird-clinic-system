@@ -7,10 +7,18 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import sample.dao.BookingDAO;
+import sample.dto.BookingDTO;
+import sample.dto.UserDTO;
 
 /**
  *
@@ -28,12 +36,33 @@ public class CheckOutController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        String service = request.getParameter("service");
-        String patient = request.getParameter("patient");
-        String date = request.getParameter("date");
+        
+        HttpSession session = request.getSession();
+        UserDTO user = (UserDTO) session.getAttribute("account");
+        BookingDAO dao = new BookingDAO();
+        
+        String serviceID = request.getParameter("service");
+        String patientID = request.getParameter("patient");
+        String date_ga = request.getParameter("date");
         String time = request.getParameter("time");
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        java.util.Date utilDate = format.parse(date_ga);
+        java.sql.Date date = new java.sql.Date(utilDate.getTime());
+
+        String bookingID = dao.getLastedBookingID();
+        int number = Integer.parseInt(bookingID.trim().substring(2));
+        number++;
+        bookingID = "BK" + number;
+        
+        BookingDTO booking = new BookingDTO(bookingID, "", user.getUsername(), date, serviceID, Integer.parseInt(time), patientID, 1);
+        try {
+            dao.insertIntoBooking(booking);
+        } catch (Exception e) {
+        }
+        
         request.setAttribute("time", time);
         request.getRequestDispatcher("booking-success.jsp").forward(request, response);
         
@@ -51,7 +80,11 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -65,7 +98,11 @@ public class CheckOutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CheckOutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
