@@ -90,6 +90,14 @@
         <servlet-class>sample.controller.BookingSelectDayController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CheckPasswordController</servlet-name>
+        <servlet-class>sample.controller.CheckPasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PendingController</servlet-name>
+        <servlet-class>sample.controller.PendingController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CheckOutController</servlet-name>
         <servlet-class>sample.controller.CheckOutController</servlet-class>
     </servlet>
@@ -180,6 +188,14 @@
     <servlet-mapping>
         <servlet-name>BookingSelectDayController</servlet-name>
         <url-pattern>/BookingSelectDayController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckPasswordController</servlet-name>
+        <url-pattern>/CheckPasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PendingController</servlet-name>
+        <url-pattern>/PendingController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckOutController</servlet-name>
