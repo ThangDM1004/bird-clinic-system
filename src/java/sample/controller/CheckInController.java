@@ -8,30 +8,39 @@ package sample.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BookingDAO;
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 /**
  *
  * @author MSI AD
  */
-public class PendingController extends HttpServlet {
+public class CheckInController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
-            String doctor = request.getParameter("select_doctor");
-            int booking_status = Integer.parseInt(request.getParameter("status_booking").trim());
+           
+            int booking_status = Integer.parseInt(request.getParameter("status_booking"));
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.AssignBooking(bookingID, doctor, booking_status);
+            boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
             if (checkUpdate) {
                 LocalDate ngayHienTai = LocalDate.now();
                 LocalTime gioHienTai = LocalTime.now();
@@ -39,7 +48,12 @@ public class PendingController extends HttpServlet {
                 boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
                 if (checkHistory) {
                     HttpSession session = request.getSession();
-                    session.setAttribute("status", "Pending");
+                    if(booking_status == 5){
+                        session.setAttribute("status", "Assign");
+                    }else if(booking_status == 7){
+                         session.setAttribute("status", "CheckIn");
+                    }
+                    
                     response.sendRedirect("staff.jsp");
                 }
             }
