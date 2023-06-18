@@ -102,7 +102,7 @@
                                                 </select>
                                             </td>
                                             <td><div class="submit-section">
-                                                    <button name="action" value="Submit" type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                                    <button name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button>
                                                 </div></td>
                                             </tbody>
                                         </table>
