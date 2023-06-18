@@ -51,6 +51,10 @@
         %>
         <jsp:useBean id="PatientDAO" scope="request" class="sample.dao.PatientDAO"/>
         <jsp:useBean id="ServiceDAO" scope="request" class="sample.dao.ServiceDAO"/>
+        <c:if test="${empty requestScope.selectedDay or empty requestScope.selectedSlot}">
+            <c:redirect url="booking.jsp" />
+        </c:if>
+
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
@@ -227,7 +231,7 @@
                                 <div class="card-body">
 
                                     <!-- Checkout Form -->
-                                    <form action="https://dreamguys.co.in/demo/doccure/booking-success.jsp">
+                                    <form action="MainController" method="POST">
 
                                         <!-- Personal Information -->
                                         <div class="info-widget">
@@ -260,7 +264,7 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Date</label>
-                                                        <input readonly="" value="${requestScope.selectedDay}" class="form-control" type="text">
+                                                        <input readonly="" name="date" value="${requestScope.selectedDay}" class="form-control" type="text">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
@@ -274,7 +278,7 @@
                                             <!--											<div class="exist-customer">Existing Customer? <a href="#">Click here to login</a></div>-->
                                         </div>
                                         <!-- /Personal Information -->
-                                        
+
                                         <div class="payment-widget">
                                             <!--                                            <h4 class="card-title">Payment Method</h4>-->
 
@@ -341,7 +345,7 @@
 
                                             <!-- Submit Section -->
                                             <div class="submit-section mt-4">
-                                                <button type="submit" class="btn btn-primary submit-btn">Confirm and Pay</button>
+                                                <button type="submit" class="btn btn-primary submit-btn" name="action" value="CheckoutConfirm">Confirm</button>
                                             </div>
                                             <!-- /Submit Section -->
 
@@ -573,7 +577,26 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
+        <script>
+            // Lấy tham chiếu đến các phần tử cần kiểm tra
+            var serviceElement = document.getElementsByName("service")[0];
+            var patientElement = document.getElementsByName("patient")[0];
+            var submitButton = document.querySelector(".submit-btn");
+            submitButton.disabled = true;
+// Thêm sự kiện "input" cho các phần tử
+            serviceElement.addEventListener("input", toggleSubmitButtonState);
+            patientElement.addEventListener("input", toggleSubmitButtonState);
 
+// Kiểm tra và cập nhật trạng thái của nút submit
+            function toggleSubmitButtonState() {
+                if (serviceElement.value !== "" && patientElement.value !== "") {
+                    submitButton.disabled = false; // Enable nút submit
+                } else {
+                    submitButton.disabled = true; // Disable nút submit
+                }
+            }
+
+        </script>
     </body>
 
     <!-- doccure/checkout.jsp  30 Nov 2019 04:12:16 GMT -->
