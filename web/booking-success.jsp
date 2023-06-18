@@ -4,6 +4,7 @@
     Author     : MSI AD
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html lang="en">
@@ -175,7 +176,7 @@
 									<div class="success-cont">
 										<i class="fas fa-check"></i>
 										<h3>Appointment booked Successfully!</h3>
-										<p>Appointment booked with <strong>Dr. Darren Elder</strong><br> on <strong>12 Nov 2019 5:00PM to 6:00PM</strong></p>
+                                                                                <p>Appointment booked with <strong>Dr. Darren Elder</strong><br> on <strong>${requestScope.time}</strong></p>
 										<a href="invoice-view.jsp" class="btn btn-primary view-inv-btn">View Invoice</a>
 									</div>
 								</div>
