@@ -13,6 +13,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import sample.dao.UserDAO;
 
@@ -50,22 +51,26 @@ public class UpdateDoctorSettingProfileController extends HttpServlet {
             String imagePath = "assets/img/doctors/" + fileName; // Đường dẫn tệp ảnh từ gốc ứng dụng web
             try {
                 dao.UpdateDoctorProfile(username, fullname, phone, gender, dob, bio, imagePath);
+                HttpSession session = request.getSession();
+                session.setAttribute("status", "doctor-profile");
             } catch (Exception e) {
                 log("Error at UpdateDoctorSettingProfileController" + e.toString());
             } finally {
                 //response.sendRedirect("doctor-profile-settings.jsp");
 
-                request.getRequestDispatcher("doctor-profile-settings.jsp").forward(request, response);
+                request.getRequestDispatcher("doctor-dashboard.jsp").forward(request, response);
             }
         } else {
             try {
                 dao.UpdateDoctorProfile(username, fullname, phone, gender, dob, bio);
+                HttpSession session = request.getSession();
+                session.setAttribute("status", "doctor-profile");
             } catch (Exception e) {
                 log("Error at UpdateDoctorSettingProfileController" + e.toString());
             } finally {
                 //response.sendRedirect("doctor-profile-settings.jsp");
 
-                request.getRequestDispatcher("doctor-profile-settings.jsp").forward(request, response);
+                request.getRequestDispatcher("doctor-dashboard.jsp").forward(request, response);
             }
         }
 

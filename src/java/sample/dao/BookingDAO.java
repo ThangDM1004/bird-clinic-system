@@ -526,10 +526,7 @@ public class BookingDAO {
         return doc_name;
     }
 
-    public static void main(String[] args) throws SQLException {
-        BookingDAO bookingDAO = new BookingDAO();
-        List<BookingDTO> bookings = bookingDAO.getAllBooking();
-
+   
 
     public void insertIntoBooking(BookingDTO b){
         try {
@@ -564,10 +561,6 @@ public class BookingDAO {
         return b;
     }
 
-    public static void main(String[] args) throws SQLException, ParseException {
-        BookingDAO bookingDAO = new BookingDAO();
-        List<BookingDTO> bookings = bookingDAO.getAllBooking();
-        System.out.println(bookingDAO.getLastedBookingID());
-    }
+    
 
 }

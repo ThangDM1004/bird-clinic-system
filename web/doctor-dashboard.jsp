@@ -63,6 +63,7 @@
             } else {
                 response.sendRedirect("login.jsp");
             }
+            String status = (String) s.getAttribute("status");
         %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
@@ -228,7 +229,7 @@
                                     <div class="profile-info-widget">
                                         <a href="#" class="booking-doc-img">
                                             <img src=""
-                                                  alt="User Image">
+                                                 alt="User Image">
                                         </a>
                                         <div class="profile-det-info">
                                             <h3><%
@@ -248,66 +249,29 @@
                                     <nav class="dashboard-menu">
                                         <ul>
                                             <li class="active">
-                                                <a href="doctor-dashboard.jsp">
+                                                <a type="button" onclick="Dashboard()">
                                                     <i class="fas fa-columns"></i>
                                                     <span>Dashboard</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="appointments.jsp">
+                                                <a type="button" onclick="Appointments()">
                                                     <i class="fas fa-calendar-check"></i>
                                                     <span>Appointments</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="my-patients.jsp">
+                                                <a type="button" onclick="Patients()">
                                                     <i class="fas fa-user-injured"></i>
                                                     <span>My Patients</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="schedule-timings.jsp">
-                                                    <i class="fas fa-hourglass-start"></i>
-                                                    <span>Schedule Timings</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="invoices.jsp">
-                                                    <i class="fas fa-file-invoice"></i>
-                                                    <span>Invoices</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="reviews.jsp">
-                                                    <i class="fas fa-star"></i>
-                                                    <span>Reviews</span>
-                                                </a>
-                                            </li>
-                                            <!-- <li>
-                                                            <a href="chat-doctor.jsp">
-                                                                    <i class="fas fa-comments"></i>
-                                                                    <span>Message</span>
-                                                                    <small class="unread-msg">23</small>
-                                                            </a>
-                                                    </li> -->
-                                            <li>
-                                                <a href="doctor-profile-settings.jsp">
+                                                <a type="button" onclick="Profile()">
                                                     <i class="fas fa-user-cog"></i>
                                                     <span>Profile Settings</span>
                                                 </a>
                                             </li>
-                                            <!-- <li>
-                                                            <a href="social-media.jsp">
-                                                                    <i class="fas fa-share-alt"></i>
-                                                                    <span>Social Media</span>
-                                                            </a>
-                                                    </li> -->
-                                            <!-- <li>
-                                                            <a href="doctor-change-password.jsp">
-                                                                    <i class="fas fa-lock"></i>
-                                                                    <span>Change Password</span>
-                                                            </a>
-                                                    </li> -->
                                             <li>
                                                 <a href="index-2.jsp">
                                                     <i class="fas fa-sign-out-alt"></i>
@@ -321,252 +285,37 @@
                             <!-- /Profile Sidebar -->
 
                         </div>
+                        <%
+                            if (status == null) {
+                        %>
+                        <script>
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function () {
+                                if (this.readyState === 4 && this.status === 200) {
+                                    document.getElementById("doctor").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "doctor_dashboard.jsp", true);
+                            xhttp.send();
+                        </script>
+                        <%
+                        } else if (status == "doctor-profile") {
+                        %>
+                        <script>
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function () {
+                                if (this.readyState === 4 && this.status === 200) {
+                                    document.getElementById("doctor").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "doctor-profile-settings.jsp", true);
+                            xhttp.send();
+                        </script>
+                        <%
+                            }
+                        %>
 
-                        <div class="col-md-7 col-lg-8 col-xl-9">
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card dash-card">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12 col-lg-4">
-                                                    <div class="dash-widget dct-border-rht">
-                                                        <div class="circle-bar circle-bar1">
-                                                            <div class="circle-graph1" data-percent="75">
-                                                                <img src="assets/img/icon-01.png" class="img-fluid"
-                                                                     alt="patient">
-                                                            </div>
-                                                        </div>
-                                                        <div class="dash-widget-info">
-
-                                                            <h6>Total Patient</h6>
-                                                            <h3>
-
-                                                                <%
-                                                                    int patientCount = UserDAO.countPatients(doctorUsername);
-                                                                    out.print(patientCount);
-
-                                                                %>
-                                                            </h3>
-                                                            <p class="text-muted">Till Today</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12 col-lg-4">
-                                                    <div class="dash-widget dct-border-rht">
-                                                        <div class="circle-bar circle-bar2">
-                                                            <div class="circle-graph2" data-percent="65">
-                                                                <img src="assets/img/icon-02.png" class="img-fluid"
-                                                                     alt="Patient">
-                                                            </div>
-                                                        </div>
-                                                        <div class="dash-widget-info">
-                                                            <h6>Today Patient</h6>
-                                                            <h3> 
-                                                                <%                                                                                                                        int todayCount = UserDAO.countTodayPatients(doctorUsername);
-                                                                %>
-                                                                <%= todayCount%>
-                                                            </h3>
-                                                            <p class="text-muted"><%
-                                                                java.time.LocalDate currentDate = java.time.LocalDate.now();
-                                                                out.println(currentDate);
-                                                                %>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-12 col-lg-4">
-                                                    <div class="dash-widget">
-                                                        <div class="circle-bar circle-bar3">
-                                                            <div class="circle-graph3" data-percent="50">
-                                                                <img src="assets/img/icon-03.png" class="img-fluid"
-                                                                     alt="Patient">
-                                                            </div>
-                                                        </div>
-                                                        <div class="dash-widget-info">
-                                                            <h6>Appoinments</h6>
-                                                            <h3>
-                                                                <%
-                                                                    int appointmemtCount = UserDAO.countAppoinments(doctorUsername);
-                                                                %>
-                                                                <%= appointmemtCount%>
-                                                            </h3>
-                                                            <p class="text-muted">Till Today</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4 class="mb-4">Patient Appoinment</h4>
-                                    <div class="appointment-tab">
-
-                                        <!-- Appointment Tab -->
-                                        <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" href="#upcoming-appointments"
-                                                   data-toggle="tab">Upcoming</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
-                                            </li>
-                                        </ul>
-                                        <!-- /Appointment Tab -->
-
-                                        <div class="tab-content">
-
-                                            <!-- Upcoming Appointment Tab -->                                            
-                                            <%
-                                                UserDAO dao = new UserDAO();
-                                                List<AppointmentDTO> ls1 = dao.NextDayAppt(doctorUsername);
-                                            %>
-                                            <div class="tab-pane show active" id="upcoming-appointments">
-                                                <div class="card card-table mb-0">
-                                                    <div class="card-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-hover table-center mb-0">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Custommer Name</th>
-                                                                        <th>Appt Date</th>
-                                                                        <th>Service</th>
-                                                                        <th>Type</th>
-                                                                        <th class="text-center">Slot</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <%
-                                                                    ls1 = dao.NextDayAppt(doctorUsername);
-                                                                    for (AppointmentDTO appt1 : ls1) {
-                                                                %>
-                                                                <tbody>                                                                 
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h2 class="table-avatar">
-                                                                                <a href="patient-profile.jsp"
-                                                                                   class="avatar avatar-sm mr-2"><img
-                                                                                        class="avatar-img rounded-circle"
-                                                                                        src="<%= appt1.getImgCus()%>"
-                                                                                        alt="User Image"></a>
-                                                                                <a href="patient-profile.jsp"><span><%= appt1.getCustomerName()%></span></a>
-                                                                            </h2>
-                                                                        </td>
-                                                                        <td><%= appt1.getDate_()%> <span
-                                                                                class="d-block text-info"></span>
-                                                                        </td>
-                                                                        <td><%= appt1.getService()%> </td>
-
-                                                                        <td class="text-center"><%= appt1.getTime()%></td>
-                                                                        <td class="text-right">
-                                                                            <div class="table-action">
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-info-light">
-                                                                                    <i class="far fa-eye"></i> View
-                                                                                </a>
-
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-success-light">
-                                                                                    <i class="fas fa-check"></i> Accept
-                                                                                </a>
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-danger-light">
-                                                                                    <i class="fas fa-times"></i> Cancel
-                                                                                </a>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>                                                                
-                                                                </tbody>
-                                                                <%
-                                                                    }
-                                                                %> 
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- /Upcoming Appointment Tab -->
-
-                                            <!-- Today Appointment Tab -->    
-                                            <%
-                                                List<AppointmentDTO> ls2 = dao.TodayAppt(doctorUsername);
-                                            %>
-                                            <div class="tab-pane" id="today-appointments">
-                                                <div class="card card-table mb-0">
-                                                    <div class="card-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-hover table-center mb-0">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Custommer Name</th>
-                                                                        <th>Appt Date</th>
-                                                                        <th>Service</th>
-                                                                        <th class="text-center">Slot</th>
-                                                                        <th></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <%
-                                                                    for (AppointmentDTO appt2 : ls2) {
-                                                                %>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            <h2 class="table-avatar">
-                                                                                <a href="patient-profile.jsp"
-                                                                                   class="avatar avatar-sm mr-2"><img
-                                                                                        class="avatar-img rounded-circle"
-                                                                                        src="<%=appt2.getImgCus()%>"
-                                                                                        alt="User Image"></a>
-                                                                                <a href="patient-profile.jsp"><%= appt2.getCustomerName()%>
-                                                                            </h2>
-                                                                        </td>
-                                                                        <td><%= appt2.getDate_()%><span class="d-block text-info">
-                                                                            </span></td>
-                                                                        <td><%= appt2.getService()%> </td>
-                                                                        <td class="text-center"><%= appt2.getTime()%></td>
-                                                                        <td class="text-right">
-                                                                            <div class="table-action">
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-info-light">
-                                                                                    <i class="far fa-eye"></i> View
-                                                                                </a>
-
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-success-light">
-                                                                                    <i class="fas fa-check"></i> Accept
-                                                                                </a>
-                                                                                <a href="javascript:void(0);"
-                                                                                   class="btn btn-sm bg-danger-light">
-                                                                                    <i class="fas fa-times"></i> Cancel
-                                                                                </a>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                </tbody>
-                                                                <%
-                                                                    }
-                                                                %>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- /Today Appointment Tab -->
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                        <div id="doctor" class="col-md-7 col-lg-8 col-xl-9">
                         </div>
                     </div>
 
@@ -727,7 +476,7 @@
 
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
-
+        <script src="assets/js/doctor-dashboard.js"></script>
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
