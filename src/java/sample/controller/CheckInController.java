@@ -48,7 +48,7 @@ public class CheckInController extends HttpServlet {
                 boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
                 if (checkHistory) {
                     HttpSession session = request.getSession();
-                    if(booking_status == 5){
+                    if(booking_status == 4){
                         session.setAttribute("status", "Assign");
                     }else if(booking_status == 7){
                          session.setAttribute("status", "CheckIn");

@@ -99,7 +99,7 @@
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
-                                             <input type="hidden" value="5" name="status_booking">
+                                             <input type="hidden" value="3" name="status_booking">
                                             <td><textarea name="note"></textarea></td>
                                             <td><div class="submit-section">
                                                     <button name="action" value="Check-in" type="submit" class="btn btn-primary submit-btn">Check In</button>
