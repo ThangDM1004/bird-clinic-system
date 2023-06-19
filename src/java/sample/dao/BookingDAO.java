@@ -561,6 +561,21 @@ public class BookingDAO {
         return b;
     }
 
-    
+    public void insertIntoBookingDetails(String booking_id, int booking_status, String date, String time){
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("INSERT INTO tbl_Booking_Status_Details\n"
+                    + "values (?, ?, ?, ?, ?)");
+            ps.setString(1, booking_id);
+            ps.setInt(2, booking_status);
+            ps.setString(3, date);
+            ps.setString(4, time);
+            ps.setString(5, null);
+            
+            ps.executeUpdate();
+        } catch (Exception e) {
+
+        }
+    }
 
 }

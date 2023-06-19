@@ -6,9 +6,11 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -58,10 +60,21 @@ public class CheckOutController extends HttpServlet {
         bookingID = "BK" + number;
         
         BookingDTO booking = new BookingDTO(bookingID, "", user.getUsername(), date, serviceID, Integer.parseInt(time), patientID, 1);
+        
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeNow = currentTime.format(formatter);
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatterDay = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String dateNow = currentDate.format(formatterDay);
+        
         try {
             dao.insertIntoBooking(booking);
+            dao.insertIntoBookingDetails(bookingID, 1, dateNow, timeNow);
         } catch (Exception e) {
         }
+        
+        
         
         request.setAttribute("time", time);
         request.getRequestDispatcher("booking-success.jsp").forward(request, response);
