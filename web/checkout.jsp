@@ -270,7 +270,7 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Time</label>
-                                                        <input readonly="" value="${requestScope.time_slot}" class="form-control" type="text">
+                                                        <input readonly="" name="time_" value="${requestScope.time_slot}" class="form-control" type="text">
                                                         <input type="hidden" name="time" value="${requestScope.selectedSlot}" />
                                                     </div>
                                                 </div>
