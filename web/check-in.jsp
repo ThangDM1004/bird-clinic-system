@@ -77,15 +77,12 @@
                                                     <th>Time Slot</th>
                                                     <th style="width: 250px">Service</th>
                                                     <th>Doctor</th>
-                                                    <th>Note</th>
-                                                    <th></th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <%                                        
                                                     for (BookingDTO x : list) {
-                                                        if (x.getBooking_status() == 5) {
+                                                        if (x.getBooking_status() == 3) {
                                                 %>
                                                 <tr>
                                                     <td>
@@ -98,12 +95,7 @@
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
-                                             <input type="hidden" value="7" name="status_booking">
-                                            <td><textarea name="note"></textarea></td>
-                                            <td><div class="submit-section">
-                                                    <button name="action" value="Check-in" type="submit" class="btn btn-primary submit-btn">Check In</button>
-                                                    <button style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Cancel</button>
-                                                </div></td>
+                                             <input type="hidden" value="4" name="status_booking">
 
                                             <%
                                                     }

@@ -289,6 +289,28 @@ public class PatientDAO {
         return null;
     }
 
+    public PatientDTO getBirdByID(String bird_id) {
+        PatientDTO bird = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select bird_name, age, gender, species_id\n"
+                    + "from tbl_Patient_Bird \n"
+                    + "where patient_id = ?");
+            ps.setString(1, bird_id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("bird_name");
+                String age = rs.getString("age");
+                String gender = rs.getString("gender");
+                String specied_id = rs.getString("species_id");
+                bird = new PatientDTO(specied_id, name, specied_id, age, gender, "", "", true);
+            }
+        }catch(Exception e){
+            
+        }
+        return bird;
+    }
+
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
         System.out.println(dao.getPatientBird("minhga1").size());

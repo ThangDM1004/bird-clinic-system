@@ -1,5 +1,9 @@
 
 
+<%@page import="sample.dto.BookingDTO"%>
+<%@page import="sample.dao.BookingDAO"%>
+<%@page import="sample.dto.PatientDTO"%>
+<%@page import="sample.dao.PatientDAO"%>
 <%-- 
     Document   : doctor-dashboard
     Created on : May 29, 2023, 4:20:44 PM
@@ -472,8 +476,163 @@
             <!-- /Footer -->
 
         </div>
-        <!-- /Main Wrapper -->
+        <%
+            BookingDAO dao = new BookingDAO();
+            List<BookingDTO> list = dao.getAllBooking();
+            PatientDAO pdao = new PatientDAO();
+            for (BookingDTO x : list) {
+                if (x.getBooking_status() >= 2) {
+                    int index = list.indexOf(x);
+        %>
+        <div class="modal fade" id="Medical-record_<%=index%>" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div style="width: 250%; max-height: 100%"  class="card">
 
+                    <div  class="card-body">
+                        <!-- Profile Settings Form -->
+                        <div class="row form-row">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Medical Record </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
+                                %>
+                                <div class="modal-body">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Name:</label>
+                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%= x.getUsername_customer() %>"  type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Bird Name:</label>
+                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getName()%>"  type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Species:</label>
+                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=pdao.getSpecies(p.getSpecies_id())%>" type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Age:</label>
+                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getAge() %>" type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender:</label>
+                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getGender()%>" type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Date again:</label>
+                                            <input name="date_again" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="date" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone:</label>
+                                            <input name="phone" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Note:</label>
+                                            <textarea name="note" style="width: 200%"></textarea>
+                                        </div>
+                                    </div>
+                                        <input type="hidden" name="patient_id" value="<%=x.getPatient_id()%>">
+                                        <input type="hidden" name="booking_id" value="<%=x.getBooking_id()%>">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+        <%
+                }
+            }       
+            for (BookingDTO x : list) {
+                if (x.getBooking_status() >= 2) {
+                    int index = list.indexOf(x);
+        %>
+        <!-- /Main Wrapper -->
+        <div class="modal fade" id="Bird-details_<%=index%>" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div style="width: 250%"  class="card">
+                    <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
+                    %>
+                    <div  class="card-body">
+                        <!-- Profile Settings Form -->
+                        <div class="row form-row">
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Details bird </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Name</label>
+                                            <input style="width: 200%" name="birdname" type="text" class="form-control" value="<%=p.getName()%>" readonly="">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Species</label>
+                                            <input style="width: 200%" name="species" type="text" class="form-control" value="<%=pdao.getSpecies(p.getSpecies_id())%>" readonly="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Age</label>
+                                            <div>
+                                                <input style="width: 200%"  type="number" class="form-control datetimepicker" value="<%=p.getAge()%>" readonly="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <input style="width: 200%"  type="text" class="form-control datetimepicker" value="<%=p.getGender()%>" readonly="">
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <%
+                }
+            }
+        %>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/doctor-dashboard.js"></script>

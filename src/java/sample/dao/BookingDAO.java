@@ -395,7 +395,7 @@ public class BookingDAO {
         }
         return checkUpdate;
     }
-    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 4,username_doctor = ? WHERE booking_id = ?";
+    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7,username_doctor = ? WHERE booking_id = ?";
 
     public boolean CancelBooking(String bookingID, String doctor) throws SQLException {
         Connection conn = null;
