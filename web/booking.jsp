@@ -258,11 +258,11 @@
                                                 <!-- Day Slot -->
                                                 <div class="day-slot">
                                                     <ul>
-<!--                                                        <li class="left-arrow">
-                                                            <a href="#">
-                                                                <i class="fa fa-chevron-left"></i>
-                                                            </a>
-                                                        </li>-->
+                                                        <!--                                                        <li class="left-arrow">
+                                                                                                                    <a href="#">
+                                                                                                                        <i class="fa fa-chevron-left"></i>
+                                                                                                                    </a>
+                                                                                                                </li>-->
                                                         <li>
                                                             <span>Mon</span>
                                                             <span class="slot-date">${BookingDAO.getWeekDates().get(0)}</span>
@@ -291,11 +291,11 @@
                                                             <span>Sun</span>
                                                             <span class="slot-date">${BookingDAO.getWeekDates().get(6)}</span>
                                                         </li>
-<!--                                                        <li class="right-arrow">
-                                                            <a href="#">
-                                                                <i class="fa fa-chevron-right"></i>
-                                                            </a>
-                                                        </li>-->
+                                                        <!--                                                        <li class="right-arrow">
+                                                                                                                    <a href="#">
+                                                                                                                        <i class="fa fa-chevron-right"></i>
+                                                                                                                    </a>
+                                                                                                                </li>-->
                                                     </ul>
                                                 </div>
                                                 <!-- /Day Slot -->
@@ -315,7 +315,7 @@
 
                                                         <c:forEach begin="0" end="6" step="1" varStatus="loop">
                                                             <li>
-                                                                <input type="hidden" name="selectedDay" value="${BookingDAO.weekDates.get(loop.index)}" />
+
                                                                 <c:forEach items="${BookingDAO.slot}" var="slot">
                                                                     <c:choose>
                                                                         <c:when test="${BookingDAO.compareDate(BookingDAO.weekDates.get(loop.index), BookingDAO.today)<0}">
@@ -326,8 +326,10 @@
                                                                         <c:otherwise>
                                                                             <a style="background: #42c0fb; color: white" onclick="Click(this)" class="timing" href="#">
                                                                                 <span>${slot.time_slot}</span>
-                                                                                <input type="hidden" class="valueBooking" name="" value="${slot.slot_number}" />                                                                            
+                                                                                <input type="hidden" class="valueBooking" name="" value="${slot.slot_number}" />             
+                                                                                <input type="hidden" class="selectedDay" name="" value="${BookingDAO.weekDates.get(loop.index)}" />
                                                                             </a>
+
                                                                         </c:otherwise>
                                                                     </c:choose>
                                                                 </c:forEach>
@@ -372,7 +374,7 @@
                                 <!-- Footer Widget -->
                                 <div class="footer-widget footer-about">
                                     <div class="footer-logo">
-                                        <img src="assets/img/footer-logo.png" alt="logo">
+                                        <img src="assets/img/footer_logo.png" alt="logo">
                                     </div>
                                     <div class="footer-about-content">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
@@ -514,7 +516,7 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
-        <script src="assets/js/booking-Schedule.js"></script>
+        <script src="assets/js/bookingSchedule.js"></script>
     </body>
 
     <!-- doccure/booking.jsp  30 Nov 2019 04:12:16 GMT -->
