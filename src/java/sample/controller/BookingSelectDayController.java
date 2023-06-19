@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BookingDAO;
 import sample.dto.BookingDTO;
+import sample.dto.SlotDTO;
 import sample.dto.UserDTO;
 
 /**
@@ -42,7 +43,6 @@ public class BookingSelectDayController extends HttpServlet {
         String selectedDay = request.getParameter("selectedDay");
         String selectedSlot = request.getParameter("selectedSlot");
         String time_slot = dao.getSlotByID(Integer.parseInt(selectedSlot)).getTime_slot();
-        
 
         request.setAttribute("selectedDay", selectedDay);
         request.setAttribute("selectedSlot", selectedSlot);
