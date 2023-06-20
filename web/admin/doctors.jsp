@@ -88,16 +88,16 @@
                                                 int rowCounter = 1;
                                                 List<UserDTO> ls = new ArrayList<UserDTO>();
                                                 UserDAO dao = new UserDAO();
-                                                ls = dao.doctorList();
+                                                ls = dao.getListDoctor();
                                                 for (UserDTO doc : ls) {
-
+                                                    int index = ls.indexOf(doc);
                                             %>
 
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
-                                                        <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname()%></a>
+                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="../<%= doc.getImage()%>" alt="User Image"></a>
+                                                        <a href="#view_specialities_details_<%=index%>" data-toggle="modal"><%= doc.getFullname()%></a>
                                                     </h2>
                                                 </td>
                                                 <td><%= doc.getBio()%></td>
@@ -307,30 +307,57 @@
         <!-- /ADD Modal -->
     </div>
 
+    <%
+        for (UserDTO doc : ls) {
+            int index = ls.indexOf(doc);
+    %>
     <!-- View Details Modal -->
-    <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+    <div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">View Specialities</h5>
+                    <h5 class="modal-title">View Doctor Information</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row form-row">
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12 col-sm-6" 
+                             style="
+                             border: 1px solid #c2c3c4;
+                             border-radius: 5px;
+                             padding: 5px;
+                             height: 300px;">
                             <div class="form-group">
-                                <label>Updating</label>
+                                <img style="width: 100%;" src="../<%=doc.getImage()%>">
+                                <label style="display: flex; justify-content: center; align-items: center; margin-top: 10px;"><i>Doctor's image</i></label>
                             </div>
                         </div>
+                        <div class="col-12 col-sm-6" 
+                             style="
+                             border-width: 1px;
+                             border-color: #c2c3c4;
+                             border-radius: 2px;
+                             padding: 5px;">
+                            <div class="form-group">
+                                <label style="display: flex; justify-content: center; align-items: center; border-bottom: 1px solid #c2c3c4; font-size: 20px;"><b><i>Staff's information</i></b></label>
+                            </div>
+                            <div class="form-group">
+                                <p><b><i>Fullname</i></b> : <%=doc.getFullname()%></p> 
 
+                                <p><b><i>Specialize</i></b> : <%=doc.getBio()%></p>
+                                <p><b><i>Phone</i></b> : <%=doc.getPhone()%></p>
+                                <p style="word-wrap: break-word;"><b><i>Email</i></b> : <%=doc.getEmail()%></p>
+                                <p><b><i>Date of bird</i></b> : <%=doc.getDate_of_birth()%></p>                           
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
+    <% }%>
     <script src="assets/js/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap Core JS -->

@@ -191,9 +191,9 @@
                                                     </style>
                                                 </td>
                                             </tr>
-                                            
-                                            <% 
-                                                rowCounter++;
+
+                                            <%
+                                                    rowCounter++;
                                                 }
                                             %>
 

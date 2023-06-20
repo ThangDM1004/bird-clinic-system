@@ -77,7 +77,7 @@
                                     <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Doctor Name</th>
+                                                <th>Staff Name</th>
                                                 <th>Role</th>
                                                 <th>Email</th>
                                                 <th>Phone Contact</th>
@@ -92,14 +92,14 @@
                                                 UserDAO dao = new UserDAO();
                                                 ls = dao.listStaffAndManager();
                                                 for (UserDTO doc : ls) {
-
+                                                    int index = ls.indexOf(doc);
                                             %>
 
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
-                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="<%= doc.getImage()%>" alt="User Image"></a>
-                                                        <a href="#view_specialities_details" data-toggle="modal"><%= doc.getFullname()%></a>
+                                                        <a  class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="../<%= doc.getImage()%>" alt="User Image"></a>
+                                                        <a href="#view_specialities_details_<%=index%>" data-toggle="modal"><%= doc.getFullname()%></a>
                                                     </h2>
                                                 </td>
                                                 <%
@@ -312,46 +312,84 @@
             </div>
         </div>
         <!-- /ADD Modal -->
-    </div>
 
-    <!-- View Details Modal -->
-    <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">View Specialities</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row form-row">
-                        <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                                <label>Updating</label>
+
+        <!-- View Details Modal -->
+        <%
+            for (UserDTO doc : ls) {
+                int index = ls.indexOf(doc);
+        %>
+        <div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Doctor Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row form-row">
+                            <div class="col-12 col-sm-6" 
+                                 style="
+                                 border: 1px solid #c2c3c4;
+                                 border-radius: 5px;
+                                 padding: 5px;
+                                 height: 300px;">
+                                <div class="form-group">
+                                    <img style="width: 100%;" src="../<%=doc.getImage()%>">
+                                    <label style="display: flex; justify-content: center; align-items: center; margin-top: 10px;"><i>Doctor's image</i></label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6" 
+                                 style="
+                                 border-width: 1px;
+                                 border-color: #c2c3c4;
+                                 border-radius: 2px;
+                                 padding: 5px;">
+                                <div class="form-group">
+                                    <label style="display: flex; justify-content: center; align-items: center; border-bottom: 1px solid #c2c3c4; font-size: 20px;"><b><i>Staff's information</i></b></label>
+                                </div>
+                                <div class="form-group">
+                                    <p><b><i>Fullname</i></b> : <%=doc.getFullname()%></p> 
+                                    <%
+                                        String roleName;
+                                        if (doc.getRole().trim().equalsIgnoreCase("2")) {
+                                            roleName = "Staff";
+                                        } else {
+                                            roleName = "Manager";
+                                        }
+                                    %>
+                                    <p><b><i>Role</i></b> : <%=roleName%></p>
+
+                                    <p><b><i>Gender</i></b> : <%=doc.getGender()%></p>
+                                    <p><b><i>Phone</i></b> : <%=doc.getPhone()%></p>
+                                    <p style="word-wrap: break-word;"><b><i>Email</i></b> : <%=doc.getEmail()%></p>
+                                    <p><b><i>Date of bird</i></b> : <%=doc.getDate_of_birth()%></p>                           
+                                </div>
                             </div>
                         </div>
 
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <%        }%>
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
 
-    <!-- Bootstrap Core JS -->
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JS -->
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
 
-    <!-- Slimscroll JS -->
-    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <!-- Slimscroll JS -->
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
-    <!-- Datatables JS -->
-    <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatables/datatables.min.js"></script>
+        <!-- Datatables JS -->
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/datatables.min.js"></script>
 
-    <!-- Custom JS -->
-    <script  src="assets/js/script.js"></script>
-</body>
+        <!-- Custom JS -->
+        <script  src="assets/js/script.js"></script>
+    </body>
 </html>
