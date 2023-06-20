@@ -460,7 +460,7 @@ public class AppointmentDAO {
                     + "                            ROW_NUMBER() OVER (PARTITION BY tbl_Booking.booking_id ORDER BY tbl_Booking_Status_Details.date DESC) AS row_num\n"
                     + "                     FROM tbl_Booking\n"
                     + "                    JOIN tbl_Booking_Status_Details ON tbl_Booking.booking_id = tbl_Booking_Status_Details.booking_id\n"
-                    + "                    WHERE username_customer = 'minhga1')\n"
+                    + "                    WHERE username_customer = ?)\n"
                     + "                    AS subquery\n"
                     + "                    WHERE row_num = 1;");
             ps.setString(1, user_name);
