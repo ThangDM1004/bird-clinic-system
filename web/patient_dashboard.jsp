@@ -67,12 +67,12 @@
                                     <table class="table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
-                                                <th>Doctor</th>
-                                                <th>Appt Date</th>
-                                                <th>Booking Date</th>
-                                                <th>Amount</th>
-                                                <th>Service</th>
-                                                <th>Status</th>
+                                                <th style="width: 30%;">Doctor</th>
+                                                <th style="width: 12%;">Appt Date</th>
+                                                <th style="width: 15%;">Booking Date</th>
+                                                <th style="width: 5%;">Amount</th>
+                                                <th style="width: 28%;">Service</th>
+                                                <th style="width: 10%;">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -89,8 +89,8 @@
                                                 <td><%= apt.getDateBooking()%></td>
                                                 <td><%= apt.getFee()%></td>
                                                 <td><%= apt.getService()%></td>
-                                                <td><span class="badge badge-pill"><%= daoApp.getStatusName(apt.getStatus())    %> </span></td>
-<!--                                                <td class="text-right">
+                                                <td><span class="badge badge-pill"><%= daoApp.getStatusName(apt.getStatus())%> </span></td>
+                                                <!-- <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                             <i class="fas fa-print"></i> Print
@@ -99,9 +99,8 @@
                                                             <i class="far fa-eye"></i> View
                                                         </a>
                                                     </div>
-                                                </td>-->
+                                                </td> -->
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -160,9 +159,9 @@
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-<!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                            <i class="far fa-eye"></i> View
-                                                        </a>-->
+                                                        <!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+                                                                                                                    <i class="far fa-eye"></i> View
+                                                                                                                </a>-->
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
                                                             <i class="fas fa-print"></i> Feedback
                                                         </a>
@@ -177,7 +176,7 @@
                         </div>
 
                         <% }
-                                                        }%>
+                            }%>
                     </div>
                     <!-- /Medical Records Tab -->
 
