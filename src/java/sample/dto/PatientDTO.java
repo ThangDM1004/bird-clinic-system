@@ -10,6 +10,7 @@ package sample.dto;
  * @author MSI AD
  */
 public class PatientDTO {
+
     private String patient_id;
     private String name;
     private String species_id;
@@ -29,10 +30,9 @@ public class PatientDTO {
         this.user_name = user_name;
         this.status = status;
     }
+
     public PatientDTO() {
     }
-
-    
 
     public String getPatient_id() {
         return patient_id;
@@ -98,6 +98,9 @@ public class PatientDTO {
         this.status = status;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "PatientDTO{" + "patient_id=" + patient_id + ", name=" + name + ", species_id=" + species_id + ", age=" + age + ", gender=" + gender + ", image=" + image + ", user_name=" + user_name + ", status=" + status + '}';
+    }
+
 }

@@ -2298,7 +2298,8 @@ html.menu-opened body {
 .card-chart .card-body {
     padding: 8px;
 }
-#morrisArea > svg, #morrisLine > svg  {
+#morrisArea>svg,
+#morrisLine>svg {
     width: 100%;
 }
 .activity-feed {

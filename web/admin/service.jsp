@@ -97,7 +97,7 @@
                                                                  alt="Speciality">
                                                         </a>
                                                         <a data-toggle="modal"
-                                                           href="#view_specialities_details"><%= ser.getService_name()%></a>
+                                                           href="#view_specialities_details_<%=index%>"><%= ser.getService_name()%></a>
                                                     </h2>
                                                 </td>
                                                 <td>
@@ -304,31 +304,48 @@
 
         <!-- /Edit Details Modal -->
 
-
+        <%
+            for (ServiceDTO ser : ls) {
+                int index = ls.indexOf(ser);
+        %>
         <!-- View Details Modal -->
-        <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+        <div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style="padding: 20px;">
                     <div class="modal-header">
-                        <h5 class="modal-title">View Service</h5>
+                        <h5 class="modal-title">View Service Information</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="row form-row">
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Updating</label>
-                                </div>
+                            <div class="form-group text-center">
+                                <label class="text-center" style="font-size: 20px;"><b><i>Service's information</i></b></label>
                             </div>
-
                         </div>
-
+                        <div class="row form-row"
+                             style="
+                             border-width: 1px;
+                             border-color: #c2c3c4;
+                             border-radius: 2px;
+                             padding: 5px;">
+                            <div class="form-group">
+                                <p><b><i>ServiceName</i></b> : <%=ser.getService_name()%></p> 
+                                <p><b><i>Fee</i></b> : $<%=ser.getFee()%></p>
+                                <p style="word-wrap: break-word;"><b><i>Details</i></b> : <%=ser.getDescription()%></p>
+                            </div>                           
+                        </div>
+                        <div class="row form-row">
+                            <div class="col-12" >
+                                <p style=""><b><i>Service Details</i></b> : <%=ser.getService_detail()%></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <% }%>
         <!-- /View Details Modal -->
         <!-- Delete Modal -->
         <div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">

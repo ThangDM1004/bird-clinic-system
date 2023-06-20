@@ -16,7 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-         <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/logo-icon.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -31,24 +31,26 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style_1.css">
     </head>
     <body>
-       
-<div class="page-wrapper" id="page-wrapper">
-                <div class="content container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header" ">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3 class="page-title">Welcome administrator</h3>
-                                <ul class="breadcrumb">
-                                    <li class="breadcrumb-item active">Dashboard</li>
-                                </ul>
-                            </div>
+
+        <div class="page-wrapper" id="page-wrapper">
+            <div class="content container-fluid">
+                <!-- Page Header -->
+                <div class="page-header" ">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Welcome administrator</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ul>
                         </div>
                     </div>
-                    <!-- /Page Header -->
-
+                </div>
+                <!-- /Page Header -->
+                <c:set var="roleName" value="${sessionScope.account.role}"/>
+                <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                     <div class="row">
                         <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card">
@@ -106,7 +108,6 @@
                                         <div class="dash-count">
                                             <h3>
                                                 <%
-
                                                     ManagerDao obj3 = new ManagerDao();
                                                     int result3 = obj3.countStaff();
                                                 %>
@@ -138,7 +139,7 @@
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6 class="text-muted">Patient</h6>
+                                        <h6 class="text-muted">Patients</h6>
 
                                     </div>
                                 </div>
@@ -156,7 +157,6 @@
                                         <div class="dash-count">
                                             <h3>
                                                 <%
-
                                                     ManagerDao obj5 = new ManagerDao();
                                                     int result5 = obj5.countAppointment();
                                                 %>
@@ -171,37 +171,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- <div class="row">
-                            <div class="col-md-12 col-lg-6">
-                                    Sales Chart 
-                                    <div class="card card-chart">
-                                            <div class="card-header">
-                                                    <h4 class="card-title">Revenue</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                    <div id="morrisArea"></div>
-                                            </div>
-                                    </div>
-                                     Sales Chart 
-
-                            </div>
-                            <div class="col-md-12 col-lg-6">
-                                     Invoice Chart 
-                                    <div class="card card-chart">
-                                            <div class="card-header">
-                                                    <h4 class="card-title">Status</h4>
-                                            </div>
-                                            <div class="card-body">
-                                                    <div id="morrisLine"></div>
-                                            </div>
-                                    </div>
-                                    Invoice Chart 
-                            </div>
-                    </div>  -->
-
-
                     <div class="row">
                         <jsp:useBean id="userDAO" scope="request" class="sample.dao.UserDAO" > 
                         </jsp:useBean>
@@ -331,7 +300,7 @@
                                                         <h2 class="table-avatar">
                                                             <a class="avatar avatar-sm mr-2"><img
                                                                     class="avatar-img rounded-circle"
-                                                                    src="<%= img_doctor%>"
+                                                                    src="../<%=img_doctor%>"
                                                                     alt="User Image"></a>
                                                             <a><%= x.getDoctorName()%></a>
                                                         </h2>
@@ -369,71 +338,187 @@
 
                         </div>
                     </div>
+                </c:if>
 
-                </div>
-            </div>
-            <!-- /Page Wrapper -->
-
-        </div>
-        <!-- /Main Wrapper -->
-         <div class="modal fade" id="view_specialities_details_1" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">View Doctor Profile</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row form-row">
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>Updating</label>
+                <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                    <div class="row">
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-primary border-primary">
+                                            <i class="fe fe-users"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>168</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+                                        <h6 class="text-muted">Doctors</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-primary w-50"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>				
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-success">
+                                            <i class="fe fe-credit-card"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>487</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
 
-        <div class="modal fade" id="view_specialities_details_2" aria-hidden="true" role="dialog">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">View User Profile</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row form-row">
-                            <div class="col-12 col-sm-6">
-                                <div class="form-group">
-                                    <label>   Update    </label>
+                                        <h6 class="text-muted">Patients</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-success w-50"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>							
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-danger border-danger">
+                                            <i class="fe fe-money"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>485</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Appointment</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-danger w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$62523</h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+
+
+                    <!--CHARTTTTT-->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Revenue</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Top 5</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart_2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                    </div>
+
+                </c:if>
+            </div>
+        </div>
+        <!-- /Page Wrapper -->
+
+    </div>
+    <!-- /Main Wrapper -->
+    <div class="modal fade" id="view_specialities_details_1" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View Doctor Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>Updating</label>
+                            </div>
+                        </div>
+                    </div>				
                 </div>
             </div>
         </div>
-        
-        <script src="assets/js/jquery-3.2.1.min.js"></script>
+    </div>
 
-        <!-- Bootstrap Core JS -->
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+    <div class="modal fade" id="view_specialities_details_2" aria-hidden="true" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View User Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-row">
+                        <div class="col-12 col-sm-6">
+                            <div class="form-group">
+                                <label>   Update    </label>
+                            </div>
+                        </div>							
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Slimscroll JS -->
-        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
 
-        <script src="assets/plugins/raphael/raphael.min.js"></script>
-        <script src="assets/plugins/morris/morris.min.js"></script>
-        <script src="assets/js/chart.morris.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
-        <!-- Custom JS -->
-        <script src="assets/js/script.js"></script>
-    </body>
+    <!-- Slimscroll JS -->
+    <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+
+    <!-- Custom JS -->
+    <script src="assets/js/script.js"></script>
+</body>
 </html>

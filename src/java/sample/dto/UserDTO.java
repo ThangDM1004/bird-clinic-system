@@ -57,8 +57,6 @@ public class UserDTO {
         this.gender = gender;
         this.image = image;
     }
-    
-    
 
     public String getUsername() {
         return username;

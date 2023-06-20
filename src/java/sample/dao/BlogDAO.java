@@ -131,7 +131,7 @@ public class BlogDAO {
 
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-        List<BlogDTO> list = dao.getListBlogByID("BL1");
+        List<BlogDTO> list = dao.getListBlog();
         for (BlogDTO blogDTO : list) {
             System.out.println(blogDTO);
         }

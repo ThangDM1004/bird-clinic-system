@@ -112,6 +112,7 @@ public class PatientDAO {
         }
         return null;
     }
+
     private static final String SPECIES_LIST = "SELECT species_name FROM tbl_Species";
 
     public ArrayList<String> getListSpecies() throws ClassNotFoundException {
@@ -313,6 +314,10 @@ public class PatientDAO {
 
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
-        System.out.println(dao.getPatientBird("minhga1").size());
+        List<PatientDTO> list = dao.getPatientBird("minhga1");
+        for (PatientDTO patientDTO : list) {
+            System.out.println(patientDTO);
+        }
     }
+
 }

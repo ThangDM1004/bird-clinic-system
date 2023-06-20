@@ -356,13 +356,16 @@ public class UserDAO {
                     String email = rs.getString("email");
                     String speciality = rs.getString("bio");
                     String phone = rs.getString("phone");
+                    String gender = rs.getString("gender");
+                    Date dateofbird = rs.getDate("date_of_birth");
                     String fullname = rs.getString("fullname");
                     String image = rs.getString("image");
+                    String roleId = rs.getString("role_id");
                     if (image == null) {
                         image = "assets/img/doctors/blank-profile-picture.png";
                     }
                     boolean status = rs.getBoolean("status");
-                    doctor = new UserDTO(user_name, null, email, phone, null, fullname, null, speciality, image, status, null);
+                    doctor = new UserDTO(user_name, null, email, phone, dateofbird, fullname, gender, speciality, image, status, roleId);
                     ls.add(doctor);
                 }
             }
@@ -581,7 +584,8 @@ public class UserDAO {
 
         return us;
     }
-     public static int countPatients(String doctorUsername) {
+
+    public static int countPatients(String doctorUsername) {
         Connection cn = null;
         int count = 0;
         try {
@@ -754,9 +758,38 @@ public class UserDAO {
         return list1;
     }
 
+    public List<UserDTO> getListDoctor() {
+        List<UserDTO> list = new ArrayList<>();
+        String query = "SELECT * FROM tbl_Account WHERE role_id = '3'";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                UserDTO doc = new UserDTO(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getNString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getBoolean(10),
+                        rs.getString(11));
+                list.add(doc);
+            }
+
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        System.out.println(dao.getDoctorByID("doctor1").getImage());
+        List<UserDTO> list = dao.getListDoctor();
+        for (UserDTO userDTO : list) {
+            System.out.println(userDTO);
+        }
     }
 }

@@ -36,6 +36,7 @@
 
         <!-- Feathericon CSS -->
         <link rel="stylesheet" href="assets/css/feathericon.min.css">
+        <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
         <!-- Datatables CSS -->
         <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
@@ -233,9 +234,9 @@
                             <li class="menu-title">
                                 <span>Main</span>
                             </li>
-                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5') || fn:containsIgnoreCase(roleName, '1')}">
                                 <li>
-                                    <a type="button" onclick="Dashboard()"><i class="fe fe-home"></i><span>Dashboard</span></a>
+                                    <a type="button" onclick="Dashboard_1()"><i class="fe fe-home"></i><span>Dashboard</span></a>
                                 </li>
                             </c:if>
                             <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
@@ -400,6 +401,8 @@
                 <%
                     }
                 %>
+
+
                 <div class="page-wrapper" id="page-wrapper">
                     <div class="content container-fluid">
                         <!-- Page Header -->
@@ -918,9 +921,13 @@
     <!-- Datatables JS -->
     <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="assets/plugins/datatables/datatables.min.js"></script>
+    <script src="assets/plugins/raphael/raphael.min.js"></script>
+
 
     <!-- Custom JS -->
     <script  src="assets/js/script.js"></script>
+
+
 
 </body>
 
