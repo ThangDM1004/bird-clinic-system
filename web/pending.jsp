@@ -14,6 +14,7 @@
 <%@page import="sample.dao.AppointmentDAO"%>
 <%@page import="sample.dao.MedicalRecordDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,7 +101,7 @@
 
                                             <td>
 
-                                                <select id="select_doctor" name="select_doctor">
+                                                <select id="select_doctor" name="select_doctor1">
                                                     <option disabled="true" selected="" >--Select doctor--</option>
                                                     <%
                                                         for (UserDTO d : doctor) {
@@ -116,9 +117,8 @@
                                             <input type="hidden" value="2" name="status_booking">
                                             <td><input type="text" name="note"></td>
                                             <td><div class="submit-section">
-<!--                                                    <a id="acceptLink" href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&select_doctor=&action=Accept"  class="btn btn-primary submit-btn">Accept</a>-->
-                                                    <!--                                             
-                                                    --><button id="accept" name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button> 
+                                                    <a id="acceptLink" href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&select_doctor=${param.select_doctor1}&action=Accept"  class="btn btn-primary submit-btn">Accept</a>
+<!--                                                    <button id="accept" name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button> -->
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Decline</a>
                                                 </div>
                                             </td>
