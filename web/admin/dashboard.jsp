@@ -431,7 +431,7 @@
 
                     <!--CHARTTTTT-->
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 col-md-7">
                             <div class="card card-chart">
                                 <div class="card-header">
                                     <h4 class="card-title">Revenue by Month in 2023</h4>
@@ -441,7 +441,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 col-md-5">
                             <div class="card card-chart">
                                 <div class="card-header">
                                     <h4 class="card-title">Top 5 services used most</h4>
@@ -520,7 +520,7 @@
 
 
     <!-- Custom JS -->
-    <script src="assets/js/script.js"></script>
+
 
 </body>
 </html>
