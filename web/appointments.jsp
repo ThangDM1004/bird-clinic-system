@@ -4,6 +4,7 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.BookingDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.BookingDAO"%>
@@ -39,6 +40,8 @@
     </head>
     <body>
         <%
+            HttpSession s = request.getSession();
+            UserDTO user = (UserDTO) s.getAttribute("account");
             BookingDAO dao = new BookingDAO();
             List<BookingDTO> list = dao.getAllBooking();
             if (list == null) {
@@ -66,15 +69,15 @@
 
                             <%
                                 for (BookingDTO x : list) {
-                                    if (x.getBooking_status() >= 2) {
-                                       int index = list.indexOf(x);
+                                    if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                        int index = list.indexOf(x);
                             %>
                             <tr>
                                 <td>
                                     <%=dao.customerName(x.getUsername_customer())%>
                                 </td>
                         <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
-                        <td><a href="#Bird-details_<%=index%>" data-toggle="modal"><%= dao.getBirdname(x.getPatient_id())%></a> </td>
+                        <td><%= dao.getBirdname(x.getPatient_id())%> </td>
                         <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
                         <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
                         <input type="hidden" value="3" name="status_booking">
@@ -92,10 +95,19 @@
                                 <a type="button" s href="#Medical-record" data-toggle="modal" class="btn btn-primary submit-btn">Medical Record</a>
                                 <%
                                     }
+                                    if (x.getBooking_status() == 2) {
                                 %>
-                                <button style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Cancel</button>
+                                <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Cancel</a>
+                                <%
+                                } else {
+                                %>
+                                <button disabled="true" style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Cancel</button>
+                                <%
+                                    }
+                                %>
+
                             </div></td>
-    
+
                         <%
                                 }
                             }

@@ -395,9 +395,9 @@ public class BookingDAO {
         }
         return checkUpdate;
     }
-    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7,username_doctor = ? WHERE booking_id = ?";
+    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7 WHERE booking_id = ?";
 
-    public boolean CancelBooking(String bookingID, String doctor) throws SQLException {
+    public boolean CancelBooking(String bookingID) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkUpdate = false;
@@ -405,8 +405,7 @@ public class BookingDAO {
             conn = Utils.getConnection();
             if (conn != null) {
                 ps = conn.prepareStatement(CANCEL_BOOKING);
-                ps.setString(1, doctor);
-                ps.setString(2, bookingID);
+                ps.setString(1, bookingID);
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

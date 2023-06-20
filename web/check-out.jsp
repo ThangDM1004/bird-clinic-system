@@ -4,6 +4,12 @@
     Author     : MSI AD
 --%>
 
+<%@page import="java.sql.Time"%>
+<%@page import="java.time.LocalTime"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="sample.dao.UserDAO"%>
+<%@page import="sample.dao.BookingDAO"%>
+<%@page import="sample.dto.BookingDTO"%>
 <%@page import="sample.dto.MedicalRecordDTO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
@@ -26,6 +32,8 @@
             } else {
                 response.sendRedirect("login.jsp");
             }
+            UserDAO udao = new UserDAO();
+            List<UserDTO> doctor = udao.doctorList();
         %>
 
         <div class="card">
@@ -35,7 +43,7 @@
                 <nav class="user-tabs mb-4">
                     <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments Check Out</a>
+                            <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
                         </li>
                     </ul>
                 </nav>
@@ -43,88 +51,91 @@
 
                 <!-- Tab Content -->
 
-                <div class="tab-content pt-0">
-                    <!-- Appointment Tab -->
+                <form action="MainController">
+                    <div class="tab-content pt-0">
+                        <!-- Appointment Tab -->
 
-                    <div id="pat_appointments" class="tab-pane fade show active">
-                        <%
-                            AppointmentDAO daoApp = new AppointmentDAO();
-                            List<AppointmentDTO> ls = daoApp.getAppointmentForUser(user.getUsername());
-                            if (ls == null) {
-                        %>
-                        <h1> Hiện chưa có lịch nào </h1>
-                        <%
-                        } else {
-                            for (AppointmentDTO apt : ls) {
-                        %>
-                        <div class="card card-table mb-0">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th>User Name</th>
-                                                <th>Bird Name</th>
-                                                <th>Time Slot</th>
-                                                <th>Service</th>
-                                                <th>Status</th>
-                                                <th>Doctor</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <h2 class="table-avatar">
-                                                        <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="<%= !apt.getImgDoc().equals("") ? apt.getImgDoc() : "assets/img/user_image_default.png"%>" alt="User Image">
-                                                        </a>
-                                                        <a href="doctor-profile.jsp"><%= apt.getDoctorName()%><span><%= apt.getSpeciality()%></span></a>
-                                                    </h2>
-                                                </td>
-                                                <td><%= apt.getDate()%><span class="d-block text-info"><%= apt.getTime()%></span></td>
-                                                <td><%= apt.getDateBooking()%></td>
-                                                <td><%= apt.getFee()%></td>
-                                                <td><%= apt.getService()%></td>
-                                                <td><span class="badge badge-pill"><%= daoApp.getStatusName(apt.getStatus())%> </span></td>
-                                                <!--                                                <td class="text-right">
-                                                                                                    <div class="table-action">
-                                                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                                                                            <i class="fas fa-print"></i> Print
-                                                                                                        </a>
-                                                                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                                                            <i class="far fa-eye"></i> View
-                                                                                                        </a>
-                                                                                                    </div>
-                                                                                                </td>-->
-                                            </tr>
+                        <div id="pat_appointments" class="tab-pane fade show active">
+                            <%
+                                BookingDAO dao = new BookingDAO();
+                                List<BookingDTO> list = dao.getAllBooking();
+                                if (list == null) {
+                            %>
+                            <h1> Hiện chưa có lịch nào </h1>
+                            <%
+                            } else {
 
-                                        </tbody>
-                                    </table>
+                            %>
+                            <div class="card card-table mb-0">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>User Name</th>
+                                                    <th>Bird Name</th>
+                                                    <th>Time Slot</th>
+                                                    <th style="width: 250px">Service</th>
+                                                    <th>Doctor</th>
+                                                    <th></th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <%                                                    for (BookingDTO x : list) {
+                                                        if (x.getBooking_status() == 4) {
+                                                %>
+                                                <tr>
+                                                    <td>
+                                                        <%=dao.customerName(x.getUsername_customer())%>
+                                                    </td>
+                                            <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
+                                            <td><%= dao.getBirdname(x.getPatient_id())%></td>
+                                            <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
+                                            <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
+                                            <td>
+                                                <%=dao.doctorName(x.getUsername_doctor())%>
+                                            </td>
+                                            <input type="hidden" value="3" name="status_booking">
+                                            <td><div class="submit-section">
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=5&action=Check-in" class="btn btn-primary submit-btn">Check Out</a>
+
+
+                                                </div></td>
+
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                            <%
+                                }
+                            %>
                         </div>
-                        <% }
-                            }%>
+
+
+                        <!-- /Appointment Tab -->
+
+                        <!-- Prescription Tab -->
+
+                        <!-- /Prescription Tab -->
+
+                        <!-- Medical Records Tab -->
+
+                        <!-- /Medical Records Tab -->
+
+                        <!-- Billing Tab -->
+
+                        <!-- /Billing Tab -->
+
                     </div>
-
-
-                    <!-- /Appointment Tab -->
-
-                    <!-- Prescription Tab -->
-
-                    <!-- /Prescription Tab -->
-
-                    <!-- Medical Records Tab -->
-
-                    <!-- /Medical Records Tab -->
-
-                    <!-- Billing Tab -->
-
-                    <!-- /Billing Tab -->
-
-                </div>
-                <!-- Tab Content -->
-
+                    <!-- Tab Content -->
+                </form>
             </div>
         </div>
     </body>

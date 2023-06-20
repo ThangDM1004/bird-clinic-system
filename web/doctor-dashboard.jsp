@@ -316,6 +316,19 @@
                             xhttp.send();
                         </script>
                         <%
+                        } else if(status == "medical") {
+                        %>
+                        <script>
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function () {
+                                if (this.readyState === 4 && this.status === 200) {
+                                    document.getElementById("doctor").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "appointments.jsp", true);
+                            xhttp.send();
+                        </script>
+                        <%
                             }
                         %>
 
@@ -490,6 +503,7 @@
 
                     <div  class="card-body">
                         <!-- Profile Settings Form -->
+
                         <div class="row form-row">
 
                             <div class="modal-content">
@@ -555,21 +569,25 @@
                                         <div class="form-group">
                                             <label>Fee:</label>
                                             <input readonly=""value="<%= dao.getServiceFee(x.getBooking_id())%>" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Note:</label>
-                                            <textarea name="note" style="width: 200%"></textarea>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone:</label>
+                                                <input name="phone" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+                                            </div>
                                         </div>
+
                                     </div>
                                     <input type="hidden" name="patient_id" value="<%=x.getPatient_id()%>">
                                     <input type="hidden" name="booking_id" value="<%=x.getBooking_id()%>">
+
                                 </div>
+
+
                             </div>
+                        </form>
 
-
-                        </div>
                     </div>
 
                 </div>

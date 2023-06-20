@@ -109,6 +109,10 @@
         <servlet-name>CheckInController</servlet-name>
         <servlet-class>sample.controller.CheckInController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MedicalRecordController</servlet-name>
+        <servlet-class>sample.controller.MedicalRecordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -216,6 +220,10 @@
     <servlet-mapping>
         <servlet-name>CheckInController</servlet-name>
         <url-pattern>/CheckInController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicalRecordController</servlet-name>
+        <url-pattern>/MedicalRecordController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
