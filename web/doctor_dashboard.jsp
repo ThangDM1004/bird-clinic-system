@@ -26,7 +26,7 @@
             UserDTO user = (UserDTO) s.getAttribute("account");
             BookingDAO dao = new BookingDAO();
             List<BookingDTO> list = dao.getAllBooking();
-            String[] date = dao.getToday();
+            String[] date = dao.getTodayString();
             double count = dao.countPatient(user.getUsername());
         %>
         <div class="row">
@@ -67,7 +67,7 @@
                                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                 String formattedDate = dateFormat.format(dateBook);
                                                 String[] date2 = formattedDate.split("/");
-                                                String statusDay = dao.compareDate(date, date2);
+                                                String statusDay = dao.compareDateDoctor(date, date2);
                                                 if (statusDay == "Today") {
                                                     count_today++;
                                                 } else {
@@ -172,7 +172,7 @@
                                                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                             String formattedDate = dateFormat.format(dateBook);
                                                             String[] date2 = formattedDate.split("/");
-                                                            String statusDay = dao.compareDate(date, date2);
+                                                            String statusDay = dao.compareDateDoctor(date, date2);
                                                             if (statusDay == "Upcoming") {
                                                 %>
 
