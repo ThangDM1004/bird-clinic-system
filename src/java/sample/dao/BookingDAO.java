@@ -89,7 +89,7 @@ public class BookingDAO {
         return weekDates;
     }
 
-    public String compareDate(String[] date1, String[] date2) {
+    public String compareDateDoctor(String[] date1, String[] date2) {
         String date = "";
         int year1 = Integer.parseInt(date1[0]);
         int month1 = Integer.parseInt(date1[1]);
@@ -106,6 +106,36 @@ public class BookingDAO {
         }
 
         return date;
+    }
+
+    public int compareDate(String date1, String date2) {
+        int year1 = Integer.parseInt(date1.substring(0, 4));
+        int month1 = Integer.parseInt(date1.substring(5, 7));
+        int day1 = Integer.parseInt(date1.substring(8, 10));
+
+        int year2 = Integer.parseInt(date2.substring(0, 4));
+        int month2 = Integer.parseInt(date2.substring(5, 7));
+        int day2 = Integer.parseInt(date2.substring(8, 10));
+
+        if (year1 > year2) {
+            return 1;
+        } else if (year1 < year2) {
+            return -1;
+        } else {
+            if (month1 > month2) {
+                return 1;
+            } else if (month1 < month2) {
+                return -1;
+            } else {
+                if (day1 > day2) {
+                    return 1;
+                } else if (day1 < day2) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 
     public List<SlotDTO> getSlot() {
@@ -143,7 +173,7 @@ public class BookingDAO {
         return null;
     }
 
-    public String[] getToday() {
+    public String[] getTodayString() {
         // Lấy ngày hiện tại
         Date currentDate = new Date();
 
@@ -157,7 +187,19 @@ public class BookingDAO {
         return list;
     }
 
-   
+    public String getToday() {
+        // Lấy ngày hiện tại
+        Date currentDate = new Date();
+
+        // Định dạng ngày tháng
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        // Chuyển đổi ngày thành chuỗi theo định dạng
+        String formattedDate = dateFormat.format(currentDate);
+
+        // Trả về ngày đã định dạng
+        return formattedDate;
+    }
 
     public List<BookingDTO> getAllBooking() throws SQLException {
         List<BookingDTO> list = new ArrayList<>();
@@ -621,6 +663,7 @@ public class BookingDAO {
         }
         return count;
     }
+
     public static void main(String[] args) {
         BookingDAO dao = new BookingDAO();
         int count = dao.countPatient("doctor1");
