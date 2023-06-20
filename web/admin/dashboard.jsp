@@ -3,6 +3,7 @@
     Created on : Jun 6, 2023, 4:11:00 PM
     Author     : MSI AD
 --%>
+<%@page import="sample.dao.ServiceDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
 
@@ -342,68 +343,7 @@
 
                 <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
                     <div class="row">
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dash-widget-header">
-                                        <span class="dash-widget-icon text-primary border-primary">
-                                            <i class="fe fe-users"></i>
-                                        </span>
-                                        <div class="dash-count">
-                                            <h3>168</h3>
-                                        </div>
-                                    </div>
-                                    <div class="dash-widget-info">
-                                        <h6 class="text-muted">Doctors</h6>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-primary w-50"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dash-widget-header">
-                                        <span class="dash-widget-icon text-success">
-                                            <i class="fe fe-credit-card"></i>
-                                        </span>
-                                        <div class="dash-count">
-                                            <h3>487</h3>
-                                        </div>
-                                    </div>
-                                    <div class="dash-widget-info">
 
-                                        <h6 class="text-muted">Patients</h6>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-success w-50"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="dash-widget-header">
-                                        <span class="dash-widget-icon text-danger border-danger">
-                                            <i class="fe fe-money"></i>
-                                        </span>
-                                        <div class="dash-count">
-                                            <h3>485</h3>
-                                        </div>
-                                    </div>
-                                    <div class="dash-widget-info">
-
-                                        <h6 class="text-muted">Appointment</h6>
-                                        <div class="progress progress-sm">
-                                            <div class="progress-bar bg-danger w-50"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -412,7 +352,8 @@
                                             <i class="fe fe-folder"></i>
                                         </span>
                                         <div class="dash-count">
-                                            <h3>$62523</h3>
+                                            <% ServiceDAO dao_2 = new ServiceDAO();%>
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
