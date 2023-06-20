@@ -244,7 +244,7 @@
                                         for (PatientDTO patient : p) {
                                     %>
                                     <tbody>
-                                    <td><%=patient.getName()%></td>
+                                    <td  data-toggle="modal"><%=patient.getName().trim()%></td>
                                     <td><%=dao_p.getSpecies(patient.getSpecies_id())%></td>
                                     <td><%=patient.getAge()%></td>
                                     </tbody>
