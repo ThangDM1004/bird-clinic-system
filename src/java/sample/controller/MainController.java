@@ -50,6 +50,8 @@ public class MainController extends HttpServlet {
     private static String CHECKOUTCOMFIRM_CONTROLLER = "CheckOutController";
      private static String CHECKIN = "Check-in";
     private static String CHECKIN_CONTROLLER = "CheckInController";
+    private static String MEDICAL = "Done";
+    private static String MEDICAL_CONTROLLER = "MedicalRecordController";
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -88,7 +90,9 @@ public class MainController extends HttpServlet {
                 url = CHECKIN_CONTROLLER;
             }else if (actions.equals(CHECKOUTCOMFIRM)) {
                 url = CHECKOUTCOMFIRM_CONTROLLER;
-            } else {
+            }else if (actions.equals(MEDICAL)) {
+                url = MEDICAL_CONTROLLER;
+            }  else {
                 url = "error-404.jsp";
             }
         } catch (Exception e) {

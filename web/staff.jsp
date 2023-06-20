@@ -44,8 +44,7 @@
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
-
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
 
@@ -436,15 +435,27 @@
             xhttp.send();
         </script>
         <%
+        } else if (status == "CheckOut") {
+        %>        
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("dashboard").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "check-out.jsp", true);
+            xhttp.send();
+        </script>
+        <%
             }
         %>
 
 
 
-
         <!-- /Main Wrapper -->
 
-        <script src="assets/js/staffs.js"></script>
+        <script src="assets/js/staff.js"></script>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
 

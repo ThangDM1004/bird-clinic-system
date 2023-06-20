@@ -40,5 +40,4 @@ function Assign() {
     };
     xhttp.open("GET", "assign.jsp", true);
     xhttp.send();
-
 }

@@ -316,6 +316,19 @@
                             xhttp.send();
                         </script>
                         <%
+                        } else if(status == "medical") {
+                        %>
+                        <script>
+                            var xhttp = new XMLHttpRequest();
+                            xhttp.onreadystatechange = function () {
+                                if (this.readyState === 4 && this.status === 200) {
+                                    document.getElementById("doctor").innerHTML = this.responseText;
+                                }
+                            };
+                            xhttp.open("GET", "appointments.jsp", true);
+                            xhttp.send();
+                        </script>
+                        <%
                             }
                         %>
 
@@ -490,73 +503,80 @@
 
                     <div  class="card-body">
                         <!-- Profile Settings Form -->
-                        <div class="row form-row">
+                        <form action="MainController">
+                            <div class="row form-row">
 
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Medical Record </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
-                                %>
-                                <div class="modal-body">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Name:</label>
-                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%= x.getUsername_customer() %>"  type="text" class="form-control" >
-                                        </div>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Medical Record </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Bird Name:</label>
-                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getName()%>"  type="text" class="form-control" >
+                                    <input type="hidden" name="index" value="<%=index%>">
+                                    <input type="hidden" name="bookingID_<%=index%>" value="<%=x.getBooking_id()%>">
+                                    <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
+                                    %>
+                                    <div class="modal-body">
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Name:</label>
+                                                <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%= x.getUsername_customer()%>"  type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Species:</label>
-                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=pdao.getSpecies(p.getSpecies_id())%>" type="text" class="form-control" >
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Bird Name:</label>
+                                                <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getName()%>"  type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Age:</label>
-                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getAge() %>" type="text" class="form-control" >
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Species:</label>
+                                                <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=pdao.getSpecies(p.getSpecies_id())%>" type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Gender:</label>
-                                            <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getGender()%>" type="text" class="form-control" >
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Age:</label>
+                                                <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getAge()%>" type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Date again:</label>
-                                            <input name="date_again" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="date" class="form-control" >
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Gender:</label>
+                                                <input style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%=p.getGender()%>" type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Phone:</label>
-                                            <input name="phone" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Date again:</label>
+                                                <input name="date_again" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="date" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label>Note:</label>
-                                            <textarea name="note" style="width: 200%"></textarea>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Phone:</label>
+                                                <input name="phone" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label>Note:</label>
+                                                <textarea name="note" style="width: 200%"></textarea>
+                                            </div>
+                                        </div>
+                                        <input type="submit" name="action" value="Done">
                                         <input type="hidden" name="patient_id" value="<%=x.getPatient_id()%>">
                                         <input type="hidden" name="booking_id" value="<%=x.getBooking_id()%>">
+
+                                    </div>
                                 </div>
+
+
                             </div>
+                        </form>
 
-
-                        </div>
                     </div>
 
                 </div>
@@ -566,7 +586,7 @@
         </div>
         <%
                 }
-            }       
+            }
             for (BookingDTO x : list) {
                 if (x.getBooking_status() >= 2) {
                     int index = list.indexOf(x);

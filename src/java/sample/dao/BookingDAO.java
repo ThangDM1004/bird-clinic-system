@@ -395,9 +395,9 @@ public class BookingDAO {
         }
         return checkUpdate;
     }
-    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7,username_doctor = ? WHERE booking_id = ?";
+    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7 WHERE booking_id = ?";
 
-    public boolean CancelBooking(String bookingID, String doctor) throws SQLException {
+    public boolean CancelBooking(String bookingID) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         boolean checkUpdate = false;
@@ -405,8 +405,7 @@ public class BookingDAO {
             conn = Utils.getConnection();
             if (conn != null) {
                 ps = conn.prepareStatement(CANCEL_BOOKING);
-                ps.setString(1, doctor);
-                ps.setString(2, bookingID);
+                ps.setString(1, bookingID);
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
@@ -526,9 +525,7 @@ public class BookingDAO {
         return doc_name;
     }
 
-   
-
-    public void insertIntoBooking(BookingDTO b){
+    public void insertIntoBooking(BookingDTO b) {
         try {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("INSERT INTO tbl_Booking\n"
@@ -555,13 +552,15 @@ public class BookingDAO {
                     + "from tbl_Booking\n"
                     + "order by ID desc");
             rs = ps.executeQuery();
-            if(rs.next()) b = rs.getString(1);
+            if (rs.next()) {
+                b = rs.getString(1);
+            }
         } catch (Exception e) {
         }
         return b;
     }
 
-    public void insertIntoBookingDetails(String booking_id, int booking_status, String date, String time){
+    public void insertIntoBookingDetails(String booking_id, int booking_status, String date, String time) {
         try {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("INSERT INTO tbl_Booking_Status_Details\n"
@@ -571,7 +570,7 @@ public class BookingDAO {
             ps.setString(3, date);
             ps.setString(4, time);
             ps.setString(5, null);
-            
+
             ps.executeUpdate();
         } catch (Exception e) {
 

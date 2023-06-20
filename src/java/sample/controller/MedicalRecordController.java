@@ -21,7 +21,7 @@ import sample.dao.BookingDAO;
  *
  * @author MSI AD
  */
-public class CheckInController extends HttpServlet {
+public class MedicalRecordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +36,20 @@ public class CheckInController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            String bookingID = request.getParameter("bookingID").trim();
-            int booking_status = Integer.parseInt(request.getParameter("status_booking"));
+            String index = request.getParameter("index");
+            String bookingID = request.getParameter("bookingID_"+index).trim();
+            
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
+            boolean checkUpdate = dao.CheckInBooking(bookingID, 4);
             if (checkUpdate) {
                 LocalDate ngayHienTai = LocalDate.now();
                 LocalTime gioHienTai = LocalTime.now();
                 Time gioSQL = Time.valueOf(gioHienTai);
-                boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
+                boolean checkHistory = dao.InsertHistory(bookingID, 4, ngayHienTai, gioSQL, null);
                 if (checkHistory) {
                     HttpSession session = request.getSession();
-                    if(booking_status == 3){
-                        session.setAttribute("status", "Assign");
-                    }else if(booking_status == 4){
-                         session.setAttribute("status", "CheckIn");
-                    }else if(booking_status == 5){
-                         session.setAttribute("status", "CheckOut");
-                    }
-                    
-                    response.sendRedirect("staff.jsp");
+                    session.setAttribute("status", "medical");
+                    response.sendRedirect("doctor-dashboard.jsp");
                 }
             }
         } catch (Exception e) {

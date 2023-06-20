@@ -19,6 +19,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
     </head>
     <body>
         <%
@@ -33,7 +36,7 @@
             List<UserDTO> doctor = udao.doctorList();
         %>
 
-        <div class="card">
+        <div  class="card">
             <div class="card-body pt-0">
 
                 <!-- Tab Menu -->
@@ -48,24 +51,25 @@
 
                 <!-- Tab Content -->
 
-                <form action="MainController">
-                    <div class="tab-content pt-0">
-                        <!-- Appointment Tab -->
 
-                        <div id="pat_appointments" class="tab-pane fade show active">
-                            <%
-                                BookingDAO dao = new BookingDAO();
-                                List<BookingDTO> list = dao.getAllBooking();
-                                if (list == null) {
-                            %>
-                            <h1> Hiện chưa có lịch nào </h1>
-                            <%
-                            } else {
+                <div class="tab-content pt-0">
+                    <!-- Appointment Tab -->
 
-                            %>
-                            <div class="card card-table mb-0">
-                                <div class="card-body">
-                                    <div class="table-responsive">
+                    <div id="pat_appointments" class="tab-pane fade show active">
+                        <%
+                            BookingDAO dao = new BookingDAO();
+                            List<BookingDTO> list = dao.getAllBooking();
+                            if (list == null) {
+                        %>
+                        <h1> Hiện chưa có lịch nào </h1>
+                        <%
+                        } else {
+
+                        %>
+                        <div class="card card-table mb-0">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <form action="MainController">
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
@@ -79,22 +83,25 @@
 
                                                 </tr>
                                             </thead>
+
                                             <tbody>
-                                                <%                                                 
-                                                    for (BookingDTO x : list) {
+                                                <%                                                for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 1) {
                                                 %>
+
                                                 <tr>
                                                     <td>
                                                         <%=dao.customerName(x.getUsername_customer())%>
                                                     </td>
-                                            <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
+                                            <input type="hidden" name="bookingID" value="<%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>                                          
                                             <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
-                                            <td>
-                                                <select name="select_doctor">
 
+                                            <td>
+
+                                                <select id="select_doctor" name="select_doctor">
+                                                    <option disabled="true" selected="" >--Select doctor--</option>
                                                     <%
                                                         for (UserDTO d : doctor) {
                                                     %>
@@ -102,48 +109,55 @@
                                                     <%
                                                         }
                                                     %>
+
                                                 </select>
+
                                             </td>
                                             <input type="hidden" value="2" name="status_booking">
-                                            <td><textarea name="note"></textarea></td>
+                                            <td><input type="text" name="note"></td>
                                             <td><div class="submit-section">
-                                                    <button name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button>
-                                                    <button style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Decline</button>
-                                                </div></td>
-
+<!--                                                    <a id="acceptLink" href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&select_doctor=&action=Accept"  class="btn btn-primary submit-btn">Accept</a>-->
+                                                    <!--                                             
+                                                    --><button id="accept" name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button> 
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Decline</a>
+                                                </div>
+                                            </td>
+                                            </tr>
                                             <%
                                                     }
                                                 }
                                             %>
+
+
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                            <%
-                                }
-                            %>
                         </div>
-
-
-                        <!-- /Appointment Tab -->
-
-                        <!-- Prescription Tab -->
-
-                        <!-- /Prescription Tab -->
-
-                        <!-- Medical Records Tab -->
-
-                        <!-- /Medical Records Tab -->
-
-                        <!-- Billing Tab -->
-
-                        <!-- /Billing Tab -->
-
+                        <%
+                            }
+                        %>
                     </div>
-                    <!-- Tab Content -->
-                </form>
+                    <!-- /Appointment Tab -->
+
+                    <!-- Prescription Tab -->
+
+                    <!-- /Prescription Tab -->
+
+                    <!-- Medical Records Tab -->
+
+                    <!-- /Medical Records Tab -->
+
+                    <!-- Billing Tab -->
+
+                    <!-- /Billing Tab -->
+
+                </div>
+                <!-- Tab Content -->
+
             </div>
         </div>
+
     </body>
 </html>
