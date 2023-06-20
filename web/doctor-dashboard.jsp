@@ -316,7 +316,7 @@
                             xhttp.send();
                         </script>
                         <%
-                        } else if(status == "medical") {
+                        } else if (status == "medical") {
                         %>
                         <script>
                             var xhttp = new XMLHttpRequest();
@@ -497,7 +497,9 @@
                 if (x.getBooking_status() >= 2) {
                     int index = list.indexOf(x);
         %>
+
         <div class="modal fade" id="Medical-record_<%=index%>" aria-hidden="true" role="dialog">
+
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div style="width: 250%; max-height: 100%"  class="card">
 
@@ -515,11 +517,12 @@
                                 </div>
                                 <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
                                 %>
+
                                 <div class="modal-body">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
                                             <label>Name:</label>
-                                            <input readonly="" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%= dao.getFullNameUserByBookingID(x.getBooking_id()) %>"  type="text" class="form-control" >
+                                            <input readonly="" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px" value="<%= dao.getFullNameUserByBookingID(x.getBooking_id())%>"  type="text" class="form-control" >
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
@@ -586,13 +589,14 @@
 
 
                             </div>
-                        </form>
+
+
+                        </div>
 
                     </div>
 
+
                 </div>
-
-
             </div>
         </div>
         <%
