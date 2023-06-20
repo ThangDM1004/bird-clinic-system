@@ -117,7 +117,8 @@
     <servlet>
         <servlet-name>getTotalFeeByMonth</servlet-name>
         <servlet-class>sample.controller.getTotalFeeByMonth</servlet-class>
-
+    </servlet>
+    <servlet>
         <servlet-name>MedicalRecordController</servlet-name>
         <servlet-class>sample.controller.MedicalRecordController</servlet-class>
 
@@ -238,7 +239,8 @@
     <servlet-mapping>
         <servlet-name>getTotalFeeByMonth</servlet-name>
         <url-pattern>/getTotalFeeByMonth</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MedicalRecordController</servlet-name>
         <url-pattern>/MedicalRecordController</url-pattern>
 
