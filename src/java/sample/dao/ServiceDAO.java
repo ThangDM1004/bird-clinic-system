@@ -325,4 +325,103 @@ public class ServiceDAO {
         return result;
     }
 
+    public List<String> getTop5Services() {
+        List<String> topServices = new ArrayList<>();
+        String query = "SELECT TOP 5 s.service_name, COUNT(b.service_id) AS service_count\n"
+                + "FROM tbl_Service s\n"
+                + "JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "GROUP BY s.service_id, s.service_name\n"
+                + "ORDER BY service_count DESC";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String serviceName = rs.getString("service_name");
+                topServices.add(serviceName);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources (rs, ps, conn) here
+        }
+        return topServices;
+    }
+
+    public List<Integer> getTop5ServicesCount() {
+        List<Integer> topServices = new ArrayList<>();
+        String query = "SELECT TOP 5  COUNT(b.service_id) AS service_count\n"
+                + "FROM tbl_Service s\n"
+                + "JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "GROUP BY s.service_id, s.service_name\n"
+                + "ORDER BY service_count DESC";
+
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int serviceCount = rs.getInt("service_count");
+                topServices.add(serviceCount);
+            }
+        } catch (Exception e) {
+        }
+        return topServices;
+    }
+
+    public List<Integer> getTotalFeeByMonth(int month) {
+        List<Integer> listFee = new ArrayList<>();
+        String query = "SELECT MONTH(b.date) AS month, SUM(m.total_fee) AS total\n"
+                + "FROM tbl_Medical_Record m\n"
+                + "JOIN tbl_Booking_Status_Details b ON m.booking_id = b.booking_id\n"
+                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?\n"
+                + "GROUP BY MONTH(b.date)\n"
+                + "ORDER BY MONTH(b.date);";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, month);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int feeList = rs.getInt("total");
+                listFee.add(feeList);
+            }
+        } catch (Exception e) {
+        }
+        return listFee;
+    }
+
+    public int getTotalFeeByMonthV2(int month) {
+        int temp = 0;
+        String query = "SELECT MONTH(b.date) AS month, SUM(m.total_fee) AS total\n"
+                + "FROM tbl_Medical_Record m\n"
+                + "JOIN tbl_Booking_Status_Details b ON m.booking_id = b.booking_id\n"
+                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?\n"
+                + "GROUP BY MONTH(b.date)\n"
+                + "ORDER BY MONTH(b.date);";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, month);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                temp = rs.getInt("total");
+            }
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+
+    public static void main(String[] args) {
+        ServiceDAO dao = new ServiceDAO();
+        List<Integer> dataList = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            int temp = dao.getTotalFeeByMonthV2(i);
+            dataList.add(temp);
+        }
+        System.out.println(dataList);
+    }
+
 }

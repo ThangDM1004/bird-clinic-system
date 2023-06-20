@@ -434,7 +434,7 @@
                         <div class="col-sm-6">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Revenue</h4>
+                                    <h4 class="card-title">Revenue by Month in 2023</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myChart"></canvas>
@@ -444,13 +444,14 @@
                         <div class="col-sm-6">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Top 5</h4>
+                                    <h4 class="card-title">Top 5 services used most</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myChart_2"></canvas>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="row">
@@ -520,5 +521,6 @@
 
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
+
 </body>
 </html>

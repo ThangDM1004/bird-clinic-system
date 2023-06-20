@@ -3,36 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-//const ctx = document.getElementById('myChart');
-//
-//new Chart(ctx, {
-//    type: 'line',
-//    data: {
-//        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-//        datasets: [{
-//                label: 'Revenue',
-//                data: [0, 200, 379, 1000, 292, 322, 755],
-//                borderWidth: 1
-//            }]
-//    },
-//    options: {
-//        scales: {
-//            y: {
-//                beginAtZero: true
-//            }
-//        }
-//    }
-//});
-//
+
+$.ajax({
+    type: 'GET',
+    url: '../getTotalFeeByMonth',
+    dataType: 'json',
+    success: function (response) {
+        var dataLists = response.datas;
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                        label: 'Revenue',
+                        data: dataLists,
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        console.error('Error:', textStatus, errorThrown);
+    }
+});
+
 //const ctx_1 = document.getElementById('myChart_2');
 //
 //new Chart(ctx_1, {
 //    type: 'doughnut',
 //    data: {
-//        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+//        labels: ['Emergency', 'Boarding', 'Nutrition', 'Grooming', 'Surgery'],
 //        datasets: [{
 //                label: 'Revenue',
-//                data: [0, 200, 379, 1000, 292, 322, 755],
+//                data: [35, 10, 27, 4, 3],
 //                borderWidth: 1
 //            }]
 //    },
@@ -44,60 +57,40 @@
 //        }
 //    }
 //});
-let chartArray = [];
 
-function createChart(ctx, chartData, chartType) {
-    // Tìm biểu đồ đã tồn tại với cùng ctx
-    const existingChart = chartArray.find(chart => chart.ctx === ctx);
 
-    if (existingChart) {
-        // Nếu đã có biểu đồ với cùng ctx, hủy và xóa biểu đồ đó khỏi mảng
-        existingChart.chart.destroy();
-        const existingChartIndex = chartArray.indexOf(existingChart);
-        chartArray.splice(existingChartIndex, 1);
-    }
+$.ajax({
+    type: 'GET',
+    url: '../get5ServicesUsedMost',
+    dataType: 'json',
+    success: function (response) {
+        var labelList = response.labels;
+        var dataList = response.datas;
 
-    const newChart = new Chart(ctx, {
-        type: chartType,
-        data: chartData,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        const ctx_1 = document.getElementById('myChart_2');
+        new Chart(ctx_1, {
+            type: 'doughnut',
+            data: {
+                labels: labelList,
+                datasets: [{
+                        label: 'Amount used',
+                        data: dataList,
+                        borderWidth: 1
+                    }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
-
-    chartArray.push({
-        ctx: ctx,
-        chart: newChart
-    });
-}
-
-const ctx = document.getElementById('myChart');
-const chartData = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-            label: 'Revenue',
-            data: [0, 200, 379, 1000, 292, 322, 755],
-            borderWidth: 1
-        }]
-};
-
-createChart(ctx, chartData, 'line');
-
-const ctx_1 = document.getElementById('myChart_2');
-const chartData_1 = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    datasets: [{
-            label: 'Revenue',
-            data: [0, 200, 379, 1000, 292, 322, 755],
-            borderWidth: 1
-        }]
-};
-
-createChart(ctx_1, chartData_1, 'doughnut');
+        });
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        console.error('Error:', textStatus, errorThrown);
+    }
+});
 
 
 
