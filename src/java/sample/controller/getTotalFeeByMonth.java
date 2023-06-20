@@ -40,7 +40,7 @@ public class getTotalFeeByMonth extends HttpServlet {
             dataArray.add(data);
         }
         jsonObject.add("datas", dataArray);
-        // Thiết lập các thông số cho response
+
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
