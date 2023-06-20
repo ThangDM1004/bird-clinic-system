@@ -110,7 +110,6 @@
         <servlet-class>sample.controller.CheckInController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>get5ServicesUsedMost</servlet-name>
         <servlet-class>sample.controller.get5ServicesUsedMost</servlet-class>
     </servlet>
@@ -121,7 +120,6 @@
     <servlet>
         <servlet-name>MedicalRecordController</servlet-name>
         <servlet-class>sample.controller.MedicalRecordController</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -232,7 +230,6 @@
         <url-pattern>/CheckInController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>get5ServicesUsedMost</servlet-name>
         <url-pattern>/get5ServicesUsedMost</url-pattern>
     </servlet-mapping>
@@ -243,7 +240,6 @@
     <servlet-mapping>
         <servlet-name>MedicalRecordController</servlet-name>
         <url-pattern>/MedicalRecordController</url-pattern>
-
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -398,7 +398,7 @@ public class ServiceDAO {
         String query = "SELECT MONTH(b.date) AS month, SUM(m.total_fee) AS total\n"
                 + "FROM tbl_Medical_Record m\n"
                 + "JOIN tbl_Booking_Status_Details b ON m.booking_id = b.booking_id\n"
-                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?\n"
+                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?  AND b.booking_status = 5\n"
                 + "GROUP BY MONTH(b.date)\n"
                 + "ORDER BY MONTH(b.date);";
         try {
