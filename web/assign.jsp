@@ -83,9 +83,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                
-                                                <%                                               
-                                                    for (BookingDTO x : list) {
+
+                                                <%                                                    for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 2) {
                                                 %>
                                                 <tr>
@@ -99,11 +98,12 @@
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
-                                             <input type="hidden" value="5" name="status_booking">
+                                            <input type="hidden" value="3" name="status_booking">
                                             <td><textarea name="note"></textarea></td>
                                             <td><div class="submit-section">
-                                                    <button name="action" value="Check-in" type="submit" class="btn btn-primary submit-btn">Check In</button>
-                                                    <button style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Cancel</button>
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=3&action=Check-in" class="btn btn-primary submit-btn">Check In</a>
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Decline</a>
+
                                                 </div></td>
 
                                             <%

@@ -285,5 +285,86 @@ public class MedicalRecordDAO {
         }
         return null;
     }
+    private static final String MAX_ID_MR = "select top 1 record_id\n"
+            + "from tbl_Medical_Record\n"
+            + "order by ID desc";
+
+    public int MaxId() {
+        int maxID = 0;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(MAX_ID_MR);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    String max = rs.getString("record_id").trim();
+                    maxID = Integer.parseInt(max);
+                }
+            }
+        } catch (Exception e) {
+        }
+        return maxID;
+    }
+    private static final String addMR = "INSERT INTO tbl_Medical_Record(record_id,date_again,total_fee,phone,note,patient_id,booking_id)" + "VALUES(?,?,?,?,?,?,?)";
+
+    public boolean CreateMedical(MedicalRecordDTO mr) throws SQLException {
+        boolean checkInsert = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(addMR);
+                ps.setString(1, mr.getRecord_id());
+                ps.setDate(2, mr.getDate_again());
+                ps.setDouble(3, mr.getTotal_fee());
+                ps.setString(4, mr.getPhone());
+                ps.setString(5, mr.getNote());
+                ps.setString(6, mr.getPatent_id());
+                ps.setString(7, mr.getBooking_id());
+                checkInsert = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkInsert;
+    }
+    private static final String addSelectService = "INSERT INTO tbl_Select_Service(service_id,fee,record_id)" + "VALUES(?,?,?)";
+
+    public boolean ServiceInMedical(MedicalRecordDTO mr) throws SQLException {
+        boolean checkInsert = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement(addSelectService);
+                ps.setString(1, mr.getSer_id());
+                ps.setDouble(2, mr.getTotal_fee());
+                ps.setString(3, mr.getRecord_id());
+                checkInsert = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkInsert;
+    }
 
 }

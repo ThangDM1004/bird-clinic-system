@@ -6,9 +6,11 @@
 package sample.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -38,16 +40,17 @@ public class CheckOutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("account");
         BookingDAO dao = new BookingDAO();
-        
+
         String serviceID = request.getParameter("service");
         String patientID = request.getParameter("patient");
         String date_ga = request.getParameter("date");
         String time = request.getParameter("time");
-        
+        String time_ = request.getParameter("time_");
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         java.util.Date utilDate = format.parse(date_ga);
         java.sql.Date date = new java.sql.Date(utilDate.getTime());
@@ -56,16 +59,26 @@ public class CheckOutController extends HttpServlet {
         int number = Integer.parseInt(bookingID.trim().substring(2));
         number++;
         bookingID = "BK" + number;
-        
+
         BookingDTO booking = new BookingDTO(bookingID, "", user.getUsername(), date, serviceID, Integer.parseInt(time), patientID, 1);
+
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String timeNow = currentTime.format(formatter);
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatterDay = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String dateNow = currentDate.format(formatterDay);
+
         try {
             dao.insertIntoBooking(booking);
+            dao.insertIntoBookingDetails(bookingID, 1, dateNow, timeNow);
         } catch (Exception e) {
         }
-        
-        request.setAttribute("time", time);
+
+        request.setAttribute("time", time_);
+        request.setAttribute("date", date_ga);
         request.getRequestDispatcher("booking-success.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

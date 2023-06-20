@@ -226,7 +226,7 @@
                 <div class="container">
 
                     <div class="row">
-                        <div class="col-md-7 col-lg-8">
+                        <div class="col-md-12 col-lg-12">
                             <div class="card">
                                 <div class="card-body">
 
@@ -270,7 +270,7 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Time</label>
-                                                        <input readonly="" value="${requestScope.time_slot}" class="form-control" type="text">
+                                                        <input readonly="" name="time_" value="${requestScope.time_slot}" class="form-control" type="text">
                                                         <input type="hidden" name="time" value="${requestScope.selectedSlot}" />
                                                     </div>
                                                 </div>
@@ -358,16 +358,16 @@
 
                         </div>
 
-                        <div class="col-md-5 col-lg-4 theiaStickySidebar">
+<!--                        <div class="col-md-0 col-lg-0 theiaStickySidebar">
 
-                            <!-- Booking Summary -->
+                             Booking Summary 
                             <div class="card booking-card">
                                 <div class="card-header">
                                     <h4 class="card-title">Booking Summary</h4>
                                 </div>
                                 <div class="card-body">
 
-                                    <!-- Booking Doctor Info -->
+                                     Booking Doctor Info 
                                     <div class="booking-doc-info">
                                         <a href="doctor-profile.jsp" class="booking-doc-img">
                                             <img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
@@ -387,7 +387,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Booking Doctor Info -->
+                                     Booking Doctor Info 
 
                                     <div class="booking-summary">
                                         <div class="booking-item-wrap">
@@ -412,9 +412,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- /Booking Summary -->
+                             /Booking Summary 
 
-                        </div>
+                        </div>-->
                     </div>
 
                 </div>
@@ -434,7 +434,7 @@
                                 <!-- Footer Widget -->
                                 <div class="footer-widget footer-about">
                                     <div class="footer-logo">
-                                        <img src="assets/img/footer-logo.png" alt="logo">
+                                        <img src="assets/img/footer_logo.png" alt="logo">
                                     </div>
                                     <div class="footer-about-content">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>

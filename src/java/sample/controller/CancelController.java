@@ -29,9 +29,8 @@ public class CancelController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
-            String doctor = request.getParameter("select_doctor");
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.CancelBooking(bookingID, doctor);
+            boolean checkUpdate = dao.CancelBooking(bookingID);
             String note = request.getParameter("note");
             if (checkUpdate) {
                 LocalDate ngayHienTai = LocalDate.now();

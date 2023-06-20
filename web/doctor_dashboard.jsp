@@ -4,6 +4,12 @@
     Author     : MSI AD
 --%>
 
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="sample.dto.BookingDTO"%>
+<%@page import="sample.dao.BookingDAO"%>
+<%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.UserDAO"%>
@@ -15,7 +21,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-
+        <%
+            HttpSession s = request.getSession();
+            UserDTO user = (UserDTO) s.getAttribute("account");
+            BookingDAO dao = new BookingDAO();
+            List<BookingDTO> list = dao.getAllBooking();
+            String[] date = dao.getToday();
+            double count = dao.countPatient(user.getUsername());
+        %>
         <div class="row">
             <div class="col-md-12">
                 <div class="card dash-card">
@@ -24,19 +37,50 @@
                             <div class="col-md-12 col-lg-4">
                                 <div class="dash-widget dct-border-rht">
                                     <div class="circle-bar circle-bar1">
-                                        <div class="circle-graph1" data-percent="75">
-                                            <img src="assets/img/icon-01.png" class="img-fluid"
-                                                 alt="patient">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 75%;"></div>
+
                                         </div>
+
+                                        <style>
+                                            .progress-bar {
+                                                width: 200px;
+                                                height: 20px;
+                                                background-color: #f2f2f2;
+                                                border-radius: 5px;
+                                                overflow: hidden;
+                                            }
+
+                                            .progress {
+                                                height: 100%;
+                                                background-color: #4CAF50;
+                                            }
+
+                                        </style>
                                     </div>
+                                    <%
+                                        double count_today = 0;
+                                        double count_up = 0;
+                                        for (BookingDTO x : list) {
+                                            if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                                Date dateBook = x.getDate();
+                                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                                                String formattedDate = dateFormat.format(dateBook);
+                                                String[] date2 = formattedDate.split("/");
+                                                String statusDay = dao.compareDate(date, date2);
+                                                if (statusDay == "Today") {
+                                                    count_today++;
+                                                } else {
+                                                    count_up++;
+                                                }
+                                            }
+                                        }
+                                        double total_today = (count_today/count)*100;
+                                    %>
+
                                     <div class="dash-widget-info">
-
                                         <h6>Total Patient</h6>
-                                        <h3>
-
-                                            
-                                        </h3>
-                                        <p class="text-muted">Till Today</p>
+                                        <p><%=(int)count%> Patients</p>                                      
                                     </div>
                                 </div>
                             </div>
@@ -44,17 +88,15 @@
                             <div class="col-md-12 col-lg-4">
                                 <div class="dash-widget dct-border-rht">
                                     <div class="circle-bar circle-bar2">
-                                        <div class="circle-graph2" data-percent="65">
-                                            <img src="assets/img/icon-02.png" class="img-fluid"
-                                                 alt="Patient">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width:<%=total_today%>%;"></div>
+
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
                                         <h6>Today Patient</h6>
-                                        <h3> 
-                                          
-                                        </h3>
-                                        <p class="text-muted">
+                                        <p><%=(int)count_today%> Patients</p>  
+                                        
                                         </p>
                                     </div>
                                 </div>
@@ -63,17 +105,14 @@
                             <div class="col-md-12 col-lg-4">
                                 <div class="dash-widget">
                                     <div class="circle-bar circle-bar3">
-                                        <div class="circle-graph3" data-percent="50">
-                                            <img src="assets/img/icon-03.png" class="img-fluid"
-                                                 alt="Patient">
+                                        <div class="progress-bar">
+                                            <div class="progress" style="width: 75%;"></div>
+
                                         </div>
                                     </div>
                                     <div class="dash-widget-info">
-                                        <h6>Appoinments</h6>
-                                        <h3>
-                                          
-                                        </h3>
-                                        <p class="text-muted">Till Today</p>
+                                        <h6>Appointment</h6>
+                                        <p><%=(int)count%> Appointment</p>  
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +124,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <h4 class="mb-4">Patient Appoinment</h4>
+                <h4 class="mb-4">Appoinment</h4>
                 <div class="appointment-tab">
 
                     <!-- Appointment Tab -->
@@ -103,7 +142,14 @@
                     <div class="tab-content">
 
                         <!-- Upcoming Appointment Tab -->                                            
-                       
+                        <%                            if (list == null) {
+                        %>
+                        Don't have appointment today
+                        <%
+                        } else {
+
+                        %>
+
                         <div class="tab-pane show active" id="upcoming-appointments">
                             <div class="card card-table mb-0">
                                 <div class="card-body">
@@ -111,63 +157,54 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Custommer Name</th>
-                                                    <th>Appt Date</th>
-                                                    <th>Service</th>
-                                                    <th>Type</th>
-                                                    <th class="text-center">Slot</th>
-                                                    <th></th>
+                                                    <th>User Name</th>
+                                                    <th>Bird Name</th>
+                                                    <th>Time Slot</th>
+                                                    <th style="width: 250px">Service</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
-                                          
-                                            <tbody>                                                                 
+
+                                            <tbody> 
+                                                <%                                                    for (BookingDTO x : list) {
+                                                        if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                                            Date dateBook = x.getDate();
+                                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                                                            String formattedDate = dateFormat.format(dateBook);
+                                                            String[] date2 = formattedDate.split("/");
+                                                            String statusDay = dao.compareDate(date, date2);
+                                                            if (statusDay == "Upcoming") {
+                                                %>
+
                                                 <tr>
                                                     <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="patient-profile.jsp"
-                                                               class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src=""
-                                                                    alt="User Image"></a>
-                                                            <a href="patient-profile.jsp"><span></span></a>
-                                                        </h2>
+                                                        <%=dao.customerName(x.getUsername_customer())%>
                                                     </td>
-                                                    <td><span
-                                                            class="d-block text-info"></span>
-                                                    </td>
-                                                    <td> </td>
 
-                                                    <td class="text-center"></td>
-                                                    <td class="text-right">
-                                                        <div class="table-action">
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-info-light">
-                                                                <i class="far fa-eye"></i> View
-                                                            </a>
+                                                    <td><%= dao.getBirdname(x.getPatient_id())%> </td>
+                                                    <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
+                                                    <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
 
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-success-light">
-                                                                <i class="fas fa-check"></i> Accept
-                                                            </a>
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-danger-light">
-                                                                <i class="fas fa-times"></i> Cancel
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>                                                                
+                                                    <td> <%=dao.getBookingStatus(x.getBooking_id())%></td>
+                                                </tr>     
+                                                <%
+                                                            }
+                                                        }
+                                                    }
+                                                %>
                                             </tbody>
-                                         
+
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <%    }
+                        %>
                         <!-- /Upcoming Appointment Tab -->
 
                         <!-- Today Appointment Tab -->    
-                       
+
                         <div class="tab-pane" id="today-appointments">
                             <div class="card card-table mb-0">
                                 <div class="card-body">
@@ -175,51 +212,44 @@
                                         <table class="table table-hover table-center mb-0">
                                             <thead>
                                                 <tr>
-                                                    <th>Custommer Name</th>
-                                                    <th>Appt Date</th>
-                                                    <th>Service</th>
-                                                    <th class="text-center">Slot</th>
-                                                    <th></th>
+                                                    <th>User Name</th>
+                                                    <th>Bird Name</th>
+                                                    <th>Time Slot</th>
+                                                    <th style="width: 250px">Service</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
-                                           
-                                            <tbody>
+
+                                            <tbody> 
+                                                <%
+                                                    for (BookingDTO x : list) {
+                                                        if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                                            Date dateBook = x.getDate();
+                                                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                                                            String formattedDate = dateFormat.format(dateBook);
+                                                            String[] date2 = formattedDate.split("/");
+                                                            String statusDay = dao.compareDate(date, date2);
+                                                            if (statusDay == "Today") {
+                                                %>
+
                                                 <tr>
                                                     <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="patient-profile.jsp"
-                                                               class="avatar avatar-sm mr-2"><img
-                                                                    class="avatar-img rounded-circle"
-                                                                    src=""
-                                                                    alt="User Image"></a>
-                                                            <a href="patient-profile.jsp"></a>
-                                                        </h2>
+                                                        <%=dao.customerName(x.getUsername_customer())%>
                                                     </td>
-                                                    <td><span class="d-block text-info">
-                                                        </span></td>
-                                                    <td></td>
-                                                    <td class="text-center"></td>
-                                                    <td class="text-right">
-                                                        <div class="table-action">
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-info-light">
-                                                                <i class="far fa-eye"></i> View
-                                                            </a>
 
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-success-light">
-                                                                <i class="fas fa-check"></i> Accept
-                                                            </a>
-                                                            <a href="javascript:void(0);"
-                                                               class="btn btn-sm bg-danger-light">
-                                                                <i class="fas fa-times"></i> Cancel
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                    <td><%= dao.getBirdname(x.getPatient_id())%> </td>
+                                                    <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
+                                                    <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
 
+                                                    <td> <%=dao.getBookingStatus(x.getBooking_id())%></td>
+                                                </tr>     
+                                                <%
+                                                            }
+                                                        }
+                                                    }
+                                                %>
                                             </tbody>
-                                           
+
                                         </table>
                                     </div>
                                 </div>
