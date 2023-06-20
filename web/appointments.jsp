@@ -46,7 +46,7 @@
             List<BookingDTO> list = dao.getAllBooking();
             if (list == null) {
         %>
-        Don't have a appointment
+        Don't have  appointment
         <%
         } else {
         %>

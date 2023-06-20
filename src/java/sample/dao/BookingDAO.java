@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -88,34 +89,23 @@ public class BookingDAO {
         return weekDates;
     }
 
-    public int compareDate(String date1, String date2) {
-        int year1 = Integer.parseInt(date1.substring(0, 4));
-        int month1 = Integer.parseInt(date1.substring(5, 7));
-        int day1 = Integer.parseInt(date1.substring(8, 10));
-
-        int year2 = Integer.parseInt(date2.substring(0, 4));
-        int month2 = Integer.parseInt(date2.substring(5, 7));
-        int day2 = Integer.parseInt(date2.substring(8, 10));
-
-        if (year1 > year2) {
-            return 1;
-        } else if (year1 < year2) {
-            return -1;
-        } else {
-            if (month1 > month2) {
-                return 1;
-            } else if (month1 < month2) {
-                return -1;
-            } else {
-                if (day1 > day2) {
-                    return 1;
-                } else if (day1 < day2) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            }
+    public String compareDate(String[] date1, String[] date2) {
+        String date = "";
+        int year1 = Integer.parseInt(date1[0]);
+        int month1 = Integer.parseInt(date1[1]);
+        int day1 = Integer.parseInt(date1[2]);
+        LocalDate Date1 = LocalDate.of(year1, month1, day1);
+        int year2 = Integer.parseInt(date2[0]);
+        int month2 = Integer.parseInt(date2[1]);
+        int day2 = Integer.parseInt(date2[2]);
+        LocalDate Date2 = LocalDate.of(year2, month2, day2);
+        if (Date1.isBefore(Date2)) {
+            date = "Upcoming";
+        } else if (Date1.equals(Date2)) {
+            date = "Today";
         }
+
+        return date;
     }
 
     public List<SlotDTO> getSlot() {
@@ -153,7 +143,7 @@ public class BookingDAO {
         return null;
     }
 
-    public String getToday() {
+    public String[] getToday() {
         // Lấy ngày hiện tại
         Date currentDate = new Date();
 
@@ -162,10 +152,12 @@ public class BookingDAO {
 
         // Chuyển đổi ngày thành chuỗi theo định dạng
         String formattedDate = dateFormat.format(currentDate);
-
+        String[] list = formattedDate.split("/");
         // Trả về ngày đã định dạng
-        return formattedDate;
+        return list;
     }
+
+   
 
     public List<BookingDTO> getAllBooking() throws SQLException {
         List<BookingDTO> list = new ArrayList<>();
@@ -613,9 +605,25 @@ public class BookingDAO {
         return name;
     }
 
-    public static void main(String[] args) throws SQLException {
-        BookingDAO dao = new BookingDAO();
-        //System.out.println(dao.getNameByBookingID("BK7"));
+    public int countPatient(String doctor_id) {
+        int count = 0;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select count(*)\n"
+                    + "from tbl_Booking\n"
+                    + "where username_doctor = ?");
+            ps.setString(1, doctor_id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return count;
     }
-
+    public static void main(String[] args) {
+        BookingDAO dao = new BookingDAO();
+        int count = dao.countPatient("doctor1");
+        System.out.println(count);
+    }
 }
