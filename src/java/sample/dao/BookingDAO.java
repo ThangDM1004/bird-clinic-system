@@ -526,9 +526,7 @@ public class BookingDAO {
         return doc_name;
     }
 
-   
-
-    public void insertIntoBooking(BookingDTO b){
+    public void insertIntoBooking(BookingDTO b) {
         try {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("INSERT INTO tbl_Booking\n"
@@ -555,13 +553,15 @@ public class BookingDAO {
                     + "from tbl_Booking\n"
                     + "order by ID desc");
             rs = ps.executeQuery();
-            if(rs.next()) b = rs.getString(1);
+            if (rs.next()) {
+                b = rs.getString(1);
+            }
         } catch (Exception e) {
         }
         return b;
     }
 
-    public void insertIntoBookingDetails(String booking_id, int booking_status, String date, String time){
+    public void insertIntoBookingDetails(String booking_id, int booking_status, String date, String time) {
         try {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("INSERT INTO tbl_Booking_Status_Details\n"
@@ -571,11 +571,52 @@ public class BookingDAO {
             ps.setString(3, date);
             ps.setString(4, time);
             ps.setString(5, null);
-            
+
             ps.executeUpdate();
         } catch (Exception e) {
 
         }
+    }
+
+    public Double getServiceFee(String id) {
+        Double service = -1.0;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("SELECT s.fee\n"
+                    + "FROM tbl_Booking b\n"
+                    + "INNER JOIN tbl_Service s ON s.service_id = b.service_id\n"
+                    + "where booking_id = ?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                service = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return service;
+    }
+
+    public String getFullNameUserByBookingID(String id) {
+        String name = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("SELECT a.fullname\n"
+                    + "FROM tbl_Booking b\n"
+                    + "INNER JOIN tbl_Account a on a.user_name = b.username_customer\n"
+                    + "where booking_id = ?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                name = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        BookingDAO dao = new BookingDAO();
+        //System.out.println(dao.getNameByBookingID("BK7"));
     }
 
 }
