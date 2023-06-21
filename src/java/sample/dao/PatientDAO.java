@@ -306,8 +306,8 @@ public class PatientDAO {
                 String specied_id = rs.getString("species_id");
                 bird = new PatientDTO(specied_id, name, specied_id, age, gender, "", "", true);
             }
-        }catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
         return bird;
     }

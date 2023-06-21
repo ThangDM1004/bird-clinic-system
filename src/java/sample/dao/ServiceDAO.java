@@ -398,7 +398,7 @@ public class ServiceDAO {
         String query = "SELECT MONTH(b.date) AS month, SUM(m.total_fee) AS total\n"
                 + "FROM tbl_Medical_Record m\n"
                 + "JOIN tbl_Booking_Status_Details b ON m.booking_id = b.booking_id\n"
-                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?\n"
+                + "WHERE YEAR(b.date) = 2023 AND MONTH(b.date) = ?  AND b.booking_status = 5\n"
                 + "GROUP BY MONTH(b.date)\n"
                 + "ORDER BY MONTH(b.date);";
         try {
@@ -407,6 +407,21 @@ public class ServiceDAO {
             ps.setInt(1, month);
             rs = ps.executeQuery();
             while (rs.next()) {
+                temp = rs.getInt("total");
+            }
+        } catch (Exception e) {
+        }
+        return temp;
+    }
+
+    public int getTotalRevenue() {
+        int temp = 0;
+        String query = "SELECT SUM(m.total_fee) AS total FROM tbl_Medical_Record m JOIN tbl_Booking_Status_Details b ON m.booking_id = b.booking_id  WHERE YEAR(b.date) = 2023 AND b.booking_status = 5";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
                 temp = rs.getInt("total");
             }
         } catch (Exception e) {

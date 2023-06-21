@@ -18,21 +18,23 @@
             HttpSession s = request.getSession();
             UserDTO user = (UserDTO) s.getAttribute("account");
             UserDAO daoUs = new UserDAO();
-            UserDTO users = daoUs.getUser(user.getUsername());
+            UserDTO userNew = daoUs.getUser(user.getUsername());
         %>
 
         <div class="card">
             <div class="card-body">
 
                 <!-- Profile Settings Form -->
-                <form>
+                <form action="MainController" method="post" enctype= multipart/form-data>
                     <div class="row form-row">
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <div class="change-avatar">
                                     <div class="form-group">
                                         <label> CHANGE AVATAR </label>
-                                        <input type="file" class="form-control" name="icon" accept="image/jpeg, image/png, image/jpg">
+                                        <input type="file" class="form-control" name="avatar" accept="image/jpeg, image/png, image/jpg" value="<%= userNew.getImage()%>">
+                                        <input type="text" value=" <%= userNew.getUsername()%>" hidden="" name="username">
+                                        <input type="text" value="<%= userNew.getImage()%>" hidden="" name="avatarnone">
                                     </div>
                                 </div>
                             </div>
@@ -40,23 +42,23 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" class="form-control" value="<%= user.getFullname()%>">
+                                <input type="text" class="form-control" value="<%= userNew.getFullname()%>" name="fullname">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Date of Birth</label>
                                 <div>
-                                    <input type="date" data-date="" data-date-format="DD MMMM YYYY" class="form-control" value="<%= user.getDate_of_birth()%>">
+                                    <input type="date" class="form-control" value="<%= userNew.getDate_of_birth()%>" name="dateofbirth">
                                 </div>
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Gender</label>
-                                <select class="form-control select">
-                                    <option <% if (user.getGender().trim().equalsIgnoreCase("male")) { %> selected <% } %>>Male</option>
-                                    <option <% if (user.getGender().trim().equalsIgnoreCase("female")) { %> selected <% }%>>Female</option>
+                                <select class="form-control select" name="gender">
+                                    <option  <% if (userNew.getGender().trim().equalsIgnoreCase("male")) { %> selected <% } %>>Male</option>
+                                    <option  <% if (userNew.getGender().trim().equalsIgnoreCase("female")) { %> selected <% }%>>Female</option>
                                 </select>
 
                             </div>
@@ -64,18 +66,18 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Email ID</label>
-                                <input type="email" class="form-control" value="<%= user.getEmail()%>">
+                                <input id="emailAddress" type="email" required class="form-control" value="<%= userNew.getEmail()%>" name="email" readonly="">
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Mobile</label>
-                                <input type="text" value="<%= user.getPhone()%>" class="form-control">
+                                <input type="text" value="<%= userNew.getPhone()%>" class="form-control" name="phone">
                             </div>
                         </div>
                     </div>
                     <div class="submit-section">
-                        <button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+                        <button type="submit" class="btn btn-primary submit-btn" name="action" value="updateProfileUser">Save Changes</button>
                     </div>
                 </form>
                 <!-- /Profile Settings Form -->
@@ -83,5 +85,5 @@
             </div>
         </div>
     </body>
-     <script src="assets/js/checkUpdateValidate.js"></script>
+    <script src="assets/js/checkUpdateValidate.js"></script>
 </html>

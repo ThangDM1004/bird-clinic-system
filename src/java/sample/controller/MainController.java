@@ -48,11 +48,12 @@ public class MainController extends HttpServlet {
     private static String CANCEL_CONTROLLER = "CancelController";
     private static String CHECKOUTCOMFIRM = "CheckoutConfirm";
     private static String CHECKOUTCOMFIRM_CONTROLLER = "CheckOutController";
-     private static String CHECKIN = "Check-in";
+    private static String CHECKIN = "Check-in";
     private static String CHECKIN_CONTROLLER = "CheckInController";
     private static String MEDICAL = "Done";
     private static String MEDICAL_CONTROLLER = "MedicalRecordController";
-
+    private static String UPDATEPROFILEUSER = "updateProfileUser";
+    private static String UPDATEPROFILEUSER_CONTROLLER = "UpdateProfileUserController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -84,15 +85,17 @@ public class MainController extends HttpServlet {
                 url = BOOKING_SELECTDAY_CONTROLLER;
             } else if (actions.equals(PENDING)) {
                 url = PENDING_CONTROLLER;
-            }else if (actions.equals(CANCEL)) {
+            } else if (actions.equals(CANCEL)) {
                 url = CANCEL_CONTROLLER;
             } else if (actions.equals(CHECKIN)) {
                 url = CHECKIN_CONTROLLER;
-            }else if (actions.equals(CHECKOUTCOMFIRM)) {
+            } else if (actions.equals(CHECKOUTCOMFIRM)) {
                 url = CHECKOUTCOMFIRM_CONTROLLER;
-            }else if (actions.equals(MEDICAL)) {
+            } else if (actions.equals(UPDATEPROFILEUSER)) {
+                url = UPDATEPROFILEUSER_CONTROLLER;
+            } else if (actions.equals(MEDICAL)) {
                 url = MEDICAL_CONTROLLER;
-            }  else {
+            } else {
                 url = "error-404.jsp";
             }
         } catch (Exception e) {
