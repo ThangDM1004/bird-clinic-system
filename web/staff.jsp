@@ -55,7 +55,11 @@
             HttpSession s = request.getSession();
             UserDTO user = (UserDTO) s.getAttribute("account");
             if (user != null) {
-
+                String role = user.getRole().trim();
+                if(role.equalsIgnoreCase("2")){
+                    }else{
+                    response.sendRedirect("index-2.jsp");
+                }
             } else {
                 response.sendRedirect("login.jsp");
             }
