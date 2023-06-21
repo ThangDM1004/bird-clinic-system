@@ -62,6 +62,7 @@
                         response.sendRedirect("../index-2.jsp");
                     }
                 }
+                String status = (String) session1.getAttribute("status");
             %>
 
         </script>
@@ -383,21 +384,60 @@
             <div id="main">
                 <%
                     String role = user.getRole().trim();
-                    if (role.equalsIgnoreCase("1")) {
+                    if (role.equalsIgnoreCase("1") && status == null) {
                 %>
                 <script>
                     var xhttp = new XMLHttpRequest();
                     xhttp.onreadystatechange = function () {
                         if (this.readyState === 4 && this.status === 200) {
                             document.getElementById("main").innerHTML = this.responseText;
-                            var table = $('.datatable').DataTable();
+
+                            // Create the script element for Chart.js
+                            var chartScript = document.createElement("script");
+                            chartScript.src = "https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js";
+                            chartScript.onload = function () {
+                                // Once Chart.js is loaded, execute the code in chart_1.js
+                                var chart1Script = document.createElement("script");
+                                chart1Script.src = "assets/js/chart_1.js";
+                                document.head.appendChild(chart1Script);
+
+                            };
+                            // Append the Chart.js script to the document's <head> section
+                            document.head.appendChild(chartScript);
+
                         }
-                    }
-                    ;
-                    xhttp.open("GET", "staff-list.jsp", true);
+                    };
+                    xhttp.open("GET", "dashboard.jsp", true);
                     xhttp.send();
                 </script>
 
+                <%
+                } else if (role.equalsIgnoreCase("5") && status == null) {
+                %>
+                <script>
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4 && this.status === 200) {
+                            document.getElementById("main").innerHTML = this.responseText;
+
+                            // Create the script element for Chart.js
+                            var chartScript = document.createElement("script");
+                            chartScript.src = "https://cdn.jsdelivr.net/npm/chart.js@4.3.0/dist/chart.umd.min.js";
+                            chartScript.onload = function () {
+                                // Once Chart.js is loaded, execute the code in chart_1.js
+                                var chart1Script = document.createElement("script");
+                                chart1Script.src = "assets/js/chart_1.js";
+                                document.head.appendChild(chart1Script);
+
+                            };
+                            // Append the Chart.js script to the document's <head> section
+                            document.head.appendChild(chartScript);
+
+                        }
+                    };
+                    xhttp.open("GET", "dashboard.jsp", true);
+                    xhttp.send();
+                </script>
                 <%
                     }
                 %>
@@ -795,8 +835,6 @@
         <!-- /Main Wrapper -->
     </div>
     <%
-        HttpSession session2 = request.getSession();
-        String status = (String) session2.getAttribute("status");
         if (status == "setStatus") {
     %>     
     <script>
@@ -816,9 +854,7 @@
     %>
 
     <%
-        HttpSession session3 = request.getSession();
-        String status_1 = (String) session3.getAttribute("status");
-        if (status_1 == "setStatus_1") {
+        if (status == "setStatus_1") {
     %>     
     <script>
         var xhttp = new XMLHttpRequest();
@@ -837,9 +873,8 @@
         }
     %>
 
-    <%            HttpSession session4 = request.getSession();
-        String status_2 = (String) session4.getAttribute("status");
-        if (status_2 == "setStatus_2") {
+    <%
+        if (status == "setStatus_2") {
     %>     
     <script>
         var xhttp = new XMLHttpRequest();
@@ -859,9 +894,7 @@
 
 
     <%
-        HttpSession session5 = request.getSession();
-        String status_3 = (String) session5.getAttribute("status");
-        if (status_3 == "setStatus_5") {
+        if (status == "setStatus_5") {
     %>     
 
     <script>
@@ -884,9 +917,7 @@
 
 
     <%
-        HttpSession se = request.getSession();
-        String status1 = (String) se.getAttribute("status_dashboard");
-        if (status1 == "Service") {
+        if (status == "Service") {
     %>
     <script>
         var xhttp = new XMLHttpRequest();

@@ -101,7 +101,7 @@
 
                                             <td>
 
-                                                <select id="select_doctor" name="select_doctor1">
+                                                <select id="select_doctor" name="select_doctor">
                                                     <option disabled="true" selected="" >--Select doctor--</option>
                                                     <%
                                                         for (UserDTO d : doctor) {

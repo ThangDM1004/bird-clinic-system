@@ -58,12 +58,11 @@
             HttpSession s = request.getSession();
             UserDTO user = (UserDTO) s.getAttribute("account");
             if (user != null) {
-                String doctorUsername = user.getUsername();
-                int patientCount = UserDAO.countPatients(doctorUsername);
-                int todayCount = UserDAO.countTodayPatients(doctorUsername);
-                int appointmentCount = UserDAO.countAppoinments(doctorUsername);
-                String doctorFullName = user.getFullname();
-                String doctorImage = user.getImage();
+                String role = user.getRole().trim();
+                if (role.equalsIgnoreCase("3")) {
+                } else {
+                    response.sendRedirect("index-2.jsp");
+                }
             } else {
                 response.sendRedirect("login.jsp");
             }
