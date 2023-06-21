@@ -32,9 +32,10 @@
                                 <div class="change-avatar">
                                     <div class="form-group">
                                         <label> CHANGE AVATAR </label>
-                                        <input type="file" class="form-control" name="avatar" accept="image/jpeg, image/png, image/jpg" value="<%= userNew.getImage()%>">
+                                        <input type="file" class="form-control" name="avatar" accept="image/jpeg, image/png, image/jpg" onchange="checkImage()" id="bird_image_dash" >
                                         <input type="text" value=" <%= userNew.getUsername()%>" hidden="" name="username">
                                         <input type="text" value="<%= userNew.getImage()%>" hidden="" name="avatarnone">
+                                     <span id="result_3" style="margin-left: 10px;color: red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +78,7 @@
                         </div>
                     </div>
                     <div class="submit-section">
-                        <button type="submit" class="btn btn-primary submit-btn" name="action" value="updateProfileUser">Save Changes</button>
+                        <button id="update" type="submit" class="btn btn-primary submit-btn" name="action" value="updateProfileUser">Save Changes</button>
                     </div>
                 </form>
                 <!-- /Profile Settings Form -->
