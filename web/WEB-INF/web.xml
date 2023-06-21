@@ -121,6 +121,10 @@
         <servlet-name>MedicalRecordController</servlet-name>
         <servlet-class>sample.controller.MedicalRecordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProfileUserController</servlet-name>
+        <servlet-class>sample.controller.UpdateProfileUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -240,6 +244,10 @@
     <servlet-mapping>
         <servlet-name>MedicalRecordController</servlet-name>
         <url-pattern>/MedicalRecordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileUserController</servlet-name>
+        <url-pattern>/UpdateProfileUserController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

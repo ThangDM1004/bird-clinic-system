@@ -27,6 +27,8 @@ public class UserDTO {
     private String image;
     private boolean status;
     private String role;
+    private Date dateDate;
+    private String date;
 
     public UserDTO() {
     }
@@ -56,6 +58,34 @@ public class UserDTO {
         this.fullname = fullname;
         this.gender = gender;
         this.image = image;
+    }
+    
+      public UserDTO(String username, String email, String phone, String date, String fullname, String gender, String image) {
+        this.username = username;
+        this.email = email;
+        this.phone = phone;
+        this.date = date;
+        this.fullname = fullname;
+        this.gender = gender;
+        this.image = image;
+  }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+      
+      
+
+    public Date getDateDate() {
+        return dateDate;
+    }
+
+    public void setDateDate(Date dateDate) {
+        this.dateDate = dateDate;
     }
 
     public String getUsername() {

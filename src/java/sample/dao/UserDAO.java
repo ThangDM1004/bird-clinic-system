@@ -785,6 +785,40 @@ public class UserDAO {
         return list;
     }
 
+    public void UpdateUserProfile(UserDTO us) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("update tbl_Account\n"
+                    + "set email = ?, phone = ?, date_of_birth = ?, fullname = ?, gender = ?, image = ?\n"
+                    + "where user_name = ?");
+            ps.setString(1, us.getEmail());
+            ps.setString(2, us.getPhone());
+            ps.setString(3, us.getDate());
+            ps.setString(4, us.getFullname());
+            ps.setString(5, us.getGender());
+            ps.setString(6, us.getImage());
+            ps.setString(7, us.getUsername());
+            ps.executeUpdate();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
         List<UserDTO> list = dao.getListDoctor();
