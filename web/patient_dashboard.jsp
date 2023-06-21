@@ -59,8 +59,7 @@
                         <h1> Bạn chưa có lịch nào </h1>
                         <%
                         } else {
-                            for (AppointmentDTO apt : ls) {
-                        %>
+                           %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -76,6 +75,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                           <%  for (AppointmentDTO apt : ls) {
+                        %>
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
@@ -101,12 +102,13 @@
                                                     </div>
                                                 </td> -->
                                             </tr>
+                                            <% }%>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-                        <% }
+                        <%
                             }%>
                     </div>
 
@@ -127,7 +129,6 @@
                         <h1> Bạn chưa có không có ghi nhận nào </h1>
                         <%
                         } else {
-                            for (MedicalRecordDTO mrr : MR) {
                         %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
@@ -144,6 +145,9 @@
                                             </tr>     
                                         </thead>
                                         <tbody>
+                                            <%
+                                                for (MedicalRecordDTO mrr : MR) {
+                                            %>
                                             <tr>
 
                                                 <td><%= mrr.getDate_again()%></td>
@@ -152,7 +156,7 @@
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+                                                            <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName()) %>" >
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
                                                     </h2>
@@ -168,14 +172,14 @@
                                                     </div>
                                                 </td>
                                             </tr>
-
+<% } %>
                                         </tbody>  	
                                     </table>
                                 </div>
                             </div>
                         </div>
 
-                        <% }
+                        <%
                             }%>
                     </div>
                     <!-- /Medical Records Tab -->
