@@ -75,12 +75,12 @@
                                                 }
                                             }
                                         }
-                                        double total_today = (count_today/count)*100;
+                                        double total_today = (count_today / count) * 100;
                                     %>
 
                                     <div class="dash-widget-info">
                                         <h6>Total Patient</h6>
-                                        <p><%=(int)count%> Patients</p>                                      
+                                        <p><%=(int) count%> Patients</p>                                      
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +95,8 @@
                                     </div>
                                     <div class="dash-widget-info">
                                         <h6>Today Patient</h6>
-                                        <p><%=(int)count_today%> Patients</p>  
-                                        
+                                        <p><%=(int) count_today%> Patients</p>  
+
                                         </p>
                                     </div>
                                 </div>
@@ -112,7 +112,7 @@
                                     </div>
                                     <div class="dash-widget-info">
                                         <h6>Appointment</h6>
-                                        <p><%=(int)count%> Appointment</p>  
+                                        <p><%=(int) count%> Appointment</p>  
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                                                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                             String formattedDate = dateFormat.format(dateBook);
                                                             String[] date2 = formattedDate.split("/");
-                                                            String statusDay = dao.compareDate(date, date2);
+                                                            String statusDay = dao.compareDateDoctor(date, date2);
                                                             if (statusDay == "Today") {
                                                 %>
 

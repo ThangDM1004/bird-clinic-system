@@ -277,7 +277,7 @@ public class PatientDAO {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("SELECT *\n"
                     + "FROM tbl_Patient_Bird\n"
-                    + "WHERE user_name = ? and status_bird = 1");
+                    + "WHERE user_name = ? and status = 1");
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
