@@ -29,19 +29,19 @@ import javax.servlet.http.HttpSession;
  * @author Minh
  */
 public class forgotPassword extends HttpServlet {
-
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
         String email = request.getParameter("email");
         RequestDispatcher dispatcher = null;
         int otpvalue = 0;
         HttpSession mySession = request.getSession();
-
+        
         if (email != null || !email.equals("")) {
             // sending otp
             Random rand = new Random();
             otpvalue = rand.nextInt(900000) + 100000;
-
+            
             String to = email;// change accordingly
             // Get the session object
             Properties props = new Properties();
@@ -71,6 +71,7 @@ public class forgotPassword extends HttpServlet {
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
+            request.setAttribute("emailUser", email);
             dispatcher = request.getRequestDispatcher("inputOTP.jsp");
             request.setAttribute("message", "OTP is sent to your email id");
             //request.setAttribute("connection", con);
@@ -79,7 +80,7 @@ public class forgotPassword extends HttpServlet {
             dispatcher.forward(request, response);
             //request.setAttribute("status", "success");
         }
-
+        
     }
-
+    
 }

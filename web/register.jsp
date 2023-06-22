@@ -324,89 +324,89 @@
                                                     color: rgba(19,87,54,0.18);
                                                 }
                                             </style>
-                                            <script>
-                                                let pass = document.getElementById('pass');
-                                                let toggleBtn = document.getElementById('toggleBtn');
-
-                                                let lowerCase = document.getElementById('lower');
-                                                let upperCase = document.getElementById('upper');
-                                                let digit = document.getElementById('number');
-                                                let specialChar = document.getElementById('special');
-                                                let minLength = document.getElementById('length');
-
-                                                function checkPassword(data) {
-                                                    const lower = new RegExp('(?=.*[a-z])');
-                                                    const upper = new RegExp('(?=.*[A-Z])');
-                                                    const number = new RegExp('(?=.*[0-9])');
-                                                    const special = new RegExp('(?=.*[!@#\$%\^&\*])');
-                                                    const length = new RegExp('(?=.{8,})');
-                                                    //lower case check
-                                                    if (lower.test(data)) {
-                                                        lowerCase.classList.add('valid');
-                                                    } else {
-                                                        lowerCase.classList.remove('valid');
-                                                    }
-                                                    //check upper case
-                                                    if (upper.test(data)) {
-                                                        upperCase.classList.add('valid');
-                                                    } else {
-                                                        upperCase.classList.remove('valid');
-                                                    }
-                                                    //check number
-                                                    if (number.test(data)) {
-                                                        digit.classList.add('valid');
-                                                    } else {
-                                                        digit.classList.remove('valid');
-                                                    }
-                                                    //check specialChar
-                                                    if (special.test(data)) {
-                                                        specialChar.classList.add('valid');
-                                                    } else {
-                                                        specialChar.classList.remove('valid');
-                                                    }
-                                                    //check min length
-                                                    if (length.test(data)) {
-                                                        minLength.classList.add('valid');
-                                                    } else {
-                                                        minLength.classList.remove('valid');
-                                                    }
-                                                }
-
-
-
-                                                // show hide password
-                                                toggleBtn.onclick = function () {
-                                                    if (pass.type === 'password') {
-                                                        pass.setAttribute('type', 'text');
-                                                        toggleBtn.classList.add('hide');
-                                                    } else {
-                                                        pass.setAttribute('type', 'password');
-                                                        toggleBtn.classList.remove('hide');
-
-                                                    }
-                                                }
-
-                                                // cái này ?? hi?n thôi
-                                                function validatePassword(value) {
-                                                    var validationDiv = document.getElementById("validation");
-                                                    if (value.length > 0) {
-                                                        validationDiv.style.display = "block";
-                                                    } else {
-                                                        validationDiv.style.display = "none";
-                                                    }
-                                                }
-
-                                                function validateForm() {
-                                                    var password = document.getElementById("pass").value;
-
-                                                    // Ki?m tra ?i?u ki?n c?a password
-                                                    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
-                                                        return false; // Ng?n ch?n s? ki?n submit
-                                                    }
-                                                }
-
-
-                                            </script>
+                                            <!--                                            <script>
+                                                                                            let pass = document.getElementById('pass');
+                                                                                            let toggleBtn = document.getElementById('toggleBtn');
+                                            
+                                                                                            let lowerCase = document.getElementById('lower');
+                                                                                            let upperCase = document.getElementById('upper');
+                                                                                            let digit = document.getElementById('number');
+                                                                                            let specialChar = document.getElementById('special');
+                                                                                            let minLength = document.getElementById('length');
+                                            
+                                                                                            function checkPassword(data) {
+                                                                                                const lower = new RegExp('(?=.*[a-z])');
+                                                                                                const upper = new RegExp('(?=.*[A-Z])');
+                                                                                                const number = new RegExp('(?=.*[0-9])');
+                                                                                                const special = new RegExp('(?=.*[!@#\$%\^&\*])');
+                                                                                                const length = new RegExp('(?=.{8,})');
+                                                                                                //lower case check
+                                                                                                if (lower.test(data)) {
+                                                                                                    lowerCase.classList.add('valid');
+                                                                                                } else {
+                                                                                                    lowerCase.classList.remove('valid');
+                                                                                                }
+                                                                                                //check upper case
+                                                                                                if (upper.test(data)) {
+                                                                                                    upperCase.classList.add('valid');
+                                                                                                } else {
+                                                                                                    upperCase.classList.remove('valid');
+                                                                                                }
+                                                                                                //check number
+                                                                                                if (number.test(data)) {
+                                                                                                    digit.classList.add('valid');
+                                                                                                } else {
+                                                                                                    digit.classList.remove('valid');
+                                                                                                }
+                                                                                                //check specialChar
+                                                                                                if (special.test(data)) {
+                                                                                                    specialChar.classList.add('valid');
+                                                                                                } else {
+                                                                                                    specialChar.classList.remove('valid');
+                                                                                                }
+                                                                                                //check min length
+                                                                                                if (length.test(data)) {
+                                                                                                    minLength.classList.add('valid');
+                                                                                                } else {
+                                                                                                    minLength.classList.remove('valid');
+                                                                                                }
+                                                                                            }
+                                            
+                                            
+                                            
+                                                                                            // show hide password
+                                                                                            toggleBtn.onclick = function () {
+                                                                                                if (pass.type === 'password') {
+                                                                                                    pass.setAttribute('type', 'text');
+                                                                                                    toggleBtn.classList.add('hide');
+                                                                                                } else {
+                                                                                                    pass.setAttribute('type', 'password');
+                                                                                                    toggleBtn.classList.remove('hide');
+                                            
+                                                                                                }
+                                                                                            }
+                                            
+                                                                                            // cái này ?? hi?n thôi
+                                                                                            function validatePassword(value) {
+                                                                                                var validationDiv = document.getElementById("validation");
+                                                                                                if (value.length > 0) {
+                                                                                                    validationDiv.style.display = "block";
+                                                                                                } else {
+                                                                                                    validationDiv.style.display = "none";
+                                                                                                }
+                                                                                            }
+                                            
+                                                                                            function validateForm() {
+                                                                                                var password = document.getElementById("pass").value;
+                                            
+                                                                                                // Ki?m tra ?i?u ki?n c?a password
+                                                                                                if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
+                                                                                                    return false; // Ng?n ch?n s? ki?n submit
+                                                                                                }
+                                                                                            }
+                                            
+                                            
+                                                                                        </script>-->
 
 
                                             <div class="form-group form-focus">
@@ -567,7 +567,7 @@
         <!-- /Main Wrapper -->
 
         <!-- jQuery -->
-        <script src="assets/js/checkValidate.js"></script>
+        <!--<script src="assets/js/checkValidate.js"></script>-->
         <script src="assets/js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JS -->
@@ -576,7 +576,7 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
-
+        <script src="assets/js/checkValidate.js"></script>
     </body>
 
     <!-- doccure/register.jsp  30 Nov 2019 04:12:20 GMT -->
