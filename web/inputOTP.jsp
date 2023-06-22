@@ -145,53 +145,124 @@
             <!-- /Header -->
 
             <!-- Page Content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8 offset-md-2">
+            <div class="content" style="display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0;">
+                <div class="container">
+                    <h2>Verify Your Account</h2>
+                    <p>We email's you the six digit code to personal@email.com</p>
+                    <p>Enter the code below to confirm your email address </p>   
 
-                            <!-- Account Content -->
-                            <div class="account-content">
-                                <div class="row align-items-center justify-content-center">
-                                    <div class="col-md-7 col-lg-6 login-left">
-                                        <img src="assets/img/forgot-pass.jpg" class="img-fluid" alt="Login Banner">	
-                                    </div>
-                                    <div class="col-md-12 col-lg-6 login-right">
-                                        <div class="login-header">
-                                            <h3>Forgot Password?</h3>
-                                            <p class="small text-muted">Change your password in three easy steps. This will help you to secure your password!</p>
-                                            <br>
-                                            <p class="small text-danger">1.<i style="margin-left: 5px;">Enter your email address below.</i></p>
-                                            <p class="small text-danger">2.<i style="margin-left: 3px;">Our system will send you an <b>OTP</b> to your email.</i></p>
-                                            <p class="small text-danger">3.<i style="margin-left: 5px;">Enter the OTP on the next page.</i></p>
-                                        </div>
-
-                                        <!-- Forgot Password Form -->
-                                        <form action="forgotPassword" method="POST">
-                                            <div class="form-group form-focus">
-                                                <input name="email" type="email" class="form-control floating">
-                                                <label class="focus-label">Email</label>
-                                            </div>
-                                            <div class="text-right">
-                                                <a class="forgot-link" href="login.jsp">Remember your password?</a>
-                                            </div>
-
-                                            <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Reset Password</button>
-                                        </form>
-                                        <!-- /Forgot Password Form -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Account Content -->
-
-
+                    <form action="ValidateOtp" method="POST" role="form" autocomplete="off">
+                        <div class="code-container">
+                            <input type="number" name="num1" class="code" placeholder="0" min="0" max="9" required="">
+                            <input type="number" name="num2" class="code" placeholder="0" min="0" max="9" required="">
+                            <input type="number" name="num3" class="code" placeholder="0" min="0" max="9" required="">
+                            <input type="number" name="num4" class="code" placeholder="0" min="0" max="9" required="">
+                            <input type="number" name="num5" class="code" placeholder="0" min="0" max="9" required="">
+                            <input type="number" name="num6" class="code" placeholder="0" min="0" max="9" required="">
                         </div>
-                    </div>
+                        <input type="hidden" class="hide" name="token" id="token"
+                               value="">
+                        <div>
+                            <button type="submit" class="btns btns-primary">Verify</button>
+                        </div>
+                    </form>
 
-
+                    <small>
+                        If you didn't receive a code !! <strong>RESEND</strong> 
+                    </small>
                 </div>
+            </div>
+            <style>
+                .container {
+                    background-color: rgba(169, 169, 169,0.2);
+                    border-radius: 10px;
+                    padding: 30px;
+                    max-width: 1000px;
+                    text-align: center;
+                }
+                .code-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin: 40px 0;                
+                }
+                .code {
+                    caret-color: transparent;
+                    background-color: rgba(255,255,255,0.6);
+                    border-radius: 10px;
+                    border: 1px solid #eee;
+                    font-size: 30px;
+                    width: 75px;
+                    height: 80px;
+                    margin: 10px;
+                    text-align: center;
+                    font-weight: 300;
+                }
 
-            </div>		
+                @media (max-width: 600px) {
+                    .code-container {
+                        flex-wrap: wrap;
+                    }
+                    .code {
+                        font-size: 24px;
+                        height: 50px;
+                        max-width: 50px;
+                    }
+                }
+
+                input[type=number]::-webkit-outer-spin-button,
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number] {
+                    -webkit-appearance: none;
+                    -moz-appearance: textfield;
+                }
+
+                .code::valid {
+                    border-color: #9861c2;
+                    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+                }
+
+                .btns {
+                    min-width: 400px;
+                    display: inline-block;
+                    text-align: center;
+                    white-space: nowrap;
+                    vertical-align: middle;
+                    user-select: none;
+                    cursor: pointer;
+                    border: 1px solid transparent;
+                    margin: 0px 0px 20px 0px;
+                    padding: 0.775rem 0.75rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    border-radius: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.7;
+                }
+
+                .btns-primary {
+                    color: #fff;
+                    background-color: #28a745;
+                    border-color: #28a745;
+                }
+
+            </style>
+            <script>
+                const codes = document.querySelectorAll('.code');
+
+                codes[0].focus()
+
+                codes.forEach((code, idx) => {
+                    code.addEventListener('keydown', (e) => {
+                        if (e.key >= 0 && e.key <= 9) {
+                            codes[idx].value = ''
+                            setTimeout(() => codes[idx + 1].focus(), 10)
+                        } else if (e.key == 'Backspace') {
+                            setTimeout(() => codes[idx - 1].focus(), 10)
+                        }
+                    })
+                })
+            </script>
 
             <!-- /Page Content -->
 
