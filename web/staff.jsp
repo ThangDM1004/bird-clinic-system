@@ -45,6 +45,8 @@
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="admin/assets/plugins/datatables/datatables.min.css">
     </head>
     <body>
 
@@ -56,8 +58,8 @@
             UserDTO user = (UserDTO) s.getAttribute("account");
             if (user != null) {
                 String role = user.getRole().trim();
-                if(role.equalsIgnoreCase("2")){
-                    }else{
+                if (role.equalsIgnoreCase("2")) {
+                } else {
                     response.sendRedirect("index-2.jsp");
                 }
             } else {
@@ -256,6 +258,7 @@
                             xhttp.onreadystatechange = function () {
                                 if (this.readyState === 4 && this.status === 200) {
                                     document.getElementById("dashboard").innerHTML = this.responseText;
+                                    var table = $('.datatable').DataTable();
                                 }
                             };
                             xhttp.open("GET", "pending.jsp", true);
@@ -397,7 +400,124 @@
             <!-- /Footer -->
 
         </div>
+         <div class="modal fade" id="invoice" aria-hidden="true" role="dialog">
 
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div style="padding: 0px 10px; max-height: 100%"  class="card">
+
+                   <div class="page-wrapper">
+                            <div class="content container-fluid">
+
+                                <!-- Invoice Container -->
+                                <div class="invoice-container">
+
+                                    <div class="row">
+                                        <div class="col-sm-6 m-b-20">
+                                            <img alt="Logo" class="inv-logo img-fluid" src="assets/img/final_logo.png">
+                                        </div>
+                                        <div class="col-sm-6 m-b-20">
+                                            <div class="invoice-details">
+                                                <h3 class="text-uppercase">Invoice #</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li>Date: <span>March 12, 2019</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 m-b-20">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>The dear bird Hospital</li>
+                                                <br>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-7 col-xl-8 m-b-20">
+                                            <h3>Invoice to</h3>
+                                            <ul class="list-unstyled mb-0">
+                                                <li><h5 class="mb-0"><strong>Fullname Username</strong></h5></li>
+                                                <li>phone</li>
+                                                <li>email</li>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
+                                            <h3>Patient Details</h3>
+                                            <ul class="list-unstyled invoice-payment-details mb-0">
+                                                <li><h5>Name: <span class="text-right"></span></h5></li>
+                                                <li>Species: <span></span></li>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>SERVICE</th>
+                                                    <th class="d-none d-sm-table-cell"></th>
+                                                    <th class="text-nowrap"></th>
+                                                    <th style="width: 400px"></th>
+                                                    <th>PRICE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>medicine1</td>
+                                                    <td class="d-none d-sm-table-cell"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>$10</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div>
+                                        <div class="row invoice-payment">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="m-b-20">
+                                                    <h3>Total due</h3>
+                                                    <div class="table-responsive no-border">
+                                                        <table class="table mb-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Total:</th>
+                                                                    <td class="text-right text-primary"><h5>$200</h5></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="invoice-info">
+                                            <h5>Note</h5>
+                                            <p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed dictum ligula, cursus blandit risus. Maecenas eget metus non tellus dignissim aliquam ut a ex. Maecenas sed vehicula dui, ac suscipit lacus. Sed finibus leo vitae lorem interdum, eu scelerisque tellus fermentum. Curabitur sit amet lacinia lorem. Nullam finibus pellentesque libero.</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /Invoice Container -->
+
+                            </div>			
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
         <%
             if (status == "Pending") {
         %>
@@ -406,6 +526,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "pending.jsp", true);
@@ -420,6 +541,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "assign.jsp", true);
@@ -433,6 +555,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "check-in.jsp", true);
@@ -446,6 +569,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "check-out.jsp", true);
@@ -471,8 +595,11 @@
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
+        <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="admin/assets/plugins/datatables/datatables.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
+
 
 
     </body>
