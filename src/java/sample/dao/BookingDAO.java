@@ -629,6 +629,46 @@ public class BookingDAO {
         return service;
     }
 
+    public Double getServiceFeeByName(String name) {
+        Double service = -1.0;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select fee\n"
+                    + "from tbl_Service\n"
+                    + "where service_name  = ?");
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                service = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return service;
+    }
+
+    public String getServiceIDByName(String name) {
+        String id = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select service_id\n"
+                    + "from tbl_Service\n"
+                    + "where service_name = ?");
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return id;
+    }
+
+    public static void main(String[] args) {
+        BookingDAO dao = new BookingDAO();
+        String name = dao.getServiceIDByName("Emergency");
+        System.out.println(name);
+    }
+
     public String getFullNameUserByBookingID(String id) {
         String name = null;
         try {
@@ -689,7 +729,7 @@ public class BookingDAO {
                             booking[i + 1][x.getSlot_number()] += bookingID;
                         }
 
-                    } 
+                    }
                 }
             }
 
@@ -697,14 +737,4 @@ public class BookingDAO {
         return booking;
     }
 
-    public static void main(String[] args) throws SQLException {
-        BookingDAO dao = new BookingDAO();
-        String[][] list = dao.slotAppointment("doctor1");
-               for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 8; j++) {
-                System.out.print(list[j][i] + "|");
-            }
-            System.out.println();
-        }
-    }
 }

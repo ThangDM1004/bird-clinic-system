@@ -4,6 +4,13 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.UserDAO"%>
+<%@page import="sample.dao.PatientDAO"%>
+<%@page import="sample.dto.BookingDTO"%>
+<%@page import="sample.dao.BookingDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="sample.dto.ServiceDTO"%>
+<%@page import="sample.dao.ServiceDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,116 +41,174 @@
                 <script src="assets/js/html5shiv.min.js"></script>
                 <script src="assets/js/respond.min.js"></script>
         <![endif]-->
-
+        <script>
+            
+        </script>
     </head>
     <body>
 
+        <%
+            String booking_id = request.getParameter("Booking_id");
+            BookingDAO dao = new BookingDAO();
+            List<BookingDTO> list = dao.getAllBooking();
+            PatientDAO pDao = new PatientDAO();
+            ServiceDAO sdao = new ServiceDAO();
+            List<ServiceDTO> list_service = sdao.getListService();
+            int index = list_service.size();
+            int count = 0;
+            UserDAO uDao = new UserDAO();
+            for (ServiceDTO x : list_service) {
+                count++;
+        %>
+        <input hidden="" id="service_name_<%=count%>" value="<%=x.getService_name()%>">
+        <input hidden="" id="service_id_<%=count%>" value="<%=x.getService_id()%>">
+        <input hidden="" id="service_fee_<%=count%>" value="<%=x.getFee()%>">
+        <%
+            }
+        %>
+        <input hidden="" id="index" value="<%=index%>">
+        <%
+            for (BookingDTO x : list) {
+                String Id = x.getBooking_id().trim();
+                if (Id.equalsIgnoreCase(booking_id)) {
+        %>
 
+        <form action="MainController">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Pet Information</h4>
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
 
-
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Pet Information</h4>
-                <div class="row form-row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Pet Name <span class="text-danger"></span></label>
-                            <input type="text" class="form-control" value="" disabled="">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Pet Name <span class="text-danger"></span></label>
+                                <input type="text" class="form-control" value="<%= dao.getBirdname(x.getPatient_id())%>" disabled="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Species <span class="text-danger"></span></label>
-                            <input type="email" class="form-control" value="" disabled="">
+                                <input name="patient_id" value="<%=x.getPatient_id() %>" hidden="">
+                                <input name="booking_id" value="<%=booking_id%>" hidden="">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Species <span class="text-danger"></span></label>
+                                <input type="email" class="form-control" value="<%= pDao.getSpecies(pDao.getBirdByID(x.getPatient_id()).getSpecies_id())%>" disabled="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Age <span class="text-danger"></span></label>
-                            <input disabled="" type="text" name="fullname" class="form-control" value="" >
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Age <span class="text-danger"></span></label>
+                                <input disabled="" type="text" name="fullname" class="form-control" value="<%= pDao.getBirdByID(x.getPatient_id()).getAge()%>" >
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Gender <span class="text-danger"></span></label>
-                            <input disabled="" type="text" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Basic Information -->
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Owner Information</h4>
-                <div class="row form-row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Full Name <span class="text-danger"></span></label>
-                            <input type="text" class="form-control" value="" disabled="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Phone <span class="text-danger"></span></label>
-                            <input type="email" class="form-control" value="" disabled="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Medical Details</h4>
-                <div class="row form-row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Doctor's Name <span class="text-danger"></span></label>
-                            <input type="text" class="form-control" value="" disabled="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div  class="form-group">
-                            <label>Service <span class="text-danger"></span></label>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Gender <span class="text-danger"></span></label>
+                                <input disabled="" type="text" class="form-control" value="<%= pDao.getBirdByID(x.getPatient_id()).getGender()%>">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- About Me -->
+            <!-- /Basic Information -->
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Owner Information</h4>
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Full Name <span class="text-danger"></span></label>
+                                <input type="text" class="form-control" value="<%=uDao.getUser(x.getUsername_customer()).getFullname()%>" disabled="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone <span class="text-danger"></span></label>
+                                <input type="text" name="phone" class="form-control" value="<%=uDao.getUser(x.getUsername_customer()).getPhone()%>" readonly="">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Medical Details</h4>
+                    <div class="row form-row">
+                        <div class="col-md-12">
+                            <div class="form-group">
 
-        <!-- /About Me -->
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Doctor's Name <span class="text-danger"></span></label>
+                                <input type="text" class="form-control" value="<%=uDao.getUser(x.getUsername_doctor()).getFullname()%>" disabled="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
 
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Date again <span class="text-danger"></span></label>
+                                <input name="date_again" type="date" class="form-control"  >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div  class="form-group">
+                                <label>Service <span class="text-danger"></span></label>
+                                <div id="service">
+                                    <input type="text" name="service_1" style="color: black"  readonly="" value="<%= dao.getServicename(x.getBooking_id())%>">
 
-        <!-- Registrations -->
-        <div class="submit-section submit-btn-bottom">
-            <button id="submit" type="submit" name="action" value="update-doctor-profile-setting" class="btn btn-primary submit-btn">Done</button>
+                                </div>
+                                <input type="button" value="+" onclick="Add()">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div  class="form-group">
+                                <label>Notes <span class="text-danger"></span></label>
+                                <textarea name="note" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div  class="form-group">
+                                <label>Total Fee:<span class="text-danger"></span></label>
+                                <input id="Total" class="form-control" name="total_fee"  value="<%=dao.getServiceFeeByName(dao.getServicename(x.getBooking_id()))%>" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <!-- About Me -->
+            <%
+                    }
+                }
+            %>
+            <!-- /About Me -->
+            <input hidden="" id="myInput" name="number_service" value="1" readonly>
 
+            <%    
+                String index_ = request.getParameter("number_service");
+            %>
+            <!-- Registrations -->
+            <div class="submit-section submit-btn-bottom">
+                <input type="submit" name="action" value="Done" class="btn btn-primary submit-btn" >
+            </div>
 
+        </form>
         <!-- jQuery -->
+        <script src="assets/js/doctor-dashboard.js"></script>
         <script src="assets/js/jquery.min.js"></script>
 
         <!-- Bootstrap Core JS -->
@@ -169,5 +234,6 @@
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
         <script src="assets/js/checkValidate.js"></script>
+
     </body>
 </html>

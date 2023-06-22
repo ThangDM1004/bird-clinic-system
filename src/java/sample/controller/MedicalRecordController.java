@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BookingDAO;
 import sample.dao.MedicalRecordDAO;
+import sample.dao.ServiceDAO;
 import sample.dto.MedicalRecordDTO;
 
 /**
@@ -48,19 +49,32 @@ public class MedicalRecordController extends HttpServlet {
             String phone = request.getParameter("phone");
             String date = request.getParameter("date_again");
             LocalDate localDate = null;
-            if (date == "") {
+            BookingDAO dao = new BookingDAO();
+
+            if (date == null) {
             } else {
                 localDate = LocalDate.parse(date);
             }
-
             Date sqlDate = Date.valueOf(localDate);
             String record_id = Integer.toString(Mdao.MaxId() + 1);
-            String service_id = request.getParameter("service_id");
-            MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, service_id, null);
-            boolean checkMR = Mdao.CreateMedical(mr);
-            boolean checkSelect = Mdao.ServiceInMedical(mr);
-            if (checkMR && checkSelect) {
-                BookingDAO dao = new BookingDAO();
+            String index = request.getParameter("number_service");
+            int count = Integer.parseInt(index);
+            String[] list_service = new String[count];
+            for (int i = 0; i < count; i++) {
+                String service_id = request.getParameter("service_" + Integer.toString(i + 1));
+                list_service[i] = service_id;
+            }
+            boolean checkMR = false;
+            boolean checkSelect = false;
+            MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, "", null);
+            checkMR = Mdao.CreateMedical(mr);
+            for (int i = 0; i < list_service.length; i++) {
+                MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, dao.getServiceIDByName(list_service[i]), null);
+
+                checkSelect = Mdao.ServiceInMedical(mr1);
+            }
+
+            if (checkMR == true && checkSelect == true) {
                 boolean checkUpdate = dao.CheckInBooking(bookingID, 4);
                 if (checkUpdate) {
                     LocalDate ngayHienTai = LocalDate.now();
