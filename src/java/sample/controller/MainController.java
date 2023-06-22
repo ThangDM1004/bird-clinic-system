@@ -54,6 +54,10 @@ public class MainController extends HttpServlet {
     private static String MEDICAL_CONTROLLER = "MedicalRecordController";
     private static String UPDATEPROFILEUSER = "updateProfileUser";
     private static String UPDATEPROFILEUSER_CONTROLLER = "UpdateProfileUserController";
+    private static String INSERTFEEDBACK = "feedback";
+    private static String INSERTFEEDBACK_CONTROLLER = "InsertFeedbackController";
+    private static String UPDATEFEEDBACK = "updatefeedback";
+    private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -95,6 +99,8 @@ public class MainController extends HttpServlet {
                 url = UPDATEPROFILEUSER_CONTROLLER;
             } else if (actions.equals(MEDICAL)) {
                 url = MEDICAL_CONTROLLER;
+            } else if (actions.equals(INSERTFEEDBACK)) {
+                url = INSERTFEEDBACK_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }

@@ -6,6 +6,7 @@
 package sample.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  *
@@ -22,6 +23,7 @@ public class MedicalRecordDTO {
     private String booking_id;
     private String ser_id;
     private String doctorName;
+    private List<String> serviceMore; 
 
     public MedicalRecordDTO() {
     }
@@ -37,6 +39,16 @@ public class MedicalRecordDTO {
         this.ser_id = ser_id;
         this.doctorName = doctorName;
     }
+
+    public List<String> getServiceMore() {
+        return serviceMore;
+    }
+
+    public void setServiceMore(List<String> serviceMore) {
+        this.serviceMore = serviceMore;
+    }
+    
+    
 
     public String getRecord_id() {
         return record_id;

@@ -124,6 +124,7 @@
                         <%
                             MedicalRecordDAO daoMR = new MedicalRecordDAO();
                             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
+
                             if (MR == null) {
                         %>
                         <h1> Bạn chưa có không có ghi nhận nào </h1>
@@ -152,7 +153,21 @@
                                             <tr>
 
                                                 <td><%= mrr.getDate_again()%></td>
-                                                <td><%= daoMR.getSerNam(mrr.getSer_id())%></td>
+                                                <td>
+
+                                                    <ul>
+                                                        <%
+                                                            List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
+                                                            for (String ser_id : moreService) {%>
+
+                                                        <li><%=daoMR.getSerNam(ser_id)%></li>
+
+
+                                                        <% }
+                                                        %>
+
+                                                    </ul>
+                                                </td>
                                                 <td> <textarea readonly=""> <%= mrr.getNote()%> </textarea> </td>
                                                 <td>
                                                     <h2 class="table-avatar">
@@ -171,7 +186,7 @@
                                                             <i class="fas fa-print"></i> Feedback
                                                         </a>
                                                     </div>
-                                                 
+
                                                 </td>
                                             </tr>
                                             <% } %>
