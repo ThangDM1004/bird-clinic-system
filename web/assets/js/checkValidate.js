@@ -2,9 +2,10 @@ jQuery(document).ready(function () {
     var isUsernameAvailable = false;
     var isEmailAvailable = false;
     var isPhoneAvailable = false;
+    var isEmailAvailable_1 = false;
 
     function enableSubmitButton() {
-        if (isUsernameAvailable && isEmailAvailable && isPhoneAvailable) {
+        if (isUsernameAvailable && isEmailAvailable && isPhoneAvailable && isEmailAvailable_1) {
             $('#submit').prop('disabled', false);
         } else {
             $('#submit').prop('disabled', true);
@@ -48,6 +49,28 @@ jQuery(document).ready(function () {
                 } else if (result_1 === 'This email has been taken, try another !' || result_1 === 'It looks like you may have entered an incorrect email!') {
                     $('#result_1').removeClass().addClass('already-exists');
                     isEmailAvailable = false;
+                }
+
+                enableSubmitButton();
+            }
+        });
+    });
+
+    $('#myemail_1').change(function () {
+        var myemail_1 = $('#myemail_1').val();
+        $.ajax({
+            type: 'POST',
+            data: {myemail_1: myemail_1},
+            url: 'EmailCheckControllerReverse',
+            success: function (result_11) {
+                $('#result_11').html(result_11);
+
+                if (result_11 === 'Email is available to reset password !') {
+                    $('#result_11').removeClass().addClass('available');
+                    isEmailAvailable_1 = true;
+                } else if (result_11 === 'Your entered email does not match any account !' || result_11 === 'It looks like you may have entered an incorrect email!') {
+                    $('#result_11').removeClass().addClass('already-exists');
+                    isEmailAvailable_1 = false;
                 }
 
                 enableSubmitButton();

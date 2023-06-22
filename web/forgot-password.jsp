@@ -169,8 +169,26 @@
                                         <!-- Forgot Password Form -->
                                         <form action="forgotPassword" method="POST">
                                             <div class="form-group form-focus">
-                                                <input name="email" type="email" class="form-control floating">
+                                                <input id="myemail_1" name="email" type="email" class="form-control floating">
                                                 <label class="focus-label">Email</label>
+                                                <span id="result_11" style="margin-left: 10px;"></span>
+                                                <style>
+                                                    .available {
+                                                        color: #006400;
+                                                        background: #E5FFE5;
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                    }
+
+                                                    .already-exists, .not-enough-length {
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                        background: #F8ECEC;
+                                                        color: #be4b49;
+                                                    }
+                                                </style>
                                             </div>
                                             <div class="text-right">
                                                 <a class="forgot-link" href="login.jsp">Remember your password?</a>
@@ -321,6 +339,7 @@
         <script src="assets/js/bootstrap.min.js"></script>
 
         <!-- Custom JS -->
+        <script src="assets/js/checkValidate.js"></script>
         <script src="assets/js/script.js"></script>
 
     </body>
