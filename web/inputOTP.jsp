@@ -148,7 +148,7 @@
             <div class="content" style="display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 0;">
                 <div class="container">
                     <h2>Verify Your Account</h2>
-                    <p>We email's you the six digit code to personal@email.com</p>
+                    <p>We email's you the six digit code to <strong>${requestScope.emailUser}</strong></p>
                     <p>Enter the code below to confirm your email address </p>   
 
                     <form action="ValidateOtp" method="POST" role="form" autocomplete="off">
@@ -159,19 +159,57 @@
                             <input type="number" name="num4" class="code" placeholder="0" min="0" max="9" required="">
                             <input type="number" name="num5" class="code" placeholder="0" min="0" max="9" required="">
                             <input type="number" name="num6" class="code" placeholder="0" min="0" max="9" required="">
+
                         </div>
+                        <!--<div id="countdown" class="small countdown"></div>-->
+
+                        <script>
+                            // Lấy thời gian hiện tại
+                            var startTime = Math.floor(Date.now() / 1000);
+
+                            // Tính thời gian kết thúc OTP (60 giây sau thời điểm hiện tại)
+                            var endTime = startTime + 60;
+
+                            // Cập nhật thời gian đếm ngược mỗi giây
+                            var countdown = setInterval(function () {
+                                var currentTime = Math.floor(Date.now() / 1000);
+                                var remainingTime = endTime - currentTime;
+
+                                // Kiểm tra nếu thời gian đếm ngược đã kết thúc
+                                if (remainingTime <= 0) {
+                                    clearInterval(countdown);
+                                    document.getElementById("countdown").innerHTML = "OTP has expired";
+                                } else {
+                                    // Hiển thị thời gian còn lại trong định dạng mm:ss
+                                    var minutes = Math.floor(remainingTime / 60);
+                                    var seconds = remainingTime % 60;
+                                    document.getElementById("countdown").innerHTML = (seconds < 10 ? "0" : "") + seconds;
+                                }
+                            }, 1000);
+                        </script>
+
+
                         <input type="hidden" class="hide" name="token" id="token"
                                value="">
                         <div>
                             <button type="submit" class="btns btns-primary">Verify</button>
                         </div>
+
                     </form>
 
                     <small>
-                        If you didn't receive a code !! <strong>RESEND</strong> 
+                        If you didn't receive a code , please check your SPAM !! or <strong>RESEND</strong> in <span id="countdown"></span>
                     </small>
+                    <style>
+                        #countdown {
+                            font-size: 12px;
+                            font-weight: bold;
+                            text-align: center;
+                        }
+                    </style>
                 </div>
             </div>
+
             <style>
                 .container {
                     background-color: rgba(169, 169, 169,0.2);
@@ -198,6 +236,8 @@
                     text-align: center;
                     font-weight: 300;
                 }
+
+
 
                 @media (max-width: 600px) {
                     .code-container {
@@ -246,6 +286,13 @@
                     border-color: #28a745;
                 }
 
+            </style>
+            <style>
+                <% if (request.getAttribute("wrongOTP") != null && (boolean) request.getAttribute("wrongOTP")) { %>
+                .code {
+                    border: 2px solid red;
+                }
+                <% }%>
             </style>
             <script>
                 const codes = document.querySelectorAll('.code');
