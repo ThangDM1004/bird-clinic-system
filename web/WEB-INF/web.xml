@@ -126,6 +126,12 @@
         <servlet-class>sample.controller.UpdateProfileUserController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>forgotPassword</servlet-name>
+        <servlet-class>sample.controller.forgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidateOtp</servlet-name>
+        <servlet-class>sample.controller.ValidateOtp</servlet-class>
         <servlet-name>InsertFeedbackController</servlet-name>
         <servlet-class>sample.controller.InsertFeedbackController</servlet-class>
     </servlet>
@@ -258,6 +264,12 @@
         <url-pattern>/UpdateProfileUserController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>forgotPassword</servlet-name>
+        <url-pattern>/forgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidateOtp</servlet-name>
+        <url-pattern>/ValidateOtp</url-pattern>
         <servlet-name>InsertFeedbackController</servlet-name>
         <url-pattern>/InsertFeedbackController</url-pattern>
     </servlet-mapping>
