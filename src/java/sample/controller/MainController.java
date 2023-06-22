@@ -56,7 +56,7 @@ public class MainController extends HttpServlet {
     private static String UPDATEPROFILEUSER_CONTROLLER = "UpdateProfileUserController";
     private static String INSERTFEEDBACK = "feedback";
     private static String INSERTFEEDBACK_CONTROLLER = "InsertFeedbackController";
-    private static String UPDATEFEEDBACK = "updatefeedback";
+    private static String UPDATEFEEDBACK = "updateFeedback";
     private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -101,6 +101,8 @@ public class MainController extends HttpServlet {
                 url = MEDICAL_CONTROLLER;
             } else if (actions.equals(INSERTFEEDBACK)) {
                 url = INSERTFEEDBACK_CONTROLLER;
+            }else if (actions.equals(UPDATEFEEDBACK)) {
+                url = UPDATEFEEDBACK_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }

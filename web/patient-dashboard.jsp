@@ -593,7 +593,7 @@
                                     <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" required=""><% if (fb.getFeedback_content() != null) {%> <%=fb.getFeedback_content()%> <%}%> </textarea> <br>
                                     <!--                                    <div class="modal-footer">-->
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <%if (fb != null) { %> 
+                                    <%if (fb.getRating_star() == 0) { %> 
 
                                     <button type="submit" class="btn btn-primary" name="action" value="feedback">Give Feedback</button>
 

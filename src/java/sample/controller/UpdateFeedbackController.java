@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sample.dao.FeedbackDAO;
+import sample.dto.FeedbackDTO;
 
 /**
  *
@@ -30,17 +32,19 @@ public class UpdateFeedbackController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateFeedbackController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateFeedbackController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            FeedbackDAO dao = new FeedbackDAO();
+            FeedbackDTO fb = new FeedbackDTO();
+            String user_name = request.getParameter("username");
+            String medicalrecord_id = request.getParameter("mr_id");
+            String ser_id = request.getParameter("ser_id");
+            int star = Integer.parseInt(request.getParameter("stars"));
+            String fb_content = request.getParameter("comment");
+            fb = new FeedbackDTO(ser_id, user_name, star, fb_content, null, medicalrecord_id);
+            dao.UpdateFeedback(fb);
+            response.sendRedirect("patient-dashboard.jsp");
+
+        } catch (Exception e) {
         }
     }
 

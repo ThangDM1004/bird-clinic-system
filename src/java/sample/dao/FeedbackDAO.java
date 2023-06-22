@@ -104,10 +104,18 @@ public class FeedbackDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
+            Date myDate = Date.from(Instant.now());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = formatter.format(myDate);
             if (conn != null) {
-                ptm = conn.prepareStatement("INSERT INTO tbl_Feedback(service_id_intial, user_name, rating_star, feedback_content,date,record_id)\n"
-                        + "VALUES (?, ?, ?, ?,?,?);");
-
+                ptm = conn.prepareStatement("UPDATE tbl_Feedback\n"
+                        + "SET rating_star = ?, feedback_content = ?, date =?\n"
+                        + "WHERE record_id = ?;");
+                ptm.setInt(1, fb.getRating_star());
+                ptm.setString(2, fb.getFeedback_content());
+                ptm.setString(3, formattedDate);
+                ptm.setString(4, fb.getRecord_id());
+                ptm.executeUpdate();
             }
 
         } catch (Exception e) {
