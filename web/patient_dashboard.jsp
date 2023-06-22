@@ -59,7 +59,7 @@
                         <h1> Bạn chưa có lịch nào </h1>
                         <%
                         } else {
-                           %>
+                        %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -75,8 +75,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <%  for (AppointmentDTO apt : ls) {
-                        %>
+                                            <%  for (AppointmentDTO apt : ls) {
+                                            %>
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
@@ -86,7 +86,17 @@
                                                         <a href="doctor-profile.jsp"><%= apt.getDoctorName()%><span><%= apt.getSpeciality()%></span></a>
                                                     </h2>
                                                 </td>
-                                                <td><%= apt.getDate()%><span class="d-block text-info"><%= apt.getTime()%></span></td>
+                                                <td><%= apt.getDate()%><span class="d-block text-info"> <% if (apt.getTime().equalsIgnoreCase("1")) { %>
+                                                        7:00 - 9:00
+                                                        <% } else if (apt.getTime().equalsIgnoreCase("2")) { %>
+                                                        9:00 - 11:00
+                                                        <% } else if (apt.getTime().equalsIgnoreCase("3")) { %>
+                                                        13:00 - 15:00
+                                                        <% } else if (apt.getTime().equalsIgnoreCase("4")) { %>
+                                                        15:00 - 17:00
+                                                        <% }%>
+                                                    </span> 
+                                                </td> 
                                                 <td><%= apt.getDateBooking()%></td>
                                                 <td><%= apt.getFee()%></td>
                                                 <td><%= apt.getService()%></td>
@@ -124,6 +134,7 @@
                         <%
                             MedicalRecordDAO daoMR = new MedicalRecordDAO();
                             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
+
                             if (MR == null) {
                         %>
                         <h1> Bạn chưa có không có ghi nhận nào </h1>
@@ -147,16 +158,31 @@
                                         <tbody>
                                             <%
                                                 for (MedicalRecordDTO mrr : MR) {
+                                                    int index = MR.indexOf(mrr);
                                             %>
                                             <tr>
 
                                                 <td><%= mrr.getDate_again()%></td>
-                                                <td><%= daoMR.getSerNam(mrr.getSer_id())%></td>
+                                                <td>
+
+                                                    <ul>
+                                                        <%
+                                                            List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
+                                                            for (String ser_id : moreService) {%>
+
+                                                        <li><%=daoMR.getSerNam(ser_id)%></li>
+
+
+                                                        <% }
+                                                        %>
+
+                                                    </ul>
+                                                </td>
                                                 <td> <textarea readonly=""> <%= mrr.getNote()%> </textarea> </td>
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName()) %>" >
+                                                            <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName())%>" >
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
                                                     </h2>
@@ -166,13 +192,22 @@
                                                         <!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                                                                     <i class="far fa-eye"></i> View
                                                                                                                 </a>-->
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
-                                                            <i class="fas fa-print"></i> Feedback
+                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
+                                                            <i class="fas fa-thumbs-up"></i> Feedback
                                                         </a>
-                                                    </div>
+                                                    </div> <br>
+
+                                                    <form action="MainController">
+                                                        <div class="table-action">
+                                                            <button href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
+                                                                <i class="fas"></i> Booking Again
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
                                                 </td>
                                             </tr>
-<% } %>
+                                            <% } %>
                                         </tbody>  	
                                     </table>
                                 </div>

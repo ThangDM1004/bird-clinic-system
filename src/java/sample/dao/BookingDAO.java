@@ -629,6 +629,46 @@ public class BookingDAO {
         return service;
     }
 
+    public Double getServiceFeeByName(String name) {
+        Double service = -1.0;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select fee\n"
+                    + "from tbl_Service\n"
+                    + "where service_name  = ?");
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                service = rs.getDouble(1);
+            }
+        } catch (Exception e) {
+        }
+        return service;
+    }
+
+    public String getServiceIDByName(String name) {
+        String id = null;
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select service_id\n"
+                    + "from tbl_Service\n"
+                    + "where service_name = ?");
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return id;
+    }
+
+    public static void main(String[] args) {
+        BookingDAO dao = new BookingDAO();
+        String name = dao.getServiceIDByName("Emergency");
+        System.out.println(name);
+    }
+
     public String getFullNameUserByBookingID(String id) {
         String name = null;
         try {
@@ -664,9 +704,37 @@ public class BookingDAO {
         return count;
     }
 
-    public static void main(String[] args) {
+    public String[][] slotAppointment(String doctor) throws SQLException {
         BookingDAO dao = new BookingDAO();
-        int count = dao.countPatient("doctor1");
-        System.out.println(count);
+        String[][] booking = new String[8][5];
+        List<BookingDTO> list = dao.getAllBooking();
+        List<String> day = dao.getWeekDates();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        int dem = 1;
+        for (BookingDTO x : list) {
+            String doc = "";
+            if (x.getUsername_doctor() == null) {
+
+            } else {
+                doc = x.getUsername_doctor().trim();
+            }
+
+            if (doc.equalsIgnoreCase(doctor)) {
+                for (int i = 0; i < day.size(); i++) {
+                    if (dateFormat.format(x.getDate()).equals(day.get(i))) {
+                        String bookingID = x.getBooking_id().trim();
+                        if (booking[i + 1][x.getSlot_number()] == null) {
+                            booking[i + 1][x.getSlot_number()] = bookingID + " ";
+                        } else {
+                            booking[i + 1][x.getSlot_number()] += bookingID;
+                        }
+
+                    }
+                }
+            }
+
+        }
+        return booking;
     }
+
 }

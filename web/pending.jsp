@@ -22,6 +22,8 @@
         <title>JSP Page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
 
     </head>
     <body>
@@ -42,11 +44,7 @@
 
                 <!-- Tab Menu -->
                 <nav class="user-tabs mb-4">
-                    <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
-                        </li>
-                    </ul>
+                   
                 </nav>
                 <!-- /Tab Menu -->
 
@@ -71,15 +69,14 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <form action="MainController">
-                                        <table class="table table-hover table-center mb-0">
-                                            <thead>
+                                        <table class="datatable table table-hover table-center mb-0">
+                                            <thead style="background-color: #FFEFC1">
                                                 <tr>
                                                     <th>User Name</th>
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
-                                                    <th style="width: 250px">Service</th>
-                                                    <th>Doctor</th>
-                                                    <th>Note</th>
+                                                    <th >Service</th>
+
                                                     <th></th>
 
                                                 </tr>
@@ -89,7 +86,6 @@
                                                 <%                                                for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 1) {
                                                 %>
-
                                                 <tr>
                                                     <td>
                                                         <%=dao.customerName(x.getUsername_customer())%>
@@ -97,29 +93,12 @@
                                             <input type="hidden" name="bookingID" value="<%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>                                          
-                                            <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
-
-                                            <td>
-
-                                                <select id="select_doctor" name="select_doctor">
-                                                    <option disabled="true" selected="" >--Select doctor--</option>
-                                                    <%
-                                                        for (UserDTO d : doctor) {
-                                                    %>
-                                                    <option value="<%=d.getUsername()%>"><%= d.getFullname()%></option>                                                        
-                                                    <%
-                                                        }
-                                                    %>
-
-                                                </select>
-
-                                            </td>
+                                            <td ><%= dao.getServicename(x.getBooking_id())%></td>                                         
                                             <input type="hidden" value="2" name="status_booking">
-                                            <td><input type="text" name="note"></td>
+
                                             <td><div class="submit-section">
-<!--                                                    <a id="acceptLink" href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&select_doctor=${param.select_doctor1}&action=Accept"  class="btn btn-primary submit-btn">Accept</a>-->
-                                                    <button id="accept" name="action" value="Accept" type="submit" class="btn btn-primary submit-btn">Accept</button> 
-                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Decline</a>
+                                                    <button id="accept" name="action" value="Accept" type="submit" style="border: 0px aquamarine; background-color: aquamarine;height: 50px; width: 80px; color: black">Accept</button> 
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red;padding:  13.5px; width: 80px; color: white">Decline</a>
                                                 </div>
                                             </td>
                                             </tr>
@@ -127,8 +106,6 @@
                                                     }
                                                 }
                                             %>
-
-
                                             </tbody>
                                         </table>
                                     </form>
@@ -158,6 +135,10 @@
 
             </div>
         </div>
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="assets/plugins/datatables/datatables.min.js"></script>
+        <script  src="assets/js/script.js"></script>
 
     </body>
 </html>

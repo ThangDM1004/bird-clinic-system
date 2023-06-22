@@ -43,7 +43,7 @@
                 <nav class="user-tabs mb-4">
                     <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
+                           
                         </li>
                     </ul>
                 </nav>
@@ -69,13 +69,13 @@
                             <div class="card card-table mb-0">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-center mb-0">
-                                            <thead>
+                                        <table class="datatable table table-hover table-center mb-0">
+                                            <thead style="background-color: #FFEFC1">
                                                 <tr>
                                                     <th>User Name</th>
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
-                                                    <th style="width: 250px">Service</th>
+                                                    <th >Service</th>
                                                     <th>Doctor</th>
                                                 </tr>
                                             </thead>
@@ -91,7 +91,7 @@
                                             <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
-                                            <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
+                                            <td><%= dao.getServicename(x.getBooking_id())%></td>
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>

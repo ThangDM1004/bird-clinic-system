@@ -18,16 +18,26 @@ public class FeedbackDTO {
     private int rating_star;
     private String feedback_content;
     private Date date;
+    private String record_id;
 
     public FeedbackDTO() {
     }
 
-    public FeedbackDTO(String service_id, String user_name, int rating_star, String feedback_content, Date date) {
+    public FeedbackDTO(String service_id, String user_name, int rating_star, String feedback_content, Date date, String record_id) {
         this.service_id = service_id;
         this.user_name = user_name;
         this.rating_star = rating_star;
         this.feedback_content = feedback_content;
         this.date = date;
+        this.record_id = record_id;
+    }
+
+    public String getRecord_id() {
+        return record_id;
+    }
+
+    public void setRecord_id(String record_id) {
+        this.record_id = record_id;
     }
 
     public String getService_id() {

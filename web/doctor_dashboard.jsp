@@ -62,7 +62,8 @@
                                         double count_today = 0;
                                         double count_up = 0;
                                         for (BookingDTO x : list) {
-                                            if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                            String doc = x.getUsername_doctor();
+                                            if (x.getBooking_status() >= 2 && user.getUsername().equals(doc) && x.getBooking_status() <= 3) {
                                                 Date dateBook = x.getDate();
                                                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                 String formattedDate = dateFormat.format(dateBook);
@@ -167,7 +168,8 @@
 
                                             <tbody> 
                                                 <%                                                    for (BookingDTO x : list) {
-                                                        if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                                        String doc = x.getUsername_doctor();
+                                                        if (x.getBooking_status() >= 2 && user.getUsername().equals(doc) && x.getBooking_status() <= 3) {
                                                             Date dateBook = x.getDate();
                                                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                             String formattedDate = dateFormat.format(dateBook);
@@ -223,7 +225,8 @@
                                             <tbody> 
                                                 <%
                                                     for (BookingDTO x : list) {
-                                                        if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
+                                                        String doc = x.getUsername_doctor();
+                                                        if (x.getBooking_status() >= 2 && user.getUsername().equals(doc) && x.getBooking_status() <= 3) {
                                                             Date dateBook = x.getDate();
                                                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
                                                             String formattedDate = dateFormat.format(dateBook);
