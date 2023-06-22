@@ -59,7 +59,7 @@
                         <h1> Bạn chưa có lịch nào </h1>
                         <%
                         } else {
-                           %>
+                        %>
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -75,8 +75,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <%  for (AppointmentDTO apt : ls) {
-                        %>
+                                            <%  for (AppointmentDTO apt : ls) {
+                                            %>
                                             <tr>
                                                 <td>
                                                     <h2 class="table-avatar">
@@ -147,6 +147,7 @@
                                         <tbody>
                                             <%
                                                 for (MedicalRecordDTO mrr : MR) {
+                                                    int index = MR.indexOf(mrr);
                                             %>
                                             <tr>
 
@@ -156,7 +157,7 @@
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">
-                                                            <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName()) %>" >
+                                                            <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName())%>" >
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
                                                     </h2>
@@ -166,13 +167,14 @@
                                                         <!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
                                                                                                                     <i class="far fa-eye"></i> View
                                                                                                                 </a>-->
-                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
                                                             <i class="fas fa-print"></i> Feedback
                                                         </a>
                                                     </div>
+                                                 
                                                 </td>
                                             </tr>
-<% } %>
+                                            <% } %>
                                         </tbody>  	
                                     </table>
                                 </div>
