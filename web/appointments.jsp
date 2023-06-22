@@ -4,6 +4,7 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.SlotDTO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.BookingDTO"%>
 <%@page import="java.util.List"%>
@@ -50,73 +51,163 @@
         <%
         } else {
         %>
-        <div class="card card-table mb-0">
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-center mb-0">
-                        <thead>
-                            <tr>
-                                <th>User Name</th>
-                                <th>Bird Name</th>
-                                <th>Time Slot</th>
-                                <th style="width: 250px">Service</th>
-                                <th>Status</th>
-                                <th></th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
+        <form action="MainController" method="POST">
+            <table style="height: 400px" class="datatable table table-hover table-center mb-0" border="1">
+                <thead>
+                    <tr>
+                        <jsp:useBean id="BookingDAO" scope="request" class="sample.dao.BookingDAO"/>
+                        <th>Slot/Date</th>
+                        <th><span>Mon</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(0)}</span></th>
+                        <th><span>Tue</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(1)}</span></th>
+                        <th><span>Wed</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(2)}</span></th>
+                        <th><span>Thu</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(3)}</span></th>
+                        <th><span>Fri</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(4)}</span></th>
+                        <th><span>Sat</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(5)}</span></th>
+                        <th><span>Sun</span><br>
+                            <span class="slot-date">${BookingDAO.getWeekDates().get(6)}</span></th>
+                    </tr>
+                </thead>
+                <%
+                    List<SlotDTO> slot = dao.getSlot();
+                %>
+                <tbody>
+                    <%
+                        for (int i = 0; i < slot.size(); i++) {
+                            String[][] app = dao.slotAppointment(user.getUsername());
+                    %>
+                    <tr>
+                        <td><%=slot.get(i).getTime_slot()%></td>
+                        <td id="Mon-slot1">
                             <%
-                                for (BookingDTO x : list) {
-                                    if (x.getBooking_status() >= 2 && x.getUsername_doctor().equalsIgnoreCase(user.getUsername()) && x.getBooking_status() <= 3) {
-                                        int index = list.indexOf(x);
+                                if (app[1][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[1][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
                             %>
-                            <tr>
-                                <td>
-                                    <%=dao.customerName(x.getUsername_customer())%>
-                                </td>
-                        <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
-                        <td><%= dao.getBirdname(x.getPatient_id())%> </td>
-                        <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
-                        <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
-                        <input type="hidden" value="3" name="status_booking">
-                        <td> <%=dao.getBookingStatus(x.getBooking_id())%></td>
-                        <td><div class="submit-section">
-                                <%
-
-                                    if (x.getBooking_status() == 3) {
-                                %>
-                                <a type="button" s href="#Medical-record_<%=index%>" data-toggle="modal" class="btn btn-primary submit-btn">Medical Record</a>
-                                <!-- /Profile Settings Form -->
-                                <%
-                                } else {
-                                %>
-                                <a type="button" s href="#Medical-record" data-toggle="modal" class="btn btn-primary submit-btn">Medical Record</a>
-                                <%
+                            <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
                                     }
-                                    if (x.getBooking_status() == 2) {
-                                %>
-                                <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red" class="btn btn-primary submit-btn">Cancel</a>
-                                <%
-                                } else {
-                                %>
-                                <button disabled="true" style="background-color: red" name="action" value="Decline" type="submit" class="btn btn-primary submit-btn">Cancel</button>
-                                <%
-                                    }
-                                %>
-
-                            </div></td>
-
-                        <%
                                 }
-                            }
-                        %>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+                            %>
+
+                        </td>
+                        <td id="Tue-slot1"> <%
+                                if (app[2][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[2][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                           <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+                        <td id="Wed-slot1"> <%
+                                if (app[3][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[3][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                            <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+                        <td id="Thu-slot1"> <%
+                                if (app[4][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[4][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                            <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+                        <td id="Fri-slot1"> <%
+                                if (app[5][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[5][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                           <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+                        <td id="Sat-slot1"> <%
+                                if (app[6][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[6][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                          <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+                        <td id="Sun-slot1"> <%
+                                if (app[7][i + 1] == null) {
+
+                                } else {
+                                    String[] ID = app[7][i + 1].split(" ");
+                                    for (int j = 0; j < ID.length; j++) {
+                            %>
+                          <a href="medical-record.jsp?Booking_id=<%= ID[j]%>"><%= ID[j]%><br></a>
+                            <%
+                                    }
+                                }
+                            %></td>
+
+                    </tr>
+                    <%
+
+                        }
+                    %>
+                    <tr></tr>
+                </tbody>
+            </table>
+
+            <!-- /Schedule Widget -->
+
+            <!-- Submit Section -->
+
+        </form>
+        <!--        <div class="card card-table mb-0">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>Bird Name</th>
+                                        <th>Time Slot</th>
+                                        <th style="width: 250px">Service</th>
+                                        <th>Status</th>
+                                        <th></th>
+        
+                                    </tr>
+                                </thead>
+                                <tbody>
+        
+       
+        </tbody>
+    </table>
+</div>
+</div>
+</div>-->
         <%
             }
         %>

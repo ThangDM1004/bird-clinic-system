@@ -69,21 +69,23 @@
                             <div class="card card-table mb-0">
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-center mb-0">
-                                            <thead>
+                                        <table class="datatable table table-hover table-center mb-0">
+                                            <thead style="background-color: #FFEFC1">
                                                 <tr>
                                                     <th>User Name</th>
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
-                                                    <th style="width: 250px">Service</th>
+                                                    <th >Service</th>
                                                     <th>Doctor</th>
+                                                    <th>Bill</th>
                                                     <th></th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                <%                                                    for (BookingDTO x : list) {
+                                                <%                                                   
+                                                    for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 4) {
                                                 %>
                                                 <tr>
@@ -93,15 +95,14 @@
                                             <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
-                                            <td style="width: 250px"><%= dao.getServicename(x.getBooking_id())%></td>
+                                            <td><%= dao.getServicename(x.getBooking_id())%></td>
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
                                             <input type="hidden" value="3" name="status_booking">
+                                            <td> <a href="#invoice" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
                                             <td><div class="submit-section">
-                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=5&action=Check-in" class="btn btn-primary submit-btn">Check Out</a>
-
-
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=5&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check Out</a>
                                                 </div></td>
 
                                             <%
@@ -138,5 +139,6 @@
                 </form>
             </div>
         </div>
+                        <a href="#invoice">Test</a>
     </body>
 </html>

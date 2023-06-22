@@ -516,7 +516,7 @@
                                     </div>
                                     <%PatientDTO p = pdao.getBirdByID(x.getPatient_id());
                                     %>
-
+                                    <input id="index" type="hidden" value="<%=index%>">
                                     <div class="modal-body">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
@@ -561,17 +561,18 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-12 col-md-6">
-                                            <div class="form-group">
+                                        <div id="service_<%=index%>" class="col-12 col-md-6">
+                                            <div  class="form-group">
                                                 <label>Service:</label>
-                                                <input readonly=""value="<%= dao.getServicename(x.getBooking_id())%>" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
+                                                <button disabled=""  name="" value="<%= dao.getServicename(x.getBooking_id())%>"><%= dao.getServicename(x.getBooking_id())%></button>
+                                                <input type="button" value="+" onclick="Add()">
+
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label>Fee:</label>
                                                 <input name="total_fee" readonly=""value="<%= dao.getServiceFee(x.getBooking_id())%>" style="width: 200%; border: 0px none; border-bottom: 1px dotted; padding: 0px; min-height:5px;height: 15px"  type="text" class="form-control" >
-
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -609,7 +610,7 @@
 
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/doctor-dashboard.js"></script>
+        <script src="assets/js/doctor_dashboard.js"></script>
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>

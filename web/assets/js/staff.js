@@ -3,6 +3,7 @@ function Pending() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+             var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "pending.jsp", true);
@@ -14,6 +15,7 @@ function CheckIn() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "check-in.jsp", true);
@@ -25,6 +27,7 @@ function CheckOut() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "check-out.jsp", true);
@@ -36,6 +39,7 @@ function Assign() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "assign.jsp", true);

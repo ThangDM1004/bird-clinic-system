@@ -23,9 +23,9 @@ public class PatientDAO {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image, pb.status_bird\n"
+    private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image, pb.status\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
-            + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? and pb.status_bird = 'True'";
+            + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? and pb.status = 'True'";
 
     public List<PatientDTO> getBird(String user_name) {
         List<PatientDTO> list = new ArrayList<>();
@@ -45,7 +45,7 @@ public class PatientDAO {
                     String age = rs.getString("age").trim();
                     String gender = rs.getString("gender").trim();
                     String image = rs.getString("image");
-                    boolean status = Boolean.parseBoolean(rs.getString("status_bird"));
+                    boolean status = Boolean.parseBoolean(rs.getString("status"));
                     PatientDTO bird = new PatientDTO(patient_id, bird_name, species_id, age, gender, image, user_name, status);
                     list.add(bird);
                 }
