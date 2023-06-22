@@ -454,15 +454,15 @@ public class AppointmentDAO {
         AppointmentDAO dao = new AppointmentDAO();
         try {
             conn = Utils.getConnection();
-            ps = conn.prepareStatement("SELECT booking_id, username_customer, username_doctor, booking_date, service_id, patient_id, booking_status, latest_date, CONVERT(varchar(5), time, 108) AS formatted_time\n"
-                    + "                    FROM (\n"
-                    + "              SELECT tbl_Booking.booking_id, username_customer, tbl_Booking.username_doctor, tbl_Booking.date AS booking_date, service_id, patient_id, tbl_Booking_Status_Details.booking_status, tbl_Booking_Status_Details.date AS latest_date, tbl_Booking_Status_Details.time,\n"
-                    + "                            ROW_NUMBER() OVER (PARTITION BY tbl_Booking.booking_id ORDER BY tbl_Booking_Status_Details.date DESC) AS row_num\n"
-                    + "                     FROM tbl_Booking\n"
-                    + "                    JOIN tbl_Booking_Status_Details ON tbl_Booking.booking_id = tbl_Booking_Status_Details.booking_id\n"
-                    + "                    WHERE username_customer = ?)\n"
-                    + "                    AS subquery\n"
-                    + "                    WHERE row_num = 1;");
+            ps = conn.prepareStatement("SELECT booking_id, username_customer, username_doctor, booking_date, service_id, patient_id, booking_status, latest_date, slot_number AS formatted_time\n" +
+"                    FROM (\n" +
+"              SELECT tbl_Booking.booking_id, username_customer, tbl_Booking.username_doctor, tbl_Booking.date AS booking_date, service_id, patient_id, tbl_Booking_Status_Details.booking_status, tbl_Booking_Status_Details.date AS latest_date, tbl_Booking.slot_number,\n" +
+"                            ROW_NUMBER() OVER (PARTITION BY tbl_Booking.booking_id ORDER BY tbl_Booking_Status_Details.date DESC) AS row_num\n" +
+"                     FROM tbl_Booking\n" +
+"                    JOIN tbl_Booking_Status_Details ON tbl_Booking.booking_id = tbl_Booking_Status_Details.booking_id\n" +
+"                    WHERE username_customer = ?)\n" +
+"                    AS subquery\n" +
+"                    WHERE row_num = 1;");
             ps.setString(1, user_name);
             rs = ps.executeQuery();
             while (rs.next()) {
