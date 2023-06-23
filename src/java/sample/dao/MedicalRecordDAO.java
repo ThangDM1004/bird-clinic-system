@@ -254,9 +254,9 @@ public class MedicalRecordDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
-            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id\n" +
-"                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n" +
-"                   where tbl_Booking.username_customer = ?");
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id\n"
+                    + "                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n"
+                    + "                   where tbl_Booking.username_customer = ?");
             ptm.setString(1, username);
             rs = ptm.executeQuery();
             while (rs.next()) {
@@ -285,6 +285,40 @@ public class MedicalRecordDAO {
         }
         return null;
     }
+
+    public MedicalRecordDTO getMRByBookingID(String bookingID) throws SQLException {
+        MedicalRecordDTO ls = new MedicalRecordDTO();
+        MedicalRecordDTO a = new MedicalRecordDTO();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            ptm = conn.prepareStatement("select *\n"
+                    + "from tbl_Medical_Record\n"
+                    + "where booking_id = ? ");
+            ptm.setString(1, bookingID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                ls = new MedicalRecordDTO(rs.getString(2), rs.getDate(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), "", "");
+            }
+            return ls;
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
+    }
+
     private static final String MAX_ID_MR = "select top 1 record_id\n"
             + "from tbl_Medical_Record\n"
             + "order by ID desc";
@@ -368,6 +402,14 @@ public class MedicalRecordDAO {
         return checkInsert;
     }
 
+    public static void main(String[] args) throws SQLException {
+        MedicalRecordDAO dao = new MedicalRecordDAO();
+        List<String> ls = dao.getListServiceMore("7");
+        for (String x : ls) {
+            System.out.println(x);
+        }
+    }
+
     public List<String> getListServiceMore(String record_id) throws SQLException {
         List<String> list = new ArrayList<>();
         Connection conn = null;
@@ -382,7 +424,7 @@ public class MedicalRecordDAO {
                         + "where record_id =?");
                 ps.setString(1, record_id);
                 rs = ps.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     list.add(rs.getString("service_id"));
                 }
 

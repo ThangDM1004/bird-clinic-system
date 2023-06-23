@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import sample.dto.BookingDTO;
+import sample.dto.MedicalRecordDTO;
 
 import sample.dto.PatientDTO;
 
@@ -663,8 +664,6 @@ public class BookingDAO {
         return id;
     }
 
-  
-
     public String getFullNameUserByBookingID(String id) {
         String name = null;
         try {
@@ -681,6 +680,32 @@ public class BookingDAO {
         } catch (Exception e) {
         }
         return name;
+    }
+
+    public int CheckBooking(String bookingID) {
+        int status = 0;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("SELECT booking_status\n"
+                        + "FROM tbl_Booking\n"
+                        + "WHERE booking_id = ?");
+                ps.setString(1, bookingID);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                     status = rs.getInt("booking_status");
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return status;
+    }
+
+    public static void main(String[] args) {
+        BookingDAO dao = new BookingDAO();
+        int status = dao.CheckBooking("BK1");
+        System.out.println(status);
     }
 
     public int countPatient(String doctor_id) {
@@ -722,7 +747,7 @@ public class BookingDAO {
                         if (booking[i + 1][x.getSlot_number()] == null) {
                             booking[i + 1][x.getSlot_number()] = bookingID + " ";
                         } else {
-                            booking[i + 1][x.getSlot_number()] +=  bookingID + " ";
+                            booking[i + 1][x.getSlot_number()] += bookingID + " ";
                         }
 
                     }
@@ -732,15 +757,5 @@ public class BookingDAO {
         }
         return booking;
     }
-    public static void main(String[] args) throws SQLException {
-        BookingDAO dao = new BookingDAO();
-        String[][] list = new String[8][5];
-        list = dao.slotAppointment("doctor1");
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 8; j++) {
-                System.out.print(list[j][i] + "|");
-            }
-            System.out.println();
-        }
-    }
+
 }

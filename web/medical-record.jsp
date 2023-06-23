@@ -68,9 +68,11 @@
         %>
         <input hidden="" id="index" value="<%=index%>">
         <%
+            int status_booking = 0;
             for (BookingDTO x : list) {
                 String Id = x.getBooking_id().trim();
                 if (Id.equalsIgnoreCase(booking_id)) {
+                    status_booking = x.getBooking_status();
         %>
         <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
         <form action="MainController">
@@ -201,9 +203,21 @@
             <%    
                 String index_ = request.getParameter("number_service");
             %>
+            
             <!-- Registrations -->
             <div class="submit-section submit-btn-bottom">
+                <%
+                    if(status_booking == 2){
+                        %>
+                        <input disabled="" type="submit" name="action" value="Done" class="btn btn-primary submit-btn" >
+                <%
+                    }else if(status_booking == 3){
+                        %>
                 <input type="submit" name="action" value="Done" class="btn btn-primary submit-btn" >
+                <%
+                    }
+                %>
+                
             </div>
 
         </form>
