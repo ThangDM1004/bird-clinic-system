@@ -5,25 +5,21 @@
  */
 package sample.dao;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import sample.dto.BookingDTO;
-import sample.dto.MedicalRecordDTO;
-
-import sample.dto.PatientDTO;
 
 import sample.dto.SlotDTO;
 import sample.utils.Utils;
@@ -693,19 +689,13 @@ public class BookingDAO {
                 ps.setString(1, bookingID);
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                     status = rs.getInt("booking_status");
+                    status = rs.getInt("booking_status");
                 }
             }
         } catch (Exception e) {
 
         }
         return status;
-    }
-
-    public static void main(String[] args) {
-        BookingDAO dao = new BookingDAO();
-        int status = dao.CheckBooking("BK1");
-        System.out.println(status);
     }
 
     public int countPatient(String doctor_id) {
@@ -758,4 +748,74 @@ public class BookingDAO {
         return booking;
     }
 
+    public boolean checkValidateSlotBooking(String date, String slotNumber) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("SELECT date, slot_number, COUNT(slot_number) AS count \n"
+                    + "FROM tbl_Booking \n"
+                    + "GROUP BY date, slot_number \n"
+                    + "HAVING COUNT(slot_number) >= 5;");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+                String d = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                if (rs.getString(1).equals(d) && rs.getString(2).equals(slotNumber)) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    public boolean checkValidateTime(String slot, String date) {
+        LocalTime currentTime = LocalTime.now();
+        BookingDAO dao = new BookingDAO();
+        if (date.equals(dao.getToday())) {
+            switch (slot.trim()) {
+                case "1": {
+                    LocalTime startTime = LocalTime.parse("07:00:00");
+                    if (currentTime.isBefore(startTime)) {
+                        return true;
+                    }
+                    break;
+                }
+                case "2": {
+                    LocalTime startTime = LocalTime.parse("09:00:00");
+                    if (currentTime.isBefore(startTime)) {
+                        return true;
+                    }
+                    break;
+                }
+                case "3": {
+                    LocalTime startTime = LocalTime.parse("13:00:00");
+                    if (currentTime.isBefore(startTime)) {
+                        return true;
+                    }
+                    break;
+                }
+                case "4": {
+                    LocalTime startTime = LocalTime.parse("15:00:00");
+                    if (currentTime.isBefore(startTime)) {
+                        return true;
+                    }
+                    break;
+                }
+                default:
+                    break;
+            }
+        } else {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        BookingDAO dao = new BookingDAO();
+        System.out.println(dao.checkValidateTime("1", "2023/06/24"));
+        System.out.println(dao.getToday());
+    }
 }

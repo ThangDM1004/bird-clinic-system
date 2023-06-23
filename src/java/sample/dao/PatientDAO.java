@@ -312,12 +312,28 @@ public class PatientDAO {
         return bird;
     }
 
+    public boolean checkValidatePatient(String username, String patientID, String date, String slotNumber) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select *\n"
+                    + "from tbl_Booking\n"
+                    + "where username_customer = ? and patient_id = ? and date = ? and slot_number = ?");
+            ps.setString(1, username);
+            ps.setString(2, patientID);
+            ps.setString(3, date);
+            ps.setString(4, slotNumber);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
-        List<PatientDTO> list = dao.getPatientBird("minhga1");
-        for (PatientDTO patientDTO : list) {
-            System.out.println(patientDTO);
-        }
+        System.out.println(dao.checkValidatePatient(SPECIES, UPDATE_BIRD, SPECIES, SPECIES));
     }
 
 }
