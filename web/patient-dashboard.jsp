@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.FeedbackDTO"%>
+<%@page import="sample.dao.FeedbackDAO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="sample.dao.AppointmentDAO"%>
 <%@page import="sample.dto.MedicalRecordDTO"%>
@@ -520,9 +522,12 @@
 
             </div>
         </div>
+
+
         <%
             MedicalRecordDAO daoMR = new MedicalRecordDAO();
             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
+            FeedbackDAO daoFB = new FeedbackDAO();
 
             for (MedicalRecordDTO mrr : MR) {
                 int index = MR.indexOf(mrr);
@@ -531,24 +536,91 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">FEEDBACK</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
-                        <%= index%>
+                        <%
+                            FeedbackDTO fb = daoFB.getFeedback(mrr.getRecord_id());
+                        %>
+
+                        <div class="row">
+                            <div class="col-md-12">
+
+
+                                <form action="MainController" method="POST">
+
+                                    <input hidden="" name="mr_id" value="<%= mrr.getRecord_id()%>">
+                                    <input hidden="" name="ser_id" value="<%= mrr.getSer_id()%>">
+                                    <input hidden="" name="username" value="<%= user.getUsername()%>">
+
+                                    <label>
+                                        <input type="radio" name="stars" value="1" <% if (fb.getRating_star() == 1) { %> checked="checked" <% } %> required=""/>
+                                        <span class="icon"style="color: #00FFFF">★</span> 
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="2" <% if (fb.getRating_star() == 2) { %> checked="checked" <% } %> required=""/>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="3" <% if (fb.getRating_star() == 3) { %> checked="checked" <% } %> required=""/>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>   
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="4" <% if (fb.getRating_star() == 4) { %> checked="checked" <% } %> required=""/>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="stars" value="5" <% if (fb.getRating_star() == 5) { %> checked="checked" <% }%> required=""/>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #00FFFF">★</span>
+                                    </label>
+
+
+
+                                    <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" required=""><% if (fb.getFeedback_content() != null) {%> <%=fb.getFeedback_content()%> <%}%> </textarea> <br>
+                                    <!--                                    <div class="modal-footer">-->
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <%if (fb.getRating_star() == 0) { %> 
+
+                                    <button type="submit" class="btn btn-primary" name="action" value="feedback">Give Feedback</button>
+
+                                    <%} else {%>
+                                    <button type="submit" class="btn btn-primary" name="action" value="updateFeedback">Update Feedback</button>
+                                    <%
+                                        }
+                                    %>
+
+                                    <!--                                    </div>-->
+                                </form>
+
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+
                 </div>
             </div>
         </div>
-        <% }%>
-    <%
-        if (status == "AddBirdSucces") {
+        <%
+            }
+        %>
+
+
+        <%
+            if (status == "AddBirdSucces") {
         %>
         <script>
             var xhttp = new XMLHttpRequest();
@@ -567,10 +639,7 @@
 
         <%
             if (status
-
-            
-            
-        == "changePassword") {
+                    == "changePassword") {
         %>        
         <script>
             var xhttp = new XMLHttpRequest();

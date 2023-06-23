@@ -40,12 +40,12 @@ function ChangePass() {
 
             if (scriptAdded === false) { // Kiểm tra nếu chưa thêm script
                 // Tạo phần tử script mới
-                var script = document.createElement("script");
-                script.src = "assets/js/checkValidate.js";
-                // Thêm phần tử script vào phần head của tài liệu
-                document.head.appendChild(script);
-
-                scriptAdded = true; // Đánh dấu đã thêm script
+//                var script = document.createElement("script");
+//                script.src = "assets/js/checkValidate.js";
+//                // Thêm phần tử script vào phần head của tài liệu
+//                document.head.appendChild(script);
+//
+//                scriptAdded = true; // Đánh dấu đã thêm script
             }
         }
     };
