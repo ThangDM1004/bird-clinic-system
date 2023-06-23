@@ -190,7 +190,7 @@
                                 </div>
                                 <a class="dropdown-item" href="doctor-dashboard.jsp">Dashboard</a>
                                 <a class="dropdown-item" href="doctor-profile-settings.jsp">Profile Settings</a>
-                                <a class="dropdown-item" href="login.jsp">Logout</a>
+                                <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                             </div>
                         </li>
                         <!-- /User Menu -->
@@ -276,7 +276,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="index-2.jsp">
+                                                <a href="MainController?action=logout">
                                                     <i class="fas fa-sign-out-alt"></i>
                                                     <span>Logout</span>
                                                 </a>
