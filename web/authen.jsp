@@ -112,16 +112,16 @@
                                             <h3>Customer Register</h3>
                                         </div>
 
-                                         <%
-                                                HttpSession s = request.getSession();
-                                                String user = (String) s.getAttribute("EMAIL_USER");
-                                                String[] parts = user.split("@");
-                                                
-                                          %>
+                                        <%
+                                            HttpSession s = request.getSession();
+                                            String user = (String) s.getAttribute("EMAIL_USER");
+                                            String[] parts = user.split("@");
+
+                                        %>
                                         <!-- Register Form -->
                                         <form id="myform" action="MainController" method="POST" accept-charset="UTF-8">
                                             <div class="form-group form-focus">
-                                                <input id="myuser" name="username" value="<%= "gg." + parts[0] %>" type="text" class="form-control floating" readonly="">
+                                                <input id="myuser" name="username" value="<%= "gg." + parts[0]%>" type="text" class="form-control floating" readonly="">
                                                 <label class="focus-label">Username</label>
                                                 <span id="result" style="margin-left: 10px;"></span>
                                                 <style>
@@ -143,13 +143,13 @@
 
                                                 </style>
                                             </div>
-                                           
+
                                             <div class="form-group form-focus">
                                                 <input name="fullname" type="text" class="form-control floating" required="">
                                                 <label class="focus-label">Full name</label>
                                             </div>
                                             <div class="form-group form-focus">
-                                                <input id="myemail" name="email" type="email" value="<%= user %>" class="form-control floating" readonly="">
+                                                <input id="myemail" name="email" type="email" value="<%= user%>" class="form-control floating" readonly="">
                                                 <label class="focus-label">Email</label>
                                                 <span id="result_1" class="status_1" style="margin-left: 10px;"></span>
 

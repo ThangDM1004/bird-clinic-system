@@ -35,7 +35,13 @@
 
     </head>
     <body class="account-page">
-
+        <%
+            HttpSession sess = request.getSession();
+            String status = (String) sess.getAttribute("status");
+            if (status != "success") {
+                response.sendRedirect("forgot-password.jsp");
+            }
+        %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
@@ -149,9 +155,11 @@
                 <div class="container">
                     <h2>Verify Your Account</h2>
                     <p>We email's you the six digit code to <strong>${requestScope.emailUser}</strong></p>
+
                     <p>Enter the code below to confirm your email address </p>   
 
-                    <form action="ValidateOtp" method="POST" role="form" autocomplete="off">
+                    <form action="ValidateOtp" method="POST">
+                        <input name="emailUser" value="${requestScope.emailUser}" type="hidden">
                         <div class="code-container">
                             <input type="number" name="num1" class="code" placeholder="0" min="0" max="9" required="">
                             <input type="number" name="num2" class="code" placeholder="0" min="0" max="9" required="">
@@ -181,11 +189,12 @@
                                     document.getElementById("countdown").innerHTML = "OTP has expired";
                                 } else {
                                     // Hiển thị thời gian còn lại trong định dạng mm:ss
-                                    var minutes = Math.floor(remainingTime / 60);
                                     var seconds = remainingTime % 60;
                                     document.getElementById("countdown").innerHTML = (seconds < 10 ? "0" : "") + seconds;
                                 }
                             }, 1000);
+
+
                         </script>
 
 
@@ -196,10 +205,10 @@
                         </div>
 
                     </form>
-
                     <small>
-                        If you didn't receive a code , please check your SPAM !! or <strong>RESEND</strong> in <span id="countdown"></span>
+                        If you didn't receive a code , please check your SPAM !! or <a id="resendLink" href="#">RESEND</a> in <span id="countdown"></span>
                     </small>
+
                     <style>
                         #countdown {
                             font-size: 12px;

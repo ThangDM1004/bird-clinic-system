@@ -28,6 +28,7 @@ public class ValidateOtp extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int value_1 = Integer.parseInt(request.getParameter("num1"));
         int value_2 = Integer.parseInt(request.getParameter("num2"));
@@ -41,19 +42,13 @@ public class ValidateOtp extends HttpServlet {
         HttpSession session = request.getSession();
         int otp = (int) session.getAttribute("otp");
 
-        RequestDispatcher dispatcher = null;
-
         if (value == otp) {
-
-            request.setAttribute("email", request.getParameter("email"));
-            request.setAttribute("status", "success");
-            dispatcher = request.getRequestDispatcher("newPassword.jsp");
-            dispatcher.forward(request, response);
-
+            request.setAttribute("email", request.getParameter("emailUser"));
+            session.setAttribute("status", "success");
+            request.getRequestDispatcher("newPassword.jsp").forward(request, response);
         } else {
             request.setAttribute("wrongOTP", true);
-            dispatcher = request.getRequestDispatcher("inputOTP.jsp");
-            dispatcher.forward(request, response);
+            request.getRequestDispatcher("inputOTP.jsp").forward(request, response);
 
         }
 

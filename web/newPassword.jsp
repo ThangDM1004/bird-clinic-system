@@ -36,6 +36,13 @@
     </head>
     <body class="account-page">
 
+        <%
+            HttpSession sess = request.getSession();
+            String status = (String) sess.getAttribute("status");
+            if (status != "success") {
+                response.sendRedirect("forgot-password.jsp");
+            }
+        %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
@@ -163,11 +170,12 @@
                                         </div>
 
                                         <!-- Register Form -->
-                                        <form id="myform" action="" method="POST" accept-charset="UTF-8">
+                                        <form id="myform" action="ResetPasswordController" method="POST" accept-charset="UTF-8">
                                             <div class="box">
                                                 <div class="form-group form-focus inputBox">
+                                                    <input name="emailUser" value="${email}" type="hidden">
                                                     <input name="password" type="password" class="form-control floating" 
-                                                           id="pass" onkeyup="validatePassword(this.value); checkPassword(this.value)" 
+                                                           id="pass_1" onkeyup="validatePassword(this.value); checkPassword(this.value)" 
                                                            required="">
                                                     <span id="toggleBtn"></span>
 
@@ -183,6 +191,7 @@
                                                     </ul>
                                                 </div>
                                             </div>
+
                                             <style>
                                                 .box {
                                                     position: relative;
@@ -262,99 +271,48 @@
                                                     color: rgba(19,87,54,0.18);
                                                 }
                                             </style>
+
+
+
+                                            <div style="margin-bottom: 40px;" class="form-group form-focus">
+                                                <input id="myconpass_1" name="confirm_password" type="password" class="form-control floating" onchange="checkPassConfirm()">
+                                                <label class="focus-label">Confirm New Password</label>
+                                                <p id="resultss" class="available" style="margin-left: 10px;">${correctPass}</p>
+                                                <p id="resultsss" class="already-exists" style="margin-left: 10px;">${incorrectPass}</p>
+                                                <style>
+                                                    #resultsss {
+                                                        margin-top: 5px;
+                                                        margin-bottom: 10px;
+                                                        width: 60%;
+                                                    }
+
+                                                    #resultss {
+                                                        margin-top: 5px;
+                                                        margin-bottom: 10px;
+                                                        width: 55%;
+                                                    }
+                                                    .available {
+                                                        color: #006400;
+                                                        background: #E5FFE5;
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                    }
+
+                                                    .already-exists, .not-enough-length {
+                                                        padding-left: 3px;
+                                                        padding-right: 3px;
+                                                        border-radius: 3px;
+                                                        background: #F8ECEC;
+                                                        color: #be4b49;
+                                                    }
+                                                </style>
+                                            </div>
                                             <script>
-                                                let pass = document.getElementById('pass');
-                                                let toggleBtn = document.getElementById('toggleBtn');
-
-                                                let lowerCase = document.getElementById('lower');
-                                                let upperCase = document.getElementById('upper');
-                                                let digit = document.getElementById('number');
-                                                let specialChar = document.getElementById('special');
-                                                let minLength = document.getElementById('length');
-
-                                                function checkPassword(data) {
-                                                    const lower = new RegExp('(?=.*[a-z])');
-                                                    const upper = new RegExp('(?=.*[A-Z])');
-                                                    const number = new RegExp('(?=.*[0-9])');
-                                                    const special = new RegExp('(?=.*[!@#\$%\^&\*])');
-                                                    const length = new RegExp('(?=.{8,})');
-                                                    //lower case check
-                                                    if (lower.test(data)) {
-                                                        lowerCase.classList.add('valid');
-                                                    } else {
-                                                        lowerCase.classList.remove('valid');
-                                                    }
-                                                    //check upper case
-                                                    if (upper.test(data)) {
-                                                        upperCase.classList.add('valid');
-                                                    } else {
-                                                        upperCase.classList.remove('valid');
-                                                    }
-                                                    //check number
-                                                    if (number.test(data)) {
-                                                        digit.classList.add('valid');
-                                                    } else {
-                                                        digit.classList.remove('valid');
-                                                    }
-                                                    //check specialChar
-                                                    if (special.test(data)) {
-                                                        specialChar.classList.add('valid');
-                                                    } else {
-                                                        specialChar.classList.remove('valid');
-                                                    }
-                                                    //check min length
-                                                    if (length.test(data)) {
-                                                        minLength.classList.add('valid');
-                                                    } else {
-                                                        minLength.classList.remove('valid');
-                                                    }
-                                                }
-
-
-
-                                                // show hide password
-                                                toggleBtn.onclick = function () {
-                                                    if (pass.type === 'password') {
-                                                        pass.setAttribute('type', 'text');
-                                                        toggleBtn.classList.add('hide');
-                                                    } else {
-                                                        pass.setAttribute('type', 'password');
-                                                        toggleBtn.classList.remove('hide');
-
-                                                    }
-                                                }
-
-                                                // cái này ?? hi?n thôi
-                                                function validatePassword(value) {
-                                                    var validationDiv = document.getElementById("validation");
-                                                    if (value.length > 0) {
-                                                        validationDiv.style.display = "block";
-                                                    } else {
-                                                        validationDiv.style.display = "none";
-                                                    }
-                                                }
-
-                                                function validateForm() {
-                                                    var password = document.getElementById("pass").value;
-
-                                                    // Ki?m tra ?i?u ki?n c?a password
-                                                    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&+=]/.test(password)) {
-                                                        return false; // Ng?n ch?n s? ki?n submit
-                                                    }
-                                                }
-
 
                                             </script>
-
-
-                                            <div class="form-group form-focus">
-                                                <input name="confirm_password" type="password" class="form-control floating">
-                                                <label class="focus-label">Confirm New Password</label>
-                                                <p style="color: #be4b49; margin-left: 10px;">${errorCoPass}</p>
-                                            </div>
-
-                                            <button  class="btn btn-primary btn-block btn-lg login-btn" name="action" type="submit" 
-                                                     value="register" onclick="return validateForm()" id="submit">Save</button>
+                                            <button class="btn btn-primary btn-block btn-lg login-btn" type="submit" 
+                                                    id="submit">Save</button>
                                         </form>
                                         <!-- /Register Form -->
 

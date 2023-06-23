@@ -145,6 +145,10 @@
         <servlet-name>EmailCheckControllerReverse</servlet-name>
         <servlet-class>sample.controller.EmailCheckControllerReverse</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <servlet-class>sample.controller.ResetPasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -288,6 +292,10 @@
     <servlet-mapping>
         <servlet-name>EmailCheckControllerReverse</servlet-name>
         <url-pattern>/EmailCheckControllerReverse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <url-pattern>/ResetPasswordController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

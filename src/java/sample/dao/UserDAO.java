@@ -819,11 +819,20 @@ public class UserDAO {
         }
     }
 
+    public void changePasswordByEmail(String password, String email) {
+        String query = "UPDATE tbl_Account SET password = ? WHERE email = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, password);
+            ps.setString(2, email);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        List<UserDTO> list = dao.getListDoctor();
-        for (UserDTO userDTO : list) {
-            System.out.println(userDTO);
-        }
+        dao.changePasswordByEmail("123", "minhga1@gmail.com");
     }
 }

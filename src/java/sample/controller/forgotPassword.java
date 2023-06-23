@@ -29,19 +29,20 @@ import javax.servlet.http.HttpSession;
  * @author Minh
  */
 public class forgotPassword extends HttpServlet {
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
         String email = request.getParameter("email");
         RequestDispatcher dispatcher = null;
-        int otpvalue = 0;
+        OtpManager otp = new OtpManager();
+        int otpvalue = otp.getOtpValue();
         HttpSession mySession = request.getSession();
-        
+
         if (email != null || !email.equals("")) {
             // sending otp
             Random rand = new Random();
             otpvalue = rand.nextInt(900000) + 100000;
-            
+
             String to = email;// change accordingly
             // Get the session object
             Properties props = new Properties();
@@ -65,6 +66,7 @@ public class forgotPassword extends HttpServlet {
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
                 message.setSubject("Verify your new THEBIRDCLINIC account");
                 message.setText("Your thebirdclinic OTP code is: " + otpvalue);
+
                 // send message
                 Transport.send(message);
                 System.out.println("message sent successfully");
@@ -72,6 +74,7 @@ public class forgotPassword extends HttpServlet {
                 throw new RuntimeException(e);
             }
             request.setAttribute("emailUser", email);
+            mySession.setAttribute("status", "success");
             dispatcher = request.getRequestDispatcher("inputOTP.jsp");
             request.setAttribute("message", "OTP is sent to your email id");
             //request.setAttribute("connection", con);
@@ -80,7 +83,7 @@ public class forgotPassword extends HttpServlet {
             dispatcher.forward(request, response);
             //request.setAttribute("status", "success");
         }
-        
+
     }
-    
+
 }
