@@ -177,10 +177,6 @@ function checkPassDup() {
 }
 
 
-
-
-
-
 var isPassAvailable_2 = false;
 function checkPassConfirm() {
     var mynewpass = $('#pass').val();
@@ -188,11 +184,11 @@ function checkPassConfirm() {
     $.ajax({
         success: function () {
             if (mynewpass === myconpass) {
-                $('#resultsss').html('Your password is ok');
+                $('#resultsss').html('Your password matched');
                 $('#resultsss').removeClass().addClass('available');
                 isPassAvailable_2 = true;
             } else {
-                $('#resultsss').html('Your password is not ok');
+                $('#resultsss').html('Your password not match');
                 $('#resultsss').removeClass().addClass('already-exists');
                 isPassAvailable_2 = false;
             }

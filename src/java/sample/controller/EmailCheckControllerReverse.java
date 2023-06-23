@@ -29,7 +29,7 @@ public class EmailCheckControllerReverse extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String query = "SELECT * FROM tbl_Account WHERE email = ?";
+        String query = "SELECT * FROM tbl_Account WHERE email = ? AND status = 1";
 
         String myemail = request.getParameter("myemail_1");
         try {
