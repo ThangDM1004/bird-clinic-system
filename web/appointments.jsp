@@ -91,9 +91,16 @@
                             } else {
                                 String[] ID = app[1][i + 1].split(" ");
                                 for (int j = 0; j < ID.length; j++) {
+                                    int status_book = dao.CheckBooking(ID[j]);
+                                    if (status_book == 2 || status_book == 3) {
                         %>
-                        <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                                    }
                                 }
                             }
                         %>
@@ -105,72 +112,114 @@
                         } else {
                             String[] ID = app[2][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                        <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
                     <td id="Wed-slot1"> <%
                         if (app[3][i + 1] == null) {
 
                         } else {
                             String[] ID = app[3][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                        <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
                     <td id="Thu-slot1"> <%
                         if (app[4][i + 1] == null) {
 
                         } else {
                             String[] ID = app[4][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                     <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
                     <td id="Fri-slot1"> <%
                         if (app[5][i + 1] == null) {
 
                         } else {
                             String[] ID = app[5][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                      <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
                     <td id="Sat-slot1"> <%
                         if (app[6][i + 1] == null) {
 
                         } else {
                             String[] ID = app[6][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                      <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
                     <td id="Sun-slot1"> <%
                         if (app[7][i + 1] == null) {
 
                         } else {
                             String[] ID = app[7][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2 || status_book == 3) {
                         %>
-                        <button class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
-                            <%
+                        <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 4) {
+                        %>
+                        <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
-                            %></td>
+                            }
+                        %></td>
 
                 </tr>
                 <%

@@ -102,3 +102,14 @@ function Medical(id) {
     xhttp.open("GET", "medical-record.jsp?Booking_id=" + id, true);
     xhttp.send();
 }
+function Medical_done(id) {
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("doctor").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "medical-record-done.jsp?Booking_id=" + id, true);
+    xhttp.send();
+}

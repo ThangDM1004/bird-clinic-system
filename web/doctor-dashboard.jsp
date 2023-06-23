@@ -610,7 +610,7 @@
 
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/doctor-dashboard.js"></script>
+        <script src="assets/js/doctor_dashboard.js"></script>
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>

@@ -84,15 +84,17 @@
                                             </thead>
                                             <tbody>
 
-                                                <%                                                   
+                                                <%       
+                                                    int count = 0;
                                                     for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 4) {
+                                                            count++;
                                                 %>
                                                 <tr>
                                                     <td>
                                                         <%=dao.customerName(x.getUsername_customer())%>
                                                     </td>
-                                            <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
+                                            <input type="hidden" name="bookingID" value="<%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
                                             <td><%= dao.getServicename(x.getBooking_id())%></td>
@@ -100,7 +102,7 @@
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
                                             <input type="hidden" value="3" name="status_booking">
-                                            <td> <a href="#invoice" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
+                                            <td> <a href="#invoice_<%=count%>" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
                                             <td><div class="submit-section">
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=5&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check Out</a>
                                                 </div></td>
