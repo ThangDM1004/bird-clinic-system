@@ -663,11 +663,7 @@ public class BookingDAO {
         return id;
     }
 
-    public static void main(String[] args) {
-        BookingDAO dao = new BookingDAO();
-        String name = dao.getServiceIDByName("Emergency");
-        System.out.println(name);
-    }
+  
 
     public String getFullNameUserByBookingID(String id) {
         String name = null;
@@ -726,7 +722,7 @@ public class BookingDAO {
                         if (booking[i + 1][x.getSlot_number()] == null) {
                             booking[i + 1][x.getSlot_number()] = bookingID + " ";
                         } else {
-                            booking[i + 1][x.getSlot_number()] += bookingID;
+                            booking[i + 1][x.getSlot_number()] +=  bookingID + " ";
                         }
 
                     }
@@ -736,5 +732,15 @@ public class BookingDAO {
         }
         return booking;
     }
-
+    public static void main(String[] args) throws SQLException {
+        BookingDAO dao = new BookingDAO();
+        String[][] list = new String[8][5];
+        list = dao.slotAppointment("doctor1");
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 8; j++) {
+                System.out.print(list[j][i] + "|");
+            }
+            System.out.println();
+        }
+    }
 }

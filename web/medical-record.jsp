@@ -72,7 +72,7 @@
                 String Id = x.getBooking_id().trim();
                 if (Id.equalsIgnoreCase(booking_id)) {
         %>
-
+        <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
         <form action="MainController">
             <div class="card">
                 <div class="card-body">
