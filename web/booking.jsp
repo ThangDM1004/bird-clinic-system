@@ -323,6 +323,16 @@
                                                                                 <span>${slot.time_slot}</span>
                                                                             </a>
                                                                         </c:when>
+                                                                        <c:when test="${!BookingDAO.checkValidateSlotBooking(BookingDAO.weekDates.get(loop.index), slot.slot_number)}">
+                                                                            <a style="" class="timing" href="#">
+                                                                                <span>${slot.time_slot}</span>
+                                                                            </a>
+                                                                        </c:when>
+                                                                        <c:when test="${!BookingDAO.checkValidateTime(slot.slot_number, BookingDAO.weekDates.get(loop.index))}">
+                                                                            <a style="" class="timing" href="#">
+                                                                                <span>${slot.time_slot}</span>
+                                                                            </a>
+                                                                        </c:when>
                                                                         <c:otherwise>
                                                                             <a style="background: #42c0fb; color: white" onclick="Click(this)" class="timing" href="#">
                                                                                 <span>${slot.time_slot}</span>
