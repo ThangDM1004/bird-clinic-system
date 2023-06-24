@@ -134,7 +134,7 @@ public class PatientDAO {
         }
         return list;
     }
-    private static final String ADD_BIRD = "INSERT INTO tbl_Patient_Bird(patient_id,bird_name,species_id,age,gender,image,user_name,status ) " + " VALUES(?,?,?,?,?,?,?,?)";
+    private static final String ADD_BIRD = "INSERT INTO tbl_Patient_Bird(patient_id,bird_name,species_id,age,gender,image,user_name,status) " + " VALUES(?,?,?,?,?,?,?,?)";
 
     public boolean addBird(PatientDTO bird) {
         boolean check = false;
