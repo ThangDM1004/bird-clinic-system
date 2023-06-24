@@ -28,10 +28,10 @@ public class PendingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
-            String doctor = request.getParameter("select_doctor");
+           
             int booking_status = Integer.parseInt(request.getParameter("status_booking").trim());
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.AssignBooking(bookingID, doctor, booking_status);
+            boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
             if (checkUpdate) {
                 LocalDate ngayHienTai = LocalDate.now();
                 LocalTime gioHienTai = LocalTime.now();

@@ -54,7 +54,6 @@ function Add() {
     var divElement = document.getElementById("service");
     var selectElement = document.createElement("select");
     selectElement.id = "mySelect";
-    var myOption = [];
     var index = document.getElementById("index").value;
     var input = document.getElementById("myInput");
     var currentValue = parseInt(input.value);
@@ -89,25 +88,41 @@ function Add() {
         addCancel.remove();
 
     });
+
+
     // Sự kiện click cho nút Add
     addButton.addEventListener("click", function () {
         // Lấy giá trị được chọn trong select
+        var checkExist = false;
         var selectedOption = selectElement.options[selectElement.selectedIndex];
-        selectElement.remove();
-        addButton.remove();
-        addCancel.remove();
-        // Tạo button mới
-        input.value = currentValue + 1;
+        for (var i = 1; i <= currentValue; i++) {
+            var check = document.getElementById("service_" + i.toString());
+            if (check.value === selectedOption.text) {
+                checkExist = true;
+                break;
+            }
+        }
+        if (checkExist === true) {
+            alert("Dịch vụ này đã có rồi");
+        } else {
+            selectElement.remove();
+            addButton.remove();
+            addCancel.remove();
+            // Tạo button mới
+            input.value = currentValue + 1;
 
-        total.value = currentTotal + parseInt(selectedOption.value);
-        var newButton = document.createElement("input");
-        newButton.innerText = selectedOption.value;
-        newButton.value = selectedOption.action;
-        newButton.readOnly = true;
-        newButton.name = "service_" + input.value.toString();
-        newButton.style = "color:black";
-        // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
-        divElement.appendChild(newButton);
+            total.value = currentTotal + parseInt(selectedOption.value);
+            var newButton = document.createElement("input");
+            newButton.innerText = selectedOption.action;
+            newButton.value = selectedOption.action;
+            newButton.readOnly = true;
+            newButton.name = "service_" + input.value.toString();
+             newButton.id = "service_" + input.value.toString();
+            newButton.style = "color:black";
+            // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
+            divElement.appendChild(newButton);
+        }
+
     });
 // Thêm nút Add vào vị trí mong muốn trong tài liệu (ví dụ: body)
     divElement.appendChild(addButton);

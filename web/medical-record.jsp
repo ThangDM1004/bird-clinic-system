@@ -75,7 +75,7 @@
                     status_booking = x.getBooking_status();
         %>
         <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
-        <form action="MainController">
+      
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Pet Information</h4>
@@ -170,7 +170,7 @@
                             <div  class="form-group">
                                 <label>Service <span class="text-danger"></span></label>
                                 <div id="service">
-                                    <input type="text" name="service_1" style="color: black"  readonly="" value="<%= dao.getServicename(x.getBooking_id())%>">
+                                    <input id="service_1" type="text"  name="service_1" style="color: black"  readonly="" value="<%= dao.getServicename(x.getBooking_id())%>">
 
                                 </div>
                                 <input type="button" value="+" onclick="Add()">
@@ -220,7 +220,7 @@
                 
             </div>
 
-        </form>
+        
         <!-- jQuery -->
         <script src="assets/js/doctor-dashboard.js"></script>
         <script src="assets/js/jquery.min.js"></script>
