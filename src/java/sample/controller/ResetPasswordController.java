@@ -32,22 +32,28 @@ public class ResetPasswordController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            UserDAO dao = new UserDAO();
             String newPass = request.getParameter("password");
             String newCPass = request.getParameter("confirm_password");
             String email = request.getParameter("emailUser");
+            String oldPass = dao.checkPassDuplicate(email);
             String correctPass = "Reset password successfully !";
             String incorrectPass = "Your password confirm does not match!";
+            String dupPass = "It's look like you enter your old password !";
 
             if (!newPass.trim().equalsIgnoreCase(newCPass)) {
                 request.setAttribute("incorrectPass", incorrectPass);
                 request.getRequestDispatcher("newPassword.jsp").forward(request, response);
             } else {
-                UserDAO dao = new UserDAO();
-                dao.changePasswordByEmail(newPass, email);
-                request.setAttribute("correctPass", correctPass);
-                request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+                if (newCPass.trim().equalsIgnoreCase(oldPass)) {
+                    request.setAttribute("dupPass", dupPass);
+                    request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+                } else {
+                    dao.changePasswordByEmail(newPass, email);
+                    request.setAttribute("correctPass", correctPass);
+                    request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+                }
             }
-
         } catch (Exception e) {
         }
 

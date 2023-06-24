@@ -606,6 +606,7 @@
                                 <h2 class="product-titles">Emergency</h2>
                                 <a href="#" class="product-link">Most used service</a>
                                 <div class="product-rating">
+
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -750,7 +751,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            <i class="fas fa-star"></i>
                                         </div>
                                     </div>
 

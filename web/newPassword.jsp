@@ -178,7 +178,18 @@
                                                            id="pass_1" onkeyup="validatePassword(this.value); checkPassword(this.value)" 
                                                            required="">
                                                     <span id="toggleBtn"></span>
+                                                    <script>
+                                                        toggleBtn.onclick = function () {
+                                                            if (pass_1.type === 'password') {
+                                                                pass_1.setAttribute('type', 'text');
+                                                                toggleBtn.classList.add('hide');
+                                                            } else {
+                                                                pass_1.setAttribute('type', 'password');
+                                                                toggleBtn.classList.remove('hide');
 
+                                                            }
+                                                        }
+                                                    </script>
                                                     <label class="focus-label">New Password</label>   
                                                 </div>
                                                 <div class="validation" id="validation">
@@ -279,6 +290,8 @@
                                                 <label class="focus-label">Confirm New Password</label>
                                                 <p id="resultss" class="available" style="margin-left: 10px;">${correctPass}</p>
                                                 <p id="resultsss" class="already-exists" style="margin-left: 10px;">${incorrectPass}</p>
+                                                <p id="resultsss" class="already-exists" style="margin-left: 10px;">${dupPass}</p>
+
                                                 <style>
                                                     #resultsss {
                                                         margin-top: 5px;

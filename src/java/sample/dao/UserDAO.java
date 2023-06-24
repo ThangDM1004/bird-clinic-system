@@ -854,8 +854,24 @@ public class UserDAO {
         return true;
     }
 
+    public String checkPassDuplicate(String email) {
+        String password = "";
+        String query = "SELECT  password FROM tbl_Account WHERE email = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                password = rs.getString("password");
+            }
+        } catch (Exception e) {
+        }
+        return password;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        System.out.println(dao.checkValidateBookingDoctor("doctor1", "4", "2023/06/24"));
+        System.out.println(dao.checkPassDuplicate("bibabibum0110@gmail.com"));
     }
 }
