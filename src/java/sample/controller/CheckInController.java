@@ -47,14 +47,14 @@ public class CheckInController extends HttpServlet {
                 boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
                 if (checkHistory) {
                     HttpSession session = request.getSession();
-                    if(booking_status == 3){
+                    if (booking_status == 3) {
                         session.setAttribute("status", "Assign");
-                    }else if(booking_status == 4){
-                         session.setAttribute("status", "CheckIn");
-                    }else if(booking_status == 5){
-                         session.setAttribute("status", "CheckOut");
+                    } else if (booking_status == 4) {
+                        session.setAttribute("status", "CheckIn");
+                    } else if (booking_status == 5) {
+                        session.setAttribute("status", "CheckOut");
                     }
-                    
+
                     response.sendRedirect("staff.jsp");
                 }
             }

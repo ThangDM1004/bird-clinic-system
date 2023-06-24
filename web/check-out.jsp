@@ -84,8 +84,7 @@
                                             </thead>
                                             <tbody>
 
-                                                <%       
-                                                    int count = 0;
+                                                <%                                                    int count = 0;
                                                     for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 4) {
                                                             count++;
@@ -141,6 +140,6 @@
                 </form>
             </div>
         </div>
-                        <a href="#invoice">Test</a>
+        <a href="#invoice">Test</a>
     </body>
 </html>

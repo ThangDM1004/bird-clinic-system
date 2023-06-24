@@ -15,11 +15,12 @@ import java.sql.SQLException;
  * @author Minh
  */
 public class Utils {
-      public static Connection getConnection() throws ClassNotFoundException, SQLException{
+
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         String url = "jdbc:sqlserver://localhost:1433;databaseName=BirdClinicSystem";
         conn = DriverManager.getConnection(url, "sa", "12345");
-        return conn;   
+        return conn;
     }
 }

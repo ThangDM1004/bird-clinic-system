@@ -100,6 +100,11 @@ public class BookingDTO {
         this.booking_status = booking_status;
     }
 
+    @Override
+    public String toString() {
+        return "BookingDTO{" + "booking_id=" + booking_id + ", username_doctor=" + username_doctor + ", username_customer=" + username_customer + ", date=" + date + ", service_id=" + service_id + ", slot_number=" + slot_number + ", patient_id=" + patient_id + ", booking_status=" + booking_status + '}';
+    }
+
    
     
 }

@@ -217,25 +217,25 @@
                                             </li>
                                             <li>
                                                 <a type="button" onclick="Assign()">
-                                                   <i class="fas fa-columns"></i>
+                                                    <i class="fas fa-columns"></i>
                                                     <span>Assign</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a type="button" onclick="CheckIn()">
-                                                   <i class="fas fa-columns"></i>
+                                                    <i class="fas fa-columns"></i>
                                                     <span>Check In</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a type="button" onclick="CheckOut()">
-                                                 <i class="fas fa-columns"></i>
+                                                    <i class="fas fa-columns"></i>
                                                     <span>Check Out</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a type="button" onclick="Feedback()">
-                                                  <i class="fas fa-columns"></i>
+                                                    <i class="fas fa-columns"></i>
                                                     <span>Feedback</span>
                                                 </a>
                                             </li>

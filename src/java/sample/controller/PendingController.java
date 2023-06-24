@@ -28,7 +28,7 @@ public class PendingController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
-           
+
             int booking_status = Integer.parseInt(request.getParameter("status_booking").trim());
             BookingDAO dao = new BookingDAO();
             boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
