@@ -32,6 +32,10 @@
 
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style_2.css">
+        <link rel="stylesheet" href="assets/css/style_3.css">
+
+
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -233,7 +237,7 @@
             <section class="section section-specialities">
                 <div class="container-fluid">
                     <div class="section-header text-center">
-                        <h2>Clinic and Services</h2>
+                        <h2>Top 5 most used services</h2>
                         <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua.</p>
                     </div>
@@ -245,23 +249,21 @@
                                 <!-- Slider Item -->
                                 <%
                                     ServiceDAO dao = new ServiceDAO();
-                                    List<ServiceDTO> list = dao.getListService();
+                                    List<ServiceDTO> list = dao.getListTop5();
 
                                     for (ServiceDTO s : list) {
                                 %>
 
                                 <div class="speicality-item text-center">	
                                     <div class="speicality-img">
-                                        <img src="<%=s.getIcon_link()%>" class="img-fluid"
-                                             alt="Speciality">
+                                        <a href="" > <img src="<%=s.getIcon_link()%>" class="img-fluid"
+                                                          alt="Speciality"></a>
                                         <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                     </div>
                                     <p><%=s.getService_name()%></p>
                                 </div>
                                 <%}%>
                                 <!-- /Slider Item -->
-
-
                             </div>
                             <!-- /Slider -->
 
@@ -269,6 +271,9 @@
                     </div>
                 </div>
             </section>
+
+
+
             <!-- Clinic and Specialities -->
 
             <!-- Popular Section -->
@@ -277,7 +282,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="section-header ">
-                                <h2>Book Our Doctor</h2>
+                                <h2>Book Our Service</h2>
                                 <p>Lorem Ipsum is simply dummy text </p>
                             </div>
                             <div class="about-content">
@@ -292,11 +297,17 @@
                         <div class="col-lg-8">
                             <div class="doctor-slider slider">
 
+                                <%
+                                    ServiceDAO dao_1 = new ServiceDAO();
+                                    List<ServiceDTO> lists = dao.getListService();
+                                    for (ServiceDTO ser : lists) {
+
+                                %>
                                 <!-- Doctor Widget -->
                                 <div class="profile-widget">
                                     <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
+                                        <a href="">
+                                            <img class="img-fluid" alt="User Image" src="<%=ser.getIcon_link()%>" style="align-items: center;">
                                         </a>
                                         <a href="javascript:void(0)" class="fav-btn">
                                             <i class="far fa-bookmark"></i>
@@ -304,10 +315,10 @@
                                     </div>
                                     <div class="pro-content">
                                         <h3 class="title">
-                                            <a href="doctor-profile.jsp">Ruby Perrin</a>
+                                            <a href=""><%=ser.getService_name()%></a>
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
-                                        <p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+                                        <p class="speciality"></p>
                                         <div class="rating">
                                             <i class="fas fa-star filled"></i>
                                             <i class="fas fa-star filled"></i>
@@ -317,364 +328,32 @@
                                             <span class="d-inline-block average-rating">(17)</span>
                                         </div>
                                         <ul class="available-info">
+                                            <!--                                            <li>
+                                                                                            <i class="fas fa-map-marker-alt"></i> Florida, USA
+                                                                                        </li>-->
                                             <li>
-                                                <i class="fas fa-map-marker-alt"></i> Florida, USA
+                                                <i class="far fa-clock"></i> Available on today
                                             </li>
                                             <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $300 - $1000
+                                                <i class="far fa-money-bill-alt"></i> $<%=ser.getFee()%>
                                                 <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
                                             </li>
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
+                                                <a href="#view_specialities_details" data-toggle="modal" class="btn view-btn">View Profile</a>
                                             </div>
                                             <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
+                                                <a href="" class="btn book-btn">Book Now</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /Doctor Widget -->
 
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Darren Elder</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(35)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Newyork, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $50 - $300
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
+                                <%                                     }
+                                %>
 
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Deborah Angel</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(27)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Georgia, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $100 - $400
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
-
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Sofia Brient</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(4)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Louisiana, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $150 - $250
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
-
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Marvin Campbell</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(66)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Michigan, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $50 - $700
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
-
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Katharine Berthold</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(52)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Texas, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $100 - $500
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
-
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Linda Tobin</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(43)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> Kansas, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $100 - $1000
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /Doctor Widget -->
-
-                                <!-- Doctor Widget -->
-                                <div class="profile-widget">
-                                    <div class="doc-img">
-                                        <a href="doctor-profile.jsp">
-                                            <img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
-                                        </a>
-                                        <a href="javascript:void(0)" class="fav-btn">
-                                            <i class="far fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                    <div class="pro-content">
-                                        <h3 class="title">
-                                            <a href="doctor-profile.jsp">Paul Richard</a>
-                                            <i class="fas fa-check-circle verified"></i>
-                                        </h3>
-                                        <p class="speciality">MBBS, MD - Dermatology , Venereology & Lepros</p>
-                                        <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="d-inline-block average-rating">(49)</span>
-                                        </div>
-                                        <ul class="available-info">
-                                            <li>
-                                                <i class="fas fa-map-marker-alt"></i> California, USA
-                                            </li>
-                                            <li>
-                                                <i class="far fa-clock"></i> Available on Fri, 22 Mar
-                                            </li>
-                                            <li>
-                                                <i class="far fa-money-bill-alt"></i> $100 - $400
-                                                <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
-                                            </li>
-                                        </ul>
-                                        <div class="row row-sm">
-                                            <div class="col-6">
-                                                <a href="doctor-profile.jsp" class="btn view-btn">View Profile</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Doctor Widget -->
 
                             </div>
                         </div>
@@ -868,12 +547,228 @@
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
         <!-- Slick JS -->
         <script src="assets/js/slick.js"></script>
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
+
+
+        <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">View Services</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card-wrapper">
+                            <div class="cards">
+                                <div class = "product-imgs">
+                                    <div class = "img-display">
+                                        <div class = "img-showcase">
+                                            <img src="assets/img/features/feature-01.jpg">
+                                            <img src="assets/img/features/feature-02.jpg">
+                                            <img src="assets/img/features/feature-03.jpg">
+                                            <img src="assets/img/features/feature-04.jpg">
+                                        </div>
+                                    </div>
+                                    <div class = "img-select">
+                                        <div class = "img-item">
+                                            <a href = "#" data-id = "1">
+                                                <img src = "assets/img/features/feature-01.jpg" alt = "shoe image">
+                                            </a>
+                                        </div>
+                                        <div class = "img-item">
+                                            <a href = "#" data-id = "2">
+                                                <img src = "assets/img/features/feature-02.jpg" alt = "shoe image">
+                                            </a>
+                                        </div>
+                                        <div class = "img-item">
+                                            <a href = "#" data-id = "3">
+                                                <img src = "assets/img/features/feature-03.jpg" alt = "shoe image">
+                                            </a>
+                                        </div>
+                                        <div class = "img-item">
+                                            <a href = "#" data-id = "4">
+                                                <img src = "assets/img/features/feature-04.jpg" alt = "shoe image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="product-contents">
+                                <h2 class="product-titles">Emergency</h2>
+                                <a href="#" class="product-link">Most used service</a>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.7(21)</span>
+                                </div>
+
+                                <div class="product-price">
+                                    <p class="new-price">Service Price: <span>$111</span></p>
+                                </div>
+
+                                <div class="product-detail">
+                                    <h2>About this service</h2>
+                                    <p>t is a long established fact that a reader will be distracted by the readable content of
+                                        a page when looking at its layout. The point of using Lorem Ipsum t is a long established fact that a reader will be distracted by the readable content of
+                                        a page when looking at its layout. The point of using Lorem Ipsum</p>
+                                    <ul>
+                                        <li>Specialize: <span>Internal</span></li>
+                                        <li>Available: <span>Service ready</span></li>
+                                    </ul>
+                                </div>
+
+                                <div class="purchase-info">
+                                    <button style="padding: 20px; font-size: 20px;" type="button" class="btn book-btn">Book now</button>
+                                </div>
+
+                                <div class="social-links">
+                                    <a href="#">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#">
+                                        <i class="fab fa-dribbble"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <section id="testimonials">
+                            <div class="testimonial-heading">
+                                <span>Comments</span>
+                                <h1>Customer Feedback</h1>
+                            </div>
+                            <div class="testimonial-box-container">
+                                <!--Box-1-->
+                                <div class="testimonial-box">
+                                    <div class="box-top">
+                                        <div class="profiles">
+                                            <div class="profile-images">
+                                                <img src="assets/img/post/profile-3.jpg">
+                                            </div>
+                                            <div class="name-user">
+                                                <strong>Dang Minh Thang</strong>
+                                                <span>@dangminhthang</span>
+                                            </div>
+                                        </div>
+                                        <div class="reviewss">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Comment-->
+                                    <div class="client-comment">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-box">
+                                    <div class="box-top">
+                                        <div class="profiles">
+                                            <div class="profile-images">
+                                                <img src="assets/img/post/profile-1.jpg">
+                                            </div>
+                                            <div class="name-user">
+                                                <strong>Dang Minh Thang</strong>
+                                                <span>@dangminhthang</span>
+                                            </div>
+                                        </div>
+                                        <div class="reviewss">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Comment-->
+                                    <div class="client-comment">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-box">
+                                    <div class="box-top">
+                                        <div class="profiles">
+                                            <div class="profile-images">
+                                                <img src="assets/img/post/profile-2.jpg">
+                                            </div>
+                                            <div class="name-user">
+                                                <strong>Dang Minh Thang</strong>
+                                                <span>@dangminhthang</span>
+                                            </div>
+                                        </div>
+                                        <div class="reviewss">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Comment-->
+                                    <div class="client-comment">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
+                                    </div>
+                                </div>
+
+                                <div class="testimonial-box">
+                                    <div class="box-top">
+                                        <div class="profiles">
+                                            <div class="profile-images">
+                                                <img src="assets/img/post/profile-3.jpg">
+                                            </div>
+                                            <div class="name-user">
+                                                <strong>Dang Minh Thang</strong>
+                                                <span>@dangminhthang</span>
+                                            </div>
+                                        </div>
+                                        <div class="reviewss">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                    </div>
+
+                                    <!--Comment-->
+                                    <div class="client-comment">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+        </script>
 
     </body>
 
