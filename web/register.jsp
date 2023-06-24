@@ -232,7 +232,18 @@
                                                            id="pass" onkeyup="validatePassword(this.value); checkPassword(this.value)" 
                                                            required="">
                                                     <span id="toggleBtn"></span>
+                                                    <script>
+                                                        toggleBtn.onclick = function () {
+                                                            if (pass.type === 'password') {
+                                                                pass.setAttribute('type', 'text');
+                                                                toggleBtn.classList.add('hide');
+                                                            } else {
+                                                                pass.setAttribute('type', 'password');
+                                                                toggleBtn.classList.remove('hide');
 
+                                                            }
+                                                        }
+                                                    </script>
                                                     <label class="focus-label">Create Password</label>   
                                                 </div>
                                                 <div class="validation" id="validation">

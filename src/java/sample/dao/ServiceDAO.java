@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.ServiceDTO;
@@ -460,13 +461,28 @@ public class ServiceDAO {
         return list;
     }
 
+    public float getRatingPointByServiceId(String serviceID) {
+        float rating = 0;
+        String query = "SELECT AVG(rating_star) AS avgfloat FROM tbl_Feedback WHERE service_id = ?";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, serviceID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                rating = rs.getFloat("avgfloat");
+            }
+        } catch (Exception e) {
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        String formattedRating = decimalFormat.format(rating);
+        rating = Float.parseFloat(formattedRating);
+        return rating;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<ServiceDTO> dataList = dao.getListTop5();
-        for (ServiceDTO serviceDTO : dataList) {
-            System.out.println(serviceDTO);
-        }
-        
+        System.out.println(dao.getRatingPointByServiceId("001"));
     }
 
 }
