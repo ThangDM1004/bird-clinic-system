@@ -276,6 +276,12 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <a type="button" onclick="Feedback()">
+                                                    <i class="fas fa-columns"></i>
+                                                    <span>Feedback</span>
+                                                </a>
+                                            </li>
+                                            <li>
                                                 <a href="MainController?action=logout">
                                                     <i class="fas fa-sign-out-alt"></i>
                                                     <span>Logout</span>

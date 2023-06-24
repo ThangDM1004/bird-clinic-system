@@ -39,6 +39,16 @@ function Profile() {
     xhttp.open("GET", "doctor-profile-settings.jsp", true);
     xhttp.send();
 }
+function Feedback() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("doctor").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "feedback-doctor.jsp", true);
+    xhttp.send();
+}
 function Add() {
     // Tạo thẻ select
     var divElement = document.getElementById("service");
@@ -68,20 +78,32 @@ function Add() {
 // Tạo nút Add
     var addButton = document.createElement("button");
     addButton.innerText = "Add";
+    var addCancel = document.createElement("button");
+    addCancel.innerText = "Cancel";
+    // Sự kiện click cho nút Add
+    addCancel.addEventListener("click", function () {
+        // Lấy giá trị được chọn trong select
+        selectElement.remove();
+        addButton.remove();
+        // Tạo button mới
+        addCancel.remove();
+
+    });
     // Sự kiện click cho nút Add
     addButton.addEventListener("click", function () {
         // Lấy giá trị được chọn trong select
         var selectedOption = selectElement.options[selectElement.selectedIndex];
         selectElement.remove();
         addButton.remove();
+        addCancel.remove();
         // Tạo button mới
         input.value = currentValue + 1;
-       
+
         total.value = currentTotal + parseInt(selectedOption.value);
         var newButton = document.createElement("input");
         newButton.innerText = selectedOption.value;
         newButton.value = selectedOption.action;
-        newButton.readonly = true;
+        newButton.readOnly = true;
         newButton.name = "service_" + input.value.toString();
         newButton.style = "color:black";
         // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
@@ -89,6 +111,7 @@ function Add() {
     });
 // Thêm nút Add vào vị trí mong muốn trong tài liệu (ví dụ: body)
     divElement.appendChild(addButton);
+    divElement.appendChild(addCancel);
 // Xóa các option trong select
 }
 function Medical(id) {

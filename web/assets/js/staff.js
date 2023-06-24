@@ -45,3 +45,15 @@ function Assign() {
     xhttp.open("GET", "assign.jsp", true);
     xhttp.send();
 }
+function Feedback() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
+        }
+    };
+    xhttp.open("GET", "feedback-staff.jsp", true);
+    xhttp.send();
+}
+
