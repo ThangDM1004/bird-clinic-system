@@ -428,15 +428,45 @@ public class ServiceDAO {
         }
         return temp;
     }
-    
+
+    public List<ServiceDTO> getListTop5() {
+        List<ServiceDTO> list = new ArrayList<>();
+        String query = "SELECT * FROM tbl_Service WHERE service_id in (SELECT TOP 5  s.service_id \n"
+                + "                FROM tbl_Service s\n"
+                + "                JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "                JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "                GROUP BY s.service_id, s.service_name\n"
+                + "                ORDER BY COUNT(b.service_id)DESC)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                ServiceDTO s = new ServiceDTO(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getBoolean(9),
+                        0);
+                list.add(s);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<Integer> dataList = new ArrayList<>();
-        for (int i = 1; i <= 12; i++) {
-            int temp = dao.getTotalFeeByMonthV2(i);
-            dataList.add(temp);
+        List<ServiceDTO> dataList = dao.getListTop5();
+        for (ServiceDTO serviceDTO : dataList) {
+            System.out.println(serviceDTO);
         }
-        System.out.println(dataList);
+        
     }
 
 }
