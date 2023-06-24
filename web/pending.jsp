@@ -44,7 +44,7 @@
 
                 <!-- Tab Menu -->
                 <nav class="user-tabs mb-4">
-                   
+
                 </nav>
                 <!-- /Tab Menu -->
 
@@ -83,7 +83,7 @@
                                             </thead>
 
                                             <tbody>
-                                                <%                                                for (BookingDTO x : list) {
+                                                <%                                                    for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 1) {
                                                 %>
                                                 <tr>
@@ -97,8 +97,9 @@
                                             <input type="hidden" value="2" name="status_booking">
 
                                             <td><div class="submit-section">
-                                                    <button id="accept" name="action" value="Accept" type="submit" style="border: 0px aquamarine; background-color: aquamarine;height: 50px; width: 80px; color: black">Accept</button> 
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Accept</a>
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red;padding:  13.5px; width: 80px; color: white">Decline</a>
+
                                                 </div>
                                             </td>
                                             </tr>
