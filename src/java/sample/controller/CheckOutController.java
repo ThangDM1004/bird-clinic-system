@@ -50,6 +50,7 @@ public class CheckOutController extends HttpServlet {
         String date_ga = request.getParameter("date");
         String time = request.getParameter("time");
         String time_ = request.getParameter("time_");
+        String doctor = request.getParameter("doctor");
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         java.util.Date utilDate = format.parse(date_ga);
@@ -60,7 +61,7 @@ public class CheckOutController extends HttpServlet {
         number++;
         bookingID = "BK" + number;
 
-        BookingDTO booking = new BookingDTO(bookingID, "", user.getUsername(), date, serviceID, Integer.parseInt(time), patientID, 1);
+        BookingDTO booking = new BookingDTO(bookingID, doctor, user.getUsername(), date, serviceID, Integer.parseInt(time), patientID, 1);
 
         LocalTime currentTime = LocalTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
