@@ -75,7 +75,7 @@
                     status_booking = x.getBooking_status();
         %>
         <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
-      
+        <form action="MainController">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Pet Information</h4>
@@ -220,7 +220,7 @@
                 
             </div>
 
-        
+        </form>
         <!-- jQuery -->
         <script src="assets/js/doctor-dashboard.js"></script>
         <script src="assets/js/jquery.min.js"></script>
