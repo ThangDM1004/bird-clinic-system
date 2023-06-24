@@ -12,7 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import sample.dto.FeedbackDTO;
 import sample.utils.Utils;
@@ -132,6 +134,83 @@ public class FeedbackDAO {
 
         }
         return check;
+    }
+
+    public List<FeedbackDTO> getAllFeedback() {
+        List<FeedbackDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("SELECT * FROM tbl_Feedback");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new FeedbackDTO(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getDate(6), ""));
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return list;
+    }
+
+    public List<FeedbackDTO> getAllFeedbackDoctor(String doctor) {
+        List<FeedbackDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("select f.service_id,f.user_name as customer, f.feedback_content, f.rating_star,  f.date,   doc.username_doctor\n"
+                        + "from tbl_Feedback f join (select record_id, date_again, total_fee, phone, note, m.patient_id, m.booking_id, username_doctor, username_customer, date,service_id\n"
+                        + "							from tbl_Medical_Record m join tbl_Booking b on m.booking_id = b.booking_id) as doc on f.record_id = doc.record_id\n"
+                        + "							where doc.username_doctor = ? ");
+                ps.setString(1, doctor);
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(new FeedbackDTO(rs.getString("service_id"), 
+                            rs.getString("customer"), 
+                            rs.getInt("rating_star"), 
+                            rs.getString("feedback_content"), 
+                            rs.getDate("date"), ""));
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return list;
+    }
+    public static void main(String[] args) {
+        FeedbackDAO dao = new FeedbackDAO();
+        List<FeedbackDTO> list = dao.getAllFeedbackDoctor("doctor1");
+        for (FeedbackDTO feedbackDTO : list) {
+            System.out.println(feedbackDTO);
+        }
+    }
+
+    public String nameSer(String id) {
+        String name = "";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("select s.service_name\n"
+                        + "from tbl_Feedback f join tbl_Service s on s.service_id = f.service_id and f.service_id = ?");
+                ps.setString(1, id);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    name = rs.getString(1);
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return name;
     }
 
 }

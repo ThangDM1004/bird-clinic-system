@@ -217,26 +217,26 @@
                                             </li>
                                             <li>
                                                 <a type="button" onclick="Assign()">
-                                                    <i class="fas fa-lock"></i>
+                                                   <i class="fas fa-columns"></i>
                                                     <span>Assign</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a type="button" onclick="CheckIn()">
-                                                    <i class="fas fa-user-cog"></i>
+                                                   <i class="fas fa-columns"></i>
                                                     <span>Check In</span>
                                                 </a>
                                             </li>
                                             <li>
                                                 <a type="button" onclick="CheckOut()">
-                                                    <i class="fas fa-crow" style="color: #6c7689;"></i>
+                                                 <i class="fas fa-columns"></i>
                                                     <span>Check Out</span>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a type="button" onclick="ChangePass()">
-                                                    <i class="fas fa-lock"></i>
-                                                    <span>Change Password</span>
+                                                <a type="button" onclick="Feedback()">
+                                                  <i class="fas fa-columns"></i>
+                                                    <span>Feedback</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -245,6 +245,7 @@
                                                     <span>Logout</span>
                                                 </a>
                                             </li>
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -411,9 +412,9 @@
             MedicalRecordDAO mdao = new MedicalRecordDAO();
             List<BookingDTO> list = dao.getAllBooking();
             for (BookingDTO x : list) {
-                 if (x.getBooking_status() == 4) {
-                count++;
-               
+                if (x.getBooking_status() == 4) {
+                    count++;
+
         %>
         <div class="modal fade" id="invoice_<%=count%>" aria-hidden="true" role="dialog">
 
@@ -544,7 +545,7 @@
             </div>
         </div>
         <%
-               }
+                }
             }
         %>
 
