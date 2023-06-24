@@ -51,6 +51,7 @@
         %>
         <jsp:useBean id="PatientDAO" scope="request" class="sample.dao.PatientDAO"/>
         <jsp:useBean id="ServiceDAO" scope="request" class="sample.dao.ServiceDAO"/>
+        <jsp:useBean id="UserDAO" scope="request" class="sample.dao.UserDAO"/>
         <c:if test="${empty requestScope.selectedDay or empty requestScope.selectedSlot}">
             <c:redirect url="booking.jsp" />
         </c:if>
@@ -255,8 +256,34 @@
                                                         <select name="patient" class="form-control">
                                                             <option disabled selected value="">Select your patient</option>
                                                             <c:forEach var="patient" items="${PatientDAO.getPatientBird(account.username)}">
-                                                                <option value="${patient.patient_id}">${patient.name}</option> 
-                                                            </c:forEach>                                                           
+                                                                <c:choose>
+                                                                    <c:when test="${!PatientDAO.checkValidatePatient(account.username, patient.patient_id, requestScope.selectedDay, requestScope.selectedSlot)}">
+                                                                        <option disabled="" style="color: red" value="${patient.patient_id}">${patient.name}</option>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <option value="${patient.patient_id}">${patient.name}</option> 
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>                                                         
+                                                            <!-- Thêm các lựa chọn khác tại đây -->
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-group card-label">
+                                                        <label>Doctor</label>
+                                                        <select name="doctor" class="form-control">
+                                                            <option disabled selected value="">Select your doctor</option>
+                                                            <c:forEach var="doctor" items="${UserDAO.listDoctor}">
+                                                                <c:choose>
+                                                                    <c:when test="${!UserDAO.checkValidateBookingDoctor(doctor.username, requestScope.selectedSlot, requestScope.selectedDay)}">
+                                                                        <option disabled="" style="color: red" value="">${doctor.fullname}</option>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <option value="${doctor.username}">${doctor.fullname}</option> 
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:forEach>                                                         
                                                             <!-- Thêm các lựa chọn khác tại đây -->
                                                         </select>
                                                     </div>

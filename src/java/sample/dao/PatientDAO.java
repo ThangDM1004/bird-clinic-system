@@ -333,7 +333,7 @@ public class PatientDAO {
 
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
-        System.out.println(dao.checkValidatePatient(SPECIES, UPDATE_BIRD, SPECIES, SPECIES));
+        System.out.println(dao.checkValidatePatient("minhga1", "2", "2023-06-23", "1"));
     }
 
 }

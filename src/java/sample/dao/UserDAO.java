@@ -11,9 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import sample.dto.AppointmentDTO;
+import sample.dto.BookingDTO;
 import sample.dto.UserDTO;
 import sample.utils.Utils;
 
@@ -831,8 +833,29 @@ public class UserDAO {
         }
     }
 
+    public boolean checkValidateBookingDoctor(String doctor_username, String slot, String date) {
+        BookingDAO dao = new BookingDAO();
+        try {
+            List<BookingDTO> list = dao.getAllBooking();
+
+            for (BookingDTO bookingDTO : list) {
+                boolean a = bookingDTO.getUsername_doctor().trim().equals(doctor_username.trim());
+                boolean b = bookingDTO.getSlot_number() == Integer.parseInt(slot);
+                LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+                String d = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                boolean c = bookingDTO.getDate().toString().trim().equals(d.trim());
+                if (a && b && c==false) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        dao.changePasswordByEmail("123", "minhga1@gmail.com");
+        System.out.println(dao.checkValidateBookingDoctor("doctor1", "3", "2023/06/24"));
     }
 }
