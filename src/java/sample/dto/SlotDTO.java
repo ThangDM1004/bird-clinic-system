@@ -10,6 +10,7 @@ package sample.dto;
  * @author sasak
  */
 public class SlotDTO {
+
     private int slot_number;
     private String time_slot;
 
@@ -33,5 +34,5 @@ public class SlotDTO {
     public void setTime_slot(String time_slot) {
         this.time_slot = time_slot.trim();
     }
-    
+
 }

@@ -19,14 +19,14 @@ import sample.utils.Utils;
  * @author MSI AD
  */
 public class PatientDAO {
-
+    
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     private static final String INFORMATION_BIRD = "SELECT pb.patient_id,pb.bird_name,pb.species_id , pb.age, pb.gender, pb.image, pb.status\n"
             + "FROM tbl_Account a, tbl_Patient_Bird pb, tbl_Species sp\n"
             + "WHERE a.user_name = pb.user_name and pb.species_id = sp.species_id and pb.user_name = ? and pb.status = 'True'";
-
+    
     public List<PatientDTO> getBird(String user_name) {
         List<PatientDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -51,15 +51,15 @@ public class PatientDAO {
                 }
             }
         } catch (Exception e) {
-
+            
         }
         return list;
     }
-
+    
     private static final String SPECIES = "select sp.species_name\n"
             + "from tbl_Patient_Bird pb, tbl_Species sp\n"
             + "where pb.species_id = sp.species_id and pb.species_id =?";
-
+    
     public String getSpecies(String species_id) {
         String species_name = "";
         Connection conn = null;
@@ -76,11 +76,11 @@ public class PatientDAO {
                 }
             }
         } catch (Exception e) {
-
+            
         }
         return species_name;
     }
-
+    
     public List<PatientDTO> viewPatientListByDoctorID(String id) throws SQLException {
         List<PatientDTO> list = new ArrayList<>();
         Connection conn = null;
@@ -112,9 +112,9 @@ public class PatientDAO {
         }
         return null;
     }
-
+    
     private static final String SPECIES_LIST = "SELECT species_name FROM tbl_Species";
-
+    
     public ArrayList<String> getListSpecies() throws ClassNotFoundException {
         ArrayList<String> list = new ArrayList();
         Connection conn = null;
@@ -135,7 +135,7 @@ public class PatientDAO {
         return list;
     }
     private static final String ADD_BIRD = "INSERT INTO tbl_Patient_Bird(patient_id,bird_name,species_id,age,gender,image,user_name,status) " + " VALUES(?,?,?,?,?,?,?,?)";
-
+    
     public boolean addBird(PatientDTO bird) {
         boolean check = false;
         Connection conn = null;
@@ -155,12 +155,12 @@ public class PatientDAO {
                 check = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {
-
+            
         }
         return check;
     }
     private static final String SPECIES_LIST_ID = "SELECT species_id FROM tbl_Species WHERE species_name = ?";
-
+    
     public String getIDSpecies(String species_name) throws ClassNotFoundException {
         String id = "";
         Connection conn = null;
@@ -181,7 +181,7 @@ public class PatientDAO {
         return id;
     }
     private static final String MAX_ID_BIRD = "SELECT TOP 1 patient_id FROM tbl_Patient_Bird ORDER BY ID DESC";
-
+    
     public int MaxId() {
         int maxID = 0;
         Connection conn = null;
@@ -201,9 +201,9 @@ public class PatientDAO {
         }
         return maxID;
     }
-
+    
     private static final String UPDATE_BIRD = "UPDATE tbl_Patient_Bird SET bird_name = ?,species_id = ? ,age = ?,gender = ?,image=? WHERE patient_id=?";
-
+    
     public boolean UpdateBird(PatientDTO bird) throws ClassNotFoundException {
         boolean checkUpdate = false;
         Connection conn = null;
@@ -220,15 +220,15 @@ public class PatientDAO {
                 ps.setString(6, bird.getPatient_id());
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
             }
-
+            
         } catch (Exception e) {
-
+            
         }
         return checkUpdate;
     }
-
+    
     private static final String UPDATE_BIRD_NO_IMAGE = "UPDATE tbl_Patient_Bird SET bird_name = ?,species_id = ? ,age = ?,gender = ? WHERE patient_id=?";
-
+    
     public boolean UpdateBirdNoImage(PatientDTO bird) throws ClassNotFoundException {
         boolean checkUpdate = false;
         Connection conn = null;
@@ -244,14 +244,14 @@ public class PatientDAO {
                 ps.setString(5, bird.getPatient_id());
                 checkUpdate = ps.executeUpdate() > 0 ? true : false;
             }
-
+            
         } catch (Exception e) {
-
+            
         }
         return checkUpdate;
     }
     private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status_bird=? WHERE patient_id=?";
-
+    
     public boolean DeleteBird(int status, String patient_id) throws ClassNotFoundException {
         boolean checkDelete = false;
         Connection conn = null;
@@ -264,13 +264,13 @@ public class PatientDAO {
                 ps.setString(2, patient_id);
                 checkDelete = ps.executeUpdate() > 0 ? true : false;
             }
-
+            
         } catch (Exception e) {
-
+            
         }
         return checkDelete;
     }
-
+    
     public List<PatientDTO> getPatientBird(String username) {
         List<PatientDTO> list = new ArrayList<>();
         try {
@@ -289,7 +289,7 @@ public class PatientDAO {
         }
         return null;
     }
-
+    
     public PatientDTO getBirdByID(String bird_id) {
         PatientDTO bird = null;
         try {
@@ -307,11 +307,11 @@ public class PatientDAO {
                 bird = new PatientDTO(specied_id, name, specied_id, age, gender, "", "", true);
             }
         } catch (Exception e) {
-
+            
         }
         return bird;
     }
-
+    
     public boolean checkValidatePatient(String username, String patientID, String date, String slotNumber) {
         try {
             conn = Utils.getConnection();
@@ -330,10 +330,26 @@ public class PatientDAO {
         }
         return true;
     }
-
+    
+    public String getBirdNameByPatientId(String id) {
+        String name = "";
+        String query = "SELECT bird_name from tbl_Patient_Bird WHERE patient_id = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                name = rs.getString("bird_name");
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+    
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
-        System.out.println(dao.checkValidatePatient("minhga1", "2", "2023-06-23", "1"));
+        System.out.println(dao.getBirdNameByPatientId("1"));
     }
-
+    
 }

@@ -480,9 +480,41 @@ public class ServiceDAO {
         return rating;
     }
 
+    public String getServiceName(String id) {
+        String name = "";
+        String query = "SELECT service_name FROM tbl_Service WHERE service_id = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                name = rs.getString("service_name");
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+
+    public String getTimeSlot(int id) {
+        String name = "";
+        String query = "SELECT time_slot FROM tbl_Slot WHERE slot_number = ?";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                name = rs.getString("time_slot");
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        System.out.println(dao.getRatingPointByServiceId("001"));
+        System.out.println(dao.getTimeSlot(1));
     }
 
 }
