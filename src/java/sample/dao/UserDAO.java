@@ -870,8 +870,56 @@ public class UserDAO {
         return password;
     }
 
+    public String getEmailByUsername(String user_name) {
+        String email = "";
+        String query = "SELECT email FROM tbl_Account WHERE user_name = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                email = rs.getString("email");
+            }
+        } catch (Exception e) {
+        }
+        return email;
+    }
+
+    public String getPhoneByUsername(String user_name) {
+        String name = "";
+        String query = "SELECT phone FROM tbl_Account WHERE user_name = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                name = rs.getString("phone");
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+
+    public String getFullNameByUsername(String user_name) {
+        String name = "";
+        String query = "SELECT fullname FROM tbl_Account WHERE user_name = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, user_name);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                name = rs.getString("fullname");
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+
     public static void main(String[] args) {
         UserDAO dao = new UserDAO();
-        System.out.println(dao.checkPassDuplicate("bibabibum0110@gmail.com"));
+        System.out.println(dao.getFullNameByUsername("minhga1"));
     }
 }

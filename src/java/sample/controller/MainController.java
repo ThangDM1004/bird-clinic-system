@@ -87,7 +87,7 @@ public class MainController extends HttpServlet {
                 url = DELETE_BIRD_CONTROLLER;
             } else if (actions.equals(BOOKING_SELECTDAY)) {
                 url = BOOKING_SELECTDAY_CONTROLLER;
-            } else if (actions.equals(PENDING)) {
+            } else if (actions.equals("Accept")) {
                 url = PENDING_CONTROLLER;
             } else if (actions.equals(CANCEL)) {
                 url = CANCEL_CONTROLLER;
@@ -101,7 +101,7 @@ public class MainController extends HttpServlet {
                 url = MEDICAL_CONTROLLER;
             } else if (actions.equals(INSERTFEEDBACK)) {
                 url = INSERTFEEDBACK_CONTROLLER;
-            }else if (actions.equals(UPDATEFEEDBACK)) {
+            } else if (actions.equals(UPDATEFEEDBACK)) {
                 url = UPDATEFEEDBACK_CONTROLLER;
             } else {
                 url = "error-404.jsp";

@@ -814,7 +814,7 @@ public class BookingDAO {
     }
 
     public BookingDTO getBookingByID(String bookingID) {
-        String query = "SELECT * FROM tbl_Booking WHERE booking_id = ? AND booking_status = 2";
+        String query = "SELECT * FROM tbl_Booking WHERE booking_id = ? AND booking_status = 1";
         try {
             conn = new Utils().getConnection();
             ps = conn.prepareStatement(query);
@@ -830,7 +830,6 @@ public class BookingDAO {
                         Integer.parseInt(rs.getString(7)),
                         rs.getString(8),
                         Integer.parseInt(rs.getString(9).trim()));
-
             }
         } catch (Exception e) {
         }
