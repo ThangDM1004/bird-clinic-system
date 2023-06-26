@@ -59,6 +59,9 @@ public class CancelController extends HttpServlet {
             String birdName = dao_3.getBirdNameByPatientId(book.getPatient_id());
             Date date_1 = book.getDate();
             String note_email = request.getParameter("note_email");
+            if (note_email == null) {
+                note_email = "";
+            }
             String serviceName = dao_2.getServiceName(book.getService_id());
             String time_slot = dao_2.getTimeSlot(book.getSlot_number());
             String[] parts = time_slot.split("-");
