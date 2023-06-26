@@ -2721,7 +2721,7 @@ html.menu-opened body {
 .section-header .sub-title {
     color: #757575;
     font-size: 16px;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 15px auto 0;
 }
 
@@ -2980,7 +2980,7 @@ html.menu-opened body {
     -moz-transition: all .3s ease 0s;
     -o-transition: all .3s ease 0s;
     transition: all .3s ease 0s;
-    padding: 15px;
+    padding: 14px;
 }
 
 .doc-img {

@@ -29,7 +29,7 @@
         <!-- Fontawesome CSS -->
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/style_2.css">
@@ -238,8 +238,7 @@
                 <div class="container-fluid">
                     <div class="section-header text-center">
                         <h2>Top 5 most used services</h2>
-                        <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.</p>
+                        <p class="sub-title">Explore Our Top 5 Highly Sought-after Services for Avian Care. From Expert Vet Consultations to Professional Grooming and Behavior Training, Trust in Our Comprehensive and Trusted Solutions for Your Feathered Friend's Well-being.</p>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-9">
@@ -283,15 +282,12 @@
                         <div class="col-lg-4">
                             <div class="section-header ">
                                 <h2>Book Our Service</h2>
-                                <p>Lorem Ipsum is simply dummy text </p>
+                                <p>Services with the best quality</p>
                             </div>
                             <div class="about-content">
-                                <p>It is a long established fact that a reader will be distracted by the readable content of
-                                    a page when looking at its layout. The point of using Lorem Ipsum.</p>
-                                <p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem
-                                    ipsum' will uncover many web sites still in their infancy. Various versions have evolved
-                                    over the years, sometimes</p>
-                                <a href="javascript:;">Read More..</a>
+                                <p><i class="fa-solid fa-earth-americas" style="color: #41973b; font-size: 30px;"></i>  Embrace a World of Care for Your Feathered Friend: Book Exceptional Care for Your Beloved Bird Today! Our Experienced Avian Specialists Provide a Comprehensive Range of Services Tailored to Meet Your Bird's Needs.</p>
+                                <p><i class="fa-solid fa-house-medical" style="color: #f35858;font-size: 30px;"></i>  From Health Check-ups and Grooming to Boarding and Behavioral Consultations, Our Dedicated Team is Committed to Ensuring the Well-being and Happiness of Your Feathered Companion.</p>
+                                <p><i class="fa-sharp fa-solid fa-dove" style="color: #1a50ad; font-size: 30px;"></i>   With a Bird-friendly Environment and Personalized Attention, We Strive to Create a Positive Experience for Both You and Your Avian Companion. Don't Hesitate, Book Now and Give Your Feathered Friend the Best Care Possible.</p>
                             </div>
                         </div>
                         <div class="col-lg-8">
@@ -301,7 +297,7 @@
                                     ServiceDAO dao_1 = new ServiceDAO();
                                     List<ServiceDTO> lists = dao.getListService();
                                     for (ServiceDTO ser : lists) {
-
+                                        int index = lists.indexOf(ser);
                                 %>
                                 <!-- Doctor Widget -->
                                 <div class="profile-widget">
@@ -314,7 +310,7 @@
                                         </a>
                                     </div>
                                     <div class="pro-content">
-                                        <h3 class="title">
+                                        <h3 class="title" style="font-size:14px;">
                                             <a href=""><%=ser.getService_name()%></a>
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
@@ -341,7 +337,7 @@
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a href="#view_specialities_details" data-toggle="modal" class="btn view-btn">View Profile</a>
+                                                <a href="#view_specialities_details_<%=index%>" data-toggle="modal" class="btn view-btn">View Profile</a>
                                             </div>
                                             <div class="col-6">
                                                 <a href="" class="btn book-btn">Book Now</a>
@@ -555,8 +551,13 @@
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
 
+        <%
+            List<ServiceDTO> list_1 = dao.getListService();
+            for (ServiceDTO elem : list_1) {
+                int index = list_1.indexOf(elem);
 
-        <div class="modal fade" id="view_specialities_details" aria-hidden="true" role="dialog">
+        %>
+        <div class="modal fade" id="view_specialities_details_<%=index%>" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -603,7 +604,7 @@
                             </div>
 
                             <div class="product-contents">
-                                <h2 class="product-titles">Emergency</h2>
+                                <h2 class="product-titles"><%=elem.getService_name()%></h2>
                                 <a href="#" class="product-link">Most used service</a>
                                 <div class="product-rating">
 
@@ -616,17 +617,23 @@
                                 </div>
 
                                 <div class="product-price">
-                                    <p class="new-price">Service Price: <span>$111</span></p>
+                                    <p class="new-price">Service Price: <span>$<%=elem.getFee()%></span></p>
                                 </div>
 
                                 <div class="product-detail">
                                     <h2>About this service</h2>
-                                    <p>t is a long established fact that a reader will be distracted by the readable content of
-                                        a page when looking at its layout. The point of using Lorem Ipsum t is a long established fact that a reader will be distracted by the readable content of
-                                        a page when looking at its layout. The point of using Lorem Ipsum</p>
+                                    <p><%=elem.getService_detail()%></p>
                                     <ul>
-                                        <li>Specialize: <span>Internal</span></li>
-                                        <li>Available: <span>Service ready</span></li>
+                                        <li>Specialize: <span></span></li>
+                                            <%
+                                                String status = "";
+                                                if (elem.isStatus()) {
+                                                    status = "Service Available";
+                                                } else {
+                                                    status = "Service Not Available";
+                                                }
+                                            %>
+                                        <li>Available: <span><%=status%></span></li>
                                     </ul>
                                 </div>
 
@@ -650,6 +657,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <section id="testimonials">
                             <div class="testimonial-heading">
                                 <span>Comments</span>
@@ -767,6 +775,8 @@
                 </div>
             </div>
         </div>
+        <%                                     }
+        %>
         <script>
 
         </script>
