@@ -171,9 +171,14 @@
                                                 <td>
 
                                                     <ul>
+
                                                         <%
                                                             List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
-                                                            for (String ser_id : moreService) {%>
+
+                                                        %>
+                                                        //                                                        <li><%=daoMR.getSerNam(mrr.getSer_id())%></li>
+                                                            <%
+                                                                for (String ser_id : moreService) {%>
 
                                                         <li><%=daoMR.getSerNam(ser_id)%></li>
 
@@ -197,14 +202,11 @@
                                                         <a href="#" class="avatar avatar-sm mr-2">
                                                             <img class="avatar-img rounded-circle" src="<%=bird.getImage()%>" >
                                                         </a>
-                                                            <a href="#"><%=bird.getName()%><span> <%= daoBird.getIDSpecies(bird.getSpecies_id()) %></span></a>
+                                                        <a href="#"><%=bird.getName()%><span> <%= daoBird.getIDSpecies(bird.getSpecies_id())%></span></a>
                                                     </h2>
                                                 </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                                                                    <i class="far fa-eye"></i> View
-                                                                                                                </a>-->
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
                                                             <i class="fas fa-thumbs-up"></i> Feedback
                                                         </a>
@@ -212,7 +214,12 @@
 
                                                     <form action="MainController">
                                                         <div class="table-action">
-                                                            <button href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
+                                                            <button type="submit" class="btn btn-sm bg-primary-light" value="dateAgain">
+                                                                <input hidden="" name="username_doc" value="<%=mrr.getDoctorName()%>" >
+                                                                <input hidden="" name="patient_id" value="<%=bird.getSpecies_id()%>" >
+                                                                <input hidden="" name="username" value="<%=user.getUsername()%>" >
+                                                                <input hidden="" name="service" value="<%=mrr.getSer_id()%>" >
+                                                                <input hidden="" name="dateagain" value="<%= mrr.getDate_again()%>" >
                                                                 <i class="fas"></i> Booking Again
                                                             </button>
                                                         </div>
