@@ -162,6 +162,7 @@ public class PendingController extends HttpServlet {
                             + "                    </p>\n"
                             + "                    <p style=\"margin-left: 30px; color: 333232;\"><b>Service name:</b><span style=\"margin-left: 37px;\">" + serviceName + "</span>\n"
                             + "                    </p>\n"
+                            + "                     <p style=\"margin-left:30px;color:333232\"><b>Status:</b><span style=\"margin-left: 81px; padding: 5px; background: #03A603; color: #fff; border-radius: 5px;\">Complete</span></p>"
                             + "                </div>\n"
                             + "            </div>\n"
                             + "            <p style=\"font-size:15px; color: red;\"><i>Note***: You need to come to the clinic <b>15 minutes</b> before\n"
