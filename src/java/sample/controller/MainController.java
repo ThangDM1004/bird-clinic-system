@@ -58,7 +58,7 @@ public class MainController extends HttpServlet {
     private static String INSERTFEEDBACK_CONTROLLER = "InsertFeedbackController";
     private static String UPDATEFEEDBACK = "updateFeedback";
     private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
-    private static String DATEAGAIN = "dateagain";
+    private static String DATEAGAIN = "dateAgain";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
