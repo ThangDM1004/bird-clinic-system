@@ -174,10 +174,6 @@
 
                                                         <%
                                                             List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
-
-                                                        %>
-                                                        //                                                        <li><%=daoMR.getSerNam(mrr.getSer_id())%></li>
-                                                            <%
                                                                 for (String ser_id : moreService) {%>
 
                                                         <li><%=daoMR.getSerNam(ser_id)%></li>

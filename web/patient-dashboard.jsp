@@ -668,6 +668,8 @@
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
+          <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="admin/assets/plugins/datatables/datatables.min.js"></script>
 
         <!-- Sticky Sidebar JS -->
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
