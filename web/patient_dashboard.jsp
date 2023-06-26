@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.PatientDAO"%>
+<%@page import="sample.dto.PatientDTO"%>
 <%@page import="sample.dto.MedicalRecordDTO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
@@ -132,6 +134,7 @@
                     <!-- Medical Records Tab -->
                     <div id="pat_medical_records" class="tab-pane fade">
                         <%
+
                             MedicalRecordDAO daoMR = new MedicalRecordDAO();
                             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
 
@@ -151,14 +154,16 @@
                                                 <th>Date Again </th>
                                                 <th>Service</th>
                                                 <th>Note</th>
-                                                <th>Created</th>
-                                                <th></th>
+                                                <th>Doctor</th>
+                                                <th>Patient(Bird)</th>
                                             </tr>     
                                         </thead>
                                         <tbody>
                                             <%
                                                 for (MedicalRecordDTO mrr : MR) {
                                                     int index = MR.indexOf(mrr);
+                                                    PatientDAO daoBird = new PatientDAO();
+                                                    PatientDTO bird = daoBird.getOneBird(mrr.getPatent_id());
                                             %>
                                             <tr>
 
@@ -185,6 +190,14 @@
                                                             <img class="avatar-img rounded-circle" src="<%= daoMR.get_image_doctor(mrr.getDoctorName())%>" >
                                                         </a>
                                                         <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
+                                                    </h2>
+                                                </td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a href="#" class="avatar avatar-sm mr-2">
+                                                            <img class="avatar-img rounded-circle" src="<%=bird.getImage()%>" >
+                                                        </a>
+                                                            <a href="#"><%=bird.getName()%><span> <%= daoBird.getIDSpecies(bird.getSpecies_id()) %></span></a>
                                                     </h2>
                                                 </td>
                                                 <td class="text-right">
