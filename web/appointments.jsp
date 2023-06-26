@@ -102,7 +102,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -127,7 +127,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -151,7 +151,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -174,7 +174,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -197,7 +197,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -220,7 +220,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -243,7 +243,7 @@
                         <%
                         } else if (status_book == 3) {
                         %>
-                        <button style="background-color: red"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
