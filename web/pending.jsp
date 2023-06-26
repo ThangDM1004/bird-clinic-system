@@ -76,7 +76,7 @@
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
                                                     <th >Service</th>
-
+                                                    <th>Note</th>
                                                     <th></th>
 
                                                 </tr>
@@ -95,7 +95,9 @@
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>                                          
                                             <td ><%= dao.getServicename(x.getBooking_id())%></td>                                         
                                             <input type="hidden" value="2" name="status_booking">
-
+                                            <td>
+                                                <textarea name="note_email"></textarea>
+                                            </td>
                                             <td><div class="submit-section">
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&action=Accept" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Accept</a>
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red;padding:  13.5px; width: 80px; color: white">Decline</a>
@@ -115,6 +117,7 @@
                         <%
                             }
                         %>
+
                     </div>
                     <!-- /Appointment Tab -->
 
@@ -135,10 +138,23 @@
 
             </div>
         </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+
         <script src="assets/js/jquery-3.2.1.min.js"></script>
         <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="assets/plugins/datatables/datatables.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+
+        <script src="assets/js/bootstrap.min.js"></script>
+
+        <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
         <script  src="assets/js/script.js"></script>
+        <script src="assets/js/slick.js"></script>
+
+
 
     </body>
+
 </html>
