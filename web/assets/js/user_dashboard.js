@@ -3,6 +3,7 @@ function Dashboard() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "patient_dashboard.jsp", true);
@@ -13,6 +14,7 @@ function UserProfile() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "user-profile.jsp", true);
@@ -23,6 +25,7 @@ function BirdProfile() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("dashboard").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "bird-profile.jsp", true);
@@ -61,6 +64,7 @@ function sendOption() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("demo").innerHTML = this.responseText;
+            var table = $('.datatable').DataTable();
         }
     };
     xhttp.open("GET", "load-bird-info.jsp?selectedOption=" + selectedValue, true);

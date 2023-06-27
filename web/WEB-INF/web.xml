@@ -150,8 +150,17 @@
         <servlet-class>sample.controller.ResetPasswordController</servlet-class>
     </servlet>
     <servlet>
+    <servlet>
         <servlet-name>AddNewBlogController</servlet-name>
         <servlet-class>sample.controller.AddNewBlogController</servlet-class>
+      </servlet>
+      <servlet>
+        <servlet-name>DateAgainController</servlet-name>
+        <servlet-class>sample.controller.DateAgainController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookingAgainConfirmController</servlet-name>
+        <servlet-class>sample.controller.BookingAgainConfirmController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
@@ -304,6 +313,14 @@
     <servlet-mapping>
         <servlet-name>AddNewBlogController</servlet-name>
         <url-pattern>/AddNewBlogController</url-pattern>
+ </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DateAgainController</servlet-name>
+        <url-pattern>/DateAgainController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingAgainConfirmController</servlet-name>
+        <url-pattern>/BookingAgainConfirmController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
