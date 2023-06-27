@@ -96,7 +96,7 @@
                         %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5 ) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -129,7 +129,7 @@
                         %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -161,7 +161,7 @@
                        %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -192,7 +192,7 @@
                       %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -223,7 +223,7 @@
                        %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -254,7 +254,7 @@
                        %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -285,7 +285,7 @@
                        %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
-                        } else if (status_book == 4) {
+                        } else if (status_book == 4 || status_book == 5) {
                         %>
                         <button class="btn btn-primary submit-btn" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%

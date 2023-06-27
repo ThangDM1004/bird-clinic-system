@@ -103,7 +103,7 @@ function Add() {
             }
         }
         if (checkExist === true) {
-            
+            alert("Service selected!!!")
         } else {
             selectElement.remove();
             addButton.remove();
