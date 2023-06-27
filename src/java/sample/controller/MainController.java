@@ -58,6 +58,8 @@ public class MainController extends HttpServlet {
     private static String INSERTFEEDBACK_CONTROLLER = "InsertFeedbackController";
     private static String UPDATEFEEDBACK = "updateFeedback";
     private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
+    private static String ADD_BLOG = "addblog";
+    private static String ADD_BLOG_CONTROLLER = "AddNewBlogController";
     private static String DATEAGAIN = "dateAgain";
     private static String DATEAGAIN_CONTROLLER = "DateAgainController";
     private static String BOOKINGAGAIN = "BookingAgainConfirm";
@@ -107,6 +109,8 @@ public class MainController extends HttpServlet {
                 url = INSERTFEEDBACK_CONTROLLER;
             } else if (actions.equals(UPDATEFEEDBACK)) {
                 url = UPDATEFEEDBACK_CONTROLLER;
+            } else if (actions.equals(ADD_BLOG)) {
+                url = ADD_BLOG_CONTROLLER;
             } else if (actions.equals(DATEAGAIN)) {
                 url = DATEAGAIN_CONTROLLER;
             } else if (actions.equals(BOOKINGAGAIN)) {

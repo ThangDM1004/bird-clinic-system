@@ -3,6 +3,8 @@
     Created on : Jun 6, 2023, 5:43:09 PM
     Author     : MSI AD
 --%>
+<%@page import="org.jsoup.Jsoup"%>
+<%@page import="org.jsoup.nodes.Document"%>
 <%@page import="sample.dto.BlogDTO"%>
 <%@page import="sample.dao.BlogDAO"%>
 <%@page import="sample.dao.UserDAO"%>
@@ -105,8 +107,12 @@
                                                         <a href="#view_specialities_details" data-toggle="modal"><%=b.getTitle()%></a>
                                                     </h2>
                                                 </td>
-
-                                                <td><%=b.getDetails().substring(0, 50) + "..."%></td>
+                                                <%
+                                                    String htmlContent = b.getDetails();
+                                                    Document doc = Jsoup.parse(htmlContent);
+                                                    String plainText = doc.text();
+                                                %>
+                                                <td><%=plainText.substring(0, 50) + "..."%></td>
                                                 <td><%=b.getCategories_blog_name()%></td>
 
                                                 <td><%=b.getAuthor()%></td>
@@ -215,12 +221,10 @@
 
 
                 <div class="row" style="border: 1px solid #f0f0f0; background: #fff; border-radius: 3px;">
-                    <form style="width: 100%;">
-
-
+                    <form style="width: 100%; margin-bottom: 20px;" action="../MainController" method="post">
                         <div class="col-auto" style="margin-bottom: 15px; margin-top: 10px;">
                             <label style="display: block; margin-bottom: 5px; " for="inputTitle">Title *</label>
-                            <input id="inputTitle" placeholder="this content will be displayed in the TITLE of blog *">
+                            <input id="inputTitle" name="title" placeholder="this content will be displayed in the TITLE of blog *">
                             <style>
                                 input {
                                     background-color: #fff;
@@ -236,24 +240,42 @@
                             </style>
                         </div>
 
-                        <div class="col-auto" style="width: 50; margin-bottom: 10px;">
-                            <div class="upload-img">
-                                <div class="change-photo-btn">
+                        <div class="col-auto" style="width: 100%;height: 100px; margin-bottom: 10px; display: flex;">
+                            <div class="upload-img" style="width: 30%;">
+                                <div class="change-photo-btn" style="width: 100%;">
                                     <span style="display: block;"><i class="fa fa-upload"></i> Upload Photo</span>
-                                    <input id="bird_image_dash" name="image_bird" type="file" class="upload" style="width: 30%;">
+                                    <input id="bird_image_dash" name="image_bird" type="file" class="upload" style="width: 70%;">
+                                    <small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small>
                                 </div>
-                                <small class="form-text text-muted">Allowed JPG, PNG. Max size of 2MB</small>
+                            </div>
+                            <div style="width: 70%; height: 100%;">
+                                <div class="change-photo-btn" style="width: 100%;">
+                                    <span style="display: block;">Select Category</span>
+
+                                    <select name="category_id">
+                                        <%
+                                            List lists = dao.getList();
+                                            for (Object elem : lists) {
+                                        %>
+                                        <option value="<%=elem%>"><%=elem%></option>
+                                        <% }%>
+                                    </select>
+
+                                </div>
                             </div>
                         </div>
                         <div class="col-auto" style="margin-bottom: 10px;">
                             <label style="display: block; margin-bottom: 5px;" for="inputDescription">Content of Blog *</label>
                             <textarea id="inputDescription" name="content" cols="30" rows="10" style="width: 100%;" placeholder=""></textarea>
                         </div>
+                        <div class="col-auto" style="margin-bottom: 10px;">
+                            <label style="display: block; margin-bottom: 5px;" for="authorname">Author name of Blog *</label>
+                            <input style="width: 50%;" id="authorname" type="text" name="authors">
+                        </div>
 
-
-
-
-
+                        <div class="col-auto">
+                            <button type="submit" name="action" value="addblog">Add new</button>
+                        </div>
                     </form>
                 </div>
 
