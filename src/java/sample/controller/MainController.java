@@ -58,6 +58,8 @@ public class MainController extends HttpServlet {
     private static String INSERTFEEDBACK_CONTROLLER = "InsertFeedbackController";
     private static String UPDATEFEEDBACK = "updateFeedback";
     private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
+    private static String ADD_BLOG = "addblog";
+    private static String ADD_BLOG_CONTROLLER = "AddNewBlogController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -103,6 +105,8 @@ public class MainController extends HttpServlet {
                 url = INSERTFEEDBACK_CONTROLLER;
             } else if (actions.equals(UPDATEFEEDBACK)) {
                 url = UPDATEFEEDBACK_CONTROLLER;
+            } else if (actions.equals(ADD_BLOG)) {
+                url = ADD_BLOG_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }

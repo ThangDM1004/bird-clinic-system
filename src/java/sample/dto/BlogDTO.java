@@ -36,6 +36,7 @@ public class BlogDTO {
         this.user_name = user_name;
         this.author = author;
         this.categories_blog_name = categories_blog_name;
+        
     }
 
     public String getBlog_id() {

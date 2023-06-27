@@ -18,11 +18,12 @@
     <!-- doccure/blank-page.jsp  30 Nov 2019 04:12:20 GMT -->
     <head>
         <meta charset="utf-8">
-        <title>Doccure</title>
+        <title>thedearbird | Blog Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
+        <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/logo-icon.png">
+
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -232,14 +233,19 @@
 
                         <!--Title-->
                         <h1 class="header-title"><%=blog.getTitle()%></h1>
-                        <img src="<%=blog.getImage()%>" alt="" class="header-img">
+                        <figure style="">
+                            <img src="<%=blog.getImage()%>" alt="" class="header-img">
+                            <figcaption>
+                                <i style="font-size: 12px;">Northern Cardinal, American Goldfinches, Dark-eyed Junco, and House Finches at a feeder. Photo by Stephen and Judy Shelasky/PFW.</i>
+                            </figcaption>
+                        </figure>
                     </div>
                 </section>
 
 
                 <!--Post-->
                 <section class="post-content post-container">                                   
-                    <p class="post-text"><%=blog.getDetails()%></p>
+                    <%=blog.getDetails()%>
                 </section>
 
                 <!--Share-->

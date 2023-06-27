@@ -149,6 +149,10 @@
         <servlet-name>ResetPasswordController</servlet-name>
         <servlet-class>sample.controller.ResetPasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewBlogController</servlet-name>
+        <servlet-class>sample.controller.AddNewBlogController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -296,6 +300,10 @@
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/ResetPasswordController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewBlogController</servlet-name>
+        <url-pattern>/AddNewBlogController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

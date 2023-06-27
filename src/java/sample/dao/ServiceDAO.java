@@ -514,7 +514,7 @@ public class ServiceDAO {
 
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        System.out.println(dao.getTimeSlot(1));
+        System.out.println(dao.getSerIdNext());
     }
 
 }

@@ -4,9 +4,16 @@
     Author     : MSI AD
 --%>
 
+<%@page import="org.jsoup.Jsoup"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.BlogDAO"%>
 <%@page import="sample.dto.BlogDTO"%>
+
+<%@ page import="org.jsoup.Jsoup" %>
+<%@ page import="org.jsoup.nodes.Document" %>
+<%@ page import="org.jsoup.nodes.Element" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
 <html lang="en">
@@ -14,11 +21,11 @@
     <!-- doccure/blank-page.jsp  30 Nov 2019 04:12:20 GMT -->
     <head>
         <meta charset="utf-8">
-        <title>Doccure</title>
+        <title>thedearbird | Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
         <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
+        <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/logo-icon.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -142,13 +149,20 @@
                         for (BlogDTO blog : list_blog) {
                     %>
                     <div class="post-box <%=blog.getCategories_blog_name()%>">
+
                         <img src="<%=blog.getImage()%>" alt="post-1" class="post-img">
+
                         <h2 class="category"><%=blog.getCategories_blog_name()%></h2>
                         <a href="blog_details.jsp?blogID=<%=blog.getBlog_id()%>" class="post-title">
                             <%=blog.getTitle()%>
                         </a>
                         <span class="post-date">12 Feb 2023</span>
-                        <p class="post-description"><%=blog.getDetails()%></p>
+                        <%
+                            String htmlContent = blog.getDetails();
+                            Document doc = Jsoup.parse(htmlContent);
+                            String plainText = doc.text();
+                        %>
+                        <p class="post-description"><%=plainText%></p>
                         <!--Profile author-->
                         <div class="profile">
                             <img src="assets/img/post/profile-1.jpg" alt="" class="profile-img">

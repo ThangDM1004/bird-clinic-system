@@ -337,7 +337,7 @@
                                         </ul>
                                         <div class="row row-sm">
                                             <div class="col-6">
-                                                <a href="#view_specialities_details_<%=index%>" data-toggle="modal" class="btn view-btn">View Profile</a>
+                                                <a href="#view_specialities_details_<%=index%>" data-toggle="modal" class="btn view-btn">View Detail</a>
                                             </div>
                                             <div class="col-6">
                                                 <a href="" class="btn book-btn">Book Now</a>
