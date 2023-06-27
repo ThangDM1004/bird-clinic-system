@@ -36,6 +36,7 @@
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
         <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 
+        <link rel="stylesheet" href="admin/assets/plugins/datatables/datatables.min.css">
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -301,6 +302,7 @@
                             xhttp.onreadystatechange = function () {
                                 if (this.readyState === 4 && this.status === 200) {
                                     document.getElementById("dashboard").innerHTML = this.responseText;
+                                    var table = $('.datatable').DataTable();
                                 }
                             };
                             xhttp.open("GET", "patient_dashboard.jsp", true);
@@ -627,6 +629,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "bird-profile.jsp", true);
@@ -646,6 +649,7 @@
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
                     document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
                 }
             };
             xhttp.open("GET", "user-change-password.jsp", true);
@@ -661,7 +665,7 @@
         <script src="assets/js/checkUpdateValidate.js"></script>
         <!-- /Main Wrapper -->
 
-        <script src="assets/js/user-dashboard.js"></script>
+        <script src="assets/js/user_dashboard.js"></script>
         <!-- jQuery -->
         <script src="assets/js/jquery.min.js"></script>
 
@@ -673,6 +677,8 @@
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
+        <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="admin/assets/plugins/datatables/datatables.min.js"></script>
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
 

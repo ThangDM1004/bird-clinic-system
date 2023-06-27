@@ -203,7 +203,7 @@ public class BookingDAO {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String query = "SELECT * FROM tbl_Booking";
+        String query = "SELECT * FROM tbl_Booking ORDER BY date DESC";
         try {
             conn = Utils.getConnection();
             if (conn != null) {

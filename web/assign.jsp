@@ -22,6 +22,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script>
+            if ($('.datatable').length > 0) {
+                $('.datatable').DataTable({
+                    "bFilter": false,
+                    "initComplete": function () {
+                        this.api().order([[2, "desc"]]).draw(); // Sắp xếp theo cột đầu tiên (index 0) theo thứ tự giảm dần
+                    }
+                });
+            }
+
+        </script>
     </head>
     <body>
         <%
@@ -83,7 +94,8 @@
                                             </thead>
                                             <tbody>
 
-                                                <%                                                    for (BookingDTO x : list) {
+                                                <%                                                    
+                                                    for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 2) {
                                                 %>
                                                 <tr>
