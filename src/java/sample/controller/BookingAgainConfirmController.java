@@ -48,7 +48,7 @@ public class BookingAgainConfirmController extends HttpServlet {
         UserDTO user = (UserDTO) session.getAttribute("account");
 
         String serviceId = request.getParameter("service");
-        String patientID = request.getParameter("doctor");
+        String patientID = request.getParameter("patient");
         String doctorUsername = request.getParameter("doctor");
         String date = request.getParameter("date");
         String slotId = request.getParameter("slot");
