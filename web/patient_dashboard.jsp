@@ -212,7 +212,7 @@
                                                         <div class="table-action">
                                                             <button type="submit" name="action" class="btn btn-sm bg-primary-light" value="dateAgain">
                                                                 <input hidden="" name="username_doc" value="<%=mrr.getDoctorName()%>" >
-                                                                <input hidden="" name="patient_id" value="<%=bird.getSpecies_id()%>" >
+                                                                <input hidden="" name="patient_id" value="<%=bird.getPatient_id()%>" >
                                                                 <input hidden="" name="username" value="<%=user.getUsername()%>" >
                                                                 <input hidden="" name="service" value="<%=mrr.getSer_id()%>" >
                                                                 <input hidden="" name="dateagain" value="<%= mrr.getDate_again()%>" >
