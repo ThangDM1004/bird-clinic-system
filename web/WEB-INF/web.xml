@@ -150,11 +150,10 @@
         <servlet-class>sample.controller.ResetPasswordController</servlet-class>
     </servlet>
     <servlet>
-    <servlet>
         <servlet-name>AddNewBlogController</servlet-name>
         <servlet-class>sample.controller.AddNewBlogController</servlet-class>
-      </servlet>
-      <servlet>
+    </servlet>
+    <servlet>
         <servlet-name>DateAgainController</servlet-name>
         <servlet-class>sample.controller.DateAgainController</servlet-class>
     </servlet>
@@ -313,7 +312,7 @@
     <servlet-mapping>
         <servlet-name>AddNewBlogController</servlet-name>
         <url-pattern>/AddNewBlogController</url-pattern>
- </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DateAgainController</servlet-name>
         <url-pattern>/DateAgainController</url-pattern>
