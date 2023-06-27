@@ -50,16 +50,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="admin/assets/plugins/datatables/datatables.min.css">
-        <script>
-            if ($('.datatable').length > 0) {
-                $('.datatable').DataTable({
-                    "bFilter": false,
-                    "initComplete": function () {
-                        this.api().order([[2, "desc"]]).draw(); // Sắp xếp theo cột đầu tiên (index 0) theo thứ tự giảm dần
-                    }
-                });
-            }
-        </script>
+
     </head>
     <body>
 
@@ -422,138 +413,146 @@
             MedicalRecordDAO mdao = new MedicalRecordDAO();
             List<BookingDTO> list = dao.getAllBooking();
             for (BookingDTO x : list) {
-                if (x.getBooking_status() == 4) {
+                if (x.getBooking_status() == 4 || x.getBooking_status() == 7) {
                     count++;
 
         %>
-        <div class="modal fade" id="invoice_<%=count%>" aria-hidden="true" role="dialog">
+        <form action="MainController">
+            <div class="modal fade" id="invoice_<%=count%>" aria-hidden="true" role="dialog">
 
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div style="padding: 0px 10px; max-height: 100%"  class="card">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div style="padding: 0px 10px; max-height: 100%"  class="card">
 
-                    <div class="page-wrapper">
-                        <div class="content container-fluid">
+                        <div class="page-wrapper">
 
-                            <!-- Invoice Container -->
-                            <div class="invoice-container">
+                            <div class="content container-fluid">
 
-                                <div class="row">
-                                    <div class="col-sm-6 m-b-20">
-                                        <img alt="Logo" class="inv-logo img-fluid" src="assets/img/final_logo.png">
-                                    </div>
-                                    <div class="col-sm-6 m-b-20">
-                                        <div class="invoice-details">
-                                            <h3 class="text-uppercase">Invoice #<%=x.getBooking_id()%></h3>
-                                            <ul class="list-unstyled mb-0">
-                                                <li>Date: <span><%=x.getDate()%></span></li>
-                                            </ul>
+                                <!-- Invoice Container -->
+                                <div class="invoice-container">
+
+                                    <div class="row">
+                                        <div class="col-sm-6 m-b-20">
+                                            <img alt="Logo" class="inv-logo img-fluid" src="assets/img/final_logo.png">
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 m-b-20">
-                                        <ul class="list-unstyled mb-0">
-                                            <li>The dear bird Hospital</li>
-                                            <br>
-                                            <br>
-                                            <br>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-6 col-lg-7 col-xl-8 m-b-20">
-                                        <h3>Invoice to</h3>
-                                        <ul class="list-unstyled mb-0">
-                                            <li><h5 class="mb-0"><strong><%=dao.customerName(x.getUsername_customer())%></strong></h5></li>
-                                            <li><%=udao.getUser(x.getUsername_customer()).getPhone()%></li>
-                                            <li><%=udao.getUser(x.getUsername_customer()).getEmail()%></li>
-                                            <br>
-                                            <br>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
-                                        <h3>Patient Details</h3>
-                                        <ul class="list-unstyled invoice-payment-details mb-0">
-                                            <li><h5>Name: <span class="text-right"><%=dao.getBirdname(x.getPatient_id())%></span></h5></li>
-                                            <li>Species: <%=pdao.getSpecies(pdao.getBirdByID(x.getPatient_id()).getSpecies_id())%> <span></span></li>
-                                            <br>
-                                            <br>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>SERVICE</th>
-                                                <th class="d-none d-sm-table-cell"></th>
-                                                <th class="text-nowrap"></th>
-                                                <th ></th>
-                                                <th>PRICE</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <%
-                                                List<String> list_ser = mdao.getListServiceMore(mdao.getMRByBookingID(x.getBooking_id()).getRecord_id());
-                                                int number_ser = 0;
-                                                int total = 0;
-                                                for (String ls : list_ser) {
-                                                    number_ser++;
-                                                    total += mdao.getFeeSer(ls);
-                                            %>
-                                            <tr>
-                                                <td><%=number_ser%></td>
-                                                <td><%=mdao.getSerNam(ls)%></td>
-                                                <td class="d-none d-sm-table-cell"></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><%=mdao.getFeeSer(ls)%></td>
-                                            </tr>
-                                            <%    }
-                                            %>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div>
-                                    <div class="row invoice-payment">
-                                        <div class="col-sm-7">
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <div class="m-b-20">
-                                                <h3>Total due</h3>
-                                                <div class="table-responsive no-border">
-                                                    <table class="table mb-0">
-                                                        <tbody>
-                                                            <tr>
-                                                                <th>Total:</th>
-                                                                <td class="text-right text-primary"><h5><%=total%></h5></td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                        <div class="col-sm-6 m-b-20">
+                                            <div class="invoice-details">
+                                                <h3 class="text-uppercase">Invoice #<%=x.getBooking_id()%></h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li>Date: <span><%=x.getDate()%></span></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="invoice-info">
-                                        <h5>Note</h5>
-                                        <p class="text-muted mb-0"><%=mdao.getMRByBookingID(x.getBooking_id()).getNote()%></p>
+                                    <div class="row">
+                                        <div class="col-sm-12 m-b-20">
+                                            <ul class="list-unstyled mb-0">
+                                                <li>The dear bird Hospital</li>
+                                                <br>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-lg-7 col-xl-8 m-b-20">
+                                            <h3>Invoice to</h3>
+                                            <ul class="list-unstyled mb-0">
+                                                <li><h5 class="mb-0"><strong><%=dao.customerName(x.getUsername_customer())%></strong></h5></li>
+                                                <li><%=udao.getUser(x.getUsername_customer()).getPhone()%></li>
+                                                <li><%=udao.getUser(x.getUsername_customer()).getEmail()%></li>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
+                                            <h3>Patient Details</h3>
+                                            <ul class="list-unstyled invoice-payment-details mb-0">
+                                                <li><h5>Name: <span class="text-right"><%=dao.getBirdname(x.getPatient_id())%></span></h5></li>
+                                                <li>Species: <%=pdao.getSpecies(pdao.getBirdByID(x.getPatient_id()).getSpecies_id())%> <span></span></li>
+                                                <br>
+                                                <br>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>SERVICE</th>
+                                                    <th class="d-none d-sm-table-cell"></th>
+                                                    <th class="text-nowrap"></th>
+                                                    <th ></th>
+                                                    <th>PRICE</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <%
+                                                    List<String> list_ser = mdao.getListServiceMore(mdao.getMRByBookingID(x.getBooking_id()).getRecord_id());
+                                                    int number_ser = 0;
+                                                    int total = 0;
+                                                    for (String ls : list_ser) {
+                                                        number_ser++;
+                                                        total += mdao.getFeeSer(ls);
+                                                %>
+                                                <tr>
+                                                    <td><%=number_ser%></td>
+                                                    <td><%=mdao.getSerNam(ls)%></td>
+                                                    <td class="d-none d-sm-table-cell"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><%=mdao.getFeeSer(ls)%></td>
+                                                </tr>
+                                                <%    }
+                                                %>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div>
+                                        <div class="row invoice-payment">
+                                            <div class="col-sm-7">
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <div class="m-b-20">
+                                                    <h3>Total due</h3>
+                                                    <div class="table-responsive no-border">
+                                                        <table class="table mb-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>Total:</th>
+                                                                    <td class="text-right text-primary"><h5><%=total%></h5></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="invoice-info">
+                                            <h5>Note</h5>
+                                            <p class="text-muted mb-0"><%=mdao.getMRByBookingID(x.getBooking_id()).getNote()%></p>
+                                        </div>
+
+                                    </div>
+                                  
                                 </div>
+                                <!-- /Invoice Container -->
 
                             </div>
-                            <!-- /Invoice Container -->
 
-                        </div>			
+                        </div>
+
+
                     </div>
-
-
                 </div>
+
             </div>
-        </div>
+
+        </form>
+
         <%
                 }
             }

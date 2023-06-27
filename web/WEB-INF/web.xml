@@ -161,6 +161,10 @@
         <servlet-name>BookingAgainConfirmController</servlet-name>
         <servlet-class>sample.controller.BookingAgainConfirmController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MedicalRecordDoneController</servlet-name>
+        <servlet-class>sample.controller.MedicalRecordDoneController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -320,6 +324,10 @@
     <servlet-mapping>
         <servlet-name>BookingAgainConfirmController</servlet-name>
         <url-pattern>/BookingAgainConfirmController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MedicalRecordDoneController</servlet-name>
+        <url-pattern>/MedicalRecordDoneController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

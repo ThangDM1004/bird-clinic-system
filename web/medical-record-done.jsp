@@ -169,7 +169,7 @@
                                     List<String> list_ser = mdao.getListServiceMore(list_mr.getRecord_id());
                                     for (String ser : list_ser) {
                                 %>
-                            <input value="<%=mdao.getSerNam(ser) %>" readonly>
+                            <input value="<%=mdao.getSerNam(ser)%>" readonly>
                             <%
                                 }
                             %>
@@ -189,6 +189,24 @@
                     </div>
                 </div>
             </div>
+            <form action="MainController">
+                <input name="booking_id" value="<%=booking_id%>" hidden="">
+                <%
+                    if (booking.getBooking_status() == 8) {
+                %>
+                <input value="Done"  name="action" type="submit" class="btn btn-primary submit-btn">
+                <%
+                } else if (booking.getBooking_status() == 7) {
+                %>
+                <input value="Done" disabled="" name="action" type="submit" class="btn btn-primary submit-btn">
+                <%
+                } else {
+                %>
+                <input value="Done" hidden="" name="action" type="submit" class="btn btn-primary submit-btn">
+            </form>
+            <%
+                }
+            %>
         </div>
 
         <!-- /About Me -->

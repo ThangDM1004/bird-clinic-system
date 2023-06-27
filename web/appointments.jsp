@@ -104,6 +104,14 @@
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
                                     }
                                 }
                             }
@@ -116,8 +124,8 @@
                         } else {
                             String[] ID = app[2][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                               int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
                         %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
@@ -128,6 +136,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -140,9 +156,9 @@
                         } else {
                             String[] ID = app[3][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                               int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
-                        %>
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
+                       %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                         } else if (status_book == 4) {
@@ -152,6 +168,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -163,9 +187,9 @@
                         } else {
                             String[] ID = app[4][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                               int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
-                        %>
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
+                      %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                         } else if (status_book == 4) {
@@ -175,6 +199,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -186,9 +218,9 @@
                         } else {
                             String[] ID = app[5][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                               int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
-                        %>
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
+                       %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                         } else if (status_book == 4) {
@@ -198,6 +230,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue"  onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -209,9 +249,9 @@
                         } else {
                             String[] ID = app[6][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                              int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
-                        %>
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
+                       %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                         } else if (status_book == 4) {
@@ -221,6 +261,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }
@@ -232,9 +280,9 @@
                         } else {
                             String[] ID = app[7][i + 1].split(" ");
                             for (int j = 0; j < ID.length; j++) {
-                           int status_book = dao.CheckBooking(ID[j]);
-                                    if (status_book == 2) {
-                        %>
+                                int status_book = dao.CheckBooking(ID[j]);
+                                if (status_book == 2) {
+                       %>
                         <button style="background-color: #9f9f9f"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                         } else if (status_book == 4) {
@@ -244,6 +292,14 @@
                         } else if (status_book == 3) {
                         %>
                         <button style="background-color: blue"  class="btn btn-primary submit-btn" onclick="Medical('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 7) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
+                        <%
+                        } else if (status_book == 8) {
+                        %>
+                        <button class="btn btn-primary submit-btn" style="background-color: blue" onclick="Medical_done('<%=ID[j]%>')"><%= ID[j]%></button>
                         <%
                                     }
                                 }

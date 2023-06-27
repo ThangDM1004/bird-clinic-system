@@ -40,23 +40,30 @@ public class CheckInController extends HttpServlet {
             int booking_status = Integer.parseInt(request.getParameter("status_booking"));
             BookingDAO dao = new BookingDAO();
             boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
-            if (checkUpdate) {
-                LocalDate ngayHienTai = LocalDate.now();
-                LocalTime gioHienTai = LocalTime.now();
-                Time gioSQL = Time.valueOf(gioHienTai);
-                boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
-                if (checkHistory) {
-                    HttpSession session = request.getSession();
-                    if (booking_status == 3) {
-                        session.setAttribute("status", "Assign");
-                    } else if (booking_status == 4) {
-                        session.setAttribute("status", "CheckIn");
-                    } else if (booking_status == 5) {
-                        session.setAttribute("status", "CheckOut");
-                    }
+            if (booking_status == 8) {
+                HttpSession session = request.getSession();
+                session.setAttribute("status", "CheckOut");
+                response.sendRedirect("staff.jsp");
+            } else {
+                if (checkUpdate) {
+                    LocalDate ngayHienTai = LocalDate.now();
+                    LocalTime gioHienTai = LocalTime.now();
+                    Time gioSQL = Time.valueOf(gioHienTai);
+                    boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
+                    if (checkHistory) {
+                        HttpSession session = request.getSession();
+                        if (booking_status == 3) {
+                            session.setAttribute("status", "Assign");
+                        } else if (booking_status == 4) {
+                            session.setAttribute("status", "CheckIn");
+                        } else if (booking_status == 5) {
+                            session.setAttribute("status", "CheckOut");
+                        }
 
-                    response.sendRedirect("staff.jsp");
+                        response.sendRedirect("staff.jsp");
+                    }
                 }
+
             }
         } catch (Exception e) {
 

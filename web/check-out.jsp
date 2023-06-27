@@ -86,7 +86,7 @@
 
                                                 <%                                                    int count = 0;
                                                     for (BookingDTO x : list) {
-                                                        if (x.getBooking_status() == 4) {
+                                                        if (x.getBooking_status() == 4 || x.getBooking_status() == 7 || x.getBooking_status() == 8) {
                                                             count++;
                                                 %>
                                                 <tr>
@@ -103,7 +103,21 @@
                                             <input type="hidden" value="3" name="status_booking">
                                             <td> <a href="#invoice_<%=count%>" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
                                             <td><div class="submit-section">
+                                                    <%
+                                                        if (x.getBooking_status() == 7) {
+                                                    %>
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=8&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Confirm</a>
+                                                    <%
+                                                    } else if (x.getBooking_status() == 8) {
+                                                    %>
+                                                    <a style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check Out</a>
+                                                    <%                                                    } else {
+                                                    %>
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=5&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check Out</a>
+                                                    <%
+                                                        }
+                                                    %>
+
                                                 </div></td>
 
                                             <%
