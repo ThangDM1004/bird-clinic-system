@@ -3,11 +3,15 @@
  Template Name: Doccure - Bootstrap Template
  Version      : 1.0
  */
-if ($('.datatable').length > 0) {
+if ($('.').length > 0) {
     $('.datatable').DataTable({
         "bFilter": false,
+        "initComplete": function () {
+            this.api().order([[2, "desc"]]).draw(); // Sắp xếp theo cột đầu tiên (index 0) theo thứ tự giảm dần
+        }
     });
 }
+
 (function ($) {
     "use strict";
 

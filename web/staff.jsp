@@ -50,6 +50,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="admin/assets/plugins/datatables/datatables.min.css">
+        <script>
+            if ($('.datatable').length > 0) {
+                $('.datatable').DataTable({
+                    "bFilter": false,
+                    "initComplete": function () {
+                        this.api().order([[2, "desc"]]).draw(); // Sắp xếp theo cột đầu tiên (index 0) theo thứ tự giảm dần
+                    }
+                });
+            }
+        </script>
     </head>
     <body>
 

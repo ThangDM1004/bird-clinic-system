@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.PatientDAO"%>
+<%@page import="sample.dto.PatientDTO"%>
 <%@page import="sample.dto.MedicalRecordDTO"%>
 <%@page import="sample.dto.UserDTO"%>
 <%@page import="sample.dto.AppointmentDTO"%>
@@ -16,6 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
     <body>
         <%
@@ -63,7 +66,7 @@
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
+                                    <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th style="width: 30%;">Doctor</th>
@@ -132,6 +135,7 @@
                     <!-- Medical Records Tab -->
                     <div id="pat_medical_records" class="tab-pane fade">
                         <%
+
                             MedicalRecordDAO daoMR = new MedicalRecordDAO();
                             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
 
@@ -144,21 +148,23 @@
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
+                                    <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
 
                                                 <th>Date Again </th>
                                                 <th>Service</th>
                                                 <th>Note</th>
-                                                <th>Created</th>
-                                                <th></th>
+                                                <th>Doctor</th>
+                                                <th>Patient(Bird)</th>
                                             </tr>     
                                         </thead>
                                         <tbody>
                                             <%
                                                 for (MedicalRecordDTO mrr : MR) {
                                                     int index = MR.indexOf(mrr);
+                                                    PatientDAO daoBird = new PatientDAO();
+                                                    PatientDTO bird = daoBird.getOneBird(mrr.getPatent_id());
                                             %>
                                             <tr>
 
@@ -166,9 +172,10 @@
                                                 <td>
 
                                                     <ul>
+
                                                         <%
                                                             List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
-                                                            for (String ser_id : moreService) {%>
+                                                                for (String ser_id : moreService) {%>
 
                                                         <li><%=daoMR.getSerNam(ser_id)%></li>
 
@@ -187,11 +194,16 @@
                                                         <a href="doctor-profile.jsp"><%= daoMR.getDocName(mrr.getDoctorName())%><span> <%= daoMR.getSpec(mrr.getDoctorName())%></span></a>
                                                     </h2>
                                                 </td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a href="#" class="avatar avatar-sm mr-2">
+                                                            <img class="avatar-img rounded-circle" src="<%=bird.getImage()%>" >
+                                                        </a>
+                                                        <a href="#"><%=bird.getName()%><span> <%= daoBird.getIDSpecies(bird.getSpecies_id())%></span></a>
+                                                    </h2>
+                                                </td>
                                                 <td class="text-right">
                                                     <div class="table-action">
-                                                        <!--                                                        <a href="javascript:void(0);" class="btn btn-sm bg-info-light">
-                                                                                                                    <i class="far fa-eye"></i> View
-                                                                                                                </a>-->
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
                                                             <i class="fas fa-thumbs-up"></i> Feedback
                                                         </a>
@@ -199,7 +211,12 @@
 
                                                     <form action="MainController">
                                                         <div class="table-action">
-                                                            <button href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
+                                                            <button type="submit" name="action" class="btn btn-sm bg-primary-light" value="dateAgain">
+                                                                <input hidden="" name="username_doc" value="<%=mrr.getDoctorName()%>" >
+                                                                <input hidden="" name="patient_id" value="<%=bird.getPatient_id()%>" >
+                                                                <input hidden="" name="username" value="<%=user.getUsername()%>" >
+                                                                <input hidden="" name="service" value="<%=mrr.getSer_id()%>" >
+                                                                <input hidden="" name="dateagain" value="<%= mrr.getDate_again()%>" >
                                                                 <i class="fas"></i> Booking Again
                                                             </button>
                                                         </div>
