@@ -837,14 +837,25 @@ public class BookingDAO {
         return null;
     }
 
+    public boolean validateSlotBookingAgain(String doctor_user, String date, String slot) {
+        try {
+            conn = Utils.getConnection();
+            ps = conn.prepareStatement("select * from tbl_Booking\n"
+                    + "where username_doctor = ? and slot_number = ? and date = ?");
+            ps.setString(1, doctor_user);
+            ps.setString(2, slot);
+            ps.setString(3, date);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return true;
+    }
+
     public static void main(String[] args) throws ParseException {
         BookingDAO dao = new BookingDAO();
-        String date = "2023-12-31";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date utilDate;
-        utilDate = format.parse(date);
-        java.sql.Date dateSQL = new java.sql.Date(utilDate.getTime());
-        BookingDTO b = new BookingDTO("BK23", "doctor1", "minhga1", dateSQL, "007  ", 1, "1", 1);
-        dao.insertIntoBooking(b);
+        System.out.println(dao.validateSlotBookingAgain("doctor1", "2023-06-15", "3"));
     }
 }

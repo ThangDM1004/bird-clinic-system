@@ -250,6 +250,7 @@
                                                         <input type="hidden" name="patient" value="${requestScope.patient_id}" />
                                                     </div>
                                                 </div>
+
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Doctor</label>
@@ -260,7 +261,7 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Date</label>
-                                                        <input id="dateInput" min="${requestScope.dateagain}" name="selectDate" value="${requestScope.dateagain}" class="form-control" type="date">
+                                                        <input style="background: white" readonly="" id="dateInput" min="${requestScope.dateagain}" name="selectDate" value="${requestScope.dateagain}" class="form-control" type="date">
                                                         <input id="hiddenDateInput" type="hidden" name="date" value="${requestScope.dateagain}" />
                                                     </div>
                                                 </div>
@@ -276,22 +277,49 @@
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="form-group card-label">
                                                         <label>Time</label>
-                                                        <select name="slot" class="form-control">
+                                                        <select id="slotSelect" name="slot" class="form-control">
                                                             <option disabled selected value="">Select slot</option>
                                                             <c:forEach var="slot" items="${BookingDAO.slot}">
                                                                 <c:choose>
-                                                                    <c:when test="">
-                                                                        <option disabled="" value="${slot.slot_number}">${slot.time_slot}</option> 
+                                                                    <c:when test="${!BookingDAO.validateSlotBookingAgain(requestScope.doctor_username, requestScope.dateagain, slot.slot_number)}">
+                                                                        <option disabled style="background: lightgray" value="${slot.slot_number}">${slot.time_slot}</option>
                                                                     </c:when>
                                                                     <c:otherwise>
-                                                                        <option value="${slot.slot_number}">${slot.time_slot}</option> 
+                                                                        <option value="${slot.slot_number}">${slot.time_slot}</option>
                                                                     </c:otherwise>
                                                                 </c:choose>
-                                                            </c:forEach>                                                         
+                                                            </c:forEach>
                                                             <!-- Thêm các lựa chọn khác tại đây -->
                                                         </select>
+
                                                     </div>
                                                 </div>
+                                                <script>
+                                                    document.addEventListener('DOMContentLoaded', () => {
+                                                        const slotSelect = document.getElementById('slotSelect');
+                                                        const submitButton = document.querySelector('.submit-btn');
+
+                                                        // Kiểm tra giá trị select khi trang được tải
+                                                        checkSelectValue();
+
+                                                        slotSelect.addEventListener('change', () => {
+                                                            // Kiểm tra giá trị select khi select thay đổi
+                                                            checkSelectValue();
+                                                        });
+
+                                                        function checkSelectValue() {
+                                                            const selectedValue = slotSelect.value;
+
+                                                            if (selectedValue === '') {
+                                                                submitButton.disabled = true; // Disable submit button nếu giá trị select trống
+                                                            } else {
+                                                                submitButton.disabled = false; // Enable submit button nếu giá trị select không trống
+                                                            }
+                                                        }
+                                                    });
+                                                </script>
+
+
                                             </div>
                                             <!--											<div class="exist-customer">Existing Customer? <a href="#">Click here to login</a></div>-->
                                         </div>
