@@ -235,6 +235,7 @@
                                         <p>Appointment booked with <br> on <strong>${requestScope.date}</strong> at <strong>${requestScope.time}</strong></p>
                                         <a href="patient-dashboard.jsp" class="btn btn-primary view-inv-btn">View appointment</a>
                                     </div>
+                                    ${requestScope.service}
                                 </div>
                             </div>
                             <!-- /Success Card -->

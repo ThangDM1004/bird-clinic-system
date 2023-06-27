@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -836,8 +837,14 @@ public class BookingDAO {
         return null;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         BookingDAO dao = new BookingDAO();
-        System.out.println(dao.getBookingByID("BK1"));
+        String date = "2023-12-31";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date utilDate;
+        utilDate = format.parse(date);
+        java.sql.Date dateSQL = new java.sql.Date(utilDate.getTime());
+        BookingDTO b = new BookingDTO("BK23", "doctor1", "minhga1", dateSQL, "007  ", 1, "1", 1);
+        dao.insertIntoBooking(b);
     }
 }

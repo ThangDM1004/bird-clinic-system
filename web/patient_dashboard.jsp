@@ -210,7 +210,7 @@
 
                                                     <form action="MainController">
                                                         <div class="table-action">
-                                                            <button type="submit" class="btn btn-sm bg-primary-light" value="dateAgain">
+                                                            <button type="submit" name="action" class="btn btn-sm bg-primary-light" value="dateAgain">
                                                                 <input hidden="" name="username_doc" value="<%=mrr.getDoctorName()%>" >
                                                                 <input hidden="" name="patient_id" value="<%=bird.getSpecies_id()%>" >
                                                                 <input hidden="" name="username" value="<%=user.getUsername()%>" >

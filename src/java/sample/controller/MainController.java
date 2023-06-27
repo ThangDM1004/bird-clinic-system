@@ -59,6 +59,9 @@ public class MainController extends HttpServlet {
     private static String UPDATEFEEDBACK = "updateFeedback";
     private static String UPDATEFEEDBACK_CONTROLLER = "UpdateFeedbackController";
     private static String DATEAGAIN = "dateAgain";
+    private static String DATEAGAIN_CONTROLLER = "DateAgainController";
+    private static String BOOKINGAGAIN = "BookingAgainConfirm";
+    private static String BOOKINGAGAINCONTROLLER = "BookingAgainConfirmController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,7 +108,9 @@ public class MainController extends HttpServlet {
             } else if (actions.equals(UPDATEFEEDBACK)) {
                 url = UPDATEFEEDBACK_CONTROLLER;
             } else if (actions.equals(DATEAGAIN)) {
-                url = "error-404.jsp";
+                url = DATEAGAIN_CONTROLLER;
+            } else if (actions.equals(BOOKINGAGAIN)) {
+                url = BOOKINGAGAINCONTROLLER;
             } else {
                 url = "error-404.jsp";
             }
