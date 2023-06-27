@@ -210,10 +210,12 @@
                     if(status_booking == 2){
                         %>
                         <input disabled="" type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
+                        <input disabled="" type="submit" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
                 <%
                     }else if(status_booking == 3){
                         %>
                 <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
+                 <input  type="submit" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
                 <%
                     }
                 %>

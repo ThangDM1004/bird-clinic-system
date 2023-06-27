@@ -54,6 +54,8 @@ public class MainController extends HttpServlet {
     private static String MEDICAL_CONTROLLER = "MedicalRecordController";
     private static String MEDICAL_DONE = "Done";
     private static String MEDICAL_DONE_CONTROLLER = "MedicalRecordDoneController";
+    private static String DONE_MEDICAL = "Done Medical";
+    private static String DONE_MEDICAL_CONTROLLER = "MedicalRecordDoneNoServiceController";
     private static String UPDATEPROFILEUSER = "updateProfileUser";
     private static String UPDATEPROFILEUSER_CONTROLLER = "UpdateProfileUserController";
     private static String INSERTFEEDBACK = "feedback";
@@ -119,6 +121,8 @@ public class MainController extends HttpServlet {
                 url = BOOKINGAGAINCONTROLLER;
             }else if (actions.equals(MEDICAL_DONE)) {
                 url = MEDICAL_DONE_CONTROLLER;
+            }else if (actions.equals(DONE_MEDICAL)) {
+                url = DONE_MEDICAL_CONTROLLER;
             } else {
                 url = "error-404.jsp";
             }
