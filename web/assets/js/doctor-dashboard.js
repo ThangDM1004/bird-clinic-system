@@ -103,7 +103,7 @@ function Add() {
             }
         }
         if (checkExist === true) {
-            alert("Dịch vụ này đã có rồi");
+            
         } else {
             selectElement.remove();
             addButton.remove();
