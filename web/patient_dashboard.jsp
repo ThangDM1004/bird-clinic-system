@@ -18,6 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        
     </head>
     <body>
         <%
@@ -65,7 +66,7 @@
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
+                                    <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
                                                 <th style="width: 30%;">Doctor</th>
@@ -147,7 +148,7 @@
                         <div class="card card-table mb-0">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-center mb-0">
+                                    <table class="datatable table table-hover table-center mb-0">
                                         <thead>
                                             <tr>
 
