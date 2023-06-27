@@ -130,12 +130,12 @@
                 <!--Post Filter-->
                 <%
                     BlogDAO dao = new BlogDAO();
-                    List<BlogDTO> list = dao.getListCategoriesBlog();
+                    List list = dao.getList();
                 %>
                 <div class="post-filter container">
                     <span class="filter-item active-filter" data-filter='all'>All</span>
-                    <% for (BlogDTO blog : list) {%>
-                    <span class="filter-item " data-filter='<%=blog.getCategories_blog_name()%>'><%=blog.getCategories_blog_name()%></span>
+                    <% for (Object blog : list) {%>
+                    <span class="filter-item " data-filter='<%=blog%>'><%=blog%></span>
                     <%
                         }
                     %>
