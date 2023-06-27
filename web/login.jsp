@@ -72,7 +72,7 @@
                             <li class="active">
                                 <a href="index-2.jsp">Home</a>
                             </li>
-                            
+
                             <!-- 12312 <li class="has-submenu">
                                     <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
                                     <ul class="submenu">
@@ -125,7 +125,7 @@
                                     </ul>
                             </li> -->
                             <li>
-                                <a href="blank-page.jsp" >Blog</a>
+                                <a href="blog.jsp" >Blog</a>
                             </li>
                             <li class="login-link">
                                 <a href="login.jsp">Login / Signup</a>

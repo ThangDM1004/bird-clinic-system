@@ -20,7 +20,7 @@
 
     <!-- doccure/blank-page.jsp  30 Nov 2019 04:12:20 GMT -->
     <head>
-        <meta charset="utf-8">
+
         <title>thedearbird | Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 
@@ -115,10 +115,10 @@
                             <nav aria-label="breadcrumb" class="page-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index-2.jsp">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Blog Page</li>
                                 </ol>
                             </nav>
-                            <h2 class="breadcrumb-title">Blank Page</h2>
+                            <h2 class="breadcrumb-title">Blog Page</h2>
                         </div>
                     </div>
                 </div>
@@ -130,12 +130,12 @@
                 <!--Post Filter-->
                 <%
                     BlogDAO dao = new BlogDAO();
-                    List<BlogDTO> list = dao.getListCategoriesBlog();
+                    List list = dao.getList();
                 %>
                 <div class="post-filter container">
                     <span class="filter-item active-filter" data-filter='all'>All</span>
-                    <% for (BlogDTO blog : list) {%>
-                    <span class="filter-item " data-filter='<%=blog.getCategories_blog_name()%>'><%=blog.getCategories_blog_name()%></span>
+                    <% for (Object blog : list) {%>
+                    <span class="filter-item " data-filter='<%=blog%>'><%=blog%></span>
                     <%
                         }
                     %>

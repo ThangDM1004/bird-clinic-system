@@ -198,21 +198,21 @@
             <!-- /Header -->
 
             <!-- Breadcrumb -->
-            <div class="breadcrumb-bar">
+<!--            <div class="breadcrumb-bar">
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <div class="col-md-12 col-12">
                             <nav aria-label="breadcrumb" class="page-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index-2.jsp">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Blog Page</li>
                                 </ol>
                             </nav>
-                            <h2 class="breadcrumb-title">Blank Page</h2>
+                            <h2 class="breadcrumb-title">Blog Page</h2>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- /Breadcrumb -->
 
 
@@ -247,11 +247,27 @@
                 <section class="post-content post-container">                                   
                     <%=blog.getDetails()%>
                 </section>
-
+                <script>
+                    $(document).ready(function () {
+                        // Find all img tags within the section element
+                        $('section.post-content.post-container img').each(function () {
+                            // Set the maximum width to 800 pixels
+                            $(this).css('max-width', '800px');
+                        });
+                    });
+                </script>
+                <style>
+                    /* Optional CSS to handle responsive images within the section */
+                    section.post-content.post-container img {
+                        height: auto;
+                        width: 100%;
+                    }
+                </style>
                 <!--Share-->
-                <div class="share post-container">
-                    <span class="share-title">Date / Time</span>
+                <div class="share post-container"style="margin-bottom: 10px;">
+                    <span class="share-title">/ Date /</span>
                     <span><%=blog.getDate_post()%></span>
+                    <span><strong>By <%=blog.getAuthor()%></strong></span>
                 </div>
                 <%                    }
                 %>
