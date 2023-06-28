@@ -265,16 +265,16 @@
                                 </li>
                             </c:if>
 
-                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
                                 <li>
                                     <a type="button" onclick="Blogs()"><i class="fe fe-file-word"></i> <span>Blogs</span></a>
                                 </li>
                             </c:if> 
 
                             <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
-                                <li>
-                                    <a type="button" onclick="Reviews()"><i class="fa-solid fa-blog"></i></i> <span>Reviews</span></a>
-                                </li>
+                                <!--                                <li>
+                                                                    <a type="button" onclick="Reviews()"><i class="fa-solid fa-blog"></i></i> <span>Reviews</span></a>
+                                                                </li>-->
                             </c:if>
 
                             <!---------------------------- -->
