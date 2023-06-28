@@ -67,7 +67,7 @@
             int count = 0;
             UserDAO uDao = new UserDAO();
             MedicalRecordDAO mdao = new MedicalRecordDAO();
-            MedicalRecordDTO list_mr = mdao.getMRByBookingID(booking_id);
+            MedicalRecordDTO list_mr = mdao.getMRByBookingID(booking_id);          
         %>
         <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
         <form action="MainController">

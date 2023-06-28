@@ -285,6 +285,46 @@ public class MedicalRecordDAO {
         }
         return null;
     }
+    
+     public List<MedicalRecordDTO> getMRDoctor(String username) throws SQLException {
+        List<MedicalRecordDTO> ls = new ArrayList();
+        MedicalRecordDTO a = new MedicalRecordDTO();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_customer, tbl_Booking.service_id\n" +
+"                                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n" +
+"                                      where tbl_Booking.username_doctor = ?");
+            ptm.setString(1, username);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                MedicalRecordDAO dao = new MedicalRecordDAO();
+                String patient_id = rs.getString("patient_id").trim();
+                Date date_again = rs.getDate("date_again");
+                String note = rs.getString("note");
+
+                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, "", rs.getString("service_id"), rs.getString("username_customer"));
+                ls.add(a);
+
+            }
+            return ls;
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return null;
+    }
 
     public MedicalRecordDTO getMRByBookingID(String bookingID) throws SQLException {
         MedicalRecordDTO ls = new MedicalRecordDTO();

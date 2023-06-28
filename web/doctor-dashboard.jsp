@@ -45,11 +45,13 @@
         <!-- Main CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
 
+        <link rel="stylesheet" href="admin/assets/plugins/datatables/datatables.min.css">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
                         <script src="assets/js/html5shiv.min.js"></script>
                         <script src="assets/js/respond.min.js"></script>
                 <![endif]-->
+
 
     </head>
 
@@ -275,6 +277,26 @@
                                                     <span>Profile Settings</span>
                                                 </a>
                                             </li>
+                                            <li>
+                                                <a type="button" onclick="MedicalRecord()">
+                                                    <i class="fas fa-columns"></i>
+                                                    <span>Medical Record</span>
+                                                </a>
+                                            </li>
+                                            <script>
+                                                function MedicalRecord() {
+                                                    var xhttp = new XMLHttpRequest();
+                                                    xhttp.onreadystatechange = function () {
+                                                        if (this.readyState === 4 && this.status === 200) {
+                                                            document.getElementById("doctor").innerHTML = this.responseText;
+                                                            var table = $('.datatable').DataTable();
+                                                        }
+                                                    };
+                                                    xhttp.open("GET", "medical_doctor.jsp", true);
+                                                    xhttp.send();
+                                                }
+
+                                            </script>
                                             <li>
                                                 <a type="button" onclick="Feedback()">
                                                     <i class="fas fa-columns"></i>
@@ -630,7 +652,8 @@
 
         <!-- Custom JS -->
         <script src="assets/js/script.js"></script>
-
+        <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="admin/assets/plugins/datatables/datatables.min.js"></script>
     </body>
 
     <!-- doccure/doctor-dashboard.jsp  30 Nov 2019 04:12:09 GMT -->
