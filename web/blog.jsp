@@ -165,8 +165,8 @@
                         <p class="post-description"><%=plainText%></p>
                         <!--Profile author-->
                         <div class="profile">
-                            <img src="assets/img/post/profile-1.jpg" alt="" class="profile-img">
-                            <span class="profile-name">Marques Brown</span>
+                            <img src="assets/img/user_image_default.png" alt="" class="profile-img">
+                            <span class="profile-name"><%=blog.getAuthor()%></span>
                         </div>
                     </div>   
                     <%
