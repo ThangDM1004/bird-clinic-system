@@ -446,4 +446,31 @@ public class MedicalRecordDAO {
 
     }
 
+    public boolean UpdateMedical(MedicalRecordDTO mr) throws SQLException {
+        boolean checkInsert = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("UPDATE tbl_Medical_Record\n"
+                        + "SET date_again = ?, note = ?\n"
+                        + "WHERE record_id =?;");
+               ps.setDate(1, mr.getDate_again());
+               ps.setString(2, mr.getNote());
+               ps.setString(3, mr.getRecord_id());
+                checkInsert = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkInsert;
+    }
 }

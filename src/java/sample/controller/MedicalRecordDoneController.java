@@ -41,17 +41,31 @@ public class MedicalRecordDoneController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             BookingDAO dao = new BookingDAO();
+            MedicalRecordDAO mdao = new MedicalRecordDAO();
             String bookingID = request.getParameter("booking_id").trim();
-            boolean checkUpdate = dao.CheckInBooking(bookingID, 4);
-            if (checkUpdate) {
-                LocalDate ngayHienTai = LocalDate.now();
-                LocalTime gioHienTai = LocalTime.now();
-                Time gioSQL = Time.valueOf(gioHienTai);
-                boolean checkHistory = dao.InsertHistory(bookingID, 4, ngayHienTai, gioSQL, null);
-                if (checkHistory) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("status", "medical");
-                    response.sendRedirect("doctor-dashboard.jsp");
+            String record_id = request.getParameter("record_id").trim();
+            String note = request.getParameter("note");
+            String date = request.getParameter("date_again");
+            LocalDate localDate = null;
+            if (date == null) {
+            } else {
+                localDate = LocalDate.parse(date);
+            }
+            Date sqlDate = Date.valueOf(localDate);
+            MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, 0, "", note, "", "", "", null);
+            boolean checkInsert = mdao.UpdateMedical(mr);
+            if (checkInsert) {
+                boolean checkUpdate = dao.CheckInBooking(bookingID, 4);
+                if (checkUpdate) {
+                    LocalDate ngayHienTai = LocalDate.now();
+                    LocalTime gioHienTai = LocalTime.now();
+                    Time gioSQL = Time.valueOf(gioHienTai);
+                    boolean checkHistory = dao.InsertHistory(bookingID, 4, ngayHienTai, gioSQL, null);
+                    if (checkHistory) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("status", "medical");
+                        response.sendRedirect("doctor-dashboard.jsp");
+                    }
                 }
             }
 
