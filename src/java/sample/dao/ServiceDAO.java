@@ -329,11 +329,13 @@ public class ServiceDAO {
     public List<String> getTop5Services() {
         List<String> topServices = new ArrayList<>();
         String query = "SELECT TOP 5 s.service_name, COUNT(b.service_id) AS service_count\n"
-                + "FROM tbl_Service s\n"
-                + "JOIN tbl_Booking b ON s.service_id = b.service_id\n"
-                + "JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
-                + "GROUP BY s.service_id, s.service_name\n"
-                + "ORDER BY service_count DESC";
+                + "                FROM tbl_Service s\n"
+                + "                JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "                JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "				JOIN tbl_Booking_Status_Details c ON b.booking_id = c.booking_id\n"
+                + "				WHERE c.booking_status = 5\n"
+                + "                GROUP BY s.service_id, s.service_name\n"
+                + "                ORDER BY service_count DESC";
         try {
             conn = new Utils().getConnection();
             ps = conn.prepareStatement(query);
@@ -355,7 +357,7 @@ public class ServiceDAO {
         String query = "SELECT TOP 5  COUNT(b.service_id) AS service_count\n"
                 + "FROM tbl_Service s\n"
                 + "JOIN tbl_Booking b ON s.service_id = b.service_id\n"
-                + "JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n JOIN tbl_Booking_Status_Details c ON b.booking_id = c.booking_id WHERE c.booking_status = 5"
                 + "GROUP BY s.service_id, s.service_name\n"
                 + "ORDER BY service_count DESC";
 
