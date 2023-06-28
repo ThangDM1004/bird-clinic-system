@@ -32,7 +32,7 @@ public class AppointmentDAO {
     private static final String APPOINTMENT_LIST_DASHBOARD = "SELECT TOP 5 b.username_customer, b.username_doctor, b.date, bs.booking_name, s.service_name, sl.time_slot \n"
             + "FROM tbl_Booking b, tbl_Booking_Status bs, tbl_Booking_Status_Details bsd, tbl_Service s, tbl_Slot sl \n"
             + "WHERE b.booking_id = bsd.booking_id AND bs.booking_status = bsd.booking_status AND b.slot_number = sl.slot_number \n"
-            + "				AND b.service_id = s.service_id \n"
+            + "				AND b.service_id = s.service_id and bs.booking_status = '5' \n"
             + "ORDER BY b.date DESC";
     private static final String IMAGE_DOCTOR = "select  a.image\n"
             + "from tbl_Account a join tbl_Booking b on a.user_name = b.username_doctor and b.username_doctor = ?";
