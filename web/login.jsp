@@ -125,7 +125,7 @@
                                     </ul>
                             </li> -->
                             <li>
-                                <a href="blank-page.jsp" >Blog</a>
+                                <a href="blog.jsp" >Blog</a>
                             </li>
                             <li class="login-link">
                                 <a href="login.jsp">Login / Signup</a>

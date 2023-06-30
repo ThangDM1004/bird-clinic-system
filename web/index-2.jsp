@@ -237,7 +237,7 @@
             <section class="section section-specialities">
                 <div class="container-fluid">
                     <div class="section-header text-center">
-                        <h2>Top 5 most used services</h2>
+                        <h2>Top most used services</h2>
                         <p class="sub-title">Explore Our Top 5 Highly Sought-after Services for Avian Care. From Expert Vet Consultations to Professional Grooming and Behavior Training, Trust in Our Comprehensive and Trusted Solutions for Your Feathered Friend's Well-being.</p>
                     </div>
                     <div class="row justify-content-center">
@@ -340,7 +340,7 @@
                                                 <a href="#view_specialities_details_<%=index%>" data-toggle="modal" class="btn view-btn">View Detail</a>
                                             </div>
                                             <div class="col-6">
-                                                <a href="" class="btn book-btn">Book Now</a>
+                                                <a href="booking.jsp" class="btn book-btn">Book Now</a>
                                             </div>
                                         </div>
                                     </div>

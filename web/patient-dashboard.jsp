@@ -63,6 +63,7 @@
             } else {
                 response.sendRedirect("login.jsp");
             }
+            String role = user.getRole().trim();
         %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
@@ -255,6 +256,9 @@
                                 <div class="dashboard-widget">
                                     <nav class="dashboard-menu">
                                         <ul>
+                                            <%
+                                                if (role.equalsIgnoreCase("4")) {
+                                            %>
                                             <li class="active">
                                                 <a type="button" onclick="Dashboard()">
                                                     <i class="fas fa-columns"></i>
@@ -286,6 +290,34 @@
                                                     <span>Logout</span>
                                                 </a>
                                             </li>
+                                            <%
+                                            } else {
+                                            %>
+                                           
+
+                                            <li>
+                                                <a type="button" onclick="UserProfile()">
+                                                    <i class="fas fa-user-cog"></i>
+                                                    <span>Profile Settings</span>
+                                                </a>
+                                            </li>
+                                           
+                                            <li>
+                                                <a type="button" onclick="ChangePass()">
+                                                    <i class="fas fa-lock"></i>
+                                                    <span>Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="MainController?action=logout">
+                                                    <i class="fas fa-sign-out-alt"></i>
+                                                    <span>Logout</span>
+                                                </a>
+                                            </li>
+                                            <%
+                                                }
+                                            %>
+
                                         </ul>
                                     </nav>
                                 </div>
@@ -672,7 +704,7 @@
         <!-- Bootstrap Core JS -->
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
-          <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="admin/assets/plugins/datatables/datatables.min.js"></script>
 
         <!-- Sticky Sidebar JS -->

@@ -437,7 +437,8 @@ public class ServiceDAO {
         String query = "SELECT * FROM tbl_Service WHERE service_id in (SELECT TOP 5  s.service_id \n"
                 + "                FROM tbl_Service s\n"
                 + "                JOIN tbl_Booking b ON s.service_id = b.service_id\n"
-                + "                JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "                JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id"
+                + "                JOIN tbl_Booking_Status_Details c ON b.booking_id = c.booking_id WHERE c.booking_status = 5\n"
                 + "                GROUP BY s.service_id, s.service_name\n"
                 + "                ORDER BY COUNT(b.service_id)DESC)";
         try {
