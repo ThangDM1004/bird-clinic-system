@@ -67,74 +67,73 @@
             int count = 0;
             UserDAO uDao = new UserDAO();
             MedicalRecordDAO mdao = new MedicalRecordDAO();
-            MedicalRecordDTO list_mr = mdao.getMRByBookingID(booking_id);          
+            MedicalRecordDTO list_mr = mdao.getMRByBookingID(booking_id);
+            for (ServiceDTO x : list_service) {
+                count++;
         %>
+        <input hidden="" id="service_name_<%=count%>" value="<%=x.getService_name()%>">
+        <input hidden="" id="service_id_<%=count%>" value="<%=x.getService_id()%>">
+        <input hidden="" id="service_fee_<%=count%>" value="<%=x.getFee()%>">
+        <%
+            }
+        %>
+        <input hidden="" id="index" value="<%=index%>">
         <button onclick="Appointments()" class="btn btn-primary submit-btn" >Back</button>
         <form action="MainController">
-
-
             <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Pet Information</h4>
-                    <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
+                <div class="row"> 
+                    <div class="card-body" style="width: 200px" >
+                        <h4 class="card-title">Pet Information</h4>
+                        <div class="row form-row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                </div>
+                            </div>
+                            <input name="patient_id" value="<%=list_mr.getPatent_id()%>" hidden="">
+                            <input name="booking_id" value="<%=booking_id%>" hidden="">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Pet Name <span class="text-danger"></span></label>
+                                    <input type="text" class="form-control" value="<%=dao.getBirdname(list_mr.getPatent_id())%>" disabled="">
+                                    <label>Species <span class="text-danger"></span></label>
+                                    <input type="email" class="form-control" value="<%= pDao.getSpecies(pDao.getBirdByID(booking.getPatient_id()).getSpecies_id())%>" disabled="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Age <span class="text-danger"></span></label>
+                                    <input disabled="" type="text" name="fullname" class="form-control" value="<%= pDao.getBirdByID(booking.getPatient_id()).getAge()%>" >
+                                    <label>Gender <span class="text-danger"></span></label>
+                                    <input disabled="" type="text" class="form-control" value="<%= pDao.getBirdByID(booking.getPatient_id()).getGender()%>">
+                                </div>
+                            </div>
+                        </div>
 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Pet Name <span class="text-danger"></span></label>
-                                <input type="text" class="form-control" value="<%=dao.getBirdname(list_mr.getPatent_id())%>" disabled="">
-                            </div>
-                        </div>
+                    </div>
+                    <div class="card-body" >
+                        <h4 class="card-title">Owner Information</h4>
+                        <div class="row form-row">
+                            <div class="col-md-12">
+                                <div class="form-group">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Species <span class="text-danger"></span></label>
-                                <input type="email" class="form-control" value="<%= pDao.getSpecies(pDao.getBirdByID(booking.getPatient_id()).getSpecies_id())%>" disabled="">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Age <span class="text-danger"></span></label>
-                                <input disabled="" type="text" name="fullname" class="form-control" value="<%= pDao.getBirdByID(booking.getPatient_id()).getAge()%>" >
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Gender <span class="text-danger"></span></label>
-                                <input disabled="" type="text" class="form-control" value="<%= pDao.getBirdByID(booking.getPatient_id()).getGender()%>">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Full Name <span class="text-danger"></span></label>
+                                    <input type="text" class="form-control" value="<%=uDao.getUser(booking.getUsername_customer()).getFullname()%>" disabled="">
+                                    <label>Phone <span class="text-danger"></span></label>
+                                    <input type="text" name="phone" class="form-control" value="<%=uDao.getUser(booking.getUsername_customer()).getPhone()%>" readonly="">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- /Basic Information -->
             <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Owner Information</h4>
-                    <div class="row form-row">
-                        <div class="col-md-12">
-                            <div class="form-group">
 
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Full Name <span class="text-danger"></span></label>
-                                <input type="text" class="form-control" value="<%=uDao.getUser(booking.getUsername_customer()).getFullname()%>" disabled="">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Phone <span class="text-danger"></span></label>
-                                <input type="text" name="phone" class="form-control" value="<%=uDao.getUser(booking.getUsername_customer()).getPhone()%>" readonly="">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -142,7 +141,6 @@
                     <div class="row form-row">
                         <div class="col-md-12">
                             <div class="form-group">
-
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -179,12 +177,24 @@
                                 <label>Service <span class="text-danger"></span></label>
                                     <%
                                         List<String> list_ser = mdao.getListServiceMore(list_mr.getRecord_id());
+                                        int sum = 0;
                                         for (String ser : list_ser) {
+                                            sum++;
                                     %>
-                                <input value="<%=mdao.getSerNam(ser)%>" readonly>
+                                <input id="service_<%=sum%>" disabled="" style="background-color:#09e5ab; border: #09e5ab;" value="<%=mdao.getSerNam(ser)%>" readonly>
                                 <%
                                     }
                                 %>
+                                <div id="service">
+
+                                </div>
+                                <%
+                                    if (booking.getBooking_status() == 8) {
+                                %>
+                                <input type="button" value="+" onclick="AddMore()">
+                                <%
+                                    }%>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -204,7 +214,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <div  class="form-group">
                                 <label>Total Fee:<span class="text-danger"></span></label>
                                 <input id="Total" class="form-control" name="total_fee"  value="<%=list_mr.getTotal_fee()%>" readonly>
@@ -215,24 +225,30 @@
 
                 <input name="booking_id" value="<%=booking_id%>" hidden="">
                 <input name="record_id" value="<%=list_mr.getRecord_id()%>" hidden="">
+                <input hidden="" id="myInput" name="number_service" value="<%=sum%>" readonly>
+                <%
+                    String index_ = request.getParameter("number_service");
+                %>
+                <div class="submit-section submit-btn-bottom">
+                    <%
+                        if (booking.getBooking_status() == 8) {
+                    %>
+                    <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
+                    <input value="Done"  name="action" type="submit" class="btn btn-primary submit-btn">
+                    <%
+                    } else if (booking.getBooking_status() == 7) {
+                    %>
+                    <input disabled="" type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
+                    <input value="Done" disabled="" name="action" type="submit" class="btn btn-primary submit-btn">
+                    <%
+                    } else {
+                    %>
+                    <input value="Done" hidden="" name="action" type="submit" class="btn btn-primary submit-btn">
 
-                <%
-                    if (booking.getBooking_status() == 8) {
-                %>
-                <input value="Done"  name="action" type="submit" class="btn btn-primary submit-btn">
-                <%
-                } else if (booking.getBooking_status() == 7) {
-                %>
-                <input value="Done" disabled="" name="action" type="submit" class="btn btn-primary submit-btn">
-                <%
-                } else {
-                %>
-                <input value="Done" hidden="" name="action" type="submit" class="btn btn-primary submit-btn">
-
-                <%
-                    }
-                %>
-            </div>
+                    <%
+                        }
+                    %>
+                </div>
         </form>
         <!-- /About Me -->
 
