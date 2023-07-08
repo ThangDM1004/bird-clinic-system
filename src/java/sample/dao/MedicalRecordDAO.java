@@ -358,6 +358,37 @@ public class MedicalRecordDAO {
         }
         return null;
     }
+     public boolean CheckgetMRByBookingID(String bookingID) throws SQLException {
+       boolean check = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            ptm = conn.prepareStatement("select *\n"
+                    + "from tbl_Medical_Record\n"
+                    + "where booking_id = ? ");
+            ptm.setString(1, bookingID);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+               check = true;
+            }
+           
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return check;
+    }
 
     private static final String MAX_ID_MR = "select top 1 record_id\n"
             + "from tbl_Medical_Record\n"
