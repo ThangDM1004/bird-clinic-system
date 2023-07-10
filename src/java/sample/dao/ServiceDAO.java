@@ -588,10 +588,49 @@ public class ServiceDAO {
         return listFee;
     }
 
+    public List<String> getDateByName() {
+        List<String> listDate = new ArrayList<>();
+        String query = "DECLARE @CurrentDate DATE;\n"
+                + "DECLARE @StartDate DATE;\n"
+                + "DECLARE @EndDate DATE;\n"
+                + "\n"
+                + "SET @CurrentDate = GETDATE();\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "\n"
+                + "SELECT \n"
+                + "    CASE \n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Monday' THEN 'Mon'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Tuesday' THEN 'Tue'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Wednesday' THEN 'Wed'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Thursday' THEN 'Thu'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Friday' THEN 'Fri'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Saturday' THEN 'Sat'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Sunday' THEN 'Sun'\n"
+                + "    END + ' ' + FORMAT(CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)), 'dd-MM') AS NgayVaTenThu\n"
+                + "FROM \n"
+                + "    (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn FROM sys.objects) AS numbers\n"
+                + "WHERE \n"
+                + "    rn <= DATEDIFF(DAY, @StartDate, @EndDate) + 1\n"
+                + "ORDER BY \n"
+                + "    rn;";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String temp = rs.getString("NgayVaTenThu");
+                listDate.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return listDate;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<Integer> list = dao.getCountServicePerWeek();
-        for (Integer integer : list) {
+        List<String> list = dao.getDateByName();
+        for (String integer : list) {
             System.out.println(integer);
         }
     }

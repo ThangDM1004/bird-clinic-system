@@ -30,9 +30,12 @@ public class getWeeklySalePerWeek extends HttpServlet {
         ServiceDAO dao = new ServiceDAO();
         List<Integer> dataList = dao.getTotalFeePerWeek();
         List<Integer> dataList_1 = dao.getCountServicePerWeek();
+        List<String> dataList_2 = dao.getDateByName();
         JsonObject jsonObject = new JsonObject();
         JsonArray dataArray = new JsonArray();
         JsonArray dataArray_1 = new JsonArray();
+        JsonArray dataArray_2 = new JsonArray();
+        
         for (Integer data : dataList) {
             dataArray.add(data);
         }
@@ -40,10 +43,14 @@ public class getWeeklySalePerWeek extends HttpServlet {
         for (Integer datas : dataList_1) {
             dataArray_1.add(datas);
         }
+        
+        for (String datas_1 : dataList_2) {
+            dataArray_2.add(datas_1);
+        }
 
         jsonObject.add("dataFee", dataArray);
-
         jsonObject.add("dataService", dataArray_1);
+        jsonObject.add("dataLabel", dataArray_2);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 

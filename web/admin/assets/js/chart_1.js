@@ -102,13 +102,13 @@ $.ajax({
     success: function (response) {
         var dataLists = response.dataFee;
         var dataLists_1 = response.dataService;
-
+        var dataLists_2 = response.dataLabel;
         const ctx_2 = document.getElementById('myChart_3');
 
         new Chart(ctx_2, {
             type: 'bar',
             data: {
-                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                labels: dataLists_2,
                 datasets: [{
                         type: 'bar',
                         label: 'Weekly Income in $',
