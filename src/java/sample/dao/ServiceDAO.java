@@ -523,13 +523,13 @@ public class ServiceDAO {
                 + "DECLARE @EndDate DATE;\n"
                 + "	\n"
                 + "SET @CurrentDate = GETDATE();\n"
-                + "SET @StartDate = DATEADD(DAY, 1 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
-                + "SET @EndDate = DATEADD(DAY, 7 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
                 + "\n"
                 + "SELECT \n"
                 + "    CASE \n"
                 + "        WHEN EXISTS (SELECT 1 FROM tbl_Booking_Status_Details WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5) \n"
-                + "        THEN (SELECT total_fee FROM tbl_Medical_Record WHERE booking_id = \n"
+                + "        THEN (SELECT total_fee FROM tbl_Medical_Record WHERE booking_id in\n"
                 + "											(SELECT booking_id FROM tbl_Booking_Status_Details c WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5))\n"
                 + "        ELSE '' \n"
                 + "    END AS total_fee\n"
@@ -552,9 +552,45 @@ public class ServiceDAO {
         return listFee;
     }
 
+    public List<Integer> getCountServicePerWeek() {
+        List<Integer> listFee = new ArrayList<>();
+        String query = "DECLARE @CurrentDate DATE;\n"
+                + "DECLARE @StartDate DATE;\n"
+                + "DECLARE @EndDate DATE;\n"
+                + "	\n"
+                + "SET @CurrentDate = GETDATE();\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "\n"
+                + "SELECT \n"
+                + "    CASE \n"
+                + "        WHEN EXISTS (SELECT 1 FROM tbl_Booking_Status_Details WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5) \n"
+                + "        THEN (SELECT COUNT(service_id) FROM tbl_Medical_Record m JOIN tbl_Select_Service s ON m.record_id = s.record_id WHERE m.booking_id in \n"
+                + "                (SELECT booking_id FROM tbl_Booking_Status_Details c WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5))\n"
+                + "        ELSE 0 \n"
+                + "    END AS total_fee\n"
+                + "FROM \n"
+                + "    (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn FROM sys.objects) AS numbers\n"
+                + "WHERE \n"
+                + "    rn <= DATEDIFF(DAY, @StartDate, @EndDate) + 1\n"
+                + "ORDER BY	\n"
+                + "    rn;";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int temp = rs.getInt("total_fee");
+                listFee.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return listFee;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<Integer> list = dao.getTotalFeePerWeek();
+        List<Integer> list = dao.getCountServicePerWeek();
         for (Integer integer : list) {
             System.out.println(integer);
         }

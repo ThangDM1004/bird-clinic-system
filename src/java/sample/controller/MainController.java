@@ -119,9 +119,9 @@ public class MainController extends HttpServlet {
                 url = DATEAGAIN_CONTROLLER;
             } else if (actions.equals(BOOKINGAGAIN)) {
                 url = BOOKINGAGAINCONTROLLER;
-            }else if (actions.equals(MEDICAL_DONE)) {
+            } else if (actions.equals(MEDICAL_DONE)) {
                 url = MEDICAL_DONE_CONTROLLER;
-            }else if (actions.equals(DONE_MEDICAL)) {
+            } else if (actions.equals(DONE_MEDICAL)) {
                 url = DONE_MEDICAL_CONTROLLER;
             } else {
                 url = "error-404.jsp";

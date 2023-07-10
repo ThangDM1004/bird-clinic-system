@@ -29,15 +29,21 @@ public class getWeeklySalePerWeek extends HttpServlet {
             throws ServletException, IOException {
         ServiceDAO dao = new ServiceDAO();
         List<Integer> dataList = dao.getTotalFeePerWeek();
-
+        List<Integer> dataList_1 = dao.getCountServicePerWeek();
         JsonObject jsonObject = new JsonObject();
         JsonArray dataArray = new JsonArray();
-
+        JsonArray dataArray_1 = new JsonArray();
         for (Integer data : dataList) {
             dataArray.add(data);
         }
 
-        jsonObject.add("datass", dataArray);
+        for (Integer datas : dataList_1) {
+            dataArray_1.add(datas);
+        }
+
+        jsonObject.add("dataFee", dataArray);
+
+        jsonObject.add("dataService", dataArray_1);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
