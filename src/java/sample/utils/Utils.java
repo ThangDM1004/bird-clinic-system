@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -23,4 +22,5 @@ public class Utils {
         conn = DriverManager.getConnection(url, "sa", "12345");
         return conn;
     }
+
 }
