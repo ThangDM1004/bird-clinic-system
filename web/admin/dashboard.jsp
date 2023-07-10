@@ -6,7 +6,8 @@
 <%@page import="sample.dao.ServiceDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
-
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.AppointmentDAO"%>
@@ -392,11 +393,26 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
+                    <%
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        String firstDayOfWeek = dateFormat.format(calendar.getTime());
+                        calendar.add(Calendar.DATE, 6);
+                        String lastDayOfWeek = dateFormat.format(calendar.getTime());
+                    %>
                     <div class="row">
-
+                        <div class="col-sm-6 col-md-7">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Weekly Income from <%=firstDayOfWeek%> to <%=lastDayOfWeek%></h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart_3"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </c:if>
