@@ -43,7 +43,7 @@
                 <nav class="user-tabs mb-4">
                     <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
                         <li class="nav-item">
-                           
+
                         </li>
                     </ul>
                 </nav>
@@ -80,8 +80,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <%                                        
-                                                    for (BookingDTO x : list) {
+                                                <%                                                    for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 3) {
                                                 %>
                                                 <tr>
@@ -95,7 +94,7 @@
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
-                                             <input type="hidden" value="4" name="status_booking">
+                                            <input type="hidden" value="4" name="status_booking">
 
                                             <%
                                                     }
