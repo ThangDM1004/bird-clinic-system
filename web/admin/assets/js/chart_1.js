@@ -100,7 +100,8 @@ $.ajax({
     url: '../getWeeklySalePerWeek',
     dataType: 'json',
     success: function (response) {
-        var dataLists = response.datass;
+        var dataLists = response.dataFee;
+        var dataLists_1 = response.dataService;
 
         const ctx_2 = document.getElementById('myChart_3');
 
@@ -137,7 +138,7 @@ $.ajax({
                     {
                         type: 'line',
                         label: 'Weekly Services in Quantity',
-                        data: [1, 2, 3, 4, 5, 6, 7],
+                        data: dataLists_1,
                         backgroundColor: [
                             'rgba(0, 0, 0, 0.5)'
                         ],
@@ -164,7 +165,9 @@ $.ajax({
                         beginAtZero: true,
                         type: 'linear',
                         position: 'right',
-
+                        ticks: {
+                            stepSize: 1
+                        }
                     }
                 }
             }
