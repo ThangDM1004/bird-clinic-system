@@ -267,7 +267,7 @@ public class UserDAO {
     }
 
     public UserDTO Login(String username, String password) {
-        String query = "SELECT * FROM tbl_Account WHERE user_name = ? AND password = ?";
+        String query = "SELECT * FROM tbl_Account WHERE user_name = ? AND password = ? AND status = 1";
         try {
             conn = new Utils().getConnection();
             ps = conn.prepareStatement(query);
@@ -919,7 +919,6 @@ public class UserDAO {
     }
 
     public static void main(String[] args) {
-        UserDAO dao = new UserDAO();
-        System.out.println(dao.getFullNameByUsername("minhga1"));
+
     }
 }
