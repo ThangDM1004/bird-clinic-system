@@ -62,7 +62,43 @@ public class ServiceDAO {
         }
         return list;
     }
+    public List<ServiceDTO> getListServiceV2() throws SQLException {
+        List<ServiceDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM tbl_Service WHERE status = 'true' and service_name != 'Normal' and service_name != 'Vip' ORDER BY service_id DESC";
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
+            while (rs.next()) {
+                ServiceDTO s = new ServiceDTO(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getBoolean(9),
+                        0);
+                list.add(s);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
     private static final String querryService = "select tbl_Service.service_id, service_name, fee, icon_link, status, avg(rating_star) as avgStar, service_detail, description,image\n"
             + "           from tbl_Service left join tbl_Feedback on tbl_Service.service_id = tbl_Feedback.service_id \n"
             + "           group by tbl_Service.service_id, tbl_Service.service_name, tbl_Service.fee, icon_link, status, service_detail, description, image ";

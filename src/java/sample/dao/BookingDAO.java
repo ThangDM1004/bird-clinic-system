@@ -836,6 +836,28 @@ public class BookingDAO {
         }
         return null;
     }
+     public BookingDTO getBookingByIDV2(String bookingID) {
+        String query = "SELECT * FROM tbl_Booking WHERE booking_id = ?";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, bookingID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new BookingDTO(
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6),
+                        Integer.parseInt(rs.getString(7)),
+                        rs.getString(8),
+                        Integer.parseInt(rs.getString(9).trim()));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     public boolean validateSlotBookingAgain(String doctor_user, String date, String slot) {
         try {

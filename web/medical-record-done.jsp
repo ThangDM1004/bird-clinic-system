@@ -62,7 +62,7 @@
             }
             PatientDAO pDao = new PatientDAO();
             ServiceDAO sdao = new ServiceDAO();
-            List<ServiceDTO> list_service = sdao.getListService();
+            List<ServiceDTO> list_service = sdao.getListServiceV2();
             int index = list_service.size();
             int count = 0;
             UserDAO uDao = new UserDAO();
@@ -179,10 +179,22 @@
                                         List<String> list_ser = mdao.getListServiceMore(list_mr.getRecord_id());
                                         int sum = 0;
                                         for (String ser : list_ser) {
-                                            sum++;
+
+                                            boolean checkVip = "Vip".equals(mdao.getSerNam(ser));
+                                            boolean checkNormal = "Normal".equals(mdao.getSerNam(ser));
+                                            if (checkVip == false && checkNormal == false) {
+                                                sum++;
+                                                boolean statusSer = mdao.getStatusService(list_mr.getRecord_id(), ser.trim());
+                                                if (statusSer == true) {
                                     %>
                                 <input id="service_<%=sum%>" disabled="" style="background-color:#09e5ab; border: #09e5ab;" value="<%=dao.getServiceFeeByName(mdao.getSerNam(ser))%>-<%=mdao.getSerNam(ser)%>" readonly>
                                 <%
+                                } else {
+                                %>
+                                <input id="service_<%=sum%>" disabled="" style="background-color:red; border: red;" value="<%=dao.getServiceFeeByName(mdao.getSerNam(ser))%>-<%=mdao.getSerNam(ser)%>" readonly>
+                                <%
+                                            }
+                                        }
                                     }
                                 %>
                                 <div id="service">
