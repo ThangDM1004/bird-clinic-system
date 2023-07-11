@@ -344,7 +344,6 @@
 
                 <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
                     <div class="row">
-
                         <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -354,6 +353,69 @@
                                         </span>
                                         <div class="dash-count">
                                             <% ServiceDAO dao_2 = new ServiceDAO();%>
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
                                             <h3>$<%=dao_2.getTotalRevenue()%> </h3>
                                         </div>
                                     </div>
@@ -403,7 +465,7 @@
                         String lastDayOfWeek = dateFormat.format(calendar.getTime());
                     %>
                     <div class="row">
-                        <div class="col-sm-6 col-md-7">
+                        <div class="col-sm-6 col-md-7" style="top: -100px;">
                             <div class="card card-chart">
                                 <div class="card-header">
                                     <h4 class="card-title">Weekly Income from <%=firstDayOfWeek%> to <%=lastDayOfWeek%></h4>

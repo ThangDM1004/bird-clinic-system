@@ -79,5 +79,10 @@ public class FeedbackDTO {
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
+    @Override
+    public String toString() {
+        return "FeedbackDTO{" + "service_id=" + service_id + ", user_name=" + user_name + ", rating_star=" + rating_star + ", feedback_content=" + feedback_content + ", date=" + date + ", record_id=" + record_id + '}';
+    }
+
 }

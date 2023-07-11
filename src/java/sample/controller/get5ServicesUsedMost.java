@@ -22,7 +22,7 @@ import sample.dao.ServiceDAO;
  * @author Minh
  */
 public class get5ServicesUsedMost extends HttpServlet {
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,15 +33,15 @@ public class get5ServicesUsedMost extends HttpServlet {
         JsonObject jsonObject = new JsonObject();
         JsonArray jsonArray = new JsonArray();
         JsonArray dataArray = new JsonArray();
-        
+
         for (Integer data : dataList) {
             dataArray.add(data);
         }
-        
+
         for (String label : labelList) {
             jsonArray.add(label);
         }
-        
+
         jsonObject.add("labels", jsonArray);
         jsonObject.add("datas", dataArray);
         // Thiết lập các thông số cho response
@@ -53,5 +53,5 @@ public class get5ServicesUsedMost extends HttpServlet {
         out.print(jsonObject.toString());
         out.flush();
     }
-    
+
 }
