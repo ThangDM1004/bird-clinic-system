@@ -299,6 +299,7 @@
 
                                 <%
                                     ServiceDAO dao_1 = new ServiceDAO();
+                                    FeedbackDAO feedDAO = new FeedbackDAO();
                                     List<ServiceDTO> lists = dao.getListService();
                                     for (ServiceDTO ser : lists) {
                                         int index = lists.indexOf(ser);
@@ -318,8 +319,23 @@
                                             <a href=""><%=ser.getService_name()%></a>
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
+                                        <!--<a href="#" class="product-link" style="margin-bottom: 5px;">Most used service</a>-->
+                                        <!--<a href="#" class="product-link" style="margin-bottom: 5px;background:#ffc107; ">Good rating service</a>-->
+                                        <!--<p class="speciality" style="margin-bottom: -17px;"></p>-->
+                                        <!--<p class="speciality"></p>-->
+                                        <%if (feedDAO.getAverageRatingByServiceId(ser.getService_id()) > 4 && dao_1.checkTop1Service(ser.getService_id()) == true) { %>
+                                        <a href="#" class="product-link" style="">Most used service</a>
+                                        <br>
+                                        <a href="#" class="product-link" style="background:#ffc107;">High rating service</a>
+                                        <%} else if (feedDAO.getAverageRatingByServiceId(ser.getService_id()) > 4) {%>
+                                        <a href="#" class="product-link" style="margin-bottom: 5px;background:#ffc107; ">High rating service</a>
+                                        <p class="speciality" style="margin-bottom: -17px;"></p>
+                                        <%} else if (dao_1.checkTop1Service(ser.getService_id()) == true) { %>
+                                        <a href="#" class="product-link" style="margin-bottom: 5px;">Most used service</a>
+                                        <p class="speciality" style="margin-bottom: -17px;"></p>
+                                        <% } else {%>
                                         <p class="speciality"></p>
-
+                                        <%} %>
                                         <div class="rating">
                                             <%
                                                 FeedbackDAO dao_fb_2 = new FeedbackDAO();
@@ -399,8 +415,8 @@
                                             <%} else { %>
                                             <span>0</span>
                                             <% }%>
-                                            
-                                            <span class="d-inline-block average-rating"><%=avg_rating%></span>
+
+                                            <span class="d-inline-block average-rating"><%=avg_rating%> (<%=count_fb_2%>)</span>
                                         </div>
                                         <ul class="available-info">
                                             <!--                                            <li>
@@ -684,14 +700,92 @@
 
                             <div class="product-contents">
                                 <h2 class="product-titles"><%=elem.getService_name()%></h2>
+                                <% if (dao_1.checkTop1Service(elem.getService_id()) == true) {
+                                %>
                                 <a href="#" class="product-link">Most used service</a>
+                                <%
+                                    } %>
                                 <div class="product-rating">
-                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
                                     <%
-                                        FeedbackDAO dao_fb_1 = new FeedbackDAO();
+                                        FeedbackDAO dao_fb_2 = new FeedbackDAO();
+                                        int count_fb_2 = dao_fb_2.getCountRowRatingByServiceId(elem.getService_id());
+                                        float avg_rating = dao_fb_2.getAverageRatingByServiceId(elem.getService_id());
+                                        if (avg_rating == 0) {
                                     %>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <%
+                                    } else if (avg_rating < 1.0) {
+                                    %>
+                                    <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <%
+                                    } else if (avg_rating == 1.0) {
+                                    %>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <% } else if (avg_rating > 1.0 && avg_rating < 2.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <%} else if (avg_rating == 2.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <%} else if (avg_rating > 2.0 && avg_rating < 3.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <% } else if (avg_rating == 3.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                    <% } else if (avg_rating > 3.0 && avg_rating < 4.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                    <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                    <% } else if (avg_rating == 4.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                    <% } else if (avg_rating > 4.0 && avg_rating < 5.0) { %>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                    <% } else if (avg_rating == 5.0) {%>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <%} else { %>
+                                    <span>0</span>
+                                    <% }%>
 
-                                    <span><%=dao_fb_1.getAverageRatingByServiceId(elem.getService_id())%>  (<%=dao_fb_1.getCountRowRatingByServiceId(elem.getService_id())%>)</span>
+                                    <span><%=avg_rating%>(<%=count_fb_2%>)</span>
 
                                 </div>
 
@@ -736,91 +830,100 @@
                                 </div>
                             </div>
                         </div>
-
+                        <% FeedbackDAO dao_fb_4 = new FeedbackDAO(); %>
+                        <% if (dao_fb_4.getCountRowRatingByServiceId(elem.getService_id()) == 0) {%>
                         <section id="testimonials">
-                            <div class="testimonial-heading">
-                                <span>Comments</span>
-                                <h1>Customer Feedback</h1>
-                            </div>
+                            <%} else { %>
+                            <section id="testimonials" style="margin-top: 1px;">
+                                <%
+                                    }
+                                %>
 
-                            <%
-                                FeedbackDAO dao_fb = new FeedbackDAO();
-                                UserDAO dao_us = new UserDAO();
-                                List<FeedbackDTO> list_fb = dao_fb.getFeedBackByServices(elem.getService_id());
-                                for (FeedbackDTO elem_fb : list_fb) {
-                            %>
-                            <div class="testimonial-box-container">
-                                <!--Box-1-->
-                                <div class="testimonial-box">
-                                    <div class="box-top">
-                                        <div class="profiles">
-                                            <div class="profile-images">
-                                                <img src="assets/img/post/profile-3.jpg">
-                                            </div>
-                                            <div class="name-user">
-                                                <strong><%=dao_us.getFullNameByUsername(elem_fb.getUser_name())%></strong>
-                                                <span>@<%=elem_fb.getUser_name()%></span>
-                                                <span><%=elem_fb.getDate()%></span>
-                                            </div>
-                                        </div>
-                                        <div class="reviewss">
-                                            <%
-                                                int rating = elem_fb.getRating_star();
-                                                switch (rating) {
-                                                    case 1:
-                                            %>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-
-                                            <% break;
-                                                case 2:%>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-
-                                            <% break;
-                                                case 3:%>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-
-                                            <%break;
-                                                case 4: %>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
-
-                                            <%break;
-                                                case 5:%>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
-                                            <%
-                                                }
-                                            %>
-                                        </div>
-                                    </div>
-
-                                    <!--Comment-->
-                                    <div class="client-comment">
-                                        <p><%=elem_fb.getFeedback_content()%></p>
-                                    </div>
+                                <div class="testimonial-heading">
+                                    <span>Comments</span>
+                                    <h1>Customer Feedback</h1>
                                 </div>
 
-                            </div>
-                            <% }%>
-                        </section>
+                                <%
+                                    FeedbackDAO dao_fb = new FeedbackDAO();
+                                    UserDAO dao_us = new UserDAO();
+                                %>
+                                <div class="testimonial-box-container">
+                                    <%List<FeedbackDTO> list_fb = dao_fb.getFeedBackByServices(elem.getService_id());
+                                        for (FeedbackDTO elem_fb : list_fb) {%>
+                                    <!--Box-1-->
+                                    <div class="testimonial-box">
+                                        <div class="box-top">
+                                            <div class="profiles">
+                                                <div class="profile-images">
+                                                    <img src="assets/img/post/profile-3.jpg">
+                                                </div>
+                                                <div class="name-user">
+                                                    <strong><%=dao_us.getFullNameByUsername(elem_fb.getUser_name())%></strong>
+                                                    <span>@<%=elem_fb.getUser_name()%></span>
+                                                    <span><%=elem_fb.getDate()%></span>
+                                                </div>
+                                            </div>
+                                            <div class="reviewss">
+                                                <%
+                                                    int rating = elem_fb.getRating_star();
+                                                    switch (rating) {
+                                                        case 1:
+                                                %>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                                <% break;
+                                                    case 2:%>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                                <% break;
+                                                    case 3:%>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                                <%break;
+                                                    case 4: %>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                                <%break;
+                                                    case 5:%>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                                <%
+                                                    }
+                                                %>
+                                            </div>
+                                        </div>
+
+                                        <!--Comment-->
+                                        <div class="client-comment">
+                                            <p><%=elem_fb.getFeedback_content()%></p>
+                                        </div>
+                                    </div>
+                                    <% }%>
+                                </div>
+
+
+
+                            </section>
 
                     </div>
                 </div>

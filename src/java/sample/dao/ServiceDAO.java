@@ -627,11 +627,32 @@ public class ServiceDAO {
         return listDate;
     }
 
-    
+    public boolean checkTop1Service(String id) {
+        String query = "SELECT service_id FROM tbl_Service WHERE service_id in (SELECT TOP 1 s.service_id \n"
+                + "                          FROM tbl_Service s\n"
+                + "                             JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "                          JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "                         JOIN tbl_Booking_Status_Details c ON b.booking_id = c.booking_id WHERE c.booking_status = 5\n"
+                + "                            GROUP BY s.service_id, s.service_name\n"
+                + "                            ORDER BY COUNT(b.service_id)DESC)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("service_id").trim().equalsIgnoreCase(id.trim())) {
+                    return true;
+                }
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        System.out.println();
+        System.out.println(dao.checkTop1Service("008"));
     }
 
 }
