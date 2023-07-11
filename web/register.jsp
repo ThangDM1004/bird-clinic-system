@@ -208,7 +208,7 @@
                                                            ">Gender 
                                                     </label>
 
-                                                    <select name="gender" style="height: 40px;color: #b8b8b8"required="" >
+                                                    <select name="gender" style="height: 50px;color: #b8b8b8"required="" >
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                         <option value="Other">Other</option>
