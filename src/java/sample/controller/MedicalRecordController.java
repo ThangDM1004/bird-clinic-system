@@ -61,7 +61,7 @@ public class MedicalRecordController extends HttpServlet {
 
                 for (int i = 0; i < list_service.length; i++) {
                     MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, null, 0, "", "", "", bookingID, dao.getServiceIDByName(list_service[i]), null);
-                    checkSelect = Mdao.ServiceInMedical(mr1);
+                    checkSelect = Mdao.ServiceInMedical(mr1, false);
                 }
                 if (checkSelect == true) {
                     boolean checkUpdate = dao.CheckInBooking(bookingID, 7);
@@ -104,10 +104,9 @@ public class MedicalRecordController extends HttpServlet {
                 MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, "", null);
                 checkMR = Mdao.CreateMedical(mr);
                 for (int i = 0; i < list_service.length; i++) {
-                    MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, dao.getServiceIDByName(list_service[i]), null);
-                    checkSelect = Mdao.ServiceInMedical(mr1);
+                    MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, sqlDate, dao.getServiceFeeByName(list_service[i]), phone, note, patientID, bookingID, dao.getServiceIDByName(list_service[i]), null);
+                    checkSelect = Mdao.ServiceInMedical(mr1, false);
                 }
-
                 if (checkMR == true && checkSelect == true) {
                     boolean checkUpdate = dao.CheckInBooking(bookingID, 7);
                     if (checkUpdate) {

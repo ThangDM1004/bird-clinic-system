@@ -7,15 +7,21 @@ package sample.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sample.dao.BookingDAO;
+import sample.dao.MedicalRecordDAO;
+import sample.dto.MedicalRecordDTO;
 
 /**
  *
@@ -33,18 +39,62 @@ public class CheckInController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try {
             String bookingID = request.getParameter("bookingID").trim();
             int booking_status = Integer.parseInt(request.getParameter("status_booking"));
             BookingDAO dao = new BookingDAO();
-            boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
-            if (booking_status == 8) {
-                HttpSession session = request.getSession();
-                session.setAttribute("status", "CheckOut");
-                response.sendRedirect("staff.jsp");
+            MedicalRecordDAO Mdao = new MedicalRecordDAO();
+            
+
+            if (booking_status == 3) {
+                 String record_id = Integer.toString(Mdao.MaxId() + 1);
+                String service = request.getParameter("service");
+                MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, null, dao.getServiceFeeByName(service), "", "", "", "", dao.getServiceIDByName(service), null);
+                boolean check = Mdao.ServiceInMedical(mr1, true);
+                if (check == true) {
+                    boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
+                    if (checkUpdate) {
+                        LocalDate ngayHienTai = LocalDate.now();
+                        LocalTime gioHienTai = LocalTime.now();
+                        Time gioSQL = Time.valueOf(gioHienTai);
+                        boolean checkHistory = dao.InsertHistory(bookingID, booking_status, ngayHienTai, gioSQL, null);
+                        if (checkHistory) {
+                            HttpSession session = request.getSession();
+                            if (booking_status == 3) {
+                                session.setAttribute("status", "Assign");
+                            } else if (booking_status == 4) {
+                                session.setAttribute("status", "CheckIn");
+                            } else if (booking_status == 5 || booking_status == 8) {
+                                session.setAttribute("status", "CheckOut");
+                            }
+                            response.sendRedirect("staff.jsp");
+                        }
+                    }
+
+                }
+            } else if (booking_status == 8) {
+                String record_id = request.getParameter("record_id");
+                List<String> list_ser = Mdao.getListServiceMore(Mdao.getMRByBookingID(bookingID).getRecord_id());
+                boolean checkUpdateSer = false;
+                for (String ls : list_ser) {
+                    checkUpdateSer = Mdao.UpdateSelectService(record_id, ls);
+                }
+                if (checkUpdateSer == true) {
+                    boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
+                    if (checkUpdate) {
+                        LocalDate ngayHienTai = LocalDate.now();
+                        LocalTime gioHienTai = LocalTime.now();
+                        Time gioSQL = Time.valueOf(gioHienTai);
+                        HttpSession session = request.getSession();
+                        session.setAttribute("status", "CheckOut");
+                        response.sendRedirect("staff.jsp");
+                    }
+
+                }
             } else {
+                boolean checkUpdate = dao.CheckInBooking(bookingID, booking_status);
                 if (checkUpdate) {
                     LocalDate ngayHienTai = LocalDate.now();
                     LocalTime gioHienTai = LocalTime.now();
@@ -59,11 +109,9 @@ public class CheckInController extends HttpServlet {
                         } else if (booking_status == 5) {
                             session.setAttribute("status", "CheckOut");
                         }
-
                         response.sendRedirect("staff.jsp");
                     }
                 }
-
             }
         } catch (Exception e) {
 
@@ -82,7 +130,11 @@ public class CheckInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CheckInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -96,7 +148,11 @@ public class CheckInController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CheckInController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

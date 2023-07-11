@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Date"%>
 <%@page import="java.sql.Time"%>
 <%@page import="java.time.LocalTime"%>
 <%@page import="java.time.LocalDate"%>
@@ -88,15 +90,17 @@
                                                     <th>Time Slot</th>
                                                     <th >Service</th>
                                                     <th>Doctor</th>
+                                                    <th>Bill</th>
                                                     <th></th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                <%                                                    
+                                                <%                                                    int count = 0;
                                                     for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 2) {
+                                                            count++;
                                                 %>
                                                 <tr>
                                                     <td>
@@ -105,14 +109,33 @@
                                             <input type="hidden" name="bookingID" value=" <%=x.getBooking_id()%>">
                                             <td><%= dao.getBirdname(x.getPatient_id())%></td>
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>
-                                            <td ><%= dao.getServicename(x.getBooking_id())%></td>
+                                            <td><%= dao.getServicename(x.getBooking_id())%></td>
+
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
+                                            <td> <a href="#check_<%=count%>" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
                                             <input type="hidden" value="3" name="status_booking">
 
-                                            <td><div class="submit-section">                                       
-                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=3&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check In</a>
+                                            <td><div class="submit-section">      
+                                                    <%
+                                                        String[] date = dao.getTodayString();
+                                                        Date dateBook = x.getDate();
+                                                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                                                        String formattedDate = dateFormat.format(dateBook);
+                                                        String[] date2 = formattedDate.split("/");
+                                                        String statusDay = dao.compareDateDoctor(date, date2);
+                                                        if (statusDay == "Today") {
+                                                    %>
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=3&action=Check-in&service=<%=dao.getServicename(x.getBooking_id())%>" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check In</a>
+                                                    <%
+                                                    } else {
+                                                    %>
+                                                    <a style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check In</a>
+                                                    <%
+                                                        }
+                                                    %>
+
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red;padding:  13.5px; width: 80px; color: white">Decline</a>
                                                 </div></td>
 

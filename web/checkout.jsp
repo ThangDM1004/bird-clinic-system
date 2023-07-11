@@ -87,60 +87,7 @@
                             <li>
                                 <a href="index-2.jsp">Home</a>
                             </li>
-                            <li class="has-submenu">
-                                <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
-                                    <li><a href="appointments.jsp">Appointments</a></li>
-                                    <li><a href="schedule-timings.jsp">Schedule Timing</a></li>
-                                    <li><a href="my-patients.jsp">Patients List</a></li>
-                                    <li><a href="patient-profile.jsp">Patients Profile</a></li>
-                                    <li><a href="chat-doctor.jsp">Chat</a></li>
-                                    <li><a href="invoices.jsp">Invoices</a></li>
-                                    <li><a href="doctor-profile-settings.jsp">Profile Settings</a></li>
-                                    <li><a href="reviews.jsp">Reviews</a></li>
-                                    <li><a href="doctor-register.jsp">Doctor Register</a></li>
-                                </ul>
-                            </li>	
-                            <li class="has-submenu active">
-                                <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="search.jsp">Search Doctor</a></li>
-                                    <li><a href="doctor-profile.jsp">Doctor Profile</a></li>
-                                    <li><a href="booking.jsp">Booking</a></li>
-                                    <li class="active"><a href="checkout.jsp">Checkout</a></li>
-                                    <li><a href="booking-success.jsp">Booking Success</a></li>
-                                    <li><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
-                                    <li><a href="favourites.jsp">Favourites</a></li>
-                                    <li><a href="chat.jsp">Chat</a></li>
-                                    <li><a href="profile-settings.jsp">Profile Settings</a></li>
-                                    <li><a href="change-password.jsp">Change Password</a></li>
-                                </ul>
-                            </li>	
-                            <li class="has-submenu">
-                                <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="voice-call.jsp">Voice Call</a></li>
-                                    <li><a href="video-call.jsp">Video Call</a></li>
-                                    <li><a href="search.jsp">Search Doctors</a></li>
-                                    <li><a href="calendar.jsp">Calendar</a></li>
-                                    <li><a href="components.jsp">Components</a></li>
-                                    <li class="has-submenu">
-                                        <a href="invoices.jsp">Invoices</a>
-                                        <ul class="submenu">
-                                            <li><a href="invoices.jsp">Invoices</a></li>
-                                            <li><a href="invoice-view.jsp">Invoice View</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blank-page.jsp">Starter Page</a></li>
-                                    <li><a href="login.jsp">Login</a></li>
-                                    <li><a href="register.jsp">Register</a></li>
-                                    <li><a href="forgot-password.jsp">Forgot Password</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="admin/index.jsp" target="_blank">Admin</a>
-                            </li>
+                          
                             <li class="login-link">
                                 <a href="login.jsp">Login / Signup</a>
                             </li>

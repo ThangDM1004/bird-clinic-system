@@ -131,11 +131,11 @@
                     <!-- Appointment Tab -->
                     <ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#upcoming-appointments"
-                               data-toggle="tab">Upcoming</a>
+                            <a class="nav-link active" href="#today-appointments"
+                               data-toggle="tab">Today</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#today-appointments" data-toggle="tab">Today</a>
+                            <a class="nav-link" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
                         </li>
                     </ul>
                     <!-- /Appointment Tab -->
