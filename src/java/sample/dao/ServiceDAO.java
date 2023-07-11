@@ -627,12 +627,11 @@ public class ServiceDAO {
         return listDate;
     }
 
+    
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        List<String> list = dao.getDateByName();
-        for (String integer : list) {
-            System.out.println(integer);
-        }
+        System.out.println();
     }
 
 }

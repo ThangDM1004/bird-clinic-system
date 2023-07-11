@@ -3,6 +3,9 @@
     Created on : May 29, 2023, 4:21:56 PM
     Author     : MSI AD
 --%>
+<%@page import="sample.dao.UserDAO"%>
+<%@page import="sample.dto.FeedbackDTO"%>
+<%@page import="sample.dao.FeedbackDAO"%>
 <%@page import="sample.dao.BlogDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -316,13 +319,87 @@
                                             <i class="fas fa-check-circle verified"></i>
                                         </h3>
                                         <p class="speciality"></p>
+
                                         <div class="rating">
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <i class="fas fa-star filled"></i>
-                                            <span class="d-inline-block average-rating">(17)</span>
+                                            <%
+                                                FeedbackDAO dao_fb_2 = new FeedbackDAO();
+                                                int count_fb_2 = dao_fb_2.getCountRowRatingByServiceId(ser.getService_id());
+                                                float avg_rating = dao_fb_2.getAverageRatingByServiceId(ser.getService_id());
+                                                if (avg_rating == 0) {
+                                            %>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <%
+                                            } else if (avg_rating < 1.0) {
+                                            %>
+                                            <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <%
+                                            } else if (avg_rating == 1.0) {
+                                            %>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <% } else if (avg_rating > 1.0 && avg_rating < 2.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <%} else if (avg_rating == 2.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <%} else if (avg_rating > 2.0 && avg_rating < 3.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <% } else if (avg_rating == 3.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color:#ffc107"></i>
+                                            <% } else if (avg_rating > 3.0 && avg_rating < 4.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <% } else if (avg_rating == 4.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <% } else if (avg_rating > 4.0 && avg_rating < 5.0) { %>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star-half-stroke" style="color:#ffc107"></i>
+                                            <% } else if (avg_rating == 5.0) {%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <%} else { %>
+                                            <span>0</span>
+                                            <% }%>
+                                            <span class="d-inline-block average-rating"><%=avg_rating%></span>
                                         </div>
                                         <ul class="available-info">
                                             <!--                                            <li>
@@ -608,13 +685,13 @@
                                 <h2 class="product-titles"><%=elem.getService_name()%></h2>
                                 <a href="#" class="product-link">Most used service</a>
                                 <div class="product-rating">
+                                    <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                    <%
+                                        FeedbackDAO dao_fb_1 = new FeedbackDAO();
+                                    %>
 
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                    <span>4.7(21)</span>
+                                    <span><%=dao_fb_1.getAverageRatingByServiceId(elem.getService_id())%>  (<%=dao_fb_1.getCountRowRatingByServiceId(elem.getService_id())%>)</span>
+
                                 </div>
 
                                 <div class="product-price">
@@ -664,6 +741,13 @@
                                 <span>Comments</span>
                                 <h1>Customer Feedback</h1>
                             </div>
+
+                            <%
+                                FeedbackDAO dao_fb = new FeedbackDAO();
+                                UserDAO dao_us = new UserDAO();
+                                List<FeedbackDTO> list_fb = dao_fb.getFeedBackByServices(elem.getService_id());
+                                for (FeedbackDTO elem_fb : list_fb) {
+                            %>
                             <div class="testimonial-box-container">
                                 <!--Box-1-->
                                 <div class="testimonial-box">
@@ -673,103 +757,68 @@
                                                 <img src="assets/img/post/profile-3.jpg">
                                             </div>
                                             <div class="name-user">
-                                                <strong>Dang Minh Thang</strong>
-                                                <span>@dangminhthang</span>
+                                                <strong><%=dao_us.getFullNameByUsername(elem_fb.getUser_name())%></strong>
+                                                <span>@<%=elem_fb.getUser_name()%></span>
+                                                <span><%=elem_fb.getDate()%></span>
                                             </div>
                                         </div>
                                         <div class="reviewss">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
+                                            <%
+                                                int rating = elem_fb.getRating_star();
+                                                switch (rating) {
+                                                    case 1:
+                                            %>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                            <% break;
+                                                case 2:%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                            <% break;
+                                                case 3:%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                            <%break;
+                                                case 4: %>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-regular fa-star" style="color: #ffc107;"></i>
+
+                                            <%break;
+                                                case 5:%>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <i class="fa-solid fa-star" style="color: #ffc107;"></i>
+                                            <%
+                                                }
+                                            %>
                                         </div>
                                     </div>
 
                                     <!--Comment-->
                                     <div class="client-comment">
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
+                                        <p><%=elem_fb.getFeedback_content()%></p>
                                     </div>
                                 </div>
 
-                                <div class="testimonial-box">
-                                    <div class="box-top">
-                                        <div class="profiles">
-                                            <div class="profile-images">
-                                                <img src="assets/img/post/profile-1.jpg">
-                                            </div>
-                                            <div class="name-user">
-                                                <strong>Dang Minh Thang</strong>
-                                                <span>@dangminhthang</span>
-                                            </div>
-                                        </div>
-                                        <div class="reviewss">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </div>
-
-                                    <!--Comment-->
-                                    <div class="client-comment">
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
-                                    </div>
-                                </div>
-
-                                <div class="testimonial-box">
-                                    <div class="box-top">
-                                        <div class="profiles">
-                                            <div class="profile-images">
-                                                <img src="assets/img/post/profile-2.jpg">
-                                            </div>
-                                            <div class="name-user">
-                                                <strong>Dang Minh Thang</strong>
-                                                <span>@dangminhthang</span>
-                                            </div>
-                                        </div>
-                                        <div class="reviewss">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </div>
-                                    </div>
-
-                                    <!--Comment-->
-                                    <div class="client-comment">
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
-                                    </div>
-                                </div>
-
-                                <div class="testimonial-box">
-                                    <div class="box-top">
-                                        <div class="profiles">
-                                            <div class="profile-images">
-                                                <img src="assets/img/post/profile-3.jpg">
-                                            </div>
-                                            <div class="name-user">
-                                                <strong>Dang Minh Thang</strong>
-                                                <span>@dangminhthang</span>
-                                            </div>
-                                        </div>
-                                        <div class="reviewss">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                    </div>
-
-                                    <!--Comment-->
-                                    <div class="client-comment">
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet magnam facilis perspiciatis obcaecati debitis nihil temporibus nesciunt, recusandae labore blanditiis non, voluptatibus, itaque provident architecto aperiam. Quod cum assumenda accusamus!</p>
-                                    </div>
-                                </div>
                             </div>
+                            <% }%>
                         </section>
 
                     </div>
