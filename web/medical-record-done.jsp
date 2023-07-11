@@ -181,7 +181,7 @@
                                         for (String ser : list_ser) {
                                             sum++;
                                     %>
-                                <input id="service_<%=sum%>" disabled="" style="background-color:#09e5ab; border: #09e5ab;" value="<%=mdao.getSerNam(ser)%>" readonly>
+                                <input id="service_<%=sum%>" disabled="" style="background-color:#09e5ab; border: #09e5ab;" value="<%=dao.getServiceFeeByName(mdao.getSerNam(ser))%>-<%=mdao.getSerNam(ser)%>" readonly>
                                 <%
                                     }
                                 %>

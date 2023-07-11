@@ -18,11 +18,11 @@ import sample.utils.Utils;
  * @author MSI AD
  */
 public class BlogDAO {
-    
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    
+
     public List<BlogDTO> getListBlog() {
         List<BlogDTO> list = new ArrayList<>();
         try {
@@ -47,7 +47,7 @@ public class BlogDAO {
         }
         return list;
     }
-    
+
     public List<BlogDTO> getListBlogHome() {
         List<BlogDTO> list = new ArrayList<>();
         try {
@@ -72,7 +72,7 @@ public class BlogDAO {
         }
         return list;
     }
-    
+
     public List<BlogDTO> getListBlogByID(String id) {
         List<BlogDTO> list = new ArrayList<>();
         try {
@@ -98,7 +98,7 @@ public class BlogDAO {
         }
         return list;
     }
-    
+
     public void setStatusByBlogID(String blog_id, int status) {
         String query = "UPDATE tbl_Blog SET status = ? WHERE blog_id = ?";
         try {
@@ -110,7 +110,7 @@ public class BlogDAO {
         } catch (Exception e) {
         }
     }
-    
+
     public List<BlogDTO> getListCategoriesBlog() {
         List<BlogDTO> list = new ArrayList<>();
         String query = "SELECT DISTINCT c.categories_blog_name FROM tbl_Blog b JOIN tbl_Category_Blog c ON b.categories_blog_id = c.categories_blog_id ";
@@ -128,7 +128,7 @@ public class BlogDAO {
         }
         return list;
     }
-    
+
     public String generateUniqueBlogId() {
         int maxID = 0;
         String result = "";
@@ -155,7 +155,7 @@ public class BlogDAO {
         }
         return result;
     }
-    
+
     public boolean isDuplicateBlogId(String blogID) {
         String query = "SELECT * FROM tbl_blog WHERE blog_id = ?";
         try {
@@ -170,7 +170,7 @@ public class BlogDAO {
         }
         return true;
     }
-    
+
     public void addNewBlog(String blogId, String title, String detail, String image, String user_name, String author, int category_id) {
         String query = "INSERT INTO tbl_Blog VALUES(?,?,?,GETDATE(),?,1,?,?,?)";
         try {
@@ -187,7 +187,7 @@ public class BlogDAO {
         } catch (Exception e) {
         }
     }
-    
+
     public List getList() {
         List cate = new ArrayList();
         String query = "SELECT categories_blog_name FROM tbl_Category_Blog";
@@ -202,7 +202,7 @@ public class BlogDAO {
         }
         return cate;
     }
-    
+
     public int getCategoryId(String name) {
         String query = "SELECT categories_blog_id FROM tbl_Category_Blog WHERE categories_blog_name = ?";
         try {
@@ -214,13 +214,13 @@ public class BlogDAO {
                 return rs.getInt("categories_blog_id");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return 0;
     }
-    
+
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
         System.out.println(dao.getCategoryId("Health"));
-        
     }
 }

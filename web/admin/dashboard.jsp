@@ -6,7 +6,8 @@
 <%@page import="sample.dao.ServiceDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
-
+<%@ page import="java.util.Calendar" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@page import="sample.dto.AppointmentDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="sample.dao.AppointmentDAO"%>
@@ -343,7 +344,6 @@
 
                 <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
                     <div class="row">
-
                         <div class="col-xl-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
@@ -353,6 +353,69 @@
                                         </span>
                                         <div class="dash-count">
                                             <% ServiceDAO dao_2 = new ServiceDAO();%>
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
+                                            <h3>$<%=dao_2.getTotalRevenue()%> </h3>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget-info">
+
+                                        <h6 class="text-muted">Revenue</h6>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-warning w-50"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dash-widget-header">
+                                        <span class="dash-widget-icon text-warning border-warning">
+                                            <i class="fe fe-folder"></i>
+                                        </span>
+                                        <div class="dash-count">
                                             <h3>$<%=dao_2.getTotalRevenue()%> </h3>
                                         </div>
                                     </div>
@@ -392,11 +455,26 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
+                    <%
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                        String firstDayOfWeek = dateFormat.format(calendar.getTime());
+                        calendar.add(Calendar.DATE, 6);
+                        String lastDayOfWeek = dateFormat.format(calendar.getTime());
+                    %>
                     <div class="row">
-
+                        <div class="col-sm-6 col-md-7" style="top: -100px;">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Weekly Income from <%=firstDayOfWeek%> to <%=lastDayOfWeek%></h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart_3"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </c:if>

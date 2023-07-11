@@ -158,7 +158,7 @@
                             <div  class="form-group">
                                 <label>Service <span class="text-danger"></span></label>
                                 <div id="service">
-                                    <input id="service_1" type="text"   name="service_1" style="color: black; background-color:#09e5ab; border: #09e5ab;"  readonly="" value="<%= dao.getServicename(x.getBooking_id())%>">
+                                    <input id="service_1" type="text"   name="service_1" style="color: black; background-color:#09e5ab; border: #09e5ab;"  readonly="" value="<%=dao.getServiceFeeByName(dao.getServicename(x.getBooking_id()))%>-<%= dao.getServicename(x.getBooking_id())%>">
 
                                 </div>
                                 <input type="button" value="+" onclick="Add()">

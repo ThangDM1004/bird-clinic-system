@@ -21,6 +21,10 @@ import sample.utils.Utils;
 
 public class FeedbackDAO {
 
+    Connection conn = null;
+    PreparedStatement ptm = null;
+    ResultSet rs = null;
+
     public boolean InsertFeedback(FeedbackDTO fb) throws SQLException {
         boolean check = false;
         Connection conn = null;
@@ -171,10 +175,10 @@ public class FeedbackDAO {
                 ps.setString(1, doctor);
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    list.add(new FeedbackDTO(rs.getString("service_id"), 
-                            rs.getString("customer"), 
-                            rs.getInt("rating_star"), 
-                            rs.getString("feedback_content"), 
+                    list.add(new FeedbackDTO(rs.getString("service_id"),
+                            rs.getString("customer"),
+                            rs.getInt("rating_star"),
+                            rs.getString("feedback_content"),
                             rs.getDate("date"), ""));
                 }
             }
@@ -182,13 +186,6 @@ public class FeedbackDAO {
 
         }
         return list;
-    }
-    public static void main(String[] args) {
-        FeedbackDAO dao = new FeedbackDAO();
-        List<FeedbackDTO> list = dao.getAllFeedbackDoctor("doctor1");
-        for (FeedbackDTO feedbackDTO : list) {
-            System.out.println(feedbackDTO);
-        }
     }
 
     public String nameSer(String id) {
@@ -211,6 +208,65 @@ public class FeedbackDAO {
 
         }
         return name;
+    }
+
+    public List<FeedbackDTO> getFeedBackByServices(String id) {
+        List<FeedbackDTO> list = new ArrayList<>();
+        String query = "SELECT service_id, user_name, rating_star,feedback_content, date, record_id FROM tbl_Feedback WHERE service_id = ?";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            ptm.setString(1, id);
+            rs = ptm.executeQuery();
+            while (rs.next()) {
+                FeedbackDTO feed = new FeedbackDTO(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getDate(5),
+                        rs.getString(6));
+                list.add(feed);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public float getAverageRatingByServiceId(String id) {
+        String query = "SELECT AVG(CAST(rating_star AS DECIMAL(10,1))) AS average_rating\n"
+                + "FROM tbl_Feedback WHERE service_id = ?";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            ptm.setString(1, id);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return rs.getFloat("average_rating");
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int getCountRowRatingByServiceId(String id) {
+        String query = " SELECT COUNT(*) as ROWS FROM tbl_Feedback WHERE service_id = ?";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            ptm.setString(1, id);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(("ROWS"));
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        FeedbackDAO dao = new FeedbackDAO();
+        System.out.println(dao.getAverageRatingByServiceId("001"));
     }
 
 }

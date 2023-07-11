@@ -45,6 +45,8 @@ public class MedicalRecordDoneController extends HttpServlet {
             String bookingID = request.getParameter("booking_id").trim();
             String record_id = request.getParameter("record_id").trim();
             String note = request.getParameter("note");
+            String fee = request.getParameter("total_fee");
+            double total_fee = Double.parseDouble(fee);
             String date = request.getParameter("date_again");
             LocalDate localDate = null;
             if (date == null) {
@@ -52,7 +54,7 @@ public class MedicalRecordDoneController extends HttpServlet {
                 localDate = LocalDate.parse(date);
             }
             Date sqlDate = Date.valueOf(localDate);
-            MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, 0, "", note, "", "", "", null);
+            MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, "", note, "", "", "", null);
             boolean checkInsert = mdao.UpdateMedical(mr);
             if (checkInsert) {
                 boolean checkUpdate = dao.CheckInBooking(bookingID, 4);

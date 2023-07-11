@@ -495,6 +495,7 @@ public class ServiceDAO {
                 name = rs.getString("service_name");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return name;
     }
@@ -515,9 +516,143 @@ public class ServiceDAO {
         return name;
     }
 
+    public List<Integer> getTotalFeePerWeek() {
+        List<Integer> listFee = new ArrayList<>();
+        String query = "DECLARE @CurrentDate DATE;\n"
+                + "DECLARE @StartDate DATE;\n"
+                + "DECLARE @EndDate DATE;\n"
+                + "	\n"
+                + "SET @CurrentDate = GETDATE();\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "\n"
+                + "SELECT \n"
+                + "    CASE \n"
+                + "        WHEN EXISTS (SELECT 1 FROM tbl_Booking_Status_Details WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5) \n"
+                + "        THEN (SELECT total_fee FROM tbl_Medical_Record WHERE booking_id in\n"
+                + "											(SELECT booking_id FROM tbl_Booking_Status_Details c WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5))\n"
+                + "        ELSE '' \n"
+                + "    END AS total_fee\n"
+                + "FROM \n"
+                + "    (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn FROM sys.objects) AS numbers\n"
+                + "WHERE \n"
+                + "    rn <= DATEDIFF(DAY, @StartDate, @EndDate) + 1\n"
+                + "ORDER BY	\n"
+                + "    rn;";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int temp = rs.getInt("total_fee");
+                listFee.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return listFee;
+    }
+
+    public List<Integer> getCountServicePerWeek() {
+        List<Integer> listFee = new ArrayList<>();
+        String query = "DECLARE @CurrentDate DATE;\n"
+                + "DECLARE @StartDate DATE;\n"
+                + "DECLARE @EndDate DATE;\n"
+                + "	\n"
+                + "SET @CurrentDate = GETDATE();\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "\n"
+                + "SELECT \n"
+                + "    CASE \n"
+                + "        WHEN EXISTS (SELECT 1 FROM tbl_Booking_Status_Details WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5) \n"
+                + "        THEN (SELECT COUNT(service_id) FROM tbl_Medical_Record m JOIN tbl_Select_Service s ON m.record_id = s.record_id WHERE m.booking_id in \n"
+                + "                (SELECT booking_id FROM tbl_Booking_Status_Details c WHERE CONVERT(DATE, date) = CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)) AND booking_status = 5))\n"
+                + "        ELSE 0 \n"
+                + "    END AS total_fee\n"
+                + "FROM \n"
+                + "    (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn FROM sys.objects) AS numbers\n"
+                + "WHERE \n"
+                + "    rn <= DATEDIFF(DAY, @StartDate, @EndDate) + 1\n"
+                + "ORDER BY	\n"
+                + "    rn;";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int temp = rs.getInt("total_fee");
+                listFee.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return listFee;
+    }
+
+    public List<String> getDateByName() {
+        List<String> listDate = new ArrayList<>();
+        String query = "DECLARE @CurrentDate DATE;\n"
+                + "DECLARE @StartDate DATE;\n"
+                + "DECLARE @EndDate DATE;\n"
+                + "\n"
+                + "SET @CurrentDate = GETDATE();\n"
+                + "SET @StartDate = DATEADD(DAY, 2 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "SET @EndDate = DATEADD(DAY, 8 - DATEPART(WEEKDAY, @CurrentDate), @CurrentDate);\n"
+                + "\n"
+                + "SELECT \n"
+                + "    CASE \n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Monday' THEN 'Mon'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Tuesday' THEN 'Tue'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Wednesday' THEN 'Wed'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Thursday' THEN 'Thu'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Friday' THEN 'Fri'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Saturday' THEN 'Sat'\n"
+                + "        WHEN DATENAME(WEEKDAY, DATEADD(DAY, rn - 1, @StartDate)) = 'Sunday' THEN 'Sun'\n"
+                + "    END + ' ' + FORMAT(CONVERT(DATE, DATEADD(DAY, rn - 1, @StartDate)), 'dd-MM') AS NgayVaTenThu\n"
+                + "FROM \n"
+                + "    (SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn FROM sys.objects) AS numbers\n"
+                + "WHERE \n"
+                + "    rn <= DATEDIFF(DAY, @StartDate, @EndDate) + 1\n"
+                + "ORDER BY \n"
+                + "    rn;";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String temp = rs.getString("NgayVaTenThu");
+                listDate.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return listDate;
+    }
+
+    public boolean checkTop1Service(String id) {
+        String query = "SELECT service_id FROM tbl_Service WHERE service_id in (SELECT TOP 1 s.service_id \n"
+                + "                          FROM tbl_Service s\n"
+                + "                             JOIN tbl_Booking b ON s.service_id = b.service_id\n"
+                + "                          JOIN tbl_Medical_Record m ON b.booking_id = m.booking_id\n"
+                + "                         JOIN tbl_Booking_Status_Details c ON b.booking_id = c.booking_id WHERE c.booking_status = 5\n"
+                + "                            GROUP BY s.service_id, s.service_name\n"
+                + "                            ORDER BY COUNT(b.service_id)DESC)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                if (rs.getString("service_id").trim().equalsIgnoreCase(id.trim())) {
+                    return true;
+                }
+                return false;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        System.out.println(dao.getSerIdNext());
+        System.out.println(dao.checkTop1Service("008"));
     }
 
 }

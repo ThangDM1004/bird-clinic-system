@@ -66,9 +66,9 @@ function Add() {
         var ser_name = document.getElementById("service_name_" + (index - i).toString()).value;
         var ser_id = document.getElementById("service_id_" + (index - i).toString()).value;
         var ser_fee = document.getElementById("service_fee_" + (index - i).toString()).value;
-        option.action = ser_name.toString();
+        option.action = ser_fee.toString() + "-" + ser_name.toString();
         option.value = ser_fee.toString();
-        option.text = ser_name.toString();
+        option.text = ser_fee.toString() + "-" + ser_name.toString();
         selectElement.appendChild(option);
     }
 
@@ -103,7 +103,7 @@ function Add() {
             }
         }
         if (checkExist === true) {
-            alert("Service selected!!!")
+            alert("Dịch vụ này đã có!!!")
         } else {
             selectElement.remove();
             addButton.remove();
@@ -123,7 +123,7 @@ function Add() {
             // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
             divElement.appendChild(newButton);
         }
- event.preventDefault();
+        event.preventDefault();
     });
 // Thêm nút Add vào vị trí mong muốn trong tài liệu (ví dụ: body)
     divElement.appendChild(addButton);
@@ -148,9 +148,9 @@ function AddMore() {
         var ser_name = document.getElementById("service_name_" + (index - i).toString()).value;
         var ser_id = document.getElementById("service_id_" + (index - i).toString()).value;
         var ser_fee = document.getElementById("service_fee_" + (index - i).toString()).value;
-        option.action = ser_name.toString();
+        option.action = ser_fee.toString() + "-" + ser_name.toString();
         option.value = ser_fee.toString();
-        option.text = ser_name.toString();
+        option.text = ser_fee.toString() + "-" + ser_name.toString();
         selectElement.appendChild(option);
     }
 
@@ -185,7 +185,7 @@ function AddMore() {
             }
         }
         if (checkExist === true) {
-            alert("Service selected!!!")
+            alert("Dịch vụ này đã có!!!")
 
         } else {
             selectElement.remove();
@@ -202,11 +202,11 @@ function AddMore() {
             newButton.name = "service_" + input.value.toString();
             newButton.id = "service_" + input.value.toString();
             newButton.style = "color:black;background-color:red; border: red";
-            
+
             // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
             divElement.appendChild(newButton);
         }
-         event.preventDefault();
+        event.preventDefault();
     });
 // Thêm nút Add vào vị trí mong muốn trong tài liệu (ví dụ: body)
     divElement.appendChild(addButton);

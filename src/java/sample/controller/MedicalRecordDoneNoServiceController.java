@@ -61,7 +61,8 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             String[] list_service = new String[count];
             for (int i = 0; i < count; i++) {
                 String service_id = request.getParameter("service_" + Integer.toString(i + 1));
-                list_service[i] = service_id;
+                String[] part = service_id.split("-");
+                list_service[i] = part[1];
             }
             boolean checkMR = false;
             boolean checkSelect = false;

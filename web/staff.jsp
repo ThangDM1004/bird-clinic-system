@@ -413,7 +413,7 @@
             MedicalRecordDAO mdao = new MedicalRecordDAO();
             List<BookingDTO> list = dao.getAllBooking();
             for (BookingDTO x : list) {
-                if (x.getBooking_status() == 4 || x.getBooking_status() == 7) {
+                if (x.getBooking_status() == 4 || x.getBooking_status() == 7 || x.getBooking_status() == 8) {
                     count++;
 
         %>
@@ -447,8 +447,8 @@
                                         <div class="col-sm-12 m-b-20">
                                             <ul class="list-unstyled mb-0">
                                                 <li>The dear bird Hospital</li>
-                                                <br>
-                                                <br>
+                                                <li>Doctor: <%=udao.getUser(x.getUsername_doctor()).getFullname() %></li>
+                                                <li>Time slot: <%= dao.getSlotTime(x.getBooking_id())%></li>
                                                 <br>
                                             </ul>
                                         </div>
