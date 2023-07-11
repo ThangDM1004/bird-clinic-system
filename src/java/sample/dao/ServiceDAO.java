@@ -649,7 +649,43 @@ public class ServiceDAO {
         }
         return false;
     }
+public List<ServiceDTO> getListServiceForBooking() throws SQLException {
+        List<ServiceDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM tbl_Service WHERE service_id = '013' or service_id = '012'";
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
+            while (rs.next()) {
+                ServiceDTO s = new ServiceDTO(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getFloat(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getBoolean(9),
+                        0);
+                list.add(s);
+            }
+
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
         System.out.println(dao.checkTop1Service("008"));

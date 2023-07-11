@@ -844,7 +844,8 @@ public class UserDAO {
                 LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
                 String d = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 boolean c = bookingDTO.getDate().toString().trim().equals(d.trim());
-                if (a && b && c) {
+                boolean e = (bookingDTO.getBooking_status() != 6 && bookingDTO.getBooking_status() != 5);
+                if (a && b && c && e) {
                     return false;
                 }
             }
@@ -919,6 +920,7 @@ public class UserDAO {
     }
 
     public static void main(String[] args) {
-
+        UserDAO dao = new UserDAO();
+        System.out.println(dao.checkValidateBookingDoctor("minhga1", "1", "2023/07/12"));
     }
 }

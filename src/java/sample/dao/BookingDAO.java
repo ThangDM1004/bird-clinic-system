@@ -427,7 +427,7 @@ public class BookingDAO {
         }
         return checkUpdate;
     }
-    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 7 WHERE booking_id = ?";
+    private static final String CANCEL_BOOKING = "UPDATE tbl_Booking SET booking_status = 6 WHERE booking_id = ?";
 
     public boolean CancelBooking(String bookingID) throws SQLException {
         Connection conn = null;
@@ -853,9 +853,31 @@ public class BookingDAO {
         }
         return true;
     }
+    
+    public boolean checkValidateBookingInSlot(String username, String slot, String date){
+        BookingDAO dao = new BookingDAO();
+        try {
+            List<BookingDTO> list = dao.getAllBooking();
+
+            for (BookingDTO bookingDTO : list) {
+                boolean a = bookingDTO.getUsername_customer().trim().equals(username.trim());
+                boolean b = bookingDTO.getSlot_number() == Integer.parseInt(slot);
+                LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+                String d = localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                boolean c = bookingDTO.getDate().toString().trim().equals(d.trim());
+                boolean e = (bookingDTO.getBooking_status() != 6 && bookingDTO.getBooking_status() != 5);
+                if (a && b && c && e) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return true;
+    }
 
     public static void main(String[] args) throws ParseException {
         BookingDAO dao = new BookingDAO();
-        System.out.println(dao.validateSlotBookingAgain("doctor1", "2023-06-15", "3"));
+        System.out.println(dao.checkValidateBookingInSlot("minhga1", "1", "2023/07/12"));
     }
 }

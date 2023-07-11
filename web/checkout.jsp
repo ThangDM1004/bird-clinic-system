@@ -242,8 +242,8 @@
                                                     <div class="form-group card-label">
                                                         <label>Service</label>
                                                         <select name="service" class="form-control">
-                                                            <option disabled selected value="">Select your patient</option>
-                                                            <c:forEach var="service" items="${ServiceDAO.listService}">
+                                                            <option disabled selected value="">Select your service</option>
+                                                            <c:forEach var="service" items="${ServiceDAO.listServiceForBooking}">
                                                                 <option value="${service.service_id}">${service.service_name}</option> 
                                                             </c:forEach>                                                           
                                                             <!-- Thêm các lựa chọn khác tại đây -->
