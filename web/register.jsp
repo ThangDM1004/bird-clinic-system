@@ -198,22 +198,25 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-md-6 form-group form-focus">
+                                                <div class="col-md-5 form-group form-focus">
                                                     <label style="
                                                            font-size: 14px;
                                                            font-weight: 400;
                                                            color: #b8b8b8;
-                                                           margin-right: 30px;
 
-                                                           "> Choose Gender
-                                                        <select name="gender" style="height: 50px;color: #b8b8b8;"required="" >
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
-                                                            <option value="Other">Other</option>
-                                                        </select>
+
+                                                           ">Gender 
                                                     </label>
+
+                                                    <select name="gender" style="height: 40px;color: #b8b8b8"required="" >
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+
+
                                                 </div>
-                                                <div class="col-md-6 form-group form-focus" style="width: 50%;">
+                                                <div class="col-md-7 form-group form-focus" style="width: 50%;">
                                                     <input name="dob" type="date" class="form-control floating" required="">
                                                     <label class="focus-label" style="top: -18px; left: 27px;">Date of Birth</label>
                                                 </div>
