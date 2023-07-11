@@ -700,11 +700,6 @@
 
                             <div class="product-contents">
                                 <h2 class="product-titles"><%=elem.getService_name()%></h2>
-                                <% if (dao_1.checkTop1Service(elem.getService_id()) == true) {
-                                %>
-                                <a href="#" class="product-link">Most used service</a>
-                                <%
-                                    } %>
                                 <div class="product-rating">
                                     <%
                                         FeedbackDAO dao_fb_2 = new FeedbackDAO();

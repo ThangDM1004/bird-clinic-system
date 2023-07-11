@@ -64,18 +64,21 @@ $.ajax({
     url: '../get5ServicesUsedMost',
     dataType: 'json',
     success: function (response) {
-        var labelList = response.labels;
-        var dataList = response.datas;
+
 
         const ctx_1 = document.getElementById('myChart_2');
         new Chart(ctx_1, {
             type: 'pie',
             data: {
-                labels: labelList,
+                labels: ['Very Satisfied', 'Satisfied', 'Unsatisfied'],
                 datasets: [{
-                        label: 'Amount used',
-                        data: dataList,
-                        borderWidth: 1
+                        label: '%',
+                        data: [response.VerySatisfied, response.Satisfied, response.Unsatisfied],
+                        backgroundColor: [
+                            'rgb(46, 213, 139)', // Color for 'Very Satisfied'
+                            'rgb(255, 205, 86)', // Color for 'Satisfied'
+                            'rgb(237, 111, 96)'   // Color for 'Unsatisfied'
+                        ],
                     }]
             },
             options: {

@@ -264,9 +264,64 @@ public class FeedbackDAO {
         return 0;
     }
 
+    public int getVerySatisfied() {
+        String query = "SELECT COUNT(*) as count FROM tbl_Feedback WHERE rating_star = 5";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int getSatisfied() {
+        String query = "SELECT COUNT(*) as count FROM tbl_Feedback WHERE rating_star <= 4 AND rating_star >= 3";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int getUnSatisfied() {
+        String query = "SELECT COUNT(*) as count FROM tbl_Feedback WHERE rating_star <= 2";
+        try {
+            conn = new Utils().getConnection();
+            ptm = conn.prepareStatement(query);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
     public static void main(String[] args) {
         FeedbackDAO dao = new FeedbackDAO();
-        System.out.println(dao.getAverageRatingByServiceId("001"));
+        int A = dao.getVerySatisfied();
+        int B = dao.getSatisfied();
+        int C = dao.getUnSatisfied();
+
+        double total = A + B + C;
+        double percentageAHaiLong = (A / total) * 100;
+        double percentageBHaiLong = (B / total) * 100;
+
+        int roundedPercentageAHaiLong = (int) Math.round(percentageAHaiLong);
+        int roundedPercentageBHaiLong = (int) Math.round(percentageBHaiLong);
+
+        System.out.println(roundedPercentageAHaiLong + "%");
+        System.out.println(roundedPercentageBHaiLong + "%");
+
     }
 
 }
