@@ -399,6 +399,7 @@
                                             <%} else { %>
                                             <span>0</span>
                                             <% }%>
+                                            
                                             <span class="d-inline-block average-rating"><%=avg_rating%></span>
                                         </div>
                                         <ul class="available-info">
