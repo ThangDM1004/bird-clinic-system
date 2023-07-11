@@ -435,37 +435,15 @@
 
                     <!--CHARTTTTT-->
                     <div class="row">
-                        <div class="col-sm-6 col-md-7">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <h4 class="card-title">Revenue by Month in 2023</h4>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="myChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-5">
-                            <div class="card card-chart">
-                                <div class="card-header">
-                                    <h4 class="card-title">Top 5 services used most</h4>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="myChart_2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                        String firstDayOfWeek = dateFormat.format(calendar.getTime());
-                        calendar.add(Calendar.DATE, 6);
-                        String lastDayOfWeek = dateFormat.format(calendar.getTime());
-                    %>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-7" style="top: -100px;">
+                        <%
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                            String firstDayOfWeek = dateFormat.format(calendar.getTime());
+                            calendar.add(Calendar.DATE, 6);
+                            String lastDayOfWeek = dateFormat.format(calendar.getTime());
+                        %>
+                        <div class="col-sm-6 col-md-7" >
                             <div class="card card-chart">
                                 <div class="card-header">
                                     <h4 class="card-title">Weekly Income from <%=firstDayOfWeek%> to <%=lastDayOfWeek%></h4>
@@ -475,6 +453,31 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6 col-md-5">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Customer satisfaction</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart_2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-md-7" style="top: -100px;">
+                            <div class="card card-chart">
+                                <div class="card-header">
+                                    <h4 class="card-title">Revenue by Month in 2023</h4>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="myChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
 
                 </c:if>
