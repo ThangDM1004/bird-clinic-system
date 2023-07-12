@@ -112,11 +112,13 @@ public class MedicalRecordDoneController extends HttpServlet {
                     break;
             }
             LocalDate localDate = null;
-            if (date == null) {
+            Date sqlDate = null;
+            if ("".equals(date)) {
             } else {
                 localDate = LocalDate.parse(date);
+                sqlDate = Date.valueOf(localDate);
             }
-            Date sqlDate = Date.valueOf(localDate);
+
             MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, "", note, "", "", "", null);
             boolean checkInsert = mdao.UpdateMedical(mr);
             if (checkInsert) {
