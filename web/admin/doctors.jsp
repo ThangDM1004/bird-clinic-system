@@ -36,6 +36,7 @@
         <link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
 
         <!-- Main CSS -->
+        
         <link rel="stylesheet" href="assets/css/style.css">
 
         <!--[if lt IE 9]>
@@ -57,11 +58,11 @@
                                 <li class="breadcrumb-item active">Doctor</li>
                             </ul>
                         </div>
-                        <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                        <!--                            <div class="col-sm-5 col">
-                                        <a href="#Add_Specialities_details" data-toggle="modal"
-                                           class="btn btn-primary float-right mt-2">Add</a>
-                                    </div>-->
+
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add</a>
+                        </div>
                     </div>
 
                 </div>
@@ -216,12 +217,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="../MainController" method="POST" enctype="multipart/form-data">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
-                                        <label>Image Profile</label>
-                                        <input type="file" class="form-control">
+                                        <label>Image Profile Thắng gà</label>
+                                        <input type="file" class="form-control" name="image">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +240,6 @@
                                         <select>
                                             <option value="">Male</option>
                                             <option value="">Female</option>
-                                            <option value="">Other</option>
                                         </select>
                                     </div>
                                 </div>
@@ -272,15 +272,7 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Phone Contact</label>
-                                        <input  type="number" class="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                        <input  type="te" class="form-control" pattern="0\d{9}" title="Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng số 0 và có 10 chữ số)"></input>
                                     </div>
                                 </div>
                             </div>
@@ -288,7 +280,25 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input  type="text"  class="form-control"></input>
+                                         <input id="myuser" name="username" type="text" class="form-control floating" required="">
+                                         <span id="result" style="margin-left: 10px;"></span>
+                                        <style>
+                                            .available {
+                                                color: #006400;
+                                                background: #E5FFE5;
+                                                padding-left: 3px;
+                                                padding-right: 3px;
+                                                border-radius: 3px;
+                                            }
+
+                                            .already-exists, .not-enough-length {
+                                                padding-left: 3px;
+                                                padding-right: 3px;
+                                                border-radius: 3px;
+                                                background: #F8ECEC;
+                                                color: #be4b49;
+                                            }
+                                        </style>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
@@ -358,7 +368,7 @@
         </div>
     </div>
     <% }%>
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="../assets/js/jquery-3.2.1.min.js"></script>
 
     <!-- Bootstrap Core JS -->
     <script src="assets/js/popper.min.js"></script>

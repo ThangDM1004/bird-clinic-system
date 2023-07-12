@@ -53,14 +53,22 @@
                 <!-- Page Header -->
                 <div class="page-header">
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-7">
                             <h3 class="page-title">List of Customer</h3>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="javascript:(0);">Admin</a></li>
                                 <li class="breadcrumb-item active">Customer</li>
                             </ul>
                         </div>
+<!--                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add</a>
+                        </div>-->
+
                     </div>
+
+
+
                 </div>
                 <!-- /Page Header -->
 
