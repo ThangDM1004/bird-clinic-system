@@ -113,7 +113,8 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             String date = request.getParameter("date_again");
             LocalDate localDate = null;
             Date sqlDate = null;
-            if (date == "") {
+            if ("".equals(date)) {
+
             } else {
                 localDate = LocalDate.parse(date);
                 sqlDate = Date.valueOf(localDate);
@@ -206,7 +207,7 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             }
 
         } catch (Exception e) {
-
+            response.sendRedirect("../error-404.jsp");
         }
     }
 
