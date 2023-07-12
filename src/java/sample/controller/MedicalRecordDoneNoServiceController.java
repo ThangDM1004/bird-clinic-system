@@ -112,12 +112,13 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             String phone = request.getParameter("phone");
             String date = request.getParameter("date_again");
             LocalDate localDate = null;
-
-            if (date == null) {
+            Date sqlDate = null;
+            if ("".equals(date)) {
             } else {
                 localDate = LocalDate.parse(date);
+                sqlDate = Date.valueOf(localDate);
             }
-            Date sqlDate = Date.valueOf(localDate);
+
             String record_id = Integer.toString(Mdao.MaxId() + 1);
             boolean checkMR = false;
             MedicalRecordDTO mr = new MedicalRecordDTO(record_id, sqlDate, total_fee, phone, note, patientID, bookingID, "", null);
@@ -205,7 +206,7 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             }
 
         } catch (Exception e) {
-
+            response.sendRedirect("../error-404.jsp");
         }
     }
 
