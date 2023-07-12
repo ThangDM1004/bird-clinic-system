@@ -58,11 +58,11 @@
                                 <li class="breadcrumb-item active">Staff</li>
                             </ul>
                         </div>
-                        <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                        <!--                            <div class="col-sm-5 col">
-                                        <a href="#Add_Specialities_details" data-toggle="modal"
-                                           class="btn btn-primary float-right mt-2">Add</a>
-                                    </div>-->
+
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add</a>
+                        </div>
                     </div>
 
                 </div>
@@ -216,7 +216,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Doctor</h5>
+                        <h5 class="modal-title">Add Staff</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -257,16 +257,7 @@
                                         <input type="date" placeholder="$" class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Specialities</label>
-                                        <br>
-                                        <select style="height: 40px;  border-radius: 4px; boder: 1px solid #ff1;">
-                                            <option style="height: 20px;" value="">Internal</option>
-                                            <option style="height: 20px;" value="">External</option>
-                                        </select>
-                                    </div>
-                                </div>
+                             
                             </div>
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
@@ -282,14 +273,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
+                          
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">

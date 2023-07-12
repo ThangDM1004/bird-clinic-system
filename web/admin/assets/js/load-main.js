@@ -84,6 +84,12 @@ function Doctors() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
             var table = $('.datatable').DataTable();
+              var script = document.createElement("script");
+                script.src = "./assets/js/checkUser.js";
+//                // Thêm phần tử script vào phần head của tài liệu
+               document.head.appendChild(script);
+//
+              scriptAdded = true; // Đánh dấu đã thêm script
         }
     };
     xhttp.open("GET", "doctors.jsp", true);
