@@ -119,7 +119,8 @@ function Add() {
             newButton.name = "service_" + input.value.toString();
             newButton.id = "service_" + input.value.toString();
             newButton.style = "color:black;background-color:red; border: red";
-
+            var doneBtn = document.getElementById("Done");
+            doneBtn.disabled = true;
             // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
             divElement.appendChild(newButton);
         }
@@ -202,7 +203,8 @@ function AddMore() {
             newButton.name = "service_" + input.value.toString();
             newButton.id = "service_" + input.value.toString();
             newButton.style = "color:black;background-color:red; border: red";
-
+            var doneBtn = document.getElementById("Done");
+            doneBtn.disabled = true;
             // Thêm button mới vào vị trí mong muốn trong tài liệu (ví dụ: body)
             divElement.appendChild(newButton);
         }
@@ -211,6 +213,7 @@ function AddMore() {
 // Thêm nút Add vào vị trí mong muốn trong tài liệu (ví dụ: body)
     divElement.appendChild(addButton);
     divElement.appendChild(addCancel);
+
 // Xóa các option trong select
 }
 function Medical(id) {
@@ -235,3 +238,4 @@ function Medical_done(id) {
     xhttp.open("GET", "medical-record-done.jsp?Booking_id=" + id, true);
     xhttp.send();
 }
+

@@ -237,7 +237,7 @@
 
                 <input name="booking_id" value="<%=booking_id%>" hidden="">
                 <input name="record_id" value="<%=list_mr.getRecord_id()%>" hidden="">
-                <input hidden="" id="myInput" name="number_service" value="<%=sum%>" readonly>
+                <input  hidden="" id="myInput" name="number_service" value="<%=sum%>" readonly >
                 <%
                     String index_ = request.getParameter("number_service");
                 %>
@@ -246,7 +246,7 @@
                         if (booking.getBooking_status() == 8) {
                     %>
                     <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
-                    <input value="Done"  name="action" type="submit" class="btn btn-primary submit-btn">
+                    <input value="Done" id="Done" name="action" type="submit" class="btn btn-primary submit-btn">
                     <%
                     } else if (booking.getBooking_status() == 7) {
                     %>

@@ -185,7 +185,7 @@
                 }
             %>
             <!-- /About Me -->
-            <input hidden="" id="myInput" name="number_service" value="0" readonly>
+            <input onchange="disable_done()" hidden="" id="myInput" name="number_service" value="0" readonly>
 
             <%
                 String index_ = request.getParameter("number_service");
@@ -202,7 +202,7 @@
                 } else if (status_booking == 3) {
                 %>
                 <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
-                <input  type="submit" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
+                <input  type="submit" id="Done" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
                 <%
                     }
                 %>
