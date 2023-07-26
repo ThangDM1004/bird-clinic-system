@@ -74,7 +74,7 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
+<!--            <header class="header">
                 <nav class="navbar navbar-expand-lg header-nav">
                     <div class="navbar-header">
                         <a id="mobile_btn" href="javascript:void(0);">
@@ -120,7 +120,7 @@
                             </div>
                         </li>
 
-                        <!-- User Menu -->
+                         User Menu 
                         <c:if test="${sessionScope.account != null}">
                             <li class="nav-item dropdown has-arrow logged-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -153,17 +153,18 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                                                        <a class="dropdown-item" href="#">My Appoinment</a>
                                     <a class="dropdown-item" href="#">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
                             </li>
                         </c:if>
-                        <!-- /User Menu -->
+                         /User Menu 
 
                     </ul>
                 </nav>
-            </header>
+            </header>-->
+  <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
 
