@@ -28,7 +28,7 @@ public class ServiceDAO {
     public List<ServiceDTO> getListService() throws SQLException {
         List<ServiceDTO> list = new ArrayList<>();
         try {
-            String query = "SELECT * FROM tbl_Service WHERE status = 'true' ORDER BY service_id DESC";
+            String query = "SELECT * FROM tbl_Service WHERE status = 'true' AND service_id NOT IN ('012', '013') ORDER BY service_id DESC";
             conn = new Utils().getConnection();
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
@@ -62,6 +62,7 @@ public class ServiceDAO {
         }
         return list;
     }
+
     public List<ServiceDTO> getListServiceV2() throws SQLException {
         List<ServiceDTO> list = new ArrayList<>();
         try {
@@ -685,7 +686,8 @@ public class ServiceDAO {
         }
         return false;
     }
-public List<ServiceDTO> getListServiceForBooking() throws SQLException {
+
+    public List<ServiceDTO> getListServiceForBooking() throws SQLException {
         List<ServiceDTO> list = new ArrayList<>();
         try {
             String query = "SELECT * FROM tbl_Service WHERE service_id = '013' or service_id = '012'";
@@ -707,6 +709,20 @@ public List<ServiceDTO> getListServiceForBooking() throws SQLException {
                         0);
                 list.add(s);
             }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
 
     public List<Integer> getTotalFeePerYear() {
         List<Integer> list = new ArrayList<>();
@@ -775,23 +791,9 @@ public List<ServiceDTO> getListServiceForBooking() throws SQLException {
         return list;
     }
 
-        } catch (Exception e) {
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ps != null) {
-                ps.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        return list;
-    }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ServiceDAO dao = new ServiceDAO();
-        List<ServiceDTO> ls = dao.getListTop5();
+        List<ServiceDTO> ls = dao.getListService();
         for (ServiceDTO l : ls) {
             System.out.println(l);
         }
