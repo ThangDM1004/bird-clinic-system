@@ -111,6 +111,38 @@ public class ManagerDao {
 
         return staffCount;
     }
+    
+    public static int countStaff2() throws SQLException {
+        int staffCount = 0;
+        Connection cn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            cn = Utils.getConnection();
+            String sql = "SELECT COUNT(*) AS staff_count FROM tbl_Account where role_id = 2 OR role_id = 5";
+            stm = cn.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            if (rs.next()) {
+                staffCount = staffCount + rs.getInt("staff_count");
+
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (cn != null) {
+                cn.close();
+            }
+        }
+
+        return staffCount;
+    }
 
     public static int countPatient() throws SQLException {
         int Patient_count = 0;
@@ -173,5 +205,10 @@ public class ManagerDao {
         }
 
         return Appointment_count;
+    }
+    
+    public static void main(String[] args) throws SQLException {
+        ManagerDao dao = new ManagerDao();
+        System.out.println(dao.countStaff2());
     }
 }
