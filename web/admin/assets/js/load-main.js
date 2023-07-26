@@ -84,10 +84,13 @@ function Doctors() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
             var table = $('.datatable').DataTable();
-              var script = document.createElement("script");
-                script.src = "./assets/js/checkUser.js";
+              
+                var script2 = document.createElement("script"); 
+                
+                script2.src = "./assets/js/checkImageType.js";
 //                // Thêm phần tử script vào phần head của tài liệu
-               document.head.appendChild(script);
+              
+               document.head.appendChild(script2);
 //
               scriptAdded = true; // Đánh dấu đã thêm script
         }
@@ -112,6 +115,12 @@ function Reviews() {
         if (this.readyState === 4 && this.status === 200) {
             document.getElementById("main").innerHTML = this.responseText;
             var table = $('.datatable').DataTable();
+             var script2 = document.createElement("script"); 
+                
+                script2.src = "./assets/js/checkImageType.js";
+//                // Thêm phần tử script vào phần head của tài liệu
+              
+               document.head.appendChild(script2);
         }
     }
     ;
@@ -125,6 +134,13 @@ function Staff() {
             document.getElementById("main").innerHTML = this.responseText;
             var table = $('.datatable').DataTable();
         }
+          var script2 = document.createElement("script"); 
+                
+                script2.src = "./assets/js/checkImageType.js";
+//                // Thêm phần tử script vào phần head của tài liệu
+              
+               document.head.appendChild(script2);
+//
     }
     ;
     xhttp.open("GET", "staff-list.jsp", true);
