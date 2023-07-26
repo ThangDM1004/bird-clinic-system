@@ -247,27 +247,32 @@
                     <div class="row justify-content-center">
                         <div class="col-md-9">
                             <!-- Slider -->
+
                             <div class="specialities-slider slider">
 
                                 <!-- Slider Item -->
+
                                 <%
                                     ServiceDAO dao = new ServiceDAO();
                                     List<ServiceDTO> list = dao.getListTop5();
 
                                     for (ServiceDTO s : list) {
                                 %>
-
                                 <div class="speicality-item text-center">	
+
                                     <div class="speicality-img">
                                         <a href="" > <img src="<%=s.getIcon_link()%>" class="img-fluid"
                                                           alt="Speciality"></a>
                                         <span><i class="fa fa-circle" aria-hidden="true"></i></span>
                                     </div>
                                     <p><%=s.getService_name()%></p>
+
+
                                 </div>
                                 <%}%>
                                 <!-- /Slider Item -->
                             </div>
+
                             <!-- /Slider -->
 
                         </div>

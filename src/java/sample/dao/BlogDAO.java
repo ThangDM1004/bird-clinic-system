@@ -219,8 +219,23 @@ public class BlogDAO {
         return 0;
     }
 
+    public boolean checkBlogStatus(String blogID) {
+        String query = "SELECT * FROM tbl_Blog WHERE blog_id = ? AND status = 1";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, blogID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         BlogDAO dao = new BlogDAO();
-        System.out.println(dao.getCategoryId("Health"));
+        System.out.println(dao.checkBlogStatus("BL007"));
     }
 }

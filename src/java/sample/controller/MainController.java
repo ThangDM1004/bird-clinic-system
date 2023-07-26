@@ -124,7 +124,7 @@ public class MainController extends HttpServlet {
             } else if (actions.equals(DONE_MEDICAL)) {
                 url = DONE_MEDICAL_CONTROLLER;
             } else {
-                url = "error-404.jsp";
+                url = "admin/error-404.jsp";
             }
         } catch (Exception e) {
         } finally {

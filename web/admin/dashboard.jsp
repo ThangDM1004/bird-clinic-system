@@ -3,6 +3,7 @@
     Created on : Jun 6, 2023, 4:11:00 PM
     Author     : MSI AD
 --%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="sample.dao.ServiceDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
@@ -432,23 +433,25 @@
                     </div>
 
 
-
                     <!--CHARTTTTT-->
                     <div class="row">
-                        <%
-                            Calendar calendar = Calendar.getInstance();
-                            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                            String firstDayOfWeek = dateFormat.format(calendar.getTime());
-                            calendar.add(Calendar.DATE, 6);
-                            String lastDayOfWeek = dateFormat.format(calendar.getTime());
-                        %>
                         <div class="col-sm-6 col-md-7" >
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Weekly Income from <%=firstDayOfWeek%> to <%=lastDayOfWeek%></h4>
+                                    <%
+                                        Calendar calendar = Calendar.getInstance();
+                                        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+                                        String firstDayOfWeek = dateFormat.format(calendar.getTime());
+                                        calendar.add(Calendar.DATE, 6);
+                                        String lastDayOfWeek = dateFormat.format(calendar.getTime());
+                                        LocalDate currentDate = LocalDate.now();
+                                        int currentYear = currentDate.getYear();
+                                    %>
+                                    <h4 class="card-title text-center">Weekly Income from <span style="padding: 1px 5px; background: #28a745; color: white; border-radius: 3px;"><%=firstDayOfWeek%></span> to <span style="padding: 1px 5px; background: #28a745; color: white; border-radius: 3px;"><%=lastDayOfWeek%></span></h4>
                                 </div>
                                 <div class="card-body">
+                                    <p style="color: red;"><i>***Note: The data will be updated automatically every week</i></p>
                                     <canvas id="myChart_3"></canvas>
                                 </div>
                             </div>
@@ -456,7 +459,7 @@
                         <div class="col-sm-6 col-md-5">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Customer satisfaction</h4>
+                                    <h4 class="card-title text-center">Customer satisfaction</h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myChart_2"></canvas>
@@ -466,18 +469,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-6 col-md-7" style="top: -100px;">
+                        <div class="col-sm-12">
                             <div class="card card-chart">
                                 <div class="card-header">
-                                    <h4 class="card-title">Revenue by Month in 2023</h4>
+                                    <h4 class="card-title text-center">Monthly Income in <span style="padding: 1px 5px; background: #28a745; color: white; border-radius: 3px;"><%=currentYear%></span></h4>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
                 </c:if>
