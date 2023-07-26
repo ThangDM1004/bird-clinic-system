@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sample.dao.UserDAO;
 
 /**
@@ -32,6 +33,7 @@ public class ResetPasswordController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+            HttpSession sess = request.getSession();
             UserDAO dao = new UserDAO();
             String newPass = request.getParameter("password");
             String newCPass = request.getParameter("confirm_password");
@@ -40,7 +42,7 @@ public class ResetPasswordController extends HttpServlet {
             String correctPass = "Reset password successfully !";
             String incorrectPass = "Your password confirm does not match!";
             String dupPass = "It's look like you enter your old password !";
-
+            
             if (!newPass.trim().equalsIgnoreCase(newCPass)) {
                 request.setAttribute("incorrectPass", incorrectPass);
                 request.getRequestDispatcher("newPassword.jsp").forward(request, response);
@@ -50,13 +52,13 @@ public class ResetPasswordController extends HttpServlet {
                     request.getRequestDispatcher("newPassword.jsp").forward(request, response);
                 } else {
                     dao.changePasswordByEmail(newPass, email);
-                    request.setAttribute("correctPass", correctPass);
-                    request.getRequestDispatcher("newPassword.jsp").forward(request, response);
+                    sess.removeAttribute("status");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

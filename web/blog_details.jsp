@@ -223,6 +223,9 @@
                     String blogID = request.getParameter("blogID");
                     BlogDAO dao = new BlogDAO();
                     List<BlogDTO> list = dao.getListBlogByID(blogID);
+                    if (dao.checkBlogStatus(blogID) != true) {
+                        response.sendRedirect("admin/error-404.jsp");
+                    }
                     for (BlogDTO blog : list) {
 
                 %>

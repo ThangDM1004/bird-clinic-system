@@ -8,6 +8,9 @@ package sample.controller;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -22,14 +25,10 @@ public class OtpManager {
         otpvalue = rand.nextInt(900000) + 100000;
 
         // Schedule a timer to remove otpvalue after 60 seconds
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                otpvalue = 0;
-                timer.cancel(); // Cancel the timer after otpvalue is removed
-            }
-        }, 60000); // 60 seconds
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.schedule(() -> {
+            otpvalue = 0;
+        }, 60, TimeUnit.SECONDS);
     }
 
     public int getOtpValue() {

@@ -708,6 +708,73 @@ public List<ServiceDTO> getListServiceForBooking() throws SQLException {
                 list.add(s);
             }
 
+    public List<Integer> getTotalFeePerYear() {
+        List<Integer> list = new ArrayList<>();
+
+        String query = "DECLARE @Year INT = YEAR(GETDATE()); -- Năm bạn muốn lấy dữ liệu\n"
+                + "\n"
+                + "WITH AllDates AS (\n"
+                + "    SELECT CAST(CONCAT(@Year, '-01-01') AS DATE) AS booking_date\n"
+                + "    UNION ALL\n"
+                + "    SELECT DATEADD(DAY, 1, booking_date) FROM AllDates WHERE YEAR(booking_date) = @Year\n"
+                + ")\n"
+                + "SELECT \n"
+                + "    ISNULL(SUM(CASE WHEN bd.booking_status = 5 THEN mr.total_fee ELSE 0 END), 0) as totalfee\n"
+                + "FROM\n"
+                + "    AllDates d\n"
+                + "LEFT JOIN tbl_Booking_Status_Details bd ON CONVERT(DATE, bd.date) = CONVERT(DATE, d.booking_date)\n"
+                + "LEFT JOIN tbl_Medical_Record mr ON bd.booking_id = mr.booking_id\n"
+                + "GROUP BY\n"
+                + "    d.booking_date\n"
+                + "ORDER BY\n"
+                + "    d.booking_date\n"
+                + "OPTION (MAXRECURSION 365)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int temp = rs.getInt("totalfee");
+                list.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public List<String> getDatePerYear() {
+        List<String> list = new ArrayList<>();
+        String query = "DECLARE @Year INT = YEAR(GETDATE());\n"
+                + "\n"
+                + "WITH AllDates AS (\n"
+                + "    SELECT CAST(CONCAT(@Year, '-01-01') AS DATE) AS booking_date\n"
+                + "    UNION ALL\n"
+                + "    SELECT DATEADD(DAY, 1, booking_date) FROM AllDates WHERE YEAR(booking_date) = @Year\n"
+                + ")\n"
+                + "SELECT \n"
+                + "    d.booking_date\n"
+                + "FROM\n"
+                + "    AllDates d\n"
+                + "LEFT JOIN tbl_Booking_Status_Details bd ON CONVERT(DATE, bd.date) = CONVERT(DATE, d.booking_date)\n"
+                + "LEFT JOIN tbl_Medical_Record mr ON bd.booking_id = mr.booking_id\n"
+                + "GROUP BY\n"
+                + "    d.booking_date\n"
+                + "ORDER BY\n"
+                + "    d.booking_date\n"
+                + "OPTION (MAXRECURSION 365);";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String temp = rs.getString("booking_date");
+                list.add(temp);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
         } catch (Exception e) {
         } finally {
             if (rs != null) {
@@ -724,7 +791,10 @@ public List<ServiceDTO> getListServiceForBooking() throws SQLException {
     }
     public static void main(String[] args) {
         ServiceDAO dao = new ServiceDAO();
-        System.out.println(dao.checkTop1Service("008"));
+        List<ServiceDTO> ls = dao.getListTop5();
+        for (ServiceDTO l : ls) {
+            System.out.println(l);
+        }
     }
 
 }

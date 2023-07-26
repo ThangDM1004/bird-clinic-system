@@ -31,11 +31,18 @@ public class getWeeklySalePerWeek extends HttpServlet {
         List<Integer> dataList = dao.getTotalFeePerWeek();
         List<Integer> dataList_1 = dao.getCountServicePerWeek();
         List<String> dataList_2 = dao.getDateByName();
+
+        //get ..... 
+        //List fee = getFee(param, param)
+        //if (fee is null)
+        // jsonObject = dao.get....
+        //else
+        //jsonobject = fee
         JsonObject jsonObject = new JsonObject();
         JsonArray dataArray = new JsonArray();
         JsonArray dataArray_1 = new JsonArray();
         JsonArray dataArray_2 = new JsonArray();
-        
+
         for (Integer data : dataList) {
             dataArray.add(data);
         }
@@ -43,7 +50,7 @@ public class getWeeklySalePerWeek extends HttpServlet {
         for (Integer datas : dataList_1) {
             dataArray_1.add(datas);
         }
-        
+
         for (String datas_1 : dataList_2) {
             dataArray_2.add(datas_1);
         }
