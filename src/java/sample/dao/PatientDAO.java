@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import sample.dto.BookingDTO;
 import sample.dto.PatientDTO;
 import sample.utils.Utils;
 
@@ -377,6 +378,25 @@ public class PatientDAO {
         return bird;
     }
 
+    public boolean checkValidateBookingOneBirdForManySlot(String username, String patientId){
+        BookingDAO dao = new BookingDAO();
+        try {
+            List<BookingDTO> list = dao.getAllBooking();
+
+            for (BookingDTO bookingDTO : list) {
+                boolean a = bookingDTO.getUsername_customer().trim().equals(username.trim());
+                boolean b = bookingDTO.getPatient_id().trim().equals(patientId.trim());
+                boolean e = (bookingDTO.getBooking_status() != 6 && bookingDTO.getBooking_status() != 5);
+                if (a && b && e) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+
+        }
+        return true;
+    }
+    
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
         System.out.println(dao.checkValidatePatient("minhga1", "11", "2023/07/12", "1"));
