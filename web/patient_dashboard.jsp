@@ -18,7 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
+
     </head>
     <body>
         <%
@@ -167,15 +167,24 @@
                                                     PatientDTO bird = daoBird.getOneBird(mrr.getPatent_id());
                                             %>
                                             <tr>
-
+                                                <%
+                                                    if (mrr.getDate_again() == null) {
+                                                %>
+                                                <td></td>
+                                                <%
+                                                } else {
+                                                %>
                                                 <td><%= mrr.getDate_again()%></td>
+                                                <%
+                                                    }
+                                                %>
                                                 <td>
 
                                                     <ul>
 
                                                         <%
                                                             List<String> moreService = daoMR.getListServiceMore(mrr.getRecord_id());
-                                                                for (String ser_id : moreService) {%>
+                                                            for (String ser_id : moreService) {%>
 
                                                         <li><%=daoMR.getSerNam(ser_id)%></li>
 
@@ -202,13 +211,25 @@
                                                         <a href="#"><%=bird.getName()%><span> <%= daoBird.getIDSpecies(bird.getSpecies_id())%></span></a>
                                                     </h2>
                                                 </td>
+                                                <%
+                                                    if (mrr.getDate_again() == null) {
+                                                %>
                                                 <td class="text-right">
                                                     <div class="table-action">
                                                         <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
                                                             <i class="fas fa-thumbs-up"></i> Feedback
                                                         </a>
                                                     </div> <br>
-
+                                                </td>
+                                                <%
+                                                } else {
+                                                %>
+                                                <td class="text-right">
+                                                    <div class="table-action">
+                                                        <a href="javascript:void(0);" class="btn btn-sm bg-primary-light" data-toggle="modal" data-target="#feedback_<%=index%>">
+                                                            <i class="fas fa-thumbs-up"></i> Feedback
+                                                        </a>
+                                                    </div> <br>
                                                     <form action="MainController">
                                                         <div class="table-action">
                                                             <button type="submit" name="action" class="btn btn-sm bg-primary-light" value="dateAgain">
@@ -221,8 +242,10 @@
                                                             </button>
                                                         </div>
                                                     </form>
-
                                                 </td>
+                                                <%
+                                                    }
+                                                %>
                                             </tr>
                                             <% } %>
                                         </tbody>  	
