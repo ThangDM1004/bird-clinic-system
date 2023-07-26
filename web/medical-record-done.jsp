@@ -62,7 +62,7 @@
             }
             PatientDAO pDao = new PatientDAO();
             ServiceDAO sdao = new ServiceDAO();
-            List<ServiceDTO> list_service = sdao.getListService();
+            List<ServiceDTO> list_service = sdao.getListServiceV2();
             int index = list_service.size();
             int count = 0;
             UserDAO uDao = new UserDAO();
@@ -179,10 +179,22 @@
                                         List<String> list_ser = mdao.getListServiceMore(list_mr.getRecord_id());
                                         int sum = 0;
                                         for (String ser : list_ser) {
-                                            sum++;
+
+                                            boolean checkVip = "Vip".equals(mdao.getSerNam(ser));
+                                            boolean checkNormal = "Normal".equals(mdao.getSerNam(ser));
+                                            if (checkVip == false && checkNormal == false) {
+                                                sum++;
+                                                boolean statusSer = mdao.getStatusService(list_mr.getRecord_id(), ser.trim());
+                                                if (statusSer == true) {
                                     %>
                                 <input id="service_<%=sum%>" disabled="" style="background-color:#09e5ab; border: #09e5ab;" value="<%=dao.getServiceFeeByName(mdao.getSerNam(ser))%>-<%=mdao.getSerNam(ser)%>" readonly>
                                 <%
+                                } else {
+                                %>
+                                <input id="service_<%=sum%>" disabled="" style="background-color:red; border: red;" value="<%=dao.getServiceFeeByName(mdao.getSerNam(ser))%>-<%=mdao.getSerNam(ser)%>" readonly>
+                                <%
+                                            }
+                                        }
                                     }
                                 %>
                                 <div id="service">
@@ -225,7 +237,7 @@
 
                 <input name="booking_id" value="<%=booking_id%>" hidden="">
                 <input name="record_id" value="<%=list_mr.getRecord_id()%>" hidden="">
-                <input hidden="" id="myInput" name="number_service" value="<%=sum%>" readonly>
+                <input  hidden="" id="myInput" name="number_service" value="<%=sum%>" readonly >
                 <%
                     String index_ = request.getParameter("number_service");
                 %>
@@ -234,7 +246,7 @@
                         if (booking.getBooking_status() == 8) {
                     %>
                     <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
-                    <input value="Done"  name="action" type="submit" class="btn btn-primary submit-btn">
+                    <input value="Done" id="Done" name="action" type="submit" class="btn btn-primary submit-btn">
                     <%
                     } else if (booking.getBooking_status() == 7) {
                     %>

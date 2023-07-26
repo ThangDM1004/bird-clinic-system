@@ -74,7 +74,7 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
+<!--            <header class="header">
                 <nav class="navbar navbar-expand-lg header-nav">
                     <div class="navbar-header">
                         <a id="mobile_btn" href="javascript:void(0);">
@@ -120,7 +120,7 @@
                             </div>
                         </li>
 
-                        <!-- User Menu -->
+                         User Menu 
                         <c:if test="${sessionScope.account != null}">
                             <li class="nav-item dropdown has-arrow logged-item">
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -153,17 +153,18 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                                                        <a class="dropdown-item" href="#">My Appoinment</a>
                                     <a class="dropdown-item" href="#">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
                             </li>
                         </c:if>
-                        <!-- /User Menu -->
+                         /User Menu 
 
                     </ul>
                 </nav>
-            </header>
+            </header>-->
+  <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
 
@@ -447,7 +448,7 @@
                                         <div class="col-sm-12 m-b-20">
                                             <ul class="list-unstyled mb-0">
                                                 <li>The dear bird Hospital</li>
-                                                <li>Doctor: <%=udao.getUser(x.getUsername_doctor()).getFullname() %></li>
+                                                <li>Doctor: <%=udao.getUser(x.getUsername_doctor()).getFullname()%></li>
                                                 <li>Time slot: <%= dao.getSlotTime(x.getBooking_id())%></li>
                                                 <br>
                                             </ul>
@@ -537,7 +538,7 @@
                                         </div>
 
                                     </div>
-                                  
+
                                 </div>
                                 <!-- /Invoice Container -->
 
@@ -558,6 +559,142 @@
             }
         %>
 
+        <%
+            int count2 = 0;
+
+            for (BookingDTO x : list) {
+                if (x.getBooking_status() == 2) {
+                    count2++;
+        %>
+
+        <div class="modal fade" id="check_<%=count2%>" aria-hidden="true" role="dialog">
+
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div style="padding: 0px 10px; max-height: 100%"  class="card">
+
+                    <div class="page-wrapper">
+
+                        <div class="content container-fluid">
+
+                            <!-- Invoice Container -->
+                            <div class="invoice-container">
+
+                                <div class="row">
+                                    <div class="col-sm-6 m-b-20">
+                                        <img alt="Logo" class="inv-logo img-fluid" src="assets/img/final_logo.png">
+                                    </div>
+                                    <div class="col-sm-6 m-b-20">
+                                        <div class="invoice-details">
+                                            <h3 class="text-uppercase">Invoice #<%=x.getBooking_id()%></h3>
+                                            <ul class="list-unstyled mb-0">
+                                                <li>Date: <span><%=x.getDate()%></span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 m-b-20">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>The dear bird Hospital</li>
+                                            <li>Doctor: <%=udao.getUser(x.getUsername_doctor()).getFullname()%></li>
+                                            <li>Time slot: <%= dao.getSlotTime(x.getBooking_id())%></li>
+                                            <br>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-7 col-xl-8 m-b-20">
+                                        <h3>Invoice to</h3>
+                                        <ul class="list-unstyled mb-0">
+                                            <li><h5 class="mb-0"><strong><%=dao.customerName(x.getUsername_customer())%></strong></h5></li>
+                                            <li><%=udao.getUser(x.getUsername_customer()).getPhone()%></li>
+                                            <li><%=udao.getUser(x.getUsername_customer()).getEmail()%></li>
+                                            <br>
+                                            <br>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-lg-5 col-xl-4 m-b-20">
+                                        <h3>Patient Details</h3>
+                                        <ul class="list-unstyled invoice-payment-details mb-0">
+                                            <li><h5>Name: <span class="text-right"><%=dao.getBirdname(x.getPatient_id())%></span></h5></li>
+                                            <li>Species: <%=pdao.getSpecies(pdao.getBirdByID(x.getPatient_id()).getSpecies_id())%> <span></span></li>
+                                            <br>
+                                            <br>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>SERVICE</th>
+                                                <th class="d-none d-sm-table-cell"></th>
+                                                <th class="text-nowrap"></th>
+                                                <th ></th>
+                                                <th>PRICE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <%
+                                                String ser_name = dao.getServicename(x.getBooking_id());
+                                            %>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><%=ser_name%></td>
+                                                <td class="d-none d-sm-table-cell"></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><%=dao.getServiceFeeByName(ser_name) %></td>
+                                            </tr>
+                                            <%    
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div>
+                                    <div class="row invoice-payment">
+                                        <div class="col-sm-7">
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="m-b-20">
+                                                <h3>Total due</h3>
+                                                <div class="table-responsive no-border">
+                                                    <table class="table mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>Total:</th>
+                                                                <td class="text-right text-primary"><h5><%=dao.getServiceFeeByName(ser_name)%></h5></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+
+                                </div>
+
+                            </div>
+                            <!-- /Invoice Container -->
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <%
+                }
+            }
+        %>
         <%
             if (status == "Pending") {
         %>

@@ -285,8 +285,8 @@ public class MedicalRecordDAO {
         }
         return null;
     }
-    
-     public List<MedicalRecordDTO> getMRDoctor(String username) throws SQLException {
+
+    public List<MedicalRecordDTO> getMRDoctor(String username) throws SQLException {
         List<MedicalRecordDTO> ls = new ArrayList();
         MedicalRecordDTO a = new MedicalRecordDTO();
         Connection conn = null;
@@ -294,9 +294,9 @@ public class MedicalRecordDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
-            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_customer, tbl_Booking.service_id\n" +
-"                                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n" +
-"                                      where tbl_Booking.username_doctor = ?");
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_customer, tbl_Booking.service_id,tbl_Booking.booking_id\n"
+                    + "                                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n"
+                    + "                                      where tbl_Booking.username_doctor = ?");
             ptm.setString(1, username);
             rs = ptm.executeQuery();
             while (rs.next()) {
@@ -305,7 +305,7 @@ public class MedicalRecordDAO {
                 Date date_again = rs.getDate("date_again");
                 String note = rs.getString("note");
 
-                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, "", rs.getString("service_id"), rs.getString("username_customer"));
+                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, rs.getString("booking_id"), rs.getString("service_id"), rs.getString("username_customer"));
                 ls.add(a);
 
             }
@@ -358,8 +358,9 @@ public class MedicalRecordDAO {
         }
         return null;
     }
-     public boolean CheckgetMRByBookingID(String bookingID) throws SQLException {
-       boolean check = false;
+
+    public boolean CheckgetMRByBookingID(String bookingID) throws SQLException {
+        boolean check = false;
         Connection conn = null;
         PreparedStatement ptm = null;
         ResultSet rs = null;
@@ -371,9 +372,9 @@ public class MedicalRecordDAO {
             ptm.setString(1, bookingID);
             rs = ptm.executeQuery();
             if (rs.next()) {
-               check = true;
+                check = true;
             }
-           
+
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         } finally {
@@ -444,9 +445,9 @@ public class MedicalRecordDAO {
         }
         return checkInsert;
     }
-    private static final String addSelectService = "INSERT INTO tbl_Select_Service(service_id,fee,record_id)" + "VALUES(?,?,?)";
+    private static final String addSelectService = "INSERT INTO tbl_Select_Service(service_id,fee,record_id,status)" + "VALUES(?,?,?,?)";
 
-    public boolean ServiceInMedical(MedicalRecordDTO mr) throws SQLException {
+    public boolean ServiceInMedical(MedicalRecordDTO mr, boolean status) throws SQLException {
         boolean checkInsert = false;
         Connection conn = null;
         PreparedStatement ps = null;
@@ -458,7 +459,37 @@ public class MedicalRecordDAO {
                 ps.setString(1, mr.getSer_id());
                 ps.setDouble(2, mr.getTotal_fee());
                 ps.setString(3, mr.getRecord_id());
+                ps.setBoolean(4, status);
                 checkInsert = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkInsert;
+    }
+
+    public boolean getStatusService(String record_id, String service_id) throws SQLException {
+        boolean checkInsert = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("SELECT status FROM tbl_Select_Service WHERE service_id =? AND record_id =?");
+                ps.setString(1, service_id);
+                ps.setString(2, record_id.trim());
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    checkInsert = rs.getBoolean("status");
+                }
             }
         } catch (Exception e) {
 
@@ -475,10 +506,9 @@ public class MedicalRecordDAO {
 
     public static void main(String[] args) throws SQLException {
         MedicalRecordDAO dao = new MedicalRecordDAO();
-        List<String> ls = dao.getListServiceMore("7");
-        for (String x : ls) {
-            System.out.println(x);
-        }
+        boolean check = dao.getStatusService("3", "001");
+        System.out.println(check);
+
     }
 
     public List<String> getListServiceMore(String record_id) throws SQLException {
@@ -527,9 +557,34 @@ public class MedicalRecordDAO {
                 ps = conn.prepareStatement("UPDATE tbl_Medical_Record\n"
                         + "SET date_again = ?, note = ?\n"
                         + "WHERE record_id =?;");
-               ps.setDate(1, mr.getDate_again());
-               ps.setString(2, mr.getNote());
-               ps.setString(3, mr.getRecord_id());
+                ps.setDate(1, mr.getDate_again());
+                ps.setString(2, mr.getNote());
+                ps.setString(3, mr.getRecord_id());
+                checkInsert = ps.executeUpdate() > 0 ? true : false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return checkInsert;
+    }
+
+    public boolean UpdateSelectService(String record, String ser) throws SQLException {
+        boolean checkInsert = false;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = Utils.getConnection();
+            if (conn != null) {
+                ps = conn.prepareStatement("update tbl_Select_Service set status = 1 where service_id =? and record_id =? ");
+                ps.setString(1, ser.trim());
+                ps.setString(2, record);
                 checkInsert = ps.executeUpdate() > 0 ? true : false;
             }
         } catch (Exception e) {

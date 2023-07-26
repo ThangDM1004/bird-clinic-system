@@ -53,7 +53,7 @@
             List<BookingDTO> list = dao.getAllBooking();
             PatientDAO pDao = new PatientDAO();
             ServiceDAO sdao = new ServiceDAO();
-            List<ServiceDTO> list_service = sdao.getListService();
+            List<ServiceDTO> list_service = sdao.getListServiceV2();
             int index = list_service.size();
             int count = 0;
             UserDAO uDao = new UserDAO();
@@ -158,8 +158,7 @@
                             <div  class="form-group">
                                 <label>Service <span class="text-danger"></span></label>
                                 <div id="service">
-                                    <input id="service_1" type="text"   name="service_1" style="color: black; background-color:#09e5ab; border: #09e5ab;"  readonly="" value="<%=dao.getServiceFeeByName(dao.getServicename(x.getBooking_id()))%>-<%= dao.getServicename(x.getBooking_id())%>">
-
+<!--                                    <input id="service_0" type="text"   name="service_1" style="color: black; background-color:#09e5ab; border: #09e5ab;"  readonly="" value="<%=dao.getServiceFeeByName(dao.getServicename(x.getBooking_id()))%>-<%= dao.getServicename(x.getBooking_id())%>">-->
                                 </div>
                                 <input type="button" value="+" onclick="Add()">
                             </div>
@@ -186,7 +185,7 @@
                 }
             %>
             <!-- /About Me -->
-            <input hidden="" id="myInput" name="number_service" value="1" readonly>
+            <input onchange="disable_done()" hidden="" id="myInput" name="number_service" value="0" readonly>
 
             <%
                 String index_ = request.getParameter("number_service");
@@ -203,7 +202,7 @@
                 } else if (status_booking == 3) {
                 %>
                 <input type="submit" name="action" value="Save" class="btn btn-primary submit-btn" >
-                <input  type="submit" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
+                <input  type="submit" id="Done" name="action" value="Done Medical" class="btn btn-primary submit-btn" >
                 <%
                     }
                 %>

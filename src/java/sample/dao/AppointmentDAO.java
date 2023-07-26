@@ -497,7 +497,7 @@ public class AppointmentDAO {
     public static void main(String[] args) {
         AppointmentDAO dao = new AppointmentDAO();
         try {
-            System.out.println(dao.getAppointmentForUser("minhga1").size());
+            System.out.println(dao.getDocName("doctor1"));
         } catch (SQLException ex) {
             Logger.getLogger(AppointmentDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

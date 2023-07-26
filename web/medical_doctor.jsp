@@ -41,7 +41,7 @@
                     <table class="datatable table table-hover table-center mb-0">
                         <thead>
                             <tr>
-
+                                <th>ID</th>
                                 <th>Date Again </th>
                                 <th>Service</th>
                                 <th>Note</th>
@@ -57,7 +57,7 @@
                                     PatientDTO bird = daoBird.getOneBird(mrr.getPatent_id());
                             %>
                             <tr>
-
+                                <td><%=mrr.getBooking_id() %></td>
                                 <td><%= mrr.getDate_again()%></td>
                                 <td>
 
@@ -75,7 +75,7 @@
 
                                     </ul>
                                 </td>
-                                <td> <textarea readonly=""> <%= mrr.getNote()%> </textarea> </td>
+                                <td> <%= mrr.getNote()%>  </td>
                                 <td>
                                     <h2 class="table-avatar">
                                         <a class="avatar avatar-sm mr-2">

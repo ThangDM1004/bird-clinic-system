@@ -45,7 +45,7 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
+<!--            <header class="header">
                 <nav class="navbar navbar-expand-lg header-nav">
                     <div class="navbar-header">
                         <a id="mobile_btn" href="javascript:void(0);">
@@ -73,7 +73,7 @@
                                 <a href="index-2.jsp">Home</a>
                             </li>
                             
-                            <!-- 12312 <li class="has-submenu">
+                             12312 <li class="has-submenu">
                                     <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
                                     <ul class="submenu">
                                             <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
@@ -123,7 +123,7 @@
                                             <li><a href="register.jsp">Register</a></li>
                                             <li><a href="forgot-password.jsp">Forgot Password</a></li>
                                     </ul>
-                            </li> -->
+                            </li> 
                             <li>
                                 <a href="blog.jsp" >Blog</a>
                             </li>
@@ -147,7 +147,8 @@
                         </li>
                     </ul>
                 </nav>
-            </header>
+            </header>-->
+  <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
             <!-- Page Content -->
@@ -246,7 +247,7 @@
                                             <div class="row form-row social-login">
                                                 <div style="margin-left: auto; margin-right: auto;" class="col-6">
                                                     <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/bird-clinic-system/LoginGoogleController&response_type=code
-                                                       &client_id=682520957809-oqj4srno5ntcptc8d15nts7il0iae4k4.apps.googleusercontent.com&approval_prompt=force" class="btn btn-google btn-block"><i
+                                                       &client_id=973433615683-gfjr1bno4eukjdgpfahqr08ct4llmumq.apps.googleusercontent.com&approval_prompt=force" class="btn btn-google btn-block"><i
                                                             class="fab fa-google mr-1"></i>Login</a>
                                                 </div>
                                             </div>

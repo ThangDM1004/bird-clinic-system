@@ -41,7 +41,7 @@
 		<div class="main-wrapper">
 		
 			<!-- Header -->
-			<header class="header">
+<!--			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
 						<a id="mobile_btn" href="javascript:void(0);">
@@ -138,7 +138,7 @@
 							</div>
 						</li>
 						
-						<!-- User Menu -->
+						 User Menu 
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
@@ -160,11 +160,12 @@
 								<a class="dropdown-item" href="login.jsp">Logout</a>
 							</div>
 						</li>
-						<!-- /User Menu -->
+						 /User Menu 
 						
 					</ul>
 				</nav>
-			</header>
+			</header>-->
+    <jsp:include page="headerfile.jsp"/>
 			<!-- /Header -->
 			
 			<!-- Breadcrumb -->

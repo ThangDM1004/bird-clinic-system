@@ -231,13 +231,16 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Icon</label>
-                                        <input type="file" class="form-control" name="icon" accept="image/jpeg, image/png, image/jpg">
+                                        <input type="file" class="form-control" name="icon" accept="image/jpeg, image/png, image/jpg" onchange="checkImage()" id="bird_image_dash">
+
                                     </div>
+
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Service Image</label>
-                                        <input type="file" class="form-control" name="image" accept="image/jpeg, image/png, image/jpg">
+                                        <input type="file" class="form-control" name="image" accept="image/jpeg, image/png, image/jpg" onchange="checkImage2()" id="bird_image_dash2">
+                                        <span id="result_4" style="margin-left: 10px;color: red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -383,6 +386,9 @@
 
         <!-- Custom JS -->
         <script  src="assets/js/script.js"></script>
+
         <!-- /Delete Modal -->
+        <script src="../assets/js/checkUpdateValidate.js"></script>
+
     </body>
 </html>

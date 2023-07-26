@@ -58,11 +58,11 @@
                                 <li class="breadcrumb-item active">Staff</li>
                             </ul>
                         </div>
-                        <!--                            PHẦN ADD THÊM BÁC SĨ-->
-                        <!--                            <div class="col-sm-5 col">
-                                        <a href="#Add_Specialities_details" data-toggle="modal"
-                                           class="btn btn-primary float-right mt-2">Add</a>
-                                    </div>-->
+
+                        <div class="col-sm-5 col">
+                            <a href="#Add_Specialities_details" data-toggle="modal"
+                               class="btn btn-primary float-right mt-2">Add</a>
+                        </div>
                     </div>
 
                 </div>
@@ -212,22 +212,40 @@
 
 
         <!-- Add Modal -->
+        <style>
+            .available {
+                color: #006400;
+                background: #E5FFE5;
+                padding-left: 3px;
+                padding-right: 3px;
+                border-radius: 3px;
+            }
+
+            .already-exists, .not-enough-length {
+                padding-left: 3px;
+                padding-right: 3px;
+                border-radius: 3px;
+                background: #F8ECEC;
+                color: #be4b49;
+            }
+        </style>
         <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Doctor</h5>
+                        <h5 class="modal-title">Add Staff</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="../MainController" method="POST" enctype="multipart/form-data">
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Image Profile</label>
-                                        <input type="file" class="form-control">
+                                        <input type="file" class="form-control" name="image" id="bird_image_dash">
+                                        <span id="result_3"></span>
                                     </div>
                                 </div>
                             </div>
@@ -235,17 +253,16 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label>Full Name</label>
-                                        <input style="width: 250px;" type="text" class="form-control">
+                                        <input style="width: 250px;" type="text" class="form-control" name="fullname">
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Gender</label>
                                         <br>
-                                        <select>
-                                            <option value="">Male</option>
-                                            <option value="">Female</option>
-                                            <option value="">Other</option>
+                                        <select name="gender">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </div>
                                 </div>
@@ -254,39 +271,25 @@
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label>Date of Birth</label>
-                                        <input type="date" placeholder="$" class="form-control">
+                                        <input type="date" required="" class="form-control" name="dob">
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="form-group">
-                                        <label>Specialities</label>
-                                        <br>
-                                        <select style="height: 40px;  border-radius: 4px; boder: 1px solid #ff1;">
-                                            <option style="height: 20px;" value="">Internal</option>
-                                            <option style="height: 20px;" value="">External</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="row form-row">
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Email Contact</label>
-                                        <input  type="email" placeholder="abcxyz@gmail.com" class="form-control"></input>
+                                        <input  type="email" placeholder="abcxyz@gmail.com" class="form-control" id="myemail" name="email"></input>
+                                        <span id="result_1" class="status_1" style="margin-left: 10px;"></span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Phone Contact</label>
-                                        <input  type="number" class="form-control"></input>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row form-row">
-                                <div class="col-12 col-sm-6">
-                                    <div class="form-group">
-                                        <label>Bio</label>
-                                        <textarea style="width: 300px;" type="text" class="form-control"></textarea>
+                                        <input  type="tel" class="form-control" id="myphone" required="" name="phone"></input>
+                                        <span id="result_2" class="status_2" style="margin-left: 10px;"></span>
+
                                     </div>
                                 </div>
                             </div>
@@ -294,17 +297,19 @@
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Username</label>
-                                        <input  type="text"  class="form-control"></input>
+                                        <input id="myuser" name="username" type="text" class="form-control floating" required="">
+                                        <input hidden="" name="role" value="2">
+                                        <span id="result" style="margin-left: 10px;"></span>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="form-group">
                                         <label>Password</label>
-                                        <input type="password" class="form-control"></input>
+                                        <input name="password" type="password" class="form-control"></input>
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Add new</button>
+                            <button value="addDocStaff" id="submit" disabled="true" type="submit" name="action">Add new</button>
                         </form>
                     </div>
                 </div>

@@ -11,9 +11,9 @@ package sample.utils;
  */
 public class Constants {
 
-    public static String GOOGLE_CLIENT_ID = "682520957809-oqj4srno5ntcptc8d15nts7il0iae4k4.apps.googleusercontent.com";
+    public static String GOOGLE_CLIENT_ID = "973433615683-gfjr1bno4eukjdgpfahqr08ct4llmumq.apps.googleusercontent.com";
 
-    public static String GOOGLE_CLIENT_SECRET = "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";
+    public static String GOOGLE_CLIENT_SECRET = "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";
 
     public static String GOOGLE_REDIRECT_URI = "http://localhost:8080/bird-clinic-system/LoginGoogleController";
 

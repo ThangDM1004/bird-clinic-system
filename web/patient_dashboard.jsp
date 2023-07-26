@@ -185,7 +185,7 @@
 
                                                     </ul>
                                                 </td>
-                                                <td> <textarea readonly=""> <%= mrr.getNote()%> </textarea> </td>
+                                                <td> <%= mrr.getNote()%>  </td>
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a href="doctor-profile.jsp" class="avatar avatar-sm mr-2">

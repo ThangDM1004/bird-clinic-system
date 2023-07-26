@@ -317,7 +317,7 @@ public class PatientDAO {
             conn = Utils.getConnection();
             ps = conn.prepareStatement("select *\n"
                     + "from tbl_Booking\n"
-                    + "where username_customer = ? and patient_id = ? and date = ? and slot_number = ?");
+                    + "where username_customer = ? and patient_id = ? and date = ? and slot_number = ? and booking_status != 5 and booking_status != 6");
             ps.setString(1, username);
             ps.setString(2, patientID);
             ps.setString(3, date);
@@ -379,7 +379,7 @@ public class PatientDAO {
 
     public static void main(String[] args) {
         PatientDAO dao = new PatientDAO();
-        System.out.println(dao.getBirdNameByPatientId("1"));
+        System.out.println(dao.checkValidatePatient("minhga1", "11", "2023/07/12", "1"));
     }
 
 }

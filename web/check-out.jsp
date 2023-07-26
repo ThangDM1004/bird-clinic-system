@@ -85,6 +85,7 @@
                                             <tbody>
 
                                                 <%                                                    int count = 0;
+                                                MedicalRecordDAO mdao = new MedicalRecordDAO();
                                                     for (BookingDTO x : list) {
                                                         if (x.getBooking_status() == 4 || x.getBooking_status() == 7 || x.getBooking_status() == 8) {
                                                             count++;
@@ -100,13 +101,14 @@
                                             <td>
                                                 <%=dao.doctorName(x.getUsername_doctor())%>
                                             </td>
+                                            
                                             <input type="hidden" value="3" name="status_booking">
                                             <td> <a href="#invoice_<%=count%>" data-toggle="modal" type="button" class="btn btn-primary submit-btn">Invoice</a></td>
                                             <td><div class="submit-section">
                                                     <%
                                                         if (x.getBooking_status() == 7) {
                                                     %>
-                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=8&action=Check-in" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Confirm</a>
+                                                    <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=8&action=Check-in&record_id=<%=mdao.getMRByBookingID(x.getBooking_id()).getRecord_id() %>" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Confirm</a>
                                                     <%
                                                     } else if (x.getBooking_status() == 8) {
                                                     %>
