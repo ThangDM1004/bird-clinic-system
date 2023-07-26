@@ -254,7 +254,7 @@ public class MedicalRecordDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
-            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id\n"
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id,tbl_Medical_Record.booking_id\n"
                     + "                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n"
                     + "                   where tbl_Booking.username_customer = ?");
             ptm.setString(1, username);
@@ -265,7 +265,7 @@ public class MedicalRecordDAO {
                 Date date_again = rs.getDate("date_again");
                 String note = rs.getString("note");
 
-                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, "", rs.getString("service_id"), rs.getString("username_doctor"));
+                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, rs.getString("booking_id"), rs.getString("service_id"), rs.getString("username_doctor"));
                 ls.add(a);
 
             }
@@ -284,6 +284,37 @@ public class MedicalRecordDAO {
             }
         }
         return null;
+    }
+
+    public Date getSuccessfullyDay(String bookingid) throws SQLException {
+        Date date = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = Utils.getConnection();
+            ptm = conn.prepareStatement("SELECT DATEADD(DAY, 7, [date])as dateAfter\n"
+                    + "FROM tbl_Booking\n"
+                    + "WHERE booking_id = ?;");
+            ptm.setString(1, bookingid);
+            rs = ptm.executeQuery();
+            if (rs.next()) {
+                date = rs.getDate("dateAfter");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return date;
     }
 
     public List<MedicalRecordDTO> getMRDoctor(String username) throws SQLException {
@@ -504,13 +535,6 @@ public class MedicalRecordDAO {
         return checkInsert;
     }
 
-    public static void main(String[] args) throws SQLException {
-        MedicalRecordDAO dao = new MedicalRecordDAO();
-        boolean check = dao.getStatusService("3", "001");
-        System.out.println(check);
-
-    }
-
     public List<String> getListServiceMore(String record_id) throws SQLException {
         List<String> list = new ArrayList<>();
         Connection conn = null;
@@ -598,5 +622,12 @@ public class MedicalRecordDAO {
             }
         }
         return checkInsert;
+    }
+
+    public static void main(String[] args) throws SQLException {
+        MedicalRecordDAO dao = new MedicalRecordDAO();
+        Date check = dao.getSuccessfullyDay("BK2");
+        System.out.println(check);
+
     }
 }
