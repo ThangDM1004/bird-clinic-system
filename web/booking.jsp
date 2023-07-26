@@ -54,7 +54,7 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
+<!--            <header class="header">
                 <nav class="navbar navbar-expand-lg header-nav">
                     <div class="navbar-header">
                         <a id="mobile_btn" href="javascript:void(0);">
@@ -134,7 +134,7 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                                                        <a class="dropdown-item" href="#">My Appoinment</a>
                                     <a class="dropdown-item" href="patient-dashboard.jsp">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
@@ -143,7 +143,8 @@
                     </ul>
 
                 </nav>
-            </header>
+            </header>-->
+    <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
             <!-- Breadcrumb -->

@@ -95,7 +95,7 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
+<!--            <header class="header">
                 <nav class="navbar navbar-expand-lg header-nav">
                     <div class="navbar-header">
                         <a id="mobile_btn" href="javascript:void(0);">
@@ -123,7 +123,7 @@
                             <li class="active">
                                 <a href="index-2.jsp">Home</a>
                             </li>
-                            <!-- <li class="has-submenu">
+                             <li class="has-submenu">
                                     <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
                                     <ul class="submenu">
                                             <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
@@ -173,7 +173,7 @@
                                             <li><a href="register.jsp">Register</a></li>
                                             <li><a href="forgot-password.jsp">Forgot Password</a></li>
                                     </ul>
-                            </li> -->
+                            </li> 
                             <li>
                                 <a href="blog.jsp" >Blog</a>
                             </li>
@@ -228,7 +228,7 @@
                                             </c:if>
                                         </div>
                                     </div>
-                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
+                                                                        <a class="dropdown-item" href="#">My Appoinment</a>
                                     <a class="dropdown-item" href="patient-dashboard.jsp">Profile Settings</a>
                                     <a class="dropdown-item" href="MainController?action=logout">Logout</a>
                                 </div>
@@ -237,7 +237,8 @@
 
                     </ul>
                 </nav>
-            </header>
+            </header>-->
+    <jsp:include page="headerfile.jsp"/>
 
     <body>
         <%

@@ -63,153 +63,173 @@
             } else {
                 response.sendRedirect("login.jsp");
             }
+
             String role = user.getRole().trim();
+
+            if (!role.equalsIgnoreCase("4")) {
+        %>
+        <script>
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    document.getElementById("dashboard").innerHTML = this.responseText;
+                    var table = $('.datatable').DataTable();
+                }
+            };
+            xhttp.open("GET", "user-profile.jsp", true);
+            xhttp.send();
+
+        </script>
+        <%
+            }
+
         %>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
 
             <!-- Header -->
-            <header class="header">
-                <nav class="navbar navbar-expand-lg header-nav">
-                    <div class="navbar-header">
-                        <a id="mobile_btn" href="javascript:void(0);">
-                            <span class="bar-icon">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </a>
-                        <a href="index-2.jsp" class="navbar-brand logo">
-                            <img style="object-fit: fill;" src="assets/img/final_logo.png" class="img-fluid" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="main-menu-wrapper">
-                        <div class="menu-header">
-                            <a href="index-2.jsp" class="menu-logo">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-                            </a>
-                            <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
-                        <ul class="main-nav">
-                            <li>
-                                <a href="index_logged.jsp">Home</a>
-                            </li>
-                            <!-- <li class="has-submenu">
-                                    <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-                                    <ul class="submenu">
-                                            <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
-                                            <li><a href="appointments.jsp">Appointments</a></li>
-                                            <li><a href="schedule-timings.jsp">Schedule Timing</a></li>
-                                            <li><a href="my-patients.jsp">Patients List</a></li>
-                                            <li><a href="patient-profile.jsp">Patients Profile</a></li>
-                                            <li><a href="chat-doctor.jsp">Chat</a></li>
-                                            <li><a href="invoices.jsp">Invoices</a></li>
-                                            <li><a href="doctor-profile-settings.jsp">Profile Settings</a></li>
-                                            <li><a href="reviews.jsp">Reviews</a></li>
-                                            <li><a href="doctor-register.jsp">Doctor Register</a></li>
-                                    </ul>
-                            </li>	
-                            <li class="has-submenu active">
-                                    <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-                                    <ul class="submenu">
-                                            <li><a href="search.jsp">Search Doctor</a></li>
-                                            <li><a href="doctor-profile.jsp">Doctor Profile</a></li>
-                                            <li><a href="booking.jsp">Booking</a></li>
-                                            <li><a href="checkout.jsp">Checkout</a></li>
-                                            <li><a href="booking-success.jsp">Booking Success</a></li>
-                                            <li class="active"><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
-                                            <li><a href="favourites.jsp">Favourites</a></li>
-                                            <li><a href="chat.jsp">Chat</a></li>
-                                            <li><a href="profile-settings.jsp">Profile Settings</a></li>
-                                            <li><a href="change-password.jsp">Change Password</a></li>
-                                    </ul>
-                            </li>	
-                            <li class="has-submenu">
-                                    <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-                                    <ul class="submenu">
-                                            <li><a href="voice-call.jsp">Voice Call</a></li>
-                                            <li><a href="video-call.jsp">Video Call</a></li>
-                                            <li><a href="search.jsp">Search Doctors</a></li>
-                                            <li><a href="calendar.jsp">Calendar</a></li>
-                                            <li><a href="components.jsp">Components</a></li>
-                                            <li class="has-submenu">
-                                                    <a href="invoices.jsp">Invoices</a>
-                                                    <ul class="submenu">
-                                                            <li><a href="invoices.jsp">Invoices</a></li>
-                                                            <li><a href="invoice-view.jsp">Invoice View</a></li>
-                                                    </ul>
-                                            </li>
-                                            <li><a href="blank-page.jsp">Starter Page</a></li>
-                                            <li><a href="login.jsp">Login</a></li>
-                                            <li><a href="register.jsp">Register</a></li>
-                                            <li><a href="forgot-password.jsp">Forgot Password</a></li>
-                                    </ul>
-                            </li> -->
-                            <li>
-                                <a href="blank-page.jsp" target="_blank">Blog</a>
-                            </li>
-                            <li class="login-link">
-                                <a href="login.jsp">Login / Signup</a>
-                            </li>
-                        </ul>
-                    </div>		 
-                    <ul class="nav header-navbar-rht">
-                        <li class="nav-item contact-item">
-                            <div class="header-contact-img">
-                                <i class="far fa-hospital"></i>							
-                            </div>
-                            <div class="header-contact-detail">
-                                <p class="contact-header">Contact</p>
-                                <p class="contact-info-header"> +1 315 369 5943</p>
-                            </div>
-                        </li>
-
-                        <!-- User Menu -->
-                        <c:if test="${sessionScope.account != null}">
-                            <li class="nav-item dropdown has-arrow logged-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <span class="user-img">
-                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="user-header">
-                                        <div class="avatar avatar-sm">
-                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="user-text">
-                                            <h6>${sessionScope.account.fullname}</h6>
-                                            <c:set var="roleName" value="${sessionScope.account.role}"/>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
-                                                <p class="text-muted mb-0">Administrator</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
-                                                <p class="text-muted mb-0">Staff</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
-                                                <p class="text-muted mb-0">Doctor</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
-                                                <p class="text-muted mb-0">Customer</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
-                                                <p class="text-muted mb-0">Manager</p>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                    <!--                                    <a class="dropdown-item" href="#">My Appoinment</a>-->
-                                    <a class="dropdown-item" href="#">Profile Settings</a>
-                                    <a class="dropdown-item" href="MainController?action=logout">Logout</a>
+            <!--            <header class="header">
+                            <nav class="navbar navbar-expand-lg header-nav">
+                                <div class="navbar-header">
+                                    <a id="mobile_btn" href="javascript:void(0);">
+                                        <span class="bar-icon">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </span>
+                                    </a>
+                                    <a href="index-2.jsp" class="navbar-brand logo">
+                                        <img style="object-fit: fill;" src="assets/img/final_logo.png" class="img-fluid" alt="Logo">
+                                    </a>
                                 </div>
-                            </li>
-                        </c:if>
-                        <!-- /User Menu -->
+                                <div class="main-menu-wrapper">
+                                    <div class="menu-header">
+                                        <a href="index-2.jsp" class="menu-logo">
+                                            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                                        </a>
+                                        <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                    <ul class="main-nav">
+                                        <li>
+                                            <a href="index_logged.jsp">Home</a>
+                                        </li>
+                                         <li class="has-submenu">
+                                                <a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
+                                                <ul class="submenu">
+                                                        <li><a href="doctor-dashboard.jsp">Doctor Dashboard</a></li>
+                                                        <li><a href="appointments.jsp">Appointments</a></li>
+                                                        <li><a href="schedule-timings.jsp">Schedule Timing</a></li>
+                                                        <li><a href="my-patients.jsp">Patients List</a></li>
+                                                        <li><a href="patient-profile.jsp">Patients Profile</a></li>
+                                                        <li><a href="chat-doctor.jsp">Chat</a></li>
+                                                        <li><a href="invoices.jsp">Invoices</a></li>
+                                                        <li><a href="doctor-profile-settings.jsp">Profile Settings</a></li>
+                                                        <li><a href="reviews.jsp">Reviews</a></li>
+                                                        <li><a href="doctor-register.jsp">Doctor Register</a></li>
+                                                </ul>
+                                        </li>	
+                                        <li class="has-submenu active">
+                                                <a href="#">Patients <i class="fas fa-chevron-down"></i></a>
+                                                <ul class="submenu">
+                                                        <li><a href="search.jsp">Search Doctor</a></li>
+                                                        <li><a href="doctor-profile.jsp">Doctor Profile</a></li>
+                                                        <li><a href="booking.jsp">Booking</a></li>
+                                                        <li><a href="checkout.jsp">Checkout</a></li>
+                                                        <li><a href="booking-success.jsp">Booking Success</a></li>
+                                                        <li class="active"><a href="patient-dashboard.jsp">Patient Dashboard</a></li>
+                                                        <li><a href="favourites.jsp">Favourites</a></li>
+                                                        <li><a href="chat.jsp">Chat</a></li>
+                                                        <li><a href="profile-settings.jsp">Profile Settings</a></li>
+                                                        <li><a href="change-password.jsp">Change Password</a></li>
+                                                </ul>
+                                        </li>	
+                                        <li class="has-submenu">
+                                                <a href="#">Pages <i class="fas fa-chevron-down"></i></a>
+                                                <ul class="submenu">
+                                                        <li><a href="voice-call.jsp">Voice Call</a></li>
+                                                        <li><a href="video-call.jsp">Video Call</a></li>
+                                                        <li><a href="search.jsp">Search Doctors</a></li>
+                                                        <li><a href="calendar.jsp">Calendar</a></li>
+                                                        <li><a href="components.jsp">Components</a></li>
+                                                        <li class="has-submenu">
+                                                                <a href="invoices.jsp">Invoices</a>
+                                                                <ul class="submenu">
+                                                                        <li><a href="invoices.jsp">Invoices</a></li>
+                                                                        <li><a href="invoice-view.jsp">Invoice View</a></li>
+                                                                </ul>
+                                                        </li>
+                                                        <li><a href="blank-page.jsp">Starter Page</a></li>
+                                                        <li><a href="login.jsp">Login</a></li>
+                                                        <li><a href="register.jsp">Register</a></li>
+                                                        <li><a href="forgot-password.jsp">Forgot Password</a></li>
+                                                </ul>
+                                        </li> 
+                                        <li>
+                                            <a href="blank-page.jsp" target="_blank">Blog</a>
+                                        </li>
+                                        <li class="login-link">
+                                            <a href="login.jsp">Login / Signup</a>
+                                        </li>
+                                    </ul>
+                                </div>		 
+                                <ul class="nav header-navbar-rht">
+                                    <li class="nav-item contact-item">
+                                        <div class="header-contact-img">
+                                            <i class="far fa-hospital"></i>							
+                                        </div>
+                                        <div class="header-contact-detail">
+                                            <p class="contact-header">Contact</p>
+                                            <p class="contact-info-header"> +1 315 369 5943</p>
+                                        </div>
+                                    </li>
+            
+                                     User Menu 
+            <c:if test="${sessionScope.account != null}">
+                <li class="nav-item dropdown has-arrow logged-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>${sessionScope.account.fullname}</h6>
+                <c:set var="roleName" value="${sessionScope.account.role}"/>
+                <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                    <p class="text-muted mb-0">Administrator</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
+                    <p class="text-muted mb-0">Staff</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
+                    <p class="text-muted mb-0">Doctor</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
+                    <p class="text-muted mb-0">Customer</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                    <p class="text-muted mb-0">Manager</p>
+                </c:if>
+            </div>
+        </div>
+                                            <a class="dropdown-item" href="#">My Appoinment</a>
+        <a class="dropdown-item" href="#">Profile Settings</a>
+        <a class="dropdown-item" href="MainController?action=logout">Logout</a>
+    </div>
+</li>
+            </c:if>
+             /User Menu 
 
-                    </ul>
-                </nav>
-            </header>
+        </ul>
+    </nav>
+</header>-->
+            <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
 
@@ -256,8 +276,7 @@
                                 <div class="dashboard-widget">
                                     <nav class="dashboard-menu">
                                         <ul>
-                                            <%
-                                                if (role.equalsIgnoreCase("4")) {
+                                            <%                                                if (role.equalsIgnoreCase("4")) {
                                             %>
                                             <li class="active">
                                                 <a type="button" onclick="Dashboard()">
@@ -293,7 +312,7 @@
                                             <%
                                             } else {
                                             %>
-                                           
+
 
                                             <li>
                                                 <a type="button" onclick="UserProfile()">
@@ -301,7 +320,7 @@
                                                     <span>Profile Settings</span>
                                                 </a>
                                             </li>
-                                           
+
                                             <li>
                                                 <a type="button" onclick="ChangePass()">
                                                     <i class="fas fa-lock"></i>
@@ -327,7 +346,7 @@
 
                         <%
                             String status = (String) s.getAttribute("status");
-                            if (status == null) {
+                            if (status == null && role.equalsIgnoreCase("4")) {
                         %>
                         <script>
                             var xhttp = new XMLHttpRequest();

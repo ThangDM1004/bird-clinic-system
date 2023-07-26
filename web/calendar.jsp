@@ -46,7 +46,7 @@
 		<div class="main-wrapper">
 		
 			<!-- Header -->
-			<header class="header">
+<!--			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
 						<a id="mobile_btn" href="javascript:void(0);">
@@ -147,7 +147,7 @@
 						</li>
 					</ul>
 				</nav>
-			</header>
+			</header>-->
 			<!-- /Header -->
 			
 			<!-- Breadcrumb -->
