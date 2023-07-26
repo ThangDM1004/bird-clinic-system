@@ -131,7 +131,8 @@
                                                     <%
                                                     } else {
                                                     %>
-                                                    <a style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check In</a>
+                                                      <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=3&action=Check-in&service=<%=dao.getServicename(x.getBooking_id())%>" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Check In</a>
+                                              
                                                     <%
                                                         }
                                                     %>

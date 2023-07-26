@@ -4,6 +4,7 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dao.MedicalRecordDAO"%>
 <%@page import="sample.dao.UserDAO"%>
 <%@page import="sample.dao.PatientDAO"%>
 <%@page import="sample.dto.BookingDTO"%>
@@ -56,6 +57,8 @@
             List<ServiceDTO> list_service = sdao.getListServiceV2();
             int index = list_service.size();
             int count = 0;
+            MedicalRecordDAO mdao = new MedicalRecordDAO();
+            String recordID = mdao.getMRByBookingID(booking_id).getRecord_id();
             UserDAO uDao = new UserDAO();
             for (ServiceDTO x : list_service) {
                 count++;
@@ -177,6 +180,7 @@
                         </div>
                     </div>
                 </div>
+                            <input type="hidden" name="record_id" value="<%=recordID%>">
             </div>
 
             <!-- About Me -->

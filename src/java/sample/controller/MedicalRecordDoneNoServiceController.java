@@ -114,7 +114,6 @@ public class MedicalRecordDoneNoServiceController extends HttpServlet {
             LocalDate localDate = null;
             Date sqlDate = null;
             if ("".equals(date)) {
-
             } else {
                 localDate = LocalDate.parse(date);
                 sqlDate = Date.valueOf(localDate);

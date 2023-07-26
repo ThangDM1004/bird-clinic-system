@@ -45,7 +45,7 @@ public class MedicalRecordController extends HttpServlet {
             String bookingID = request.getParameter("booking_id").trim();
             boolean check = Mdao.CheckgetMRByBookingID(bookingID);
             if (check == true) {
-                String record_id = request.getParameter("record_id");
+                String record_id = request.getParameter("record_id").trim();
                 String index = request.getParameter("number_service");
                 int count = Integer.parseInt(index);
                 String[] list_service = new String[count];
@@ -55,10 +55,8 @@ public class MedicalRecordController extends HttpServlet {
                         String[] part = service_id.split("-");
                         list_service[i] = part[1];
                     }
-
                 }
                 boolean checkSelect = false;
-
                 for (int i = 0; i < list_service.length; i++) {
                     MedicalRecordDTO mr1 = new MedicalRecordDTO(record_id, null, 0, "", "", "", bookingID, dao.getServiceIDByName(list_service[i]), null);
                     checkSelect = Mdao.ServiceInMedical(mr1, false);
@@ -76,7 +74,7 @@ public class MedicalRecordController extends HttpServlet {
 
                     }
                 }
-            } else {
+            } else{
                 String patientID = request.getParameter("patient_id").trim();
                 String note = request.getParameter("note");
                 String fee = request.getParameter("total_fee");
@@ -84,12 +82,13 @@ public class MedicalRecordController extends HttpServlet {
                 String phone = request.getParameter("phone");
                 String date = request.getParameter("date_again");
                 LocalDate localDate = null;
-
-                if (date == null) {
+                Date sqlDate = null;
+                if ("".equals(date)) {
                 } else {
                     localDate = LocalDate.parse(date);
+                    sqlDate = Date.valueOf(localDate);
                 }
-                Date sqlDate = Date.valueOf(localDate);
+               
                 String record_id = Integer.toString(Mdao.MaxId() + 1);
                 String index = request.getParameter("number_service");
                 int count = Integer.parseInt(index);
