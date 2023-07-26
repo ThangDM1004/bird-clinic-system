@@ -52,11 +52,11 @@ public class LoginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", user);
                 response.sendRedirect("doctor-dashboard.jsp");
-            }else if (getRoleID.equalsIgnoreCase("2")) {
+            } else if (getRoleID.equalsIgnoreCase("2")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", user);
                 response.sendRedirect("staff.jsp");
-            }else {
+            } else {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", user);
                 response.sendRedirect("index-2.jsp");
