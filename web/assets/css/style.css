@@ -8047,3 +8047,8 @@ html.menu-opened body {
         margin-bottom: 10px;
     }
 }
+
+.slick-cloned { display: none !important; }
+
+#slick-slide-control01 {display: none !important; }
+#slick-slide-control00 {display: none !important; }

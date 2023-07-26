@@ -76,7 +76,7 @@
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
                                                     <th >Service</th>
-                                                    
+
                                                     <th></th>
 
                                                 </tr>
@@ -95,7 +95,7 @@
                                             <td> <%=x.getDate()%><br> <%= dao.getSlotTime(x.getBooking_id())%></td>                                          
                                             <td ><%= dao.getServicename(x.getBooking_id())%></td>                                         
                                             <input type="hidden" value="2" name="status_booking">
-                                            
+
                                             <td><div class="submit-section">
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&status_booking=2&action=Accept" style="background-color: aquamarine;padding:  13.5px; width: 80px; color: black">Accept</a>
                                                     <a href="MainController?bookingID=<%=x.getBooking_id()%>&action=Decline" style="background-color: red;padding:  13.5px; width: 80px; color: white">Decline</a>
