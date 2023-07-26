@@ -249,7 +249,7 @@
                         <div class="col-md-9">
                             <!-- Slider -->
 
-                            <div class="specialities-slider slider">
+                            <div class="specialities-slider">
 
                                 <!-- Slider Item -->
 
@@ -272,6 +272,7 @@
                                 </div>
                                 <%}%>
                                 <!-- /Slider Item -->
+                                
                             </div>
 
                             <!-- /Slider -->
