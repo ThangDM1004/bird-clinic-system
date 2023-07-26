@@ -251,7 +251,7 @@ public class PatientDAO {
         }
         return checkUpdate;
     }
-    private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status_bird=? WHERE patient_id=?";
+    private static final String DELETE_BIRD = "UPDATE tbl_Patient_Bird SET status=? WHERE patient_id=?";
 
     public boolean DeleteBird(int status, String patient_id) throws ClassNotFoundException {
         boolean checkDelete = false;
@@ -265,7 +265,6 @@ public class PatientDAO {
                 ps.setString(2, patient_id);
                 checkDelete = ps.executeUpdate() > 0 ? true : false;
             }
-
         } catch (Exception e) {
 
         }

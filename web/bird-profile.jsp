@@ -39,19 +39,20 @@
 
             <div id="demo" class="card-body">
                 <!-- Profile Settings Form -->
-                <form name="formUpdate" action="MainController" method="post" enctype="multipart/form-data">
-                    <div class="submit-section">
-                        <a  href="#Add_Specialities_details" data-toggle="modal"
-                            class="btn btn-primary submit-btn">Add</a>
-                        <!-- /Profile Settings Form -->
-                    </div>
-                    <br>
-                    <div class="row form-row">
-                        <%
-                            for (PatientDTO x : listBird) {
-                                count++;
-                                String species = dao.getSpecies(x.getSpecies_id());
-                        %>
+
+                <div class="submit-section">
+                    <a  href="#Add_Specialities_details" data-toggle="modal"
+                        class="btn btn-primary submit-btn">Add</a>
+                    <!-- /Profile Settings Form -->
+                </div>
+                <br>
+                <div class="row form-row">
+                    <%
+                        for (PatientDTO x : listBird) {
+                            count++;
+                            String species = dao.getSpecies(x.getSpecies_id());
+                    %>
+                    <form class="row" name="formUpdate" action="MainController" method="post" enctype="multipart/form-data">
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <div class="change-avatar">
@@ -105,16 +106,16 @@
                             <button disabled="true"  id="update" name="action" value="Update" type="submit" class="btn btn-primary submit-btn">Update</button>
                             <button name="action" value="Delete" type="submit" class="btn btn-primary submit-btn">Delete</button>
                         </div>
-
-                        <%
-                                if (count == 1) {
-                                    break;
-                                }
+                    </form>
+                    <%
+                            if (count == 1) {
+                                break;
                             }
-                        %>
+                        }
+                    %>
 
-                    </div>
-                </form>
+                </div>
+
             </div>
         </div>
         <script src="assets/js/jquery.min.js"></script>

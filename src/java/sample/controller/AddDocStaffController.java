@@ -58,7 +58,7 @@ public class AddDocStaffController extends HttpServlet {
             Part img = request.getPart("image");
             String role = request.getParameter("role");
             String realPath = request.getServletContext().getRealPath("/assets/img/");
-            String filename = "assets/img/user_image_default.png";
+            String filename = "user_image_default.png";
             if (!img.getSubmittedFileName().equals("")) {
                 filename = img.getSubmittedFileName();
                 img.write(realPath + filename);

@@ -20,27 +20,27 @@
     </head>
     <body>
 
-        <form action="MainController" method="post" enctype="multipart/form-data">
-             <div class="submit-section">
-                            <a  href="#Add_Specialities_details" data-toggle="modal"
-                                class="btn btn-primary submit-btn">Add</a>
-                            <!-- /Profile Settings Form -->
-                        </div>
-            <br>
-            <div class="row form-row">
+
+        <div class="submit-section">
+            <a  href="#Add_Specialities_details" data-toggle="modal"
+                class="btn btn-primary submit-btn">Add</a>
+            <!-- /Profile Settings Form -->
+        </div>
+        <br>
+        <div class="row form-row">
 
 
 
-                <%
-                    HttpSession s = request.getSession();
-                    UserDTO user = (UserDTO) s.getAttribute("account");
-                    PatientDAO dao = new PatientDAO();
-                    String selectedOption = request.getParameter("selectedOption");
-                    List<PatientDTO> listBird = dao.getBird(user.getUsername());
-                    for (PatientDTO list : listBird) {
-                        if (list.getName().equalsIgnoreCase(selectedOption)) {
-                %>
-
+            <%
+                HttpSession s = request.getSession();
+                UserDTO user = (UserDTO) s.getAttribute("account");
+                PatientDAO dao = new PatientDAO();
+                String selectedOption = request.getParameter("selectedOption");
+                List<PatientDTO> listBird = dao.getBird(user.getUsername());
+                for (PatientDTO list : listBird) {
+                    if (list.getName().equalsIgnoreCase(selectedOption)) {
+            %>
+            <form class="row" action="MainController" method="post" enctype="multipart/form-data">
                 <div class="col-12 col-md-12">
                     <div class="form-group">
                         <div class="change-avatar">
@@ -95,15 +95,15 @@
 
                 </div>
 
-
-                <%
-                        }
+            </form>
+            <%
                     }
-                %>
-                
-                <!-- /Profile Settings Form -->
-            </div>
-        </form>
+                }
+            %>
+
+            <!-- /Profile Settings Form -->
+        </div>
+
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/checkUpdateValidate.js"></script>
 

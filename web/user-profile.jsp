@@ -61,7 +61,6 @@
                                     <option  <% if (userNew.getGender().trim().equalsIgnoreCase("male")) { %> selected <% } %>>Male</option>
                                     <option  <% if (userNew.getGender().trim().equalsIgnoreCase("female")) { %> selected <% }%>>Female</option>
                                 </select>
-
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
@@ -73,7 +72,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label>Mobile</label>
-                                <input type="text" value="<%= userNew.getPhone()%>" class="form-control" name="phone" pattern="0\d{9}" title="Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng số 0 và có 10 chữ số)">
+                                <input type="text" value="<%= userNew.getPhone().trim() %>" class="form-control" name="phone" pattern="0\d{9}" title="Vui lòng nhập số điện thoại hợp lệ (bắt đầu bằng số 0 và có 10 chữ số)">
                             </div>
                         </div>
                     </div>
