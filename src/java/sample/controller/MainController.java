@@ -68,6 +68,8 @@ public class MainController extends HttpServlet {
     private static String DATEAGAIN_CONTROLLER = "DateAgainController";
     private static String BOOKINGAGAIN = "BookingAgainConfirm";
     private static String BOOKINGAGAINCONTROLLER = "BookingAgainConfirmController";
+    private static String ADDSTAFFDOC = "addDocStaff";
+    private static String ADDSTAFFDOCCONTROLLER = "AddDocStaffController";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -123,7 +125,9 @@ public class MainController extends HttpServlet {
                 url = MEDICAL_DONE_CONTROLLER;
             } else if (actions.equals(DONE_MEDICAL)) {
                 url = DONE_MEDICAL_CONTROLLER;
-            } else {
+            } else if (actions.equals(ADDSTAFFDOC)) {
+                url = ADDSTAFFDOCCONTROLLER;
+            }else {
                 url = "error-404.jsp";
             }
         } catch (Exception e) {

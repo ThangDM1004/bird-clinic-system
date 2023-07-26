@@ -1,7 +1,58 @@
+var isBirdImgAvailable = true;
+
+function checkImageAdd() {
+    var myemail = $('#bird_image_dash').val();
+    $.ajax({
+        type: 'POST',
+        data: {bird_image_dash: myemail},
+        url: '../ImageUpdateBirdController',
+        success: function (result_1) {
+            $('#result_3').html(result_1);
+            
+              if (result_1 === 'Allowed JPG, or PNG, try another') {
+                $('#result_3').removeClass().addClass('already-exists');
+                isBirdImgAvailable = false;
+            }
+            if (result_1 === 'Image is available to use') {
+                $('#result_3').removeClass().addClass('available');
+                isBirdImgAvailable = true;
+            } 
+             enableSubmitButton();
+          
+        }
+    });
+}
+;
+
 jQuery(document).ready(function () {
     var isUsernameAvailable = false;
     var isEmailAvailable = false;
     var isPhoneAvailable = false;
+    var isBirdImgAvailable = true;
+    
+    $('#bird_image_dash').change(function () {
+    var myemail = $('#bird_image_dash').val();
+    $.ajax({
+        type: 'POST',
+        data: {bird_image_dash: myemail},
+        url: '../ImageUpdateBirdController',
+        success: function (result_1) {
+            $('#result_3').html(result_1);
+            
+              if (result_1 === 'Allowed JPG, or PNG, try another') {
+                $('#result_3').removeClass().addClass('already-exists');
+                isBirdImgAvailable = false;
+            }
+            if (result_1 === 'Image is available to use') {
+                $('#result_3').removeClass().addClass('available');
+                isBirdImgAvailable = true;
+            } 
+             enableSubmitButton();
+          
+        }
+    });
+});
+
 
     $('#myuser').change(function () {
         var myuser = $('#myuser').val();
@@ -67,9 +118,9 @@ jQuery(document).ready(function () {
             }
         });
     });
-    
+
     function enableSubmitButton() {
-        if (isUsernameAvailable && isEmailAvailable && isPhoneAvailable) {
+        if (isUsernameAvailable && isEmailAvailable && isPhoneAvailable && isBirdImgAvailable) {
             $('#submit').prop('disabled', false);
         } else {
             $('#submit').prop('disabled', true);

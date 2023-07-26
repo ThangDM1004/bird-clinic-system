@@ -163,6 +163,27 @@ public class UserDAO {
         } catch (Exception e) {
         }
     }
+    
+     public void signUpAccountStaffOrDoctor(String username, String fullName, String email, String gender, Date dob, String phone, String password, String spec, String img, String role) {
+        String query = "INSERT INTO tbl_Account VALUES(?,?,?,?,?,?,?,?,?,1,?)";
+        try {
+            conn = new Utils().getConnection();
+            ps = conn.prepareCall(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            ps.setString(3, email);
+            ps.setString(4, phone);
+            ps.setDate(5, dob);
+            ps.setString(6, new String(fullName.getBytes("UTF-8"), "UTF-8"));
+            ps.setString(7, gender);
+            ps.setString(8,spec);
+            ps.setString(9,img);
+            ps.setString(10, role);
+            ps.execute();
+
+        } catch (Exception e) {
+        }
+    }
 
     public UserDTO checkExistAccount(String username) {
         String query = "SELECT * FROM tbl_Account WHERE user_name = ?";

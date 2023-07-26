@@ -173,6 +173,10 @@
         <servlet-name>getWeeklySalePerWeek</servlet-name>
         <servlet-class>sample.controller.getWeeklySalePerWeek</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddDocStaffController</servlet-name>
+        <servlet-class>sample.controller.AddDocStaffController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/MainController</url-pattern>
@@ -344,6 +348,10 @@
     <servlet-mapping>
         <servlet-name>getWeeklySalePerWeek</servlet-name>
         <url-pattern>/getWeeklySalePerWeek</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDocStaffController</servlet-name>
+        <url-pattern>/AddDocStaffController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
