@@ -60,96 +60,96 @@
         <div class="main-wrapper">
 
             <!-- Header -->
-<!--            <header class="header">
-                <nav class="navbar navbar-expand-lg header-nav">
-                    <div class="navbar-header">
-                        <a id="mobile_btn" href="javascript:void(0);">
-                            <span class="bar-icon">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </a>
-                        <a href="index-2.jsp" class="navbar-brand logo">
-                            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-                        </a>
-                    </div>
-                    <div class="main-menu-wrapper">
-                        <div class="menu-header">
-                            <a href="index-2.jsp" class="menu-logo">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-                            </a>
-                            <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
-                        <ul class="main-nav">
-                            <li>
-                                <a href="index-2.jsp">Home</a>
-                            </li>
-                          
-                            <li class="login-link">
-                                <a href="login.jsp">Login / Signup</a>
-                            </li>
-                        </ul>		 
-                    </div>		 
-                    <ul class="nav header-navbar-rht">
-                        <li class="nav-item contact-item">
-                            <div class="header-contact-img">
-                                <i class="far fa-hospital"></i>							
-                            </div>
-                            <div class="header-contact-detail">
-                                <p class="contact-header">Contact</p>
-                                <p class="contact-info-header"> +1 315 369 5943</p>
-                            </div>
-                        </li>
-                        <c:if test="${sessionScope.account == null}">
-                            <li class="nav-item">
-                                <a class="nav-link header-login" href="login.jsp">login / Signup </a>
-                            </li>
-                        </c:if>
-                        <c:if test="${sessionScope.account != null}">
-                            <li class="nav-item dropdown has-arrow logged-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <span class="user-img">
-                                        <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
-                                    </span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <div class="user-header">
-                                        <div class="avatar avatar-sm">
-                                            <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
-                                        </div>
-                                        <div class="user-text">
-                                            <h6>${sessionScope.account.fullname}</h6>
-                                            <c:set var="roleName" value="${sessionScope.account.role}"/>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
-                                                <p class="text-muted mb-0">Administrator</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
-                                                <p class="text-muted mb-0">Staff</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
-                                                <p class="text-muted mb-0">Doctor</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
-                                                <p class="text-muted mb-0">Customer</p>
-                                            </c:if>
-                                            <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
-                                                <p class="text-muted mb-0">Manager</p>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                                                        <a class="dropdown-item" href="#">My Appoinment</a>
-                                    <a class="dropdown-item" href="patient-dashboard.jsp">Profile Settings</a>
-                                    <a class="dropdown-item" href="MainController?action=logout">Logout</a>
+            <!--            <header class="header">
+                            <nav class="navbar navbar-expand-lg header-nav">
+                                <div class="navbar-header">
+                                    <a id="mobile_btn" href="javascript:void(0);">
+                                        <span class="bar-icon">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </span>
+                                    </a>
+                                    <a href="index-2.jsp" class="navbar-brand logo">
+                                        <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                                    </a>
                                 </div>
-                            </li>
-                        </c:if>
-                    </ul>
-                </nav>
-            </header>-->
-    <jsp:include page="headerfile.jsp"/>
+                                <div class="main-menu-wrapper">
+                                    <div class="menu-header">
+                                        <a href="index-2.jsp" class="menu-logo">
+                                            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                                        </a>
+                                        <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    </div>
+                                    <ul class="main-nav">
+                                        <li>
+                                            <a href="index-2.jsp">Home</a>
+                                        </li>
+                                      
+                                        <li class="login-link">
+                                            <a href="login.jsp">Login / Signup</a>
+                                        </li>
+                                    </ul>		 
+                                </div>		 
+                                <ul class="nav header-navbar-rht">
+                                    <li class="nav-item contact-item">
+                                        <div class="header-contact-img">
+                                            <i class="far fa-hospital"></i>							
+                                        </div>
+                                        <div class="header-contact-detail">
+                                            <p class="contact-header">Contact</p>
+                                            <p class="contact-info-header"> +1 315 369 5943</p>
+                                        </div>
+                                    </li>
+            <c:if test="${sessionScope.account == null}">
+                <li class="nav-item">
+                    <a class="nav-link header-login" href="login.jsp">login / Signup </a>
+                </li>
+            </c:if>
+            <c:if test="${sessionScope.account != null}">
+                <li class="nav-item dropdown has-arrow logged-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <span class="user-img">
+                            <img class="rounded-circle" src="${sessionScope.account.image}" width="31" alt="${sessionScope.account.username}">
+                        </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <div class="user-header">
+                            <div class="avatar avatar-sm">
+                                <img src="${sessionScope.account.image}" alt="User Image" class="avatar-img rounded-circle">
+                            </div>
+                            <div class="user-text">
+                                <h6>${sessionScope.account.fullname}</h6>
+                <c:set var="roleName" value="${sessionScope.account.role}"/>
+                <c:if test="${fn:containsIgnoreCase(roleName, '1')}">
+                    <p class="text-muted mb-0">Administrator</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '2')}">
+                    <p class="text-muted mb-0">Staff</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '3')}">
+                    <p class="text-muted mb-0">Doctor</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '4')}">
+                    <p class="text-muted mb-0">Customer</p>
+                </c:if>
+                <c:if test="${fn:containsIgnoreCase(roleName, '5')}">
+                    <p class="text-muted mb-0">Manager</p>
+                </c:if>
+            </div>
+        </div>
+                                            <a class="dropdown-item" href="#">My Appoinment</a>
+        <a class="dropdown-item" href="patient-dashboard.jsp">Profile Settings</a>
+        <a class="dropdown-item" href="MainController?action=logout">Logout</a>
+    </div>
+</li>
+            </c:if>
+        </ul>
+    </nav>
+</header>-->
+            <jsp:include page="headerfile.jsp"/>
             <!-- /Header -->
 
             <!-- Breadcrumb -->
@@ -206,6 +206,9 @@
                                                             <c:forEach var="patient" items="${PatientDAO.getPatientBird(account.username)}">
                                                                 <c:choose>
                                                                     <c:when test="${!PatientDAO.checkValidatePatient(account.username, patient.patient_id, requestScope.selectedDay, requestScope.selectedSlot)}">
+                                                                        <option disabled="" style="color: red" value="${patient.patient_id}">${patient.name}</option>
+                                                                    </c:when>
+                                                                    <c:when test="${!PatientDAO.checkValidateBookingOneBirdForManySlot(account.username, patient.patient_id)}">
                                                                         <option disabled="" style="color: red" value="${patient.patient_id}">${patient.name}</option>
                                                                     </c:when>
                                                                     <c:otherwise>
