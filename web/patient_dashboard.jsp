@@ -154,6 +154,7 @@
 
                                                 <th>Date Again </th>
                                                 <th>Service</th>
+                                                <th>Fee</th>
                                                 <th>Note</th>
                                                 <th>Doctor</th>
                                                 <th>Patient(Bird)</th>
@@ -193,6 +194,9 @@
                                                         %>
 
                                                     </ul>
+                                                </td>
+                                                <td>
+                                                    <%= mrr.getTotal_fee() %>$
                                                 </td>
                                                 <td> <%= mrr.getNote()%>  </td>
                                                 <td>

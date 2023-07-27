@@ -791,6 +791,38 @@ public class ServiceDAO {
         return list;
     }
 
+    public List<ServiceDTO> getListServiceByRecordID(String record_id) throws SQLException {
+        List<ServiceDTO> list = new ArrayList<>();
+        try {
+            String query = "SELECT * \n"
+                    + "FROM tbl_Select_Service \n"
+                    + "WHERE status = 'true' AND service_id NOT IN ('012', '013') and record_id = ?\n"
+                    + "ORDER BY service_id DESC";
+            conn = new Utils().getConnection();
+
+            ps = conn.prepareStatement(query);
+            ps.setString(1, record_id.trim());
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ServiceDTO s = new ServiceDTO(rs.getString("service_id"));
+                list.add(s);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws SQLException {
         ServiceDAO dao = new ServiceDAO();
         List<ServiceDTO> ls = dao.getListService();

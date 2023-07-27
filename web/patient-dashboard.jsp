@@ -4,6 +4,8 @@
     Author     : MSI AD
 --%>
 
+<%@page import="sample.dto.ServiceDTO"%>
+<%@page import="sample.dao.ServiceDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Date"%>
@@ -584,6 +586,7 @@
             MedicalRecordDAO daoMR = new MedicalRecordDAO();
             List<MedicalRecordDTO> MR = daoMR.getMR(user.getUsername());
             FeedbackDAO daoFB = new FeedbackDAO();
+            ServiceDAO serviceDao = new ServiceDAO();
 
             for (MedicalRecordDTO mrr : MR) {
                 int index = MR.indexOf(mrr);
@@ -596,7 +599,7 @@
                 if (date.compareTo(currentDate) < 0) {
                     // Ngày của datecom nhỏ hơn ngày hiện tại
                     // In ra màn hình (hoặc làm bất kỳ thao tác nào bạn muốn thực hiện)
-%>
+        %>
         <div class="modal fade" id="feedback_<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -618,41 +621,53 @@
                                 <form action="MainController" method="POST">
 
                                     <input hidden="" name="mr_id" value="<%= mrr.getRecord_id()%>">
-                                    <input hidden="" name="ser_id" value="<%= mrr.getSer_id()%>">
+                                    
                                     <input hidden="" name="username" value="<%= user.getUsername()%>">
 
                                     <label>
                                         <input type="radio" name="stars" value="1" <% if (fb.getRating_star() == 1) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon"style="color: #00FFFF">★</span> 
+                                        <span class="icon"style="color: #FFD700">★</span> 
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="2" <% if (fb.getRating_star() == 2) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="3" <% if (fb.getRating_star() == 3) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>   
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>   
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="4" <% if (fb.getRating_star() == 4) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="5" <% if (fb.getRating_star() == 5) { %> checked="checked" <% }%> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
+                                        <label>Select Service Feedback</label><br>
 
-
+                                   
+                                        <% 
+                                            List<ServiceDTO> lsSl = serviceDao.getListServiceByRecordID(mrr.getRecord_id().trim());
+                                            
+                                            for(ServiceDTO sr : lsSl){
+                                                %> 
+                                                 <input value="<%= sr.getService_id() %>" hidden="" name="ser_id"/>
+                                        
+                                        <%
+                                            }
+                                            
+                                           %>
 
                                     <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" required=""><% if (fb.getFeedback_content() != null) {%> <%=fb.getFeedback_content()%> <%}%> </textarea> <br>
                                     <!--                                    <div class="modal-footer">-->
@@ -680,7 +695,7 @@
         } else if (date.compareTo(currentDate) > 0 || date.compareTo(currentDate) == 0) {
             // Ngược lại, datecom lớn hơn hoặc bằng ngày hiện tại
             // In ra màn hình (hoặc làm bất kỳ thao tác nào bạn muốn thực hiện)
-%>
+        %>
         <div class="modal fade" id="feedback_<%=index%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -702,39 +717,52 @@
                                 <form action="MainController" method="POST">
 
                                     <input hidden="" name="mr_id" value="<%= mrr.getRecord_id()%>">
-                                    <input hidden="" name="ser_id" value="<%= mrr.getSer_id()%>">
+                                  
                                     <input hidden="" name="username" value="<%= user.getUsername()%>">
 
                                     <label>
                                         <input type="radio" name="stars" value="1" <% if (fb.getRating_star() == 1) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon"style="color: #00FFFF">★</span> 
+                                        <span class="icon"style="color: #FFD700">★</span> 
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="2" <% if (fb.getRating_star() == 2) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="3" <% if (fb.getRating_star() == 3) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>   
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>   
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="4" <% if (fb.getRating_star() == 4) { %> checked="checked" <% } %> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
                                     <label>
                                         <input type="radio" name="stars" value="5" <% if (fb.getRating_star() == 5) { %> checked="checked" <% }%> required=""/>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
-                                        <span class="icon" style="color: #00FFFF">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
+                                        <span class="icon" style="color: #FFD700">★</span>
                                     </label>
+                                   
+                                        <% 
+                                            List<ServiceDTO> lsSl = serviceDao.getListServiceByRecordID(mrr.getRecord_id().trim());
+                                            
+                                            for(ServiceDTO sr : lsSl){
+                                                %> 
+                                                <input value="<%= sr.getService_id() %>" hidden="" name="ser_id"/>
+                                                
+                                        <%
+                                            } 
+                                           %>
+                                       
+                           
 
 
 

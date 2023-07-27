@@ -98,7 +98,6 @@ public class FeedbackDAO {
             if (conn != null) {
                 conn.close();
             }
-
         }
         return fb;
     }

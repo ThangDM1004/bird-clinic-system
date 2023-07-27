@@ -61,6 +61,12 @@ public class ServiceDTO {
         this.rating = rating;
     }
 
+    public ServiceDTO(String service_id) {
+        this.service_id = service_id;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
