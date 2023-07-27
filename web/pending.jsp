@@ -75,7 +75,7 @@
                                                     <th>User Name</th>
                                                     <th>Bird Name</th>
                                                     <th>Time Slot</th>
-                                                    <th >Service</th>
+                                                    <th>Type</th>
 
                                                     <th></th>
 

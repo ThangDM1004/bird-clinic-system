@@ -249,7 +249,7 @@
                         <div class="col-md-9">
                             <!-- Slider -->
 
-                            <div class="specialities-slider">
+                            <div class="row">
 
                                 <!-- Slider Item -->
 
