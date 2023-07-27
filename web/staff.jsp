@@ -503,7 +503,7 @@
                                                     <td class="d-none d-sm-table-cell"></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td><%=mdao.getFeeSer(ls)%></td>
+                                                    <td>$<%=mdao.getFeeSer(ls)%></td>
                                                 </tr>
                                                 <%    }
                                                 %>
@@ -524,7 +524,7 @@
                                                             <tbody>
                                                                 <tr>
                                                                     <th>Total:</th>
-                                                                    <td class="text-right text-primary"><h5><%=total%></h5></td>
+                                                                    <td class="text-right text-primary"><h5>$<%=total%></h5></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -646,7 +646,7 @@
                                                 <td class="d-none d-sm-table-cell"></td>
                                                 <td></td>
                                                 <td></td>
-                                                <td><%=dao.getServiceFeeByName(ser_name) %></td>
+                                                <td>$<%=dao.getServiceFeeByName(ser_name) %></td>
                                             </tr>
                                             <%    
                                             %>
@@ -667,7 +667,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th>Total:</th>
-                                                                <td class="text-right text-primary"><h5><%=dao.getServiceFeeByName(ser_name)%></h5></td>
+                                                                <td class="text-right text-primary"><h5>$<%=dao.getServiceFeeByName(ser_name)%></h5></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
