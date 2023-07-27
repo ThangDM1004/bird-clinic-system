@@ -13,12 +13,12 @@
 
     <!-- doccure/booking-success.jsp  30 Nov 2019 04:12:16 GMT -->
     <head>
-        <meta charset="utf-8">
-        <title>Doccure</title>
+       <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>thedearbird | Booking</title>
 
         <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
+      <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/logo-icon.png">
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
