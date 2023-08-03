@@ -254,7 +254,7 @@ public class MedicalRecordDAO {
         ResultSet rs = null;
         try {
             conn = Utils.getConnection();
-            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id,tbl_Medical_Record.booking_id, tbl_Medical_Record.total_fee \n"
+            ptm = conn.prepareStatement("select  tbl_Medical_Record.record_id, tbl_Medical_Record.patient_id,date_again , note, tbl_Booking.username_doctor, tbl_Booking.service_id,tbl_Medical_Record.booking_id\n"
                     + "                    from tbl_Medical_Record join tbl_Booking on tbl_Medical_Record.booking_id = tbl_Booking.booking_id\n"
                     + "                   where tbl_Booking.username_customer = ?");
             ptm.setString(1, username);
@@ -265,7 +265,7 @@ public class MedicalRecordDAO {
                 Date date_again = rs.getDate("date_again");
                 String note = rs.getString("note");
 
-                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, rs.getFloat("total_fee"), "", note, patient_id, rs.getString("booking_id"), rs.getString("service_id"), rs.getString("username_doctor"));
+                a = new MedicalRecordDTO(rs.getString("record_id"), date_again, 0, "", note, patient_id, rs.getString("booking_id"), rs.getString("service_id"), rs.getString("username_doctor"));
                 ls.add(a);
 
             }
@@ -622,40 +622,6 @@ public class MedicalRecordDAO {
             }
         }
         return checkInsert;
-    }
-
-    public String getSerFee(String ser_id) throws SQLException {
-        String spec = "";
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            conn = Utils.getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement("select fee\n"
-                        + "from tbl_Service\n"
-                        + "where service_id = ?");
-                ptm.setString(1, ser_id);
-                rs = ptm.executeQuery();
-                if (rs.next()) {
-                    spec = rs.getString("fee");
-                }
-            }
-        } catch (Exception e) {
-
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-
-        return spec;
     }
 
     public static void main(String[] args) throws SQLException {
